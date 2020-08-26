@@ -1,4 +1,4 @@
-from .korpora_nsmc import NSMCData
+from .korpora_nsmc import NSMC
 from .utils import default_korpora_path
 
 
@@ -26,5 +26,5 @@ class Korpora:
 
 
 KORPORA = {
-    'nsmc': NSMCData
+    'nsmc': NSMC
 }

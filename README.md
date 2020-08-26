@@ -30,11 +30,11 @@ len(nsmc.train.labels)  # 50000
 ```
 
 ```python
-from Korpora import NSMCData
+from Korpora import NSMC
 
-nsmc = NSMCData()
-nsmc = NSMCData(root_dir='./Korpora/')
-nsmc = NSMCData(force_download=True)
+nsmc = NSMC()
+nsmc = NSMC(root_dir='./Korpora/')
+nsmc = NSMC(force_download=True)
 ```
 
 ## Naming

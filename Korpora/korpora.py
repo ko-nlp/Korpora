@@ -5,11 +5,11 @@ from .utils import default_korpora_path
 
 
 @dataclass
-class KorporaSubdata:
+class KorpusData:
     texts: List[str]
 
 
-class KorporaData:
+class Korpus:
     def cleaning(self, raw_documents: List[str], **kargs):
         """`raw_data` to `sentences`"""
         raise NotImplementedError('Implement this function')
