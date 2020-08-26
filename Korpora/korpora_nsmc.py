@@ -21,8 +21,8 @@ class NSMCData(KorporaData):
         train_path = os.path.join(root_dir, 'nsmc/ratings_train.txt')
         test_path = os.path.join(root_dir, 'nsmc/ratings_test.txt')
         if (force_download or
-            not check_path(train_path, 'NSMCData') or
-            not check_path(test_path, 'NSMCData')
+            not check_path(train_path) or
+            not check_path(test_path)
            ):
             fetch('nsmc', root_dir)
 
