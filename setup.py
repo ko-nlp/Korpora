@@ -21,7 +21,7 @@ def requirements():
 
 about = get_about()
 setup(
-    name="krwordrank",
+    name="Korpora",
     version=about['__version__'],
     author=about['__author__'],
     url='https://github.com/lovit/Korpora',
