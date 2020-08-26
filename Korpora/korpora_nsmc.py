@@ -2,6 +2,7 @@ import os
 from typing import List
 
 from .korpora import KorporaData, KorporaSubdata
+from .fetch import fetch
 from .utils import check_path, load_text
 
 
@@ -16,11 +17,14 @@ class NSMCSubdata(KorporaSubdata):
 
 
 class NSMCData(KorporaData):
-    def __init__(self, root_dir):
-        train_path = os.path.join(root_dir, 'ratings_train.txt')
-        test_path = os.path.join(root_dir, 'ratings_test.txt')
-        check_path(train_path, 'NSMCData')
-        check_path(test_path, 'NSMCData')
+    def __init__(self, root_dir, force_download=False):
+        train_path = os.path.join(root_dir, 'nsmc/ratings_train.txt')
+        test_path = os.path.join(root_dir, 'nsmc/ratings_test.txt')
+        if (force_download or
+            not check_path(train_path, 'NSMCData') or
+            not check_path(test_path, 'NSMCData')
+           ):
+            fetch('nsmc', root_dir)
 
         train_texts, train_labels = self.cleaning(load_text(train_path, num_heads=1))
         test_texts, test_labels = self.cleaning(load_text(test_path, num_heads=1))

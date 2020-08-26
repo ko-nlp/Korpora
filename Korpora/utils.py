@@ -10,6 +10,7 @@ default_korpora_path = f'{expanduser("~")}/Korpora/'
 def check_path(path, dataname=''):
     if not os.path.exists(path):
         raise FileNotFoundError(f'[{dataname}] {path}')
+    return True
 
 
 def check_dir(filepath):
