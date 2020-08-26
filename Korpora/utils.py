@@ -1,5 +1,6 @@
 import os
 from os.path import expanduser
+from tqdm import tqdm
 from urllib import request
 
 
@@ -25,7 +26,38 @@ def load_text(path, num_heads=0):
     return lines
 
 
-def download(url, local_path):
-    check_dir(local_path)
-    path, http_message = request.urlretrieve(url, local_path)
-    return http_message
+def _reporthook(t):
+    """ ``reporthook`` to use with ``urllib.request`` that prints the process of the download.
+
+    Uses ``tqdm`` for progress bar.
+
+    **Reference:**
+    https://github.com/tqdm/tqdm
+
+    Args:
+        t (tqdm.tqdm) Progress bar.
+
+    Example:
+        >>> with tqdm(unit='B', unit_scale=True, miniters=1, desc=filename) as t:  # doctest: +SKIP
+        ...   urllib.request.urlretrieve(file_url, filename=full_path, reporthook=reporthook(t))
+    """
+    last_b = [0]
+
+    def inner(b=1, bsize=1, tsize=None):
+        """
+        Args:
+            b (int, optional): Number of blocks just transferred [default: 1].
+            bsize (int, optional): Size of each block (in tqdm units) [default: 1].
+            tsize (int, optional): Total size (in tqdm units). If [default: None] remains unchanged.
+        """
+        if tsize is not None:
+            t.total = tsize
+        t.update((b - last_b[0]) * bsize)
+        last_b[0] = b
+
+    return inner
+
+def download(url, local_path, corpus_name=''):
+    filename = os.path.basename(local_path)
+    with tqdm(unit='B', unit_scale=True, miniters=1, desc=f'Download {corpus_name}{filename}') as t:
+        request.urlretrieve(url, filename=local_path, reporthook=_reporthook(t))
