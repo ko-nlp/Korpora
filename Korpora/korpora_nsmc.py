@@ -17,6 +17,17 @@ class NSMCSubdata(KorporaSubdata):
 
 
 class NSMCData(KorporaData):
+    """Reference: https://github.com/e9t/nsmc
+
+    Naver sentiment movie corpus v1.0
+    This is a movie review dataset in the Korean language.
+    Reviews were scraped from Naver Movies.
+
+    The dataset construction is based on the method noted in
+    [Large movie review dataset][^1] from Maas et al., 2011.
+
+    [^1]: http://ai.stanford.edu/~amaas/data/sentiment/
+    """
     def __init__(self, root_dir, force_download=False):
         train_path = os.path.join(root_dir, 'nsmc/ratings_train.txt')
         test_path = os.path.join(root_dir, 'nsmc/ratings_test.txt')
