@@ -17,6 +17,26 @@ Using pip
 pip install Korpora
 ```
 
+## Usage
+
+```python
+from Korpora import Korpora
+
+nsmc = Korpora.load('nsmc')
+# nsmc = Korpora.load('nsmc', root_dir='path/to/Korpora')
+# nsmc = Korpora.load('nsmc', root_dir='path/to/Korpora', force_download=True)
+len(nsmc.train.texts)   # 150000
+len(nsmc.train.labels)  # 50000
+```
+
+```python
+from Korpora import NSMCData
+
+nsmc = NSMCData()
+nsmc = NSMCData(root_dir='./Korpora/')
+nsmc = NSMCData(force_download=True)
+```
+
 ## Naming
 
 All corpus follows `corpus_name.mode.type`
