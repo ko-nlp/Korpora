@@ -58,5 +58,5 @@ def _reporthook(t):
 
 def download(url, local_path, corpus_name=''):
     filename = os.path.basename(local_path)
-    with tqdm(unit='B', unit_scale=True, miniters=1, desc=f'Download {corpus_name}{filename}') as t:
+    with tqdm(unit='B', unit_scale=True, miniters=1, desc=f'[{corpus_name}] download {filename}') as t:
         request.urlretrieve(url, filename=local_path, reporthook=_reporthook(t))

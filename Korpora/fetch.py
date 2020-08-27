@@ -22,7 +22,7 @@ def do_download(information, root_dir):
     destination = os.path.join(root_dir, information['destination'])
     check_dir(destination)
     corpus_name = information['destination'].split('/')[0]
-    download(url, destination, f'[{corpus_name}] ')
+    download(url, destination, corpus_name)
 
 
 DATA_LOCATIONS = {
