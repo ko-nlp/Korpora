@@ -1,12 +1,12 @@
 import os
 from typing import List
 
-from .korpora import KorporaData, KorporaSubdata
+from .korpora import Korpus, KorpusData
 from .fetch import fetch
 from .utils import check_path, load_text
 
 
-class NSMCSubdata(KorporaSubdata):
+class NSMCData(KorpusData):
     labels: List[str]
 
     def __init__(self, texts, labels):
@@ -16,7 +16,7 @@ class NSMCSubdata(KorporaSubdata):
         self.labels = labels
 
 
-class NSMCData(KorporaData):
+class NSMC(Korpus):
     """Reference: https://github.com/e9t/nsmc
 
     Naver sentiment movie corpus v1.0
@@ -39,8 +39,8 @@ class NSMCData(KorporaData):
 
         train_texts, train_labels = self.cleaning(load_text(train_path, num_heads=1))
         test_texts, test_labels = self.cleaning(load_text(test_path, num_heads=1))
-        self.train = NSMCSubdata(train_texts, train_labels)
-        self.test = NSMCSubdata(test_texts, test_labels)
+        self.train = NSMCData(train_texts, train_labels)
+        self.test = NSMCData(test_texts, test_labels)
 
     def cleaning(self, raw_lines: List[str]):
         separated_lines = [line.split('\t') for line in raw_lines]
