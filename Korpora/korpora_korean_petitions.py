@@ -38,7 +38,13 @@ class KoreanPetitions(Korpus):
             }
     """
     def __init__(self, root_dir, force_download=False):
-        paths = sorted(glob(f'{root_dir}/korean_petitions/petition*'))
+        dates = [
+            '2017-08', '2017-09', '2017-10', '2017-11', '2017-12',
+            '2018-01', '2018-02', '2018-03', '2018-04', '2018-05',
+            '2018-06', '2018-07', '2018-08', '2018-09', '2018-10',
+            '2018-11', '2018-12', '2019-01', '2019-02', '2019-03'
+        ]
+        paths = [f'{root_dir}/korean_petitions/petitions_{d}' for d in dates]
         exists_all = True
         for path in paths:
             exists_all *= check_path(path)
