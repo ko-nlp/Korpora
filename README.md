@@ -35,6 +35,19 @@ from Korpora import NSMC
 nsmc = NSMC()
 nsmc = NSMC(root_dir='./Korpora/')
 nsmc = NSMC(force_download=True)
+text, label = nsmc.train.texts[0], nsmc.train.labels[0]
+```
+
+```python
+from Korpora import Korpora
+
+petitions = Korpora.load('korean_petitions')
+len(petitions.train)  # 433631
+
+text = petitions.train.texts[0]
+category = petitions.train.categorys[0]
+num_agree = petitions.train.num_agrees[0]
+title = petitions.train.titles[0]
 ```
 
 ## Naming
