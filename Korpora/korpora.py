@@ -8,6 +8,9 @@ from .utils import default_korpora_path
 class KorpusData:
     texts: List[str]
 
+    def __len__(self):
+        return len(self.texts)
+
 
 class Korpus:
     def cleaning(self, raw_documents: List[str], **kargs):
