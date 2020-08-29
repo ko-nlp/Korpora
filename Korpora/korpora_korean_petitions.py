@@ -1,0 +1,79 @@
+import json
+from glob import glob
+from typing import List
+
+from .korpora import Korpus, KorpusData
+from .fetch import fetch
+from .utils import check_path, load_text
+
+
+class KoreanPetitionsData(KorpusData):
+    categories: List[str]
+    num_agrees: List[int]
+    titles: List[str]
+
+    def __init__(self, contents, categories, num_agrees, titles):
+        if not (len(contents) == len(categories) == len(num_agrees) == len(titles)):
+            raise ValueError('All length of input arguments must be same.')
+        super().__init__(contents)
+        self.categories = categories
+        self.num_agrees = num_agrees
+        self.titles = titles
+
+
+class KoreanPetitions(Korpus):
+    """ Reference: https://github.com/lovit/petitions_archive
+
+        Examples in a petition
+
+            {
+                "category": "일자리",
+                "begin": "2018-05-01",
+                "end": "2018-05-31",
+                "content": "CONTENT TEXT',
+                "num_agree": 2560,
+                "petition_idx": "216521",
+                "status": "청원종료",
+                "title": "TITLE"
+            }
+    """
+    def __init__(self, root_dir, force_download=False):
+        paths = sorted(glob(f'{root_dir}/korean_petitions/petition*'))
+        exists_all = True
+        for path in paths:
+            exists_all *= check_path(path)
+        if (force_download or not exists_all):
+            fetch('korean_petitions', root_dir)
+
+        contents, categories, num_agrees, titles = [], [], [], []
+        for path in paths:
+            con, cat, num, tit = self.cleaning(load_text(path))
+            categories += cat
+            contents += con
+            num_agrees += num
+            titles += tit
+        self.train = KoreanPetitionsData(contents, categories, num_agrees, titles)
+
+    def cleaning(self, raw_lines: List[str]):
+        def parse(json_line):
+            data = json.loads(json_line)
+            return (data.get('content', None),
+                    data.get('category', None),
+                    data.get('num_agree', 0),
+                    data.get('title', None))
+
+        separated_lines = [parse(line) for line in raw_lines]
+        contents, categories, num_agrees, titles = zip(*separated_lines)
+        return contents, categories, num_agrees, titles
+
+    def get_all_texts(self):
+        return self.train.texts
+
+    def get_all_categories(self):
+        return self.train.categories
+
+    def get_all_num_agrees(self):
+        return self.train.num_agrees
+
+    def get_all_titles(self):
+        return self.train.titles
