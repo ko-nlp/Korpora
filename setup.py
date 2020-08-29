@@ -24,7 +24,7 @@ setup(
     name="Korpora",
     version=about['__version__'],
     author=about['__author__'],
-    url='https://github.com/lovit/Korpora',
+    url='https://github.com/ko-nlp/Korpora',
     description=about['__description__'],
     long_description=long_description,
     long_description_content_type='text/markdown',

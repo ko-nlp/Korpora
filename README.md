@@ -7,7 +7,7 @@ This package provides easy-download and easy-usage for various Korean corpora
 From source
 
 ```
-git clone https://github.com/lovit/Korpora
+git clone https://github.com/ko-nlp/Korpora
 python setup.py install
 ```
 
