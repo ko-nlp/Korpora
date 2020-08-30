@@ -14,6 +14,19 @@ class KorpusData:
     def __iter__(self):
         raise NotImplementedError('Implement __iter__')
 
+    def get_all_texts(self):
+        """
+        If Some KorpusDataClass has two or more text attributes, modify this function.
+
+            class SentencePairData(KorpusData):
+                pairs: List[str]
+
+                def get_all_texts(self):
+                    return self.texts + self.pairs
+
+        """
+        return self.texts
+
 
 class Korpus:
     def cleaning(self, raw_documents: List[str], **kargs):
