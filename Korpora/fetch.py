@@ -1,4 +1,5 @@
 import os
+import time
 from .utils import download, check_dir
 
 
@@ -11,7 +12,8 @@ def fetch(corpus_name, root_dir):
     if corpus_name not in DATA_LOCATIONS:
         raise ValueError(f'support only {set(DATA_LOCATIONS.keys())}')
     locations = DATA_LOCATIONS[corpus_name]
-    print(f'Fetch {corpus_name} to {os.path.abspath(root_dir)}')
+    print(f'Fetch {corpus_name} to {os.path.abspath(root_dir)}', flush=True)
+    time.sleep(0.03)
     for information in locations:
         if information['method'] == 'download':
             do_download(information, root_dir)
