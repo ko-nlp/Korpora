@@ -11,6 +11,9 @@ class KorpusData:
     def __len__(self):
         return len(self.texts)
 
+    def __getitem__(self):
+        raise NotImplementedError('Implement __getitem__')
+
 
 class Korpus:
     def cleaning(self, raw_documents: List[str], **kargs):

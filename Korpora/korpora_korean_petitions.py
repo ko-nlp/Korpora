@@ -1,10 +1,21 @@
 import json
+from dataclasses import dataclass
 from glob import glob
 from typing import List
 
 from .korpora import Korpus, KorpusData
 from .fetch import fetch
 from .utils import check_path, load_text
+
+
+@dataclass
+class KoreanPetition:
+    text: str
+    category: str
+    num_agree: int
+    begin: str
+    end: str
+    title: str
 
 
 class KoreanPetitionsData(KorpusData):
@@ -30,6 +41,16 @@ class KoreanPetitionsData(KorpusData):
         self.begins = begins
         self.ends = ends
         self.titles = titles
+
+    def __getitem__(self, index):
+        return KoreanPetition(
+            self.texts[index],
+            self.categories[index],
+            self.num_agrees[index],
+            self.begins[index],
+            self.ends[index],
+            self.titles[index]
+        )
 
 
 class KoreanPetitions(Korpus):

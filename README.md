@@ -50,6 +50,9 @@ begin = petitions.train.begins[0]
 end = petitions.train.ends[0]
 num_agree = petitions.train.num_agrees[0]
 title = petitions.train.titles[0]
+
+petition = petitions.train[0]
+petition.category  # '육아/교육'
 ```
 
 ## Naming
