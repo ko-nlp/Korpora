@@ -45,7 +45,9 @@ petitions = Korpora.load('korean_petitions')
 len(petitions.train)  # 433631
 
 text = petitions.train.texts[0]
-category = petitions.train.categorys[0]
+category = petitions.train.categories[0]
+begin = petitions.train.begins[0]
+end = petitions.train.ends[0]
 num_agree = petitions.train.num_agrees[0]
 title = petitions.train.titles[0]
 ```
