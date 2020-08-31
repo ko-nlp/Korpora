@@ -12,22 +12,12 @@ class NSMCData(KorpusData):
     def __init__(self, texts, labels):
         if len(texts) != len(labels):
             raise ValueError('`texts` and `labels` must be same length')
-        super().__init__(texts)
+        self.description = f"    Naver sentiment movie corpus v1.0. size of data={len(texts)}"
+        self.texts = texts
         self.labels = labels
 
 
 class NSMC(Korpus):
-    """Reference: https://github.com/e9t/nsmc
-
-    Naver sentiment movie corpus v1.0
-    This is a movie review dataset in the Korean language.
-    Reviews were scraped from Naver Movies.
-
-    The dataset construction is based on the method noted in
-    [Large movie review dataset][^1] from Maas et al., 2011.
-
-    [^1]: http://ai.stanford.edu/~amaas/data/sentiment/
-    """
     def __init__(self, root_dir, force_download=False):
         train_path = os.path.join(root_dir, 'nsmc/ratings_train.txt')
         test_path = os.path.join(root_dir, 'nsmc/ratings_test.txt')
@@ -41,6 +31,19 @@ class NSMC(Korpus):
         test_texts, test_labels = self.cleaning(load_text(test_path, num_heads=1))
         self.train = NSMCData(train_texts, train_labels)
         self.test = NSMCData(test_texts, test_labels)
+        self.description = """    Reference: https://github.com/e9t/nsmc
+
+    Naver sentiment movie corpus v1.0
+    This is a movie review dataset in the Korean language.
+    Reviews were scraped from Naver Movies.
+
+    The dataset construction is based on the method noted in
+    [Large movie review dataset][^1] from Maas et al., 2011.
+
+    [^1]: http://ai.stanford.edu/~amaas/data/sentiment/"""
+
+        self.license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+    Details in https://creativecommons.org/publicdomain/zero/1.0/"""
 
     def cleaning(self, raw_lines: List[str]):
         separated_lines = [line.split('\t') for line in raw_lines]
