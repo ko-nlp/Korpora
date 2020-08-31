@@ -5,7 +5,7 @@ from typing import List
 
 from .korpora import Korpus, KorpusData
 from .fetch import fetch
-from .utils import check_path, load_text
+from .utils import check_path, default_korpora_path, load_text
 
 
 @dataclass
@@ -69,7 +69,9 @@ class KoreanPetitions(Korpus):
                 "title": "TITLE"
             }
     """
-    def __init__(self, root_dir, force_download=False):
+    def __init__(self, root_dir=None, force_download=False):
+        if root_dir is None:
+            root_dir = default_korpora_path
         dates = [
             '2017-08', '2017-09', '2017-10', '2017-11', '2017-12',
             '2018-01', '2018-02', '2018-03', '2018-04', '2018-05',

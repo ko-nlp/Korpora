@@ -1,8 +1,6 @@
 from dataclasses import dataclass
 from typing import List
 
-from .utils import default_korpora_path
-
 
 @dataclass
 class KorpusData:
