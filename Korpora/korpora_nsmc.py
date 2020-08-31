@@ -16,6 +16,10 @@ class NSMCData(KorpusData):
         self.texts = texts
         self.labels = labels
 
+    def __iter__(self):
+        for text, label in zip(self.texts, self.labels):
+            yield text, label
+
 
 class NSMC(Korpus):
     def __init__(self, root_dir, force_download=False):

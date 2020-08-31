@@ -13,6 +13,22 @@ class KorpusData:
     def __getitem__(self):
         raise NotImplementedError('Implement __getitem__')
 
+    def __iter__(self):
+        raise NotImplementedError('Implement __iter__')
+
+    def get_all_texts(self):
+        """
+        If Some KorpusDataClass has two or more text attributes, modify this function.
+
+            class SentencePairData(KorpusData):
+                pairs: List[str]
+
+                def get_all_texts(self):
+                    return self.texts + self.pairs
+
+        """
+        return self.texts
+
     def __str__(self):
         classname = self.__class__.__name__
         spec = ""
