@@ -2,7 +2,7 @@ from Korpora import NSMCData
 from Korpora import Korpora
 
 
-def test_usage()
+def test_usage():
     root_dir = 'path/to/Korpora/'
     nsmc = NSMCData(root_dir)
     assert len(nsmc.train.texts) == 150000
