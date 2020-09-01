@@ -55,7 +55,11 @@ petition = petitions.train[0]
 petition.category  # '육아/교육'
 ```
 
-## Naming
+## Contribution
+
+[Code / Commit / Branch convention]: https://github.com/ko-nlp/Korpora/issues/27
+
+### Naming rules
 
 All corpus follows `corpus_name.mode.type`
 - mode: one of [train, dev, test, all]
