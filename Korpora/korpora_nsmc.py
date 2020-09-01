@@ -24,7 +24,7 @@ class NSMCData(KorpusData):
         self.labels = labels
 
     def __getitem__(self, index):
-        return NSMCRow(self.texts[index], self.labels[index])
+        return NSMCExample(self.texts[index], self.labels[index])
 
     def __iter__(self):
         for text, label in zip(self.texts, self.labels):
