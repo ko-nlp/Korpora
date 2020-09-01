@@ -58,3 +58,15 @@ class KorNLI(Korpus):
                 raise ValueError(f'Found some errors in line {i_sent}: {separated_line}')
         texts, pairs, labels = zip(*separated_lines)
         return texts, pairs, labels
+
+    def get_all_pairs(self):
+        return (self.multinli_train.get_all_pairs() +
+                self.snli_train.get_all_pairs() +
+                self.xnli_dev.get_all_pairs() +
+                self.xnli_test.get_all_pairs())
+
+    def get_all_labels(self):
+        return (self.multinli_train.get_all_labels() +
+                self.snli_train.get_all_labels() +
+                self.xnli_dev.get_all_labels() +
+                self.xnli_test.get_all_labels())
