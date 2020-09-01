@@ -1,9 +1,16 @@
 import os
+from dataclasses import dataclass
 from typing import List
 
 from .korpora import Korpus, KorpusData
 from .fetch import fetch
 from .utils import check_path, load_text
+
+
+@dataclass
+class NSMCRow:
+    text: str
+    label: int
 
 
 class NSMCData(KorpusData):
@@ -15,6 +22,9 @@ class NSMCData(KorpusData):
         self.description = f"    Naver sentiment movie corpus v1.0. size of data={len(texts)}"
         self.texts = texts
         self.labels = labels
+
+    def __getitem__(self, index):
+        return NSMCRow(self.texts[index], self.labels[index])
 
     def __iter__(self):
         for text, label in zip(self.texts, self.labels):
