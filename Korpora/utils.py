@@ -1,9 +1,10 @@
 import os
+import ssl
 from os.path import expanduser
 from tqdm import tqdm
 from urllib import request
 
-
+ssl._create_default_https_context = ssl._create_unverified_context
 default_korpora_path = f'{expanduser("~")}/Korpora/'
 
 
