@@ -1,7 +1,7 @@
 import os
 from typing import List
 
-from .korpora import Korpus, LabeledSentencePair, LabeledSentencePairKorpusData
+from .korpora import Korpus, LabeledSentencePairKorpusData
 from .fetch import fetch
 from .utils import check_path, default_korpora_path, load_text
 
@@ -9,9 +9,6 @@ from .utils import check_path, default_korpora_path, load_text
 class KorNLIData(LabeledSentencePairKorpusData):
     def __init__(self, description, texts, pairs, labels):
         super().__init__(description, texts, pairs, labels)
-
-    def __getitem__(self, index):
-        return LabeledSentencePair(self.texts[index], self.pairs[index], self.labels[index])
 
 
 class KorNLI(Korpus):
