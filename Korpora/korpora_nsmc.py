@@ -8,7 +8,7 @@ from .utils import check_path, load_text
 
 
 @dataclass
-class NSMCRow:
+class NSMCExample:
     text: str
     label: int
 
