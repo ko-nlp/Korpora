@@ -142,5 +142,12 @@ DATA_LOCATIONS = {
             'destination': 'korean_petitions/petitions_2019-03',
             'method': 'download'
         }
+    ],
+    'korean_chatbot_data': [
+        {
+            'url': 'https://raw.githubusercontent.com/songys/Chatbot_data/master/ChatbotData%20.csv',
+            'destination': 'korean_chatbot_data/ChatbotData.csv',
+            'method': 'download'
+        }
     ]
 }
