@@ -1,3 +1,4 @@
+import Korpora
 from Korpora import NSMCData
 from Korpora import Korpora
 
