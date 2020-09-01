@@ -9,6 +9,7 @@ def fetch(corpus_name, root_dir):
         >>> from Korpora.fetch import fetch
         >>> fetch('nsmc', './Korpora')
     """
+    corpus_name = corpus_name.lower()
     if corpus_name not in DATA_LOCATIONS:
         raise ValueError(f'support only {set(DATA_LOCATIONS.keys())}')
     locations = DATA_LOCATIONS[corpus_name]
