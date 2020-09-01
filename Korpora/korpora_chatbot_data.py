@@ -64,7 +64,7 @@ class KoreanChatbotCorpus(Korpus):
         return self.train.texts
 
     def get_all_pairs(self):
-        return self.train.pairs
+        return self.train.get_all_pairs()
 
     def get_all_labels(self):
-        return self.train.labels
+        return self.train.get_all_labels()

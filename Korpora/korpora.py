@@ -64,6 +64,9 @@ class SentencePairKorpusData(KorpusData):
     def __getitem__(self, index):
         return SentencePair(self.texts[index], self.pairs[index])
 
+    def get_all_pairs(self):
+        return [SentencePair(s, p) for s, p in zip(self.texts, self.pairs)]
+
 
 @dataclass
 class LabeledSentencePair:
@@ -85,6 +88,12 @@ class LabeledSentencePairKorpusData(KorpusData):
 
     def __getitem__(self, index):
         return LabeledSentencePair(self.texts[index], self.pairs[index], self.labels[index])
+
+    def get_all_pairs(self):
+        return [SentencePair(s, p) for s, p in zip(self.texts, self.pairs)]
+
+    def get_all_labels(self):
+        return self.labels
 
 
 class Korpus:
