@@ -14,7 +14,8 @@ class KorpusData:
         raise NotImplementedError('Implement __getitem__')
 
     def __iter__(self):
-        raise NotImplementedError('Implement __iter__')
+        for i in range(len(self)):
+            yield self[i]
 
     def get_all_texts(self):
         """

@@ -26,10 +26,6 @@ class NSMCData(KorpusData):
     def __getitem__(self, index):
         return NSMCExample(self.texts[index], self.labels[index])
 
-    def __iter__(self):
-        for text, label in zip(self.texts, self.labels):
-            yield text, label
-
 
 class NSMC(Korpus):
     def __init__(self, root_dir, force_download=False):
