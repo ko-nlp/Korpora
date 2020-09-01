@@ -14,3 +14,5 @@ def test_usage():
     assert 'Chatbot_data_for_Korean v1.0' in chatbot_data.description
     assert 'CC0 1.0 Universal' in chatbot_data.license
     chatbot_data.train[0]
+    for example in chatbot_data.train:
+        continue
