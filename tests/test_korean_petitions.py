@@ -10,3 +10,5 @@ def test_usage():
     assert petitions.train[0].begin == '2017-08-25'
     assert petitions.train[0].end == '2017-09-24'
     assert petitions.train.titles[0] == petitions.train[0].title
+    assert '청와대 국민청원' in petitions.description
+    assert 'CC0 1.0 Universal' in petitions.license

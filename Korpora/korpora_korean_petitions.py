@@ -25,7 +25,7 @@ class KoreanPetitionsData(KorpusData):
     ends: List[str]
     titles: List[str]
 
-    def __init__(self, contents, categories, begins, ends, num_agrees, titles):
+    def __init__(self, description, contents, categories, begins, ends, num_agrees, titles):
         if not (len(contents) ==
                 len(categories) ==
                 len(begins) ==
@@ -35,7 +35,7 @@ class KoreanPetitionsData(KorpusData):
                ):
             raise ValueError('All length of input arguments must be same.')
 
-        super().__init__(contents)
+        super().__init__(description=description, texts=contents)
         self.categories = categories
         self.num_agrees = num_agrees
         self.begins = begins
@@ -94,9 +94,18 @@ class KoreanPetitions(Korpus):
             ends += e
             num_agrees += num
             titles += tit
+        description = """    청와대 국민청원 게시판의 데이터를 월별로 수집한 것입니다.
+            청원은 게시판에 글을 올린 뒤, 한달 간 청원이 진행됩니다. 수집되는 데이터는 청원종료가 된 이후의 데이터이며, 청원 내 댓글은 수집되지 않습니다. 단 청원의 동의 개수는 수집됩니다.
+            자세한 내용은 아래 repository를 참고하세요.
+
+            https://github.com/lovit/petitions_archive
+                """
         self.train = KoreanPetitionsData(
-            contents, categories, begins,
-            ends, num_agrees, titles)
+            description, contents, categories,
+            begins, ends, num_agrees, titles)
+        self.description = description
+        self.license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+    Details in https://creativecommons.org/publicdomain/zero/1.0/"""
 
     def cleaning(self, raw_lines: List[str]):
         def parse(json_line):
