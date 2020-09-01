@@ -8,9 +8,17 @@ from .utils import check_path, default_korpora_path
 
 
 class KoreanChatbotData(LabeledSentencePairKorpusData):
-    answers:  List[str]
-    labels: List[int]
+    """
+    Attributes:
+        texts (list of str) : questions
+        pairs (list of str) : answers
+        labels (list of int) : categories
 
+    See description for detail
+
+        >>> print(str(kor_chat_data))  # or
+        >>> print(kor_chat_data.description)
+    """
     def __init__(self, description, texts, pairs, labels):
         super().__init__(
             description=description,
@@ -18,6 +26,7 @@ class KoreanChatbotData(LabeledSentencePairKorpusData):
             pairs=pairs,
             labels=labels
         )
+
 
 class KoreanChatbotCorpus(Korpus):
     """ Reference: https://github.com/songys/Chatbot_data
