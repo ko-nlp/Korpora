@@ -28,7 +28,9 @@ class NSMCData(KorpusData):
 
 
 class NSMC(Korpus):
-    def __init__(self, root_dir, force_download=False):
+    def __init__(self, root_dir=None, force_download=False):
+        if root_dir is None:
+            root_dir = default_korpora_path
         train_path = os.path.join(root_dir, 'nsmc/ratings_train.txt')
         test_path = os.path.join(root_dir, 'nsmc/ratings_test.txt')
         if (force_download or
