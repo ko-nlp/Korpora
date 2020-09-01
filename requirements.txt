@@ -1,0 +1,2 @@
+dataclasses>=0.6
+tqdm>=4.46.0
