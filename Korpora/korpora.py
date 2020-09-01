@@ -1,8 +1,6 @@
 from dataclasses import dataclass
 from typing import List
 
-from .utils import default_korpora_path
-
 
 @dataclass
 class KorpusData:
@@ -11,6 +9,9 @@ class KorpusData:
 
     def __len__(self):
         return len(self.texts)
+
+    def __getitem__(self):
+        raise NotImplementedError('Implement __getitem__')
 
     def __iter__(self):
         raise NotImplementedError('Implement __iter__')

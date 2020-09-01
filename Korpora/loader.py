@@ -1,3 +1,4 @@
+from .korpora_korean_petitions import KoreanPetitions
 from .korpora_nsmc import NSMC
 from .utils import default_korpora_path
 
@@ -26,5 +27,6 @@ class Korpora:
 
 
 KORPORA = {
-    'nsmc': NSMC
+    'nsmc': NSMC,
+    'korean_petitions': KoreanPetitions
 }
