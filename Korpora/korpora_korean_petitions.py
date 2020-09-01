@@ -25,7 +25,7 @@ class KoreanPetitionsData(KorpusData):
     ends: List[str]
     titles: List[str]
 
-    def __init__(self, contents, categories, begins, ends, num_agrees, titles, description):
+    def __init__(self, description, contents, categories, begins, ends, num_agrees, titles):
         if not (len(contents) ==
                 len(categories) ==
                 len(begins) ==
@@ -101,8 +101,8 @@ class KoreanPetitions(Korpus):
             https://github.com/lovit/petitions_archive
                 """
         self.train = KoreanPetitionsData(
-            contents, categories, begins,
-            ends, num_agrees, titles, description)
+            description, contents, categories,
+            begins, ends, num_agrees, titles)
         self.description = description
         self.license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
     Details in https://creativecommons.org/publicdomain/zero/1.0/"""
