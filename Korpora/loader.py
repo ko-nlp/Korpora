@@ -1,5 +1,7 @@
 from .korpora_korean_petitions import KoreanPetitions
+from .korpora_kornli import KorNLI
 from .korpora_nsmc import NSMC
+from .korpora_chatbot_data import KoreanChatbotCorpus
 from .utils import default_korpora_path
 
 
@@ -28,5 +30,7 @@ class Korpora:
 
 KORPORA = {
     'nsmc': NSMC,
-    'korean_petitions': KoreanPetitions
+    'korean_petitions': KoreanPetitions,
+    'korean_chatbot_data': KoreanChatbotCorpus,
+    'kornli': KorNLI
 }

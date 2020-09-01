@@ -2,15 +2,9 @@ import os
 from dataclasses import dataclass
 from typing import List
 
-from .korpora import Korpus, KorpusData
+from .korpora import Korpus, KorpusData, LabeledSentence
 from .fetch import fetch
 from .utils import check_path, load_text
-
-
-@dataclass
-class NSMCExample:
-    text: str
-    label: int
 
 
 class NSMCData(KorpusData):
@@ -24,15 +18,13 @@ class NSMCData(KorpusData):
         self.labels = labels
 
     def __getitem__(self, index):
-        return NSMCExample(self.texts[index], self.labels[index])
-
-    def __iter__(self):
-        for text, label in zip(self.texts, self.labels):
-            yield text, label
+        return LabeledSentence(self.texts[index], self.labels[index])
 
 
 class NSMC(Korpus):
-    def __init__(self, root_dir, force_download=False):
+    def __init__(self, root_dir=None, force_download=False):
+        if root_dir is None:
+            root_dir = default_korpora_path
         train_path = os.path.join(root_dir, 'nsmc/ratings_train.txt')
         test_path = os.path.join(root_dir, 'nsmc/ratings_test.txt')
         if (force_download or

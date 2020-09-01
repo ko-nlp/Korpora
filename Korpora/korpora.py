@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, Union
 
 
 @dataclass
@@ -14,7 +14,8 @@ class KorpusData:
         raise NotImplementedError('Implement __getitem__')
 
     def __iter__(self):
-        raise NotImplementedError('Implement __iter__')
+        for i in range(len(self)):
+            yield self[i]
 
     def get_all_texts(self):
         """
@@ -37,6 +38,62 @@ class KorpusData:
                 spec += f'  {classname}.{name} (list[{var[0].__class__.__name__}]) : size={len(var)}\n'
         s = f"""{classname}\n{self.description}\n\nAttributes:\n{spec}\n"""
         return s
+
+
+@dataclass
+class LabeledSentence:
+    text: str
+    label: Union[int, float, str, bool]
+
+
+@dataclass
+class SentencePair:
+    text: str
+    pair: str
+
+
+class SentencePairKorpusData(KorpusData):
+    pairs: List[str]
+
+    def __init__(self, description, texts, pairs):
+        if not (len(texts) == len(pairs)):
+            raise ValueError('All two arguments must be same length')
+        super().__init__(description, texts)
+        self.pairs = pairs
+
+    def __getitem__(self, index):
+        return SentencePair(self.texts[index], self.pairs[index])
+
+    def get_all_pairs(self):
+        return [SentencePair(s, p) for s, p in zip(self.texts, self.pairs)]
+
+
+@dataclass
+class LabeledSentencePair:
+    text: str
+    pair: str
+    label: Union[str, int, float, bool]
+
+
+class LabeledSentencePairKorpusData(KorpusData):
+    pairs: List[str]
+    labels: List
+
+    def __init__(self, description, texts, pairs, labels):
+        if not (len(texts) == len(pairs) == len(labels)):
+            raise ValueError('All three arguments must be same length')
+        super().__init__(description, texts)
+        self.pairs = pairs
+        self.labels = labels
+
+    def __getitem__(self, index):
+        return LabeledSentencePair(self.texts[index], self.pairs[index], self.labels[index])
+
+    def get_all_pairs(self):
+        return [SentencePair(s, p) for s, p in zip(self.texts, self.pairs)]
+
+    def get_all_labels(self):
+        return self.labels
 
 
 class Korpus:
