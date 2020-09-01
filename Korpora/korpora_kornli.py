@@ -61,6 +61,3 @@ class KorNLI(Korpus):
                 raise ValueError(f'Found some errors in line {i_sent}: {separated_line}')
         texts, pairs, labels = zip(*separated_lines)
         return texts, pairs, labels
-
-    def get_all_texts(self):
-        return self.train.texts + self.pairs.texts
