@@ -41,6 +41,12 @@ class KorpusData:
 
 
 @dataclass
+class LabeledSentence:
+    text: str
+    label: Union[int, float, str, bool]
+
+
+@dataclass
 class SentencePair:
     text: str
     pair: str

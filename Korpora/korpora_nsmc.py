@@ -2,15 +2,9 @@ import os
 from dataclasses import dataclass
 from typing import List
 
-from .korpora import Korpus, KorpusData
+from .korpora import Korpus, KorpusData, LabeledSentence
 from .fetch import fetch
 from .utils import check_path, load_text
-
-
-@dataclass
-class NSMCExample:
-    text: str
-    label: int
 
 
 class NSMCData(KorpusData):
@@ -24,7 +18,7 @@ class NSMCData(KorpusData):
         self.labels = labels
 
     def __getitem__(self, index):
-        return NSMCExample(self.texts[index], self.labels[index])
+        return LabeledSentence(self.texts[index], self.labels[index])
 
 
 class NSMC(Korpus):
