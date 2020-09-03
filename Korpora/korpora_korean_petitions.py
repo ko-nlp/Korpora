@@ -1,12 +1,114 @@
+import os
 import json
 from dataclasses import dataclass
-from glob import glob
 from typing import List
 
 from .korpora import Korpus, KorpusData
-from .fetch import fetch
-from .utils import check_path, default_korpora_path, load_text
+from .utils import fetch, default_korpora_path, load_text
 
+
+corpus_information = [
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2017-08',
+            'destination': 'korean_petitions/petitions_2017-08',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2017-09',
+            'destination': 'korean_petitions/petitions_2017-09',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2017-10',
+            'destination': 'korean_petitions/petitions_2017-10',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2017-11',
+            'destination': 'korean_petitions/petitions_2017-11',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2017-12',
+            'destination': 'korean_petitions/petitions_2017-12',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-01',
+            'destination': 'korean_petitions/petitions_2018-01',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-02',
+            'destination': 'korean_petitions/petitions_2018-02',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-03',
+            'destination': 'korean_petitions/petitions_2018-03',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-04',
+            'destination': 'korean_petitions/petitions_2018-04',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-05',
+            'destination': 'korean_petitions/petitions_2018-05',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-06',
+            'destination': 'korean_petitions/petitions_2018-06',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-07',
+            'destination': 'korean_petitions/petitions_2018-07',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-08',
+            'destination': 'korean_petitions/petitions_2018-08',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-09',
+            'destination': 'korean_petitions/petitions_2018-09',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-10',
+            'destination': 'korean_petitions/petitions_2018-10',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-11',
+            'destination': 'korean_petitions/petitions_2018-11',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2018-12',
+            'destination': 'korean_petitions/petitions_2018-12',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2019-01',
+            'destination': 'korean_petitions/petitions_2019-01',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2019-02',
+            'destination': 'korean_petitions/petitions_2019-02',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2019-03',
+            'destination': 'korean_petitions/petitions_2019-03',
+            'method': 'download'
+        },
+]
 
 @dataclass
 class KoreanPetition:
@@ -72,22 +174,14 @@ class KoreanPetitions(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         if root_dir is None:
             root_dir = default_korpora_path
-        dates = [
-            '2017-08', '2017-09', '2017-10', '2017-11', '2017-12',
-            '2018-01', '2018-02', '2018-03', '2018-04', '2018-05',
-            '2018-06', '2018-07', '2018-08', '2018-09', '2018-10',
-            '2018-11', '2018-12', '2019-01', '2019-02', '2019-03'
-        ]
-        paths = [f'{root_dir}/korean_petitions/petitions_{d}' for d in dates]
-        exists_all = True
-        for path in paths:
-            exists_all *= check_path(path)
-        if (force_download or not exists_all):
-            fetch('korean_petitions', root_dir)
+        for info in corpus_information:
+            local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+            fetch(info['url'], local_path, 'korean_petitions', force_download)
 
         contents, categories, begins, ends, num_agrees, titles = [], [], [], [], [], []
-        for path in paths:
-            con, cat, b, e, num, tit = self.cleaning(load_text(path))
+        for info in corpus_information:
+            local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+            con, cat, b, e, num, tit = self.cleaning(load_text(local_path))
             categories += cat
             contents += con
             begins += b
