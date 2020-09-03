@@ -53,11 +53,11 @@ class KorNLI(Korpus):
                 self.description,
                 *self.cleaning(load_text(local_path, num_heads=1))
             )
-            if 'multinli.train' in local_path:
+            if 'multinli.train' in info['destination']:
                 self.multinli_train = data
-            elif 'snli_1.0_train' in local_path:
+            elif 'snli_1.0_train' in info['destination']:
                 self.snli_train = data
-            elif 'xnli.dev' in local_path:
+            elif 'xnli.dev' in info['destination']:
                 self.xnli_dev = data
             else:
                 self.xnli_test = data
