@@ -41,7 +41,7 @@ class NSMC(Korpus):
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             fetch(info['url'], local_path, 'nsmc', force_download)
             text, labels = self.cleaning(load_text(local_path, num_heads=1))
-            if 'train' in local_path:
+            if 'train' in info['destination']:
                 self.train = NSMCData(text, labels)
             else:
                 self.test = NSMCData(text, labels)
