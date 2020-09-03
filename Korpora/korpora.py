@@ -46,6 +46,22 @@ class LabeledSentence:
     label: Union[int, float, str, bool]
 
 
+class LabeledSentenceKorpusData(KorpusData):
+    pairs: List[str]
+
+    def __init__(self, description, texts, labels):
+        if not (len(texts) == len(labels)):
+            raise ValueError('All two arguments must be same length')
+        super().__init__(description, texts)
+        self.labels = labels
+
+    def __getitem__(self, index):
+        return SentencePair(self.texts[index], self.labels[index])
+
+    def get_all_labeled_sentences(self):
+        return [LabeledSentence(s, l) for s, l in zip(self.texts, self.labels)]
+
+
 @dataclass
 class SentencePair:
     text: str
