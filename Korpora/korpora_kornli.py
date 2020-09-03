@@ -2,8 +2,31 @@ import os
 from typing import List
 
 from .korpora import Korpus, LabeledSentencePairKorpusData
-from .fetch import fetch
-from .utils import check_path, default_korpora_path, load_text
+from .utils import fetch, default_korpora_path, load_text
+
+
+corpus_information = [
+        {
+            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/multinli.train.ko.tsv',
+            'destination': 'kornli/multinli.train.ko.tsv',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/snli_1.0_train.ko.tsv',
+            'destination': 'kornli/snli_1.0_train.ko.tsv',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/xnli.dev.ko.tsv',
+            'destination': 'kornli/xnli.dev.ko.tsv',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/xnli.test.ko.tsv',
+            'destination': 'kornli/xnli.test.ko.tsv',
+            'method': 'download'
+        }
+]
 
 
 class KorNLIData(LabeledSentencePairKorpusData):
@@ -23,30 +46,21 @@ class KorNLI(Korpus):
 
     We introduce KorNLI and KorSTS, which are NLI and STS datasets in Korean."""
 
-        multinli_train_path = os.path.join(root_dir, 'kornli/multinli.train.ko.tsv')
-        snli_train_path = os.path.join(root_dir, 'kornli/snli_1.0_train.ko.tsv')
-        xnli_dev_path = os.path.join(root_dir, 'kornli/xnli.dev.ko.tsv')
-        xnli_test_path = os.path.join(root_dir, 'kornli/xnli.test.ko.tsv')
-        if (force_download or
-            not check_path(multinli_train_path) or
-            not check_path(snli_train_path) or
-            not check_path(xnli_dev_path) or
-            not check_path(xnli_test_path)
-            ):
-            fetch('kornli', root_dir)
-
-        self.multinli_train = KorNLIData(
-            self.description,
-            *self.cleaning(load_text(multinli_train_path, num_heads=1)))
-        self.snli_train = KorNLIData(
-            self.description,
-            *self.cleaning(load_text(snli_train_path, num_heads=1)))
-        self.xnli_dev = KorNLIData(
-            self.description,
-            *self.cleaning(load_text(xnli_dev_path, num_heads=1)))
-        self.xnli_test = KorNLIData(
-            self.description,
-            *self.cleaning(load_text(xnli_test_path, num_heads=1)))
+        for info in corpus_information:
+            local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+            fetch(info['url'], local_path, 'kornli', force_download)
+            data = KorNLIData(
+                self.description,
+                *self.cleaning(load_text(local_path, num_heads=1))
+            )
+            if 'multinli.train' in local_path:
+                self.multinli_train = data
+            elif 'snli_1.0_train' in local_path:
+                self.snli_train = data
+            elif 'xnli.dev' in local_path:
+                self.xnli_dev = data
+            else:
+                self.xnli_test = data
 
         self.license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
     Details in https://creativecommons.org/licenses/by-sa/4.0/"""
