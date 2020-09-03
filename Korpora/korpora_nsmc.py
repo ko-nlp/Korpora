@@ -5,7 +5,7 @@ from .korpora import Korpus, KorpusData, LabeledSentence
 from .utils import fetch, load_text, default_korpora_path
 
 
-corpus_information = [
+NSMC_CORPUS_INFORMATION = [
         {
             'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt',
             'destination': 'nsmc/ratings_train.txt',
@@ -37,7 +37,7 @@ class NSMC(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         if root_dir is None:
             root_dir = default_korpora_path
-        for info in corpus_information:
+        for info in NSMC_CORPUS_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             fetch(info['url'], local_path, 'nsmc', force_download)
             text, labels = self.cleaning(load_text(local_path, num_heads=1))
