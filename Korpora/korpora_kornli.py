@@ -5,7 +5,7 @@ from .korpora import Korpus, LabeledSentencePairKorpusData
 from .utils import fetch, default_korpora_path, load_text
 
 
-corpus_information = [
+KORNLI_CORPUS_INFORMATION = [
         {
             'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/multinli.train.ko.tsv',
             'destination': 'kornli/multinli.train.ko.tsv',
@@ -46,7 +46,7 @@ class KorNLI(Korpus):
 
     We introduce KorNLI and KorSTS, which are NLI and STS datasets in Korean."""
 
-        for info in corpus_information:
+        for info in KORNLI_CORPUS_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             fetch(info['url'], local_path, 'kornli', force_download)
             data = KorNLIData(
