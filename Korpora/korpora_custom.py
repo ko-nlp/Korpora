@@ -6,6 +6,30 @@ from .utils import load_text
 
 
 class CustomLabeledSentencePairKorpus(Korpus):
+    """
+    We assume that all custom LabeledSentencePair files are in `tap-separated text` format
+
+        sent a\tsent b\tlabel_ab
+        sent c\tsent d\tlabel_cd
+
+    Examples:
+        If custom corpus text files have no header
+
+            >>> paths = [
+            >>>     'path/to/mycorpus/train.tsv',
+            >>>     'path/to/mycorpus/test.tsv',
+            >>> ]
+            >>> custom_korpus = CustomLabeledSentencePairKorpus(paths)
+
+        If these files have headers
+
+            >>> paths = [
+            >>>     'path/to/mycorpus/train.tsv',
+            >>>     'path/to/mycorpus/test.tsv',
+            >>> ]
+            >>> custom_korpus = CustomLabeledSentencePairKorpus(
+            >>>     paths, num_headers=num_headers)
+    """
     def __init__(self, paths, num_headers=0):
         super().__init__()
         for path in paths:
@@ -26,6 +50,30 @@ class CustomLabeledSentencePairKorpus(Korpus):
 
 
 class CustomLabeledSentenceKorpus(Korpus):
+    """
+    We assume that all custom LabeledSentence files are in `tap-separated text` format
+
+        sent 1\tlabel_1
+        sent 2\tlabel_2
+
+    Examples:
+        If custom corpus text files have no header
+
+            >>> paths = [
+            >>>     'path/to/mycorpus/train.tsv',
+            >>>     'path/to/mycorpus/test.tsv',
+            >>> ]
+            >>> custom_korpus = CustomLabeledSentenceKorpus(paths)
+
+        If these files have headers
+
+            >>> paths = [
+            >>>     'path/to/mycorpus/train.tsv',
+            >>>     'path/to/mycorpus/test.tsv',
+            >>> ]
+            >>> custom_korpus = CustomLabeledSentenceKorpus(
+            >>>     paths, num_headers=num_headers)
+    """
     def __init__(self, paths, num_headers=0):
         super().__init__()
         for path in paths:
@@ -47,13 +95,28 @@ class CustomLabeledSentenceKorpus(Korpus):
 
 class CustomSentencePairKorpus(Korpus):
     """
-    Examples:
+    We assume that all custom SentencePair files are in `tap-separated text` format
 
-        >>> paths = [
-        >>>     '/Users/hyunjoongkim/Korpora/test/train.tsv',
-        >>>     '/Users/hyunjoongkim/Korpora/test/test.tsv',
-        >>> ]
-        >>> custom_korpus = CustomSentencePairKorpus(paths)
+        sent a\tsent b
+        sent c\tsent d
+
+    Examples:
+        If custom corpus text files have no header
+
+            >>> paths = [
+            >>>     'path/to/mycorpus/train.tsv',
+            >>>     'path/to/mycorpus/test.tsv',
+            >>> ]
+            >>> custom_korpus = CustomSentencePairKorpus(paths)
+
+        If these files have headers
+
+            >>> paths = [
+            >>>     'path/to/mycorpus/train.tsv',
+            >>>     'path/to/mycorpus/test.tsv',
+            >>> ]
+            >>> custom_korpus = CustomSentencePairKorpus(
+            >>>     paths, num_headers=num_headers)
     """
     def __init__(self, paths, num_headers=0):
         super().__init__()
