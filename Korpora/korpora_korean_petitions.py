@@ -173,10 +173,12 @@ class KoreanPetitions(Korpus):
     """
     def __init__(self, root_dir=None, force_download=False):
         description = """    청와대 국민청원 게시판의 데이터를 월별로 수집한 것입니다.
-            청원은 게시판에 글을 올린 뒤, 한달 간 청원이 진행됩니다. 수집되는 데이터는 청원종료가 된 이후의 데이터이며, 청원 내 댓글은 수집되지 않습니다. 단 청원의 동의 개수는 수집됩니다.
-            자세한 내용은 아래 repository를 참고하세요.
+    청원은 게시판에 글을 올린 뒤, 한달 간 청원이 진행됩니다.
+    수집되는 데이터는 청원종료가 된 이후의 데이터이며, 청원 내 댓글은 수집되지 않습니다.
+    단 청원의 동의 개수는 수집됩니다.
+    자세한 내용은 아래 repository를 참고하세요.
 
-            https://github.com/lovit/petitions_archive"""
+    https://github.com/lovit/petitions_archive"""
 
         license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
     Details in https://creativecommons.org/publicdomain/zero/1.0/"""
