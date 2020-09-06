@@ -46,23 +46,25 @@ class KoreanChatbotCorpus(Korpus):
             }
     """
     def __init__(self, root_dir=None, force_download=False):
+        description = """    Chatbot_data_for_Korean v1.0
+    1. 챗봇 트레이닝용 문답 페어 11,876개
+    2. 일상다반사 0, 이별(부정) 1, 사랑(긍정) 2로 레이블링
+    자세한 내용은 아래 repository를 참고하세요.
+
+    https://github.com/songys/Chatbot_data"""
+
+        license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+    Details in https://creativecommons.org/publicdomain/zero/1.0/"""
+
+        super().__init__(description, license)
+
         if root_dir is None:
             root_dir = default_korpora_path
         local_path = os.path.join(os.path.abspath(root_dir), KOREAN_CHATBOT_CORPUS_INFORMATION[0]['destination'])
         fetch(KOREAN_CHATBOT_CORPUS_INFORMATION[0]['url'], local_path, 'korean_chatbot_data', force_download)
         f = open(local_path, 'r', encoding='utf-8')
         questions, answers, labels = self.cleaning(csv.reader(f, delimiter=','))
-        description = """    Chatbot_data_for_Korean v1.0
-    1. 챗봇 트레이닝용 문답 페어 11,876개
-    2. 일상다반사 0, 이별(부정) 1, 사랑(긍정) 2로 레이블링
-    자세한 내용은 아래 repository를 참고하세요.
-
-    https://github.com/songys/Chatbot_data
-                """
         self.train = KoreanChatbotData(description, questions, answers, labels)
-        self.description = description
-        self.license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
-    Details in https://creativecommons.org/publicdomain/zero/1.0/"""
 
     def cleaning(self, examples):
         next(examples) # skip head
