@@ -56,7 +56,22 @@ def _reporthook(t):
 
     return inner
 
+
 def download(url, local_path, corpus_name=''):
     filename = os.path.basename(local_path)
     with tqdm(unit='B', unit_scale=True, miniters=1, desc=f'[{corpus_name}] download {filename}') as t:
         request.urlretrieve(url, filename=local_path, reporthook=_reporthook(t))
+
+
+def fetch(url, local_path, corpus_name=None, forced_download=False):
+    """
+       Examples::
+           >>> from Korpora.utils import fetch
+           >>> fetch('https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt', 'nsmc/ratings_train.txt', 'nsmc')
+       """
+    destination = os.path.abspath(local_path)
+    if forced_download or not check_path(destination):
+        check_dir(destination)
+        download(url, destination, corpus_name)
+    else:
+        print(f'File exists ({corpus_name} : {destination}), skip to download')

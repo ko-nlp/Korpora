@@ -1,10 +1,17 @@
 import os
 import csv
-from typing import List
 
 from .korpora import Korpus, LabeledSentencePairKorpusData
-from .fetch import fetch
-from .utils import check_path, default_korpora_path
+from .utils import fetch, default_korpora_path
+
+
+KOREAN_CHATBOT_CORPUS_INFORMATION = [
+        {
+            'url': 'https://raw.githubusercontent.com/songys/Chatbot_data/master/ChatbotData%20.csv',
+            'destination': 'korean_chatbot_data/ChatbotData.csv',
+            'method': 'download'
+        }
+]
 
 
 class KoreanChatbotData(LabeledSentencePairKorpusData):
@@ -41,11 +48,9 @@ class KoreanChatbotCorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         if root_dir is None:
             root_dir = default_korpora_path
-        train_path = os.path.join(root_dir, 'korean_chatbot_data/ChatbotData.csv')
-        if (force_download or not check_path(train_path)):
-            fetch('korean_chatbot_data', root_dir)
-
-        f = open(train_path, 'r', encoding='utf-8')
+        local_path = os.path.join(os.path.abspath(root_dir), KOREAN_CHATBOT_CORPUS_INFORMATION[0]['destination'])
+        fetch(KOREAN_CHATBOT_CORPUS_INFORMATION[0]['url'], local_path, 'korean_chatbot_data', force_download)
+        f = open(local_path, 'r', encoding='utf-8')
         questions, answers, labels = self.cleaning(csv.reader(f, delimiter=','))
         description = """    Chatbot_data_for_Korean v1.0
     1. 챗봇 트레이닝용 문답 페어 11,876개

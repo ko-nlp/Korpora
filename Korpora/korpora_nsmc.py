@@ -1,10 +1,22 @@
 import os
-from dataclasses import dataclass
 from typing import List
 
 from .korpora import Korpus, KorpusData, LabeledSentence
-from .fetch import fetch
-from .utils import check_path, load_text
+from .utils import fetch, load_text, default_korpora_path
+
+
+NSMC_CORPUS_INFORMATION = [
+        {
+            'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt',
+            'destination': 'nsmc/ratings_train.txt',
+            'method': 'download'
+        },
+        {
+            'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_test.txt',
+            'destination': 'nsmc/ratings_test.txt',
+            'method': 'download'
+        },
+]
 
 
 class NSMCData(KorpusData):
@@ -25,18 +37,14 @@ class NSMC(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         if root_dir is None:
             root_dir = default_korpora_path
-        train_path = os.path.join(root_dir, 'nsmc/ratings_train.txt')
-        test_path = os.path.join(root_dir, 'nsmc/ratings_test.txt')
-        if (force_download or
-            not check_path(train_path) or
-            not check_path(test_path)
-           ):
-            fetch('nsmc', root_dir)
-
-        train_texts, train_labels = self.cleaning(load_text(train_path, num_heads=1))
-        test_texts, test_labels = self.cleaning(load_text(test_path, num_heads=1))
-        self.train = NSMCData(train_texts, train_labels)
-        self.test = NSMCData(test_texts, test_labels)
+        for info in NSMC_CORPUS_INFORMATION:
+            local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+            fetch(info['url'], local_path, 'nsmc', force_download)
+            text, labels = self.cleaning(load_text(local_path, num_heads=1))
+            if 'train' in info['destination']:
+                self.train = NSMCData(text, labels)
+            else:
+                self.test = NSMCData(text, labels)
         self.description = """    Reference: https://github.com/e9t/nsmc
 
     Naver sentiment movie corpus v1.0
