@@ -112,6 +112,37 @@ class LabeledSentencePairKorpusData(KorpusData):
         return self.labels
 
 
+@dataclass
+class WordTag:
+    text: str
+    words: List[str]
+    tags: List[str]
+
+
+class WordTagKorpusData(KorpusData):
+    words: List[List[str]]
+    tags: List[List[str]]
+
+    def __init__(self, description, texts, words, tags):
+        if not (len(texts) == len(words) == len(tags)):
+            raise ValueError('All three arguments must be same length')
+        super().__init__(description, texts)
+        self.words = words
+        self.tags = tags
+
+    def __getitem__(self, index):
+        return WordTag(self.texts[index], self.words[index], self.tags[index])
+
+    def get_all_words(self):
+        return self.words
+
+    def get_all_tags(self):
+        return self.tags
+
+    def get_all_words_and_tags(self):
+        return [WordTag(text, words, tags) for text, words, tags in zip(self.texts, self.words, self.tags)]
+
+
 class Korpus:
     description: str
     license: str
