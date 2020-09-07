@@ -35,17 +35,7 @@ class NSMCData(KorpusData):
 
 class NSMC(Korpus):
     def __init__(self, root_dir=None, force_download=False):
-        if root_dir is None:
-            root_dir = default_korpora_path
-        for info in NSMC_CORPUS_INFORMATION:
-            local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-            fetch(info['url'], local_path, 'nsmc', force_download)
-            text, labels = self.cleaning(load_text(local_path, num_heads=1))
-            if 'train' in info['destination']:
-                self.train = NSMCData(text, labels)
-            else:
-                self.test = NSMCData(text, labels)
-        self.description = """    Reference: https://github.com/e9t/nsmc
+        description = """    Reference: https://github.com/e9t/nsmc
 
     Naver sentiment movie corpus v1.0
     This is a movie review dataset in the Korean language.
@@ -56,8 +46,21 @@ class NSMC(Korpus):
 
     [^1]: http://ai.stanford.edu/~amaas/data/sentiment/"""
 
-        self.license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+        license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
     Details in https://creativecommons.org/publicdomain/zero/1.0/"""
+
+        super().__init__(description, license)
+
+        if root_dir is None:
+            root_dir = default_korpora_path
+        for info in NSMC_CORPUS_INFORMATION:
+            local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+            fetch(info['url'], local_path, 'nsmc', force_download)
+            text, labels = self.cleaning(load_text(local_path, num_heads=1))
+            if 'train' in info['destination']:
+                self.train = NSMCData(text, labels)
+            else:
+                self.test = NSMCData(text, labels)
 
     def cleaning(self, raw_lines: List[str]):
         separated_lines = [line.split('\t') for line in raw_lines]

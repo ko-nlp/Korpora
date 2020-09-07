@@ -116,6 +116,23 @@ class Korpus:
     description: str
     license: str
 
+    def __init__(self, description, license):
+        self.description = description
+        self.license = license
+        print(f"""
+    Korpora 는 다른 분들이 연구 목적으로 공유해주신 말뭉치들을
+    손쉽게 다운로드, 사용할 수 있는 기능만을 제공합니다.
+
+    말뭉치들을 공유해 주신 분들에게 감사드리며, 각 말뭉치 별 설명과 라이센스를 공유 드립니다.
+    해당 말뭉치에 대해 자세히 알고 싶으신 분은 아래의 description 을 참고,
+    해당 말뭉치를 연구/상용의 목적으로 이용하실 때에는 아래의 라이센스를 참고해 주시기 바랍니다.
+
+    # Description
+{description}
+
+    # License
+{license}\n""")
+
     def __str__(self):
         classname = self.__class__.__name__
         s = f"{classname}\n{self.description}\n\nAttributes\n"
