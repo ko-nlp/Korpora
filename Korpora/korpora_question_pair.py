@@ -45,10 +45,8 @@ class QuestionPairCorpus(Korpus):
             is_train = 'train' in info['destination']
             fetch(info['url'], local_path, 'question_pair', force_download)
             with open(local_path, 'r', encoding='utf-8') as f:
-                data = QuestionPairData(
-                    self.description,
-                    *self.cleaning(csv.reader(f, delimiter=','), is_train)
-                )
+                texts, pairs, labels = self.cleaning(csv.reader(f, delimiter=','), is_train)
+                data = QuestionPairData(self.description, texts, pairs, labels)
             if is_train:
                 self.train = data
             else:
