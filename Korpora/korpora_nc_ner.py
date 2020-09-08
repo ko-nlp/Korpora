@@ -19,7 +19,7 @@ class NaverChangwonNERData(WordTagKorpusData):
         super().__init__(description, texts, words, tags)
 
 
-class NaverChangwonNERCorpus(Korpus):
+class NaverChangwonNERKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         description = """    Reference: https://github.com/naver/nlp-challenge/tree/master/missions/ner
                http://air.changwon.ac.kr/?page_id=10

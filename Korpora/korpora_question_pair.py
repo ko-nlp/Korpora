@@ -24,7 +24,7 @@ class QuestionPairData(LabeledSentencePairKorpusData):
         super().__init__(description, texts, pairs, labels)
 
 
-class QuestionPairCorpus(Korpus):
+class QuestionPairKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         description = """    Reference: https://github.com/songys/Question_pair
 
