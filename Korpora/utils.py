@@ -89,14 +89,14 @@ def web_download(url, local_path, corpus_name='', force_download=False):
         request.urlretrieve(url, filename=local_path, reporthook=_reporthook(t))
 
 
-def web_download_unzip(url, local_path, corpus_name='', force_download=False):
-    web_download(url, local_path, corpus_name, force_download)
-    # assume that abc.zip consists abc
-    data_path = local_path[:-4]
+def web_download_unzip(url, zip_path, corpus_name='', force_download=False):
+    web_download(url, zip_path, corpus_name, force_download)
+    # assume that path/to/abc.zip consists path/to/abc
+    data_path = zip_path[:-4]
     if (not force_download) and os.path.exists(data_path):
         return None
-    data_root = os.path.dirname(local_path)
-    with zipfile.ZipFile(local_path, 'r') as zip_ref:
+    data_root = os.path.dirname(zip_path)
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(data_root)
     print(f'unzip {data_path}')
 
@@ -154,7 +154,7 @@ def fetch(remote_path, local_path, corpus_name=None, force_download=False, metho
     destination = os.path.abspath(local_path)
     check_dir(destination)
 
-    if method == "download" and (forced_download) or (not check_path(destination)):
+    if method == "download":
         web_download(remote_path, destination, corpus_name, force_download)
     elif method == "google_drive":
         google_drive_download(remote_path, destination, corpus_name, force_download)

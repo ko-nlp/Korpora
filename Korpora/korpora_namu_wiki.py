@@ -1,5 +1,4 @@
 import os
-
 from .korpora import Korpus, SentencePairKorpusData
 from .utils import fetch, default_korpora_path, load_wikitext
 
