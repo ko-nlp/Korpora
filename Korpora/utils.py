@@ -27,6 +27,27 @@ def load_text(path, num_heads=0):
     return lines
 
 
+def load_wikitext(path):
+    """
+    Wikitext format
+
+         = Head1 =
+
+        text ...
+        text ...
+
+         = = 2ead = =
+
+        text ...
+        text ...
+    """
+    with open(path, encoding='utf-8') as f:
+        texts = f.read().split('\n =')
+    # fix missing prefix
+    texts = [texts[0]] + [f' ={text}' for text in texts[1:]]
+    return texts
+
+
 def _reporthook(t):
     """ ``reporthook`` to use with ``urllib.request`` that prints the process of the download.
 
