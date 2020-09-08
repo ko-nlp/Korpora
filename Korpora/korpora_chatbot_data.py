@@ -63,8 +63,8 @@ class KoreanChatbotKorpus(Korpus):
         if root_dir is None:
             root_dir = default_korpora_path
         local_path = os.path.join(os.path.abspath(root_dir), KOREAN_CHATBOT_CORPUS_INFORMATION[0]['destination'])
-        f = open(local_path, 'r', encoding='utf-8')
-        questions, answers, labels = self.cleaning(csv.reader(f, delimiter=','))
+        with open(local_path, 'r', encoding='utf-8') as f:
+            questions, answers, labels = self.cleaning(csv.reader(f, delimiter=','))
         self.train = KoreanChatbotData(description, questions, answers, labels)
 
     def cleaning(self, examples):
