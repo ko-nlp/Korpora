@@ -80,27 +80,37 @@ def _reporthook(t):
     return inner
 
 
-def web_download(url, local_path, corpus_name=''):
+def web_download(url, local_path, corpus_name='', force_download=False):
+    if (not force_download) and os.path.exists(local_path):
+        return None
     filename = os.path.basename(local_path)
     with tqdm(unit='B', unit_scale=True, miniters=1, desc=f'[{corpus_name}] download {filename}') as t:
         request.urlretrieve(url, filename=local_path, reporthook=_reporthook(t))
 
 
-def google_drive_download(file_id, local_path, corpus_name=''):
+def google_drive_download(file_id, local_path, corpus_name='', force_download=False):
     def get_confirm_token(response):
         for key, value in response.cookies.items():
             if key.startswith('download_warning'):
                 return value
         return None
+
+    if (not force_download) and os.path.exists(local_path):
+        return None
+
     # init a HTTP session
     session = requests.Session()
+
     # make a request
     response = session.get(GOOGLE_DRIVE_URL, params={'id': file_id}, stream=True)
+
     # get confirmation token
     token = get_confirm_token(response)
+
     if token:
         params = {'id': file_id, 'confirm': token}
         response = session.get(GOOGLE_DRIVE_URL, params=params, stream=True)
+
     # download to disk
     with open(local_path, "wb") as f:
         content_length = response.headers.get("Content-Length")
@@ -119,7 +129,7 @@ def google_drive_download(file_id, local_path, corpus_name=''):
         progress.close()
 
 
-def fetch(remote_path, local_path, corpus_name=None, forced_download=False, method="download"):
+def fetch(remote_path, local_path, corpus_name=None, force_download=False, method="download"):
     """
        Examples::
 
@@ -129,13 +139,11 @@ def fetch(remote_path, local_path, corpus_name=None, forced_download=False, meth
            >>>    'nsmc/ratings_train.txt', 'nsmc')
     """
     destination = os.path.abspath(local_path)
-    if forced_download or not check_path(destination):
-        check_dir(destination)
-        if method == "download":
-            web_download(remote_path, destination, corpus_name)
-        elif method == "google_drive":
-            google_drive_download(remote_path, destination, corpus_name)
-        else:
-            print(f'download method is not valid ({method})')
+    check_dir(destination)
+
+    if method == "download" and (forced_download) or (not check_path(destination)):
+        web_download(remote_path, destination, corpus_name, force_download)
+    elif method == "google_drive":
+        google_drive_download(remote_path, destination, corpus_name, force_download)
     else:
-        print(f'File exists ({corpus_name} : {destination}), skip to download')
+        print(f'download method is not valid ({method})')
