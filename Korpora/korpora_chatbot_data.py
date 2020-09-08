@@ -13,6 +13,18 @@ KOREAN_CHATBOT_CORPUS_INFORMATION = [
         }
 ]
 
+description = """    Author : songys@github
+    Repository : https://github.com/songys/Chatbot_data
+    References :
+
+    Chatbot_data_for_Korean v1.0
+      1. 챗봇 트레이닝용 문답 페어 11,876개
+      2. 일상다반사 0, 이별(부정) 1, 사랑(긍정) 2로 레이블링
+    자세한 내용은 위의 repository를 참고하세요."""
+
+license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+    Details in https://creativecommons.org/publicdomain/zero/1.0/"""
+
 
 class KoreanChatbotData(LabeledSentencePairKorpusData):
     """
@@ -46,16 +58,6 @@ class KoreanChatbotKorpus(Korpus):
             }
     """
     def __init__(self, root_dir=None, force_download=False):
-        description = """    Chatbot_data_for_Korean v1.0
-    1. 챗봇 트레이닝용 문답 페어 11,876개
-    2. 일상다반사 0, 이별(부정) 1, 사랑(긍정) 2로 레이블링
-    자세한 내용은 아래 repository를 참고하세요.
-
-    https://github.com/songys/Chatbot_data"""
-
-        license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
-    Details in https://creativecommons.org/publicdomain/zero/1.0/"""
-
         super().__init__(description, license)
 
         if root_dir is None:
