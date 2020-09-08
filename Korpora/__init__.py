@@ -8,6 +8,7 @@ from .korpora_custom import (
 )
 from .korpora_korean_petitions import KoreanPetitions
 from .korpora_kornli import KorNLI
+from .korpora_korsts import KorSTS
 from .korpora_namu_wiki import NamuwikiTextKorpus
 from .korpora_nsmc import NSMC
 from .korpora_chatbot_data import KoreanChatbotKorpus
