@@ -24,6 +24,22 @@ KORSTS_INFORMATION = [
         },
 ]
 
+description = """     Author : KakaoBrain
+    Repository : https://github.com/kakaobrain/KorNLUDatasets
+    References :
+        - Ham, J., Choe, Y. J., Park, K., Choi, I., & Soh, H. (2020). KorNLI and KorSTS: New Benchmark
+           Datasets for Korean Natural Language Understanding. arXiv preprint arXiv:2004.03289.
+           (https://arxiv.org/abs/2004.03289)
+
+    This is the dataset repository for our paper
+    "KorNLI and KorSTS: New Benchmark Datasets for Korean Natural Language Understanding."
+    (https://arxiv.org/abs/2004.03289)
+    We introduce KorNLI and KorSTS, which are NLI and STS datasets in Korean."""
+
+license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
+    Details in https://creativecommons.org/licenses/by-sa/4.0/"""
+
+
 @dataclass
 class KorSTSExample(LabeledSentencePair):
     genre: str
@@ -48,10 +64,10 @@ class KorSTSData(LabeledSentencePairKorpusData):
         return KorSTSExample(
             text=self.texts[index],
             pair=self.pairs[index],
-            genre=self.genres[index],
-            year=self.years[index],
-            filename=self.filenames[index],
             label=float(self.labels[index]),
+            genre=self.genres[index],
+            filename=self.filenames[index],
+            year=self.years[index],
         )
 
     def get_all_genres(self):
@@ -64,36 +80,28 @@ class KorSTSData(LabeledSentencePairKorpusData):
         return self.years
 
 
-
 class KorSTS(Korpus):
     def __init__(self, root_dir=None, force_download=False):
-        description = """    Reference: https://github.com/kakaobrain/KorNLUDatasets
-    This is the dataset repository for our paper
-    "KorNLI and KorSTS: New Benchmark Datasets for Korean Natural Language Understanding."
-    (https://arxiv.org/abs/2004.03289)
-    We introduce KorNLI and KorSTS, which are NLI and STS datasets in Korean."""
-
-        license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
-    Details in https://creativecommons.org/licenses/by-sa/4.0/"""
-
         super().__init__(description, license)
 
         if root_dir is None:
             root_dir = default_korpora_path
 
+        fetch_korsts(root_dir, force_download)
+
         for info in KORSTS_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-            fetch(info['url'], local_path, 'korsts', force_download)
-            data = KorSTSData(
-                self.description,
-                *self.cleaning(load_text(local_path, num_heads=1))
-            )
+            returns = self.cleaning(load_text(local_path, num_heads=1))
+            texts, pairs, labels, genres, filenames, years = returns
+            data = KorSTSData(self.description, texts, pairs, labels, genres, filenames, years)
             if 'train' in info['destination']:
                 self.train = data
             elif 'dev' in info['destination']:
                 self.dev = data
-            else:
+            elif 'test' in info['destination']:
                 self.test = data
+            else:
+                raise ValueError('Check `KORSTS_INFORMATION`')
 
     def cleaning(self, raw_lines: List[str]):
         separated_lines = [line.split('\t') for line in raw_lines]
@@ -117,3 +125,9 @@ class KorSTS(Korpus):
 
     def get_all_years(self):
         return self.train.get_all_years() + self.dev.get_all_years() + self.test.get_all_years()
+
+
+def fetch_korsts(root_dir, force_download):
+    for info in KORSTS_INFORMATION:
+        local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+        fetch(info['url'], local_path, 'korsts', force_download)
