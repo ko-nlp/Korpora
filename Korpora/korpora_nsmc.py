@@ -18,6 +18,22 @@ NSMC_CORPUS_INFORMATION = [
         },
 ]
 
+description = """     Author : KakaoBrain
+    Repository : https://github.com/e9t/nsmc
+    References : www.lucypark.kr/docs/2015-pyconkr/#39
+
+    Naver sentiment movie corpus v1.0
+    This is a movie review dataset in the Korean language.
+    Reviews were scraped from Naver Movies.
+
+    The dataset construction is based on the method noted in
+    [Large movie review dataset][^1] from Maas et al., 2011.
+
+    [^1]: http://ai.stanford.edu/~amaas/data/sentiment/"""
+
+license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+    Details in https://creativecommons.org/publicdomain/zero/1.0/"""
+
 
 class NSMCData(KorpusData):
     labels: List[str]
@@ -35,20 +51,6 @@ class NSMCData(KorpusData):
 
 class NSMC(Korpus):
     def __init__(self, root_dir=None, force_download=False):
-        description = """    Reference: https://github.com/e9t/nsmc
-
-    Naver sentiment movie corpus v1.0
-    This is a movie review dataset in the Korean language.
-    Reviews were scraped from Naver Movies.
-
-    The dataset construction is based on the method noted in
-    [Large movie review dataset][^1] from Maas et al., 2011.
-
-    [^1]: http://ai.stanford.edu/~amaas/data/sentiment/"""
-
-        license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
-    Details in https://creativecommons.org/publicdomain/zero/1.0/"""
-
         super().__init__(description, license)
 
         if root_dir is None:
