@@ -16,9 +16,6 @@ KOREAN_CHATBOT_CORPUS_INFORMATION = [
 description = """    Author : songys@github
     Repository : https://github.com/songys/Chatbot_data
     References :
-        - Ham, J., Choe, Y. J., Park, K., Choi, I., & Soh, H. (2020). KorNLI and KorSTS: New Benchmark
-           Datasets for Korean Natural Language Understanding. arXiv preprint arXiv:2004.03289.
-           (https://arxiv.org/abs/2004.03289)
 
     Chatbot_data_for_Korean v1.0
       1. 챗봇 트레이닝용 문답 페어 11,876개
