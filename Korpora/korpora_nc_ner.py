@@ -24,7 +24,8 @@ class NaverChangwonNERCorpus(Korpus):
         description = """    Reference: https://github.com/naver/nlp-challenge/tree/master/missions/ner
                http://air.changwon.ac.kr/?page_id=10
 
-    개체명(Named Entity)은 인명, 기관명, 지명 등과 같이 문장 또는 문서에서 특정한 의미를 가지고 있는 단어 또는 어구를 말합니다. 이 때문에 개체명은 정보 검색 및 언어 이해를 위한 분석에서 주요한 대상으로 다루어지고 있습니다.
+    개체명(Named Entity)은 인명, 기관명, 지명 등과 같이 문장 또는 문서에서 특정한 의미를 가지고 있는 단어 또는 어구를 말합니다.
+    이 때문에 개체명은 정보 검색 및 언어 이해를 위한 분석에서 주요한 대상으로 다루어지고 있습니다.
     Data.ly에서는 개체명 코퍼스를 제공하여 연구에 도움을 드리고자 하며, 공개적인 리더보드를 통해 많은 분들의 연구 동향을 논의/공유하고자 합니다.
     제공되는 코퍼스는 Data.ly에서 제작한 것으로, 연구 및 리더보드를 위한 학습으로 사용 가능하며 상업적인 목적으로 사용될 수 없습니다."""
 
@@ -66,4 +67,4 @@ class NaverChangwonNERCorpus(Korpus):
         return self.train.get_all_tags()
 
     def get_all_words_and_tags(self):
-        return self.train.get_all_words_and_tags()
+        return [item for item in self.train]
