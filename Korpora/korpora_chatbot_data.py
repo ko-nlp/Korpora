@@ -63,7 +63,6 @@ class KoreanChatbotKorpus(Korpus):
         if root_dir is None:
             root_dir = default_korpora_path
         local_path = os.path.join(os.path.abspath(root_dir), KOREAN_CHATBOT_CORPUS_INFORMATION[0]['destination'])
-        fetch(KOREAN_CHATBOT_CORPUS_INFORMATION[0]['url'], local_path, 'korean_chatbot_data', force_download)
         f = open(local_path, 'r', encoding='utf-8')
         questions, answers, labels = self.cleaning(csv.reader(f, delimiter=','))
         self.train = KoreanChatbotData(description, questions, answers, labels)
@@ -86,3 +85,11 @@ class KoreanChatbotKorpus(Korpus):
 
     def get_all_labels(self):
         return self.train.get_all_labels()
+
+
+def fetch_chatbot(root_dir, force_download):
+    for information in KOREAN_CHATBOT_CORPUS_INFORMATION:
+        url = information['url']
+        destination = information['destination']
+        local_path = os.path.join(os.path.abspath(root_dir), destination)
+        fetch(url, local_path, 'korean_chatbot_data', force_download, information['method'])
