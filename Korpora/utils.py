@@ -1,5 +1,6 @@
 import os
 import requests
+import zipfile
 from os.path import expanduser
 from tqdm import tqdm
 from urllib import request
@@ -88,6 +89,18 @@ def web_download(url, local_path, corpus_name='', force_download=False):
         request.urlretrieve(url, filename=local_path, reporthook=_reporthook(t))
 
 
+def web_download_unzip(url, local_path, corpus_name='', force_download=False):
+    web_download(url, local_path, corpus_name, force_download)
+    # assume that abc.zip consists abc
+    data_path = local_path[:-4]
+    if (not force_download) and os.path.exists(data_path):
+        return None
+    data_root = os.path.dirname(local_path)
+    with zipfile.ZipFile(local_path, 'r') as zip_ref:
+        zip_ref.extractall(data_root)
+    print(f'unzip {data_path}')
+
+
 def google_drive_download(file_id, local_path, corpus_name='', force_download=False):
     def get_confirm_token(response):
         for key, value in response.cookies.items():
@@ -145,5 +158,7 @@ def fetch(remote_path, local_path, corpus_name=None, force_download=False, metho
         web_download(remote_path, destination, corpus_name, force_download)
     elif method == "google_drive":
         google_drive_download(remote_path, destination, corpus_name, force_download)
+    elif method == "download & unzip":
+        web_download_unzip(remote_path, destination, corpus_name, force_download)
     else:
         print(f'download method is not valid ({method})')
