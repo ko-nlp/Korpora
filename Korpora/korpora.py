@@ -139,9 +139,6 @@ class WordTagKorpusData(KorpusData):
     def get_all_tags(self):
         return self.tags
 
-    def get_all_words_and_tags(self):
-        return [WordTag(text, words, tags) for text, words, tags in zip(self.texts, self.words, self.tags)]
-
 
 class Korpus:
     description: str
