@@ -119,17 +119,14 @@ def google_drive_download(file_id, local_path, corpus_name=''):
         progress.close()
 
 
-def fetch(
-        remote_path,
-        local_path,
-        corpus_name=None,
-        method="download",
-        forced_download=False
-    ):
+def fetch(remote_path, local_path, corpus_name=None, forced_download=False, method="download"):
     """
        Examples::
+
            >>> from Korpora.utils import fetch
-           >>> fetch('https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt', 'nsmc/ratings_train.txt', 'nsmc')
+           >>> fetch(
+           >>>    'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt',
+           >>>    'nsmc/ratings_train.txt', 'nsmc')
     """
     destination = os.path.abspath(local_path)
     if forced_download or not check_path(destination):
