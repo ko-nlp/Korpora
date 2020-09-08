@@ -1,5 +1,6 @@
 from .korpora_korean_petitions import KoreanPetitions
 from .korpora_kornli import KorNLI
+from .korpora_korsts import KorSTS
 from .korpora_namu_wiki import NamuwikiTextKorpus
 from .korpora_nsmc import NSMC
 from .korpora_chatbot_data import KoreanChatbotKorpus
@@ -37,6 +38,7 @@ KORPORA = {
     'korean_petitions': KoreanPetitions,
     'korean_chatbot_data': KoreanChatbotKorpus,
     'kornli': KorNLI,
+    'korsts': KorSTS,
     'naver_changwon_ner': NaverChangwonNERKorpus,
     'question_pair': QuestionPairKorpus,
 }
