@@ -1,9 +1,10 @@
 from .korpora_korean_petitions import KoreanPetitions
 from .korpora_kornli import KorNLI
+from .korpora_namu_wiki import NamuwikiTextKorpus
 from .korpora_nsmc import NSMC
-from .korpora_chatbot_data import KoreanChatbotCorpus
-from .korpora_question_pair import QuestionPairCorpus
-from .korpora_nc_ner import NaverChangwonNERCorpus
+from .korpora_chatbot_data import KoreanChatbotKorpus
+from .korpora_question_pair import QuestionPairKorpus
+from .korpora_nc_ner import NaverChangwonNERKorpus
 from .utils import default_korpora_path
 
 
@@ -31,10 +32,11 @@ class Korpora:
 
 
 KORPORA = {
+    'namuwikitext': NamuwikiTextKorpus,
     'nsmc': NSMC,
     'korean_petitions': KoreanPetitions,
-    'korean_chatbot_data': KoreanChatbotCorpus,
+    'korean_chatbot_data': KoreanChatbotKorpus,
     'kornli': KorNLI,
-    'naver_changwon_ner': NaverChangwonNERCorpus,
-    'question_pair': QuestionPairCorpus,
+    'naver_changwon_ner': NaverChangwonNERKorpus,
+    'question_pair': QuestionPairKorpus,
 }

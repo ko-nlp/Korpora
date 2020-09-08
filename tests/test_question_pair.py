@@ -1,9 +1,9 @@
-from Korpora import Korpora, QuestionPairCorpus
+from Korpora import Korpora, QuestionPairKorpus
 
 
 def test_usage():
     pair = Korpora.load('question_pair')
-    assert len(pair.train) == len(QuestionPairCorpus().train)
+    assert len(pair.train) == len(QuestionPairKorpus().train)
     pair.train[0]
     pair.test[0]
     assert len(pair.train) == 6888

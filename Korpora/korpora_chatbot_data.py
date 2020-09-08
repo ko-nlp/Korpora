@@ -35,7 +35,7 @@ class KoreanChatbotData(LabeledSentencePairKorpusData):
         )
 
 
-class KoreanChatbotCorpus(Korpus):
+class KoreanChatbotKorpus(Korpus):
     """ Reference: https://github.com/songys/Chatbot_data
 
         Example
