@@ -44,11 +44,11 @@ class QuestionPairCorpus(Korpus):
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             is_train = 'train' in info['destination']
             fetch(info['url'], local_path, 'question_pair', force_download)
-            f = open(local_path, 'r', encoding='utf-8')
-            data = QuestionPairData(
-                self.description,
-                *self.cleaning(csv.reader(f, delimiter=','), is_train)
-            )
+            with open(local_path, 'r', encoding='utf-8') as f:
+                data = QuestionPairData(
+                    self.description,
+                    *self.cleaning(csv.reader(f, delimiter=','), is_train)
+                )
             if is_train:
                 self.train = data
             else:
@@ -61,8 +61,10 @@ class QuestionPairCorpus(Korpus):
             if (is_train and len(example) != 6) or (not is_train and len(example) != 5):
                 raise ValueError(f'Found some errors in line {i}: {example}')
         if is_train:
+            # train data column names : id, qid1, qid2, question1, question2, is_duplicate
             _, _, _, texts, pairs, labels = zip(*examples)
         else:
+            # test data column names : test_id, question1, question2, is_duplicate, blank
             _, texts, pairs, labels, _ = zip(*examples)
         return texts, pairs, labels
 
