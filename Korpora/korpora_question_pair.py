@@ -41,11 +41,11 @@ class QuestionPairKorpus(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
+        fetch_questionpair(root_dir, force_download)
 
         for info in QUESTION_PAIR_CORPUS_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             is_train = 'train' in info['destination']
-            fetch(info['url'], local_path, 'question_pair', force_download)
             with open(local_path, 'r', encoding='utf-8') as f:
                 texts, pairs, labels = self.cleaning(csv.reader(f, delimiter=','), is_train)
                 data = QuestionPairData(self.description, texts, pairs, labels)
@@ -73,3 +73,9 @@ class QuestionPairKorpus(Korpus):
 
     def get_all_labels(self):
         return self.train.get_all_labels() + self.test.get_all_labels()
+
+
+def fetch_questionpair(root_dir, force_download):
+    for info in QUESTION_PAIR_CORPUS_INFORMATION:
+        local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+        fetch(info['url'], local_path, 'question_pair', force_download)
