@@ -29,6 +29,22 @@ KORNLI_CORPUS_INFORMATION = [
 ]
 
 
+description = """    Author : KakaoBrain
+    Repository : https://github.com/kakaobrain/KorNLUDatasets
+    References :
+        - Ham, J., Choe, Y. J., Park, K., Choi, I., & Soh, H. (2020). KorNLI and KorSTS: New Benchmark
+           Datasets for Korean Natural Language Understanding. arXiv preprint arXiv:2004.03289.
+           (https://arxiv.org/abs/2004.03289)
+
+    This is the dataset repository for our paper
+    "KorNLI and KorSTS: New Benchmark Datasets for Korean Natural Language Understanding."
+    (https://arxiv.org/abs/2004.03289)
+    We introduce KorNLI and KorSTS, which are NLI and STS datasets in Korean."""
+
+license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
+    Details in https://creativecommons.org/licenses/by-sa/4.0/"""
+
+
 class KorNLIData(LabeledSentencePairKorpusData):
     def __init__(self, description, texts, pairs, labels):
         super().__init__(description, texts, pairs, labels)
@@ -36,17 +52,6 @@ class KorNLIData(LabeledSentencePairKorpusData):
 
 class KorNLI(Korpus):
     def __init__(self, root_dir=None, force_download=False):
-        description = """    Reference: https://github.com/kakaobrain/KorNLUDatasets
-
-    This is the dataset repository for our paper
-    "KorNLI and KorSTS: New Benchmark Datasets for Korean Natural Language Understanding."
-    (https://arxiv.org/abs/2004.03289)
-
-    We introduce KorNLI and KorSTS, which are NLI and STS datasets in Korean."""
-
-        license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
-    Details in https://creativecommons.org/licenses/by-sa/4.0/"""
-
         super().__init__(description, license)
 
         if root_dir is None:
