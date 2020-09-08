@@ -18,6 +18,17 @@ QUESTION_PAIR_CORPUS_INFORMATION = [
         },
 ]
 
+description = """     Author : songys@github
+    Repository : https://github.com/songys/Question_pair
+    References :
+
+    질문쌍(Paired Question v.2)
+    짝 지어진 두 개의 질문이 같은 질문인지 다른 질문인지 핸드 레이블을 달아둔 데이터
+    사랑, 이별, 또는 일상과 같은 주제로 도메인 특정적이지 않음"""
+
+license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
+    Details in https://creativecommons.org/licenses/by-sa/4.0/"""
+
 
 class QuestionPairData(LabeledSentencePairKorpusData):
     def __init__(self, description, texts, pairs, labels):
@@ -26,15 +37,6 @@ class QuestionPairData(LabeledSentencePairKorpusData):
 
 class QuestionPairKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
-        description = """    Reference: https://github.com/songys/Question_pair
-
-    질문쌍(Paired Question v.2)
-    짝 지어진 두 개의 질문이 같은 질문인지 다른 질문인지 핸드 레이블을 달아둔 데이터
-    사랑, 이별, 또는 일상과 같은 주제로 도메인 특정적이지 않음"""
-
-        license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
-    Details in https://creativecommons.org/licenses/by-sa/4.0/"""
-
         super().__init__(description, license)
 
         if root_dir is None:
