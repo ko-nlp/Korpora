@@ -56,10 +56,10 @@ class KorNLI(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
+        fetch_kornli(root_dir, force_download)
 
         for info in KORNLI_CORPUS_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-            fetch(info['url'], local_path, 'kornli', force_download)
             data = KorNLIData(
                 self.description,
                 *self.cleaning(load_text(local_path, num_heads=1))
@@ -92,3 +92,9 @@ class KorNLI(Korpus):
                 self.snli_train.get_all_labels() +
                 self.xnli_dev.get_all_labels() +
                 self.xnli_test.get_all_labels())
+
+
+def fetch_kornli(root_dir, force_download):
+    for info in KORNLI_CORPUS_INFORMATION:
+        local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+        fetch(info['url'], local_path, 'kornli', force_download)

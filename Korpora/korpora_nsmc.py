@@ -55,9 +55,10 @@ class NSMC(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
+        fetch_nsmc(root_dir, force_download)
+
         for info in NSMC_CORPUS_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-            fetch(info['url'], local_path, 'nsmc', force_download)
             text, labels = self.cleaning(load_text(local_path, num_heads=1))
             if 'train' in info['destination']:
                 self.train = NSMCData(text, labels)
@@ -78,3 +79,9 @@ class NSMC(Korpus):
 
     def get_all_labels(self):
         return self.train.labels + self.test.labels
+
+
+def fetch_nsmc(root_dir, force_download):
+    for info in NSMC_CORPUS_INFORMATION:
+        local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+        fetch(info['url'], local_path, 'nsmc', force_download)

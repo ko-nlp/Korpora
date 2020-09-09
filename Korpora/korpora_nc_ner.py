@@ -24,6 +24,7 @@ description = """     Author : 네이버 + 창원대
 
 license = """    연구 및 리더보드를 위한 학습으로 사용 가능하며 상업적인 목적으로 사용될 수 없습니다."""
 
+
 class NaverChangwonNERData(WordTagKorpusData):
     def __init__(self, description, texts, words, tags):
         super().__init__(description, texts, words, tags)
@@ -35,10 +36,10 @@ class NaverChangwonNERKorpus(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
+        fetch_nc_ner(root_dir, force_download)
 
         info = NAVER_CHANGWON_NER_CORPUS_INFORMATION[0]
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-        fetch(info['url'], local_path, 'naver_changwon_ner', force_download)
         self.train = NaverChangwonNERData(
             self.description,
             *self.cleaning(load_text(local_path, num_heads=0))
@@ -68,3 +69,9 @@ class NaverChangwonNERKorpus(Korpus):
 
     def get_all_words_and_tags(self):
         return [item for item in self.train]
+
+
+def fetch_nc_ner(root_dir, force_download):
+    for info in NAVER_CHANGWON_NER_CORPUS_INFORMATION:
+        local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+        fetch(info['url'], local_path, 'naver_changwon_ner', force_download)

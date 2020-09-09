@@ -191,9 +191,7 @@ class KoreanPetitions(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
-        for info in KOREAN_PETITIONS_CORPUS_INFORMATION:
-            local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-            fetch(info['url'], local_path, 'korean_petitions', force_download)
+        fetch_korean_petitions(root_dir, force_download)
 
         contents, categories, begins, ends, num_agrees, titles = [], [], [], [], [], []
         for info in KOREAN_PETITIONS_CORPUS_INFORMATION:
@@ -234,3 +232,9 @@ class KoreanPetitions(Korpus):
 
     def get_all_titles(self):
         return self.train.titles
+
+
+def fetch_korean_petitions(root_dir, force_download):
+    for info in KOREAN_PETITIONS_CORPUS_INFORMATION:
+        local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+        fetch(info['url'], local_path, 'korean_petitions', force_download)
