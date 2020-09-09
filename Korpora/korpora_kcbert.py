@@ -54,11 +54,26 @@ class KcBERT(Korpus):
             root_dir = default_korpora_path
         fetch_kcbert(root_dir, force_download)
 
+        response = input('KcBERT text file is large (12G).'
+              'If you want to load text in your memory, please insert `yes`').lower()
+        if (len(response) == 1 and response == 'y') or (response == 'yes'):
+            self.train = KcBERTData(
+                description,
+                load_text(f'{root_dir}/kcbert/20190101_20200611_v2.txt')
+            )
+        else:
+            dirname = os.path.abspath(f'{root_dir}/kcbert')
+            self.train = f'KcBERT corpus is downloaded. Open local directory {dirname}'
+
 
 def fetch_kcbert(root_dir, force_download):
     for info in KCBERT_CORPUS_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'kcbert', force_download)
+
+    if os.path.exists(f'{root_dir}/kcbert/20190101_20200611_v2.txt'):
+        return None
+
     if platform.system().lower() == 'windows':
         print('Korpora does not support KcBERT fetch in Windows OS.'
               f'Please open local directory {root_dir} and unzip manually tar files')
