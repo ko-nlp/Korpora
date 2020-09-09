@@ -1,3 +1,4 @@
+from .korpora_kcbert import KcBERT
 from .korpora_korean_petitions import KoreanPetitions
 from .korpora_kornli import KorNLI
 from .korpora_korsts import KorSTS
@@ -35,6 +36,7 @@ class Korpora:
 KORPORA = {
     'namuwikitext': NamuwikiTextKorpus,
     'nsmc': NSMC,
+    'kcbert': KcBERT,
     'korean_petitions': KoreanPetitions,
     'korean_chatbot_data': KoreanChatbotKorpus,
     'kornli': KorNLI,
