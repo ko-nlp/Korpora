@@ -1,3 +1,4 @@
+from .korpora_korean_hate_speech import KoreanHateSpeech
 from .korpora_korean_petitions import KoreanPetitions
 from .korpora_kornli import KorNLI
 from .korpora_korsts import KorSTS
@@ -36,6 +37,7 @@ KORPORA = {
     'namuwikitext': NamuwikiTextKorpus,
     'nsmc': NSMC,
     'korean_petitions': KoreanPetitions,
+    'korean_hate_speech': KoreanHateSpeech,
     'korean_chatbot_data': KoreanChatbotKorpus,
     'kornli': KorNLI,
     'korsts': KorSTS,
