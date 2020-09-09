@@ -56,7 +56,14 @@ class NamuwikiTextKorpus(Korpus):
             local_path = os.path.join(os.path.abspath(root_dir), destination[:-4])
             texts, titles = self.load(local_path)
             if 'train' in destination:
-                self.train = NamuwikiTextKorpusData(description, texts, titles)
+                response = input(
+                    'NamuwikiText.train text file is large (5.3G).'
+                    'If you want to load text in your memory, please insert `yes`').lower()
+                if (len(response) == 1 and response == 'y') or (response == 'yes'):
+                    self.train = NamuwikiTextKorpusData(description, texts, titles)
+                else:
+                    dirname = os.path.abspath(f'{root_dir}/namiwiki')
+                    self.train = f'Namuwikitext corpus is downloaded. Open local directory {dirname}'
             elif 'dev' in destination:
                 self.dev = NamuwikiTextKorpusData(description, texts, titles)
             elif 'test' in destination:
