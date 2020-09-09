@@ -79,9 +79,6 @@ class KoreanChatbotKorpus(Korpus):
         labels = [int(label) for label in labels]
         return questions, answers, labels
 
-    def get_all_texts(self):
-        return self.train.texts
-
     def get_all_pairs(self):
         return self.train.get_all_pairs()
 

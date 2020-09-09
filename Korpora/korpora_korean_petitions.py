@@ -221,9 +221,6 @@ class KoreanPetitions(Korpus):
         contents, categories, begins, ends, num_agrees, titles = zip(*separated_lines)
         return contents, categories, begins, ends, num_agrees, titles
 
-    def get_all_texts(self):
-        return self.train.texts
-
     def get_all_categories(self):
         return self.train.categories
 
