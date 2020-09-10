@@ -409,32 +409,3 @@ question_pair.test[0]
 |text|문장|
 |pair|text와 쌍을 이루는 문장|
 |label|text와 pair가 같은 질문이면 0, 다른 질문이면 1|
-
-
-## Contribution
-
-[Code / Commit / Branch convention]: https://github.com/ko-nlp/Korpora/issues/27
-
-### Naming rules
-
-All corpus follows `corpus_name.mode.type`
-- mode: one of [train, dev, test, all]
-- type: one of [texts, labels, ...]
-- normalization: one of [normed, raw]
-- tokenization: one of [.bpe, .mecab, ...]
-
-```python
-nsmc.train.texts
-```
-
-File structure `Korpora/corpus_name/mode.type[.normalization][.tokenization]`.
-
-```
-Korpora/nsmc/rating_train.txt
-Korpora/nsmc/rating_train.txt.texts
-Korpora/nsmc/train.texts.raw
-Korpora/nsmc/train.texts.normed
-Korpora/nsmc/train.labels
-Korpora/nsmc/train.texts.normed.mecab
-Korpora/nsmc/test.texts.normed.mecab
-```
