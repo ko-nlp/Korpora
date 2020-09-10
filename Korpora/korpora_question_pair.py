@@ -68,6 +68,9 @@ class QuestionPairKorpus(Korpus):
             _, texts, pairs, labels, _ = zip(*examples)
         return texts, pairs, labels
 
+    def get_all_texts(self):
+        return self.train.get_all_texts() + self.test.get_all_texts()
+
     def get_all_pairs(self):
         return self.train.get_all_pairs() + self.test.get_all_pairs()
 
