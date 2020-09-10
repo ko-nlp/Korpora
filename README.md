@@ -102,7 +102,7 @@ chatbot_corpus.train[0].label
 |label|일상다반사 0, 이별(부정) 1, 사랑(긍정) 2|
 
 
-## KcBERT dataset
+### KcBERT dataset
 - author: beomi@github
 - repository: https://github.com/Beomi/KcBERT
 - size:
