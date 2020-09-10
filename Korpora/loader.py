@@ -6,7 +6,7 @@ from .korpora_nsmc import NSMC, fetch_nsmc
 from .korpora_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
 from .korpora_question_pair import QuestionPairKorpus, fetch_questionpair
 from .korpora_nc_ner import NaverChangwonNERKorpus, fetch_nc_ner
-from .korpora_korean_hate_speech import KoreanHateSpeech
+from .korpora_korean_hate_speech import KoreanHateSpeech, fetch_korean_hate_speech
 from .utils import default_korpora_path
 
 
@@ -66,6 +66,7 @@ FETCH = {
     'namuwikitext': fetch_namuwikitext,
     'nsmc': fetch_nsmc,
     'korean_petitions': fetch_korean_petitions,
+    'korean_hate_speech': fetch_korean_hate_speech,
     'korean_chatbot_data': fetch_chatbot,
     'kornli': fetch_kornli,
     'korsts': fetch_korsts,
