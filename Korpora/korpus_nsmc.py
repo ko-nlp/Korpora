@@ -6,16 +6,16 @@ from .utils import fetch, load_text, default_korpora_path
 
 
 NSMC_FETCH_INFORMATION = [
-        {
-            'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt',
-            'destination': 'nsmc/ratings_train.txt',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_test.txt',
-            'destination': 'nsmc/ratings_test.txt',
-            'method': 'download'
-        },
+    {
+        'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt',
+        'destination': 'nsmc/ratings_train.txt',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_test.txt',
+        'destination': 'nsmc/ratings_test.txt',
+        'method': 'download'
+    },
 ]
 
 description = """     Author : e9t@github

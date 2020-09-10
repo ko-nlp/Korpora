@@ -6,11 +6,11 @@ from .utils import fetch, default_korpora_path
 
 
 KOREAN_CHATBOT_FETCH_INFORMATION = [
-        {
-            'url': 'https://raw.githubusercontent.com/songys/Chatbot_data/master/ChatbotData%20.csv',
-            'destination': 'korean_chatbot_data/ChatbotData.csv',
-            'method': 'download'
-        }
+    {
+        'url': 'https://raw.githubusercontent.com/songys/Chatbot_data/master/ChatbotData%20.csv',
+        'destination': 'korean_chatbot_data/ChatbotData.csv',
+        'method': 'download'
+    }
 ]
 
 description = """    Author : songys@github

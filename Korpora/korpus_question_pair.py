@@ -6,16 +6,16 @@ from .utils import fetch, default_korpora_path
 
 
 QUESTION_PAIR_FETCH_INFORMATION = [
-        {
-            'url': 'https://raw.githubusercontent.com/songys/Question_pair/master/kor_pair_train.csv',
-            'destination': 'question_pair/kor_pair_train.csv',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/songys/Question_pair/master/kor_Pair_test.csv',
-            'destination': 'question_pair/kor_pair_test.csv',
-            'method': 'download'
-        },
+    {
+        'url': 'https://raw.githubusercontent.com/songys/Question_pair/master/kor_pair_train.csv',
+        'destination': 'question_pair/kor_pair_train.csv',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/songys/Question_pair/master/kor_Pair_test.csv',
+        'destination': 'question_pair/kor_pair_test.csv',
+        'method': 'download'
+    },
 ]
 
 description = """     Author : songys@github

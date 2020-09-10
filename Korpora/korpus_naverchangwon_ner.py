@@ -6,11 +6,11 @@ from .utils import fetch, default_korpora_path, load_text
 
 
 NAVER_CHANGWON_NER_FETCH_INFORMATION = [
-        {
-            'url': 'https://raw.githubusercontent.com/naver/nlp-challenge/master/missions/ner/data/train/train_data',
-            'destination': 'naver_changwon_ner/train_data',
-            'method': 'download'
-        },
+    {
+        'url': 'https://raw.githubusercontent.com/naver/nlp-challenge/master/missions/ner/data/train/train_data',
+        'destination': 'naver_changwon_ner/train_data',
+        'method': 'download'
+    },
 ]
 
 description = """    Author : 네이버 + 창원대

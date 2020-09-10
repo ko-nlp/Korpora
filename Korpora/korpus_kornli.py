@@ -6,26 +6,26 @@ from .utils import fetch, default_korpora_path, load_text
 
 
 KORNLI_FETCH_INFORMATION = [
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/multinli.train.ko.tsv',
-            'destination': 'kornli/multinli.train.ko.tsv',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/snli_1.0_train.ko.tsv',
-            'destination': 'kornli/snli_1.0_train.ko.tsv',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/xnli.dev.ko.tsv',
-            'destination': 'kornli/xnli.dev.ko.tsv',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/xnli.test.ko.tsv',
-            'destination': 'kornli/xnli.test.ko.tsv',
-            'method': 'download'
-        }
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/multinli.train.ko.tsv',
+        'destination': 'kornli/multinli.train.ko.tsv',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/snli_1.0_train.ko.tsv',
+        'destination': 'kornli/snli_1.0_train.ko.tsv',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/xnli.dev.ko.tsv',
+        'destination': 'kornli/xnli.dev.ko.tsv',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/xnli.test.ko.tsv',
+        'destination': 'kornli/xnli.test.ko.tsv',
+        'method': 'download'
+    }
 ]
 
 

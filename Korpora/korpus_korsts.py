@@ -7,21 +7,21 @@ from .utils import fetch, default_korpora_path, load_text
 
 
 KORSTS_FETCH_INFORMATION = [
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-train.tsv',
-            'destination': 'korsts/sts-train.tsv',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-dev.tsv',
-            'destination': 'korsts/sts-dev.tsv',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-test.tsv',
-            'destination': 'korsts/sts-test.tsv',
-            'method': 'download'
-        },
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-train.tsv',
+        'destination': 'korsts/sts-train.tsv',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-dev.tsv',
+        'destination': 'korsts/sts-dev.tsv',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-test.tsv',
+        'destination': 'korsts/sts-test.tsv',
+        'method': 'download'
+    },
 ]
 
 description = """     Author : KakaoBrain
