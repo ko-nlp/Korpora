@@ -65,6 +65,7 @@ Korpora.corpus_list()
 - 다운로드 + 파이썬 로드 예제를 참고하려면 [Usage](https://github.com/ko-nlp/Korpora#usage) 항목의 각 데이터 설명을, 다운로드만 받고 싶을 경우에는 아래 예제를 참고하세요.
 ```python
 from Korpora import Korpora
+
 Korpora.fetch(corpus_name, force_download=True)
 ```
 
