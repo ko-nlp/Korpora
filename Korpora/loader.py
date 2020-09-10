@@ -1,3 +1,4 @@
+from .korpora_kcbert import KcBERT, fetch_kcbert
 from .korpora_korean_petitions import KoreanPetitions, fetch_korean_petitions
 from .korpora_kornli import KorNLI, fetch_kornli
 from .korpora_korsts import KorSTS, fetch_korsts
@@ -53,6 +54,7 @@ class Korpora:
 KORPORA = {
     'namuwikitext': NamuwikiTextKorpus,
     'nsmc': NSMC,
+    'kcbert': KcBERT,
     'korean_petitions': KoreanPetitions,
     'korean_hate_speech': KoreanHateSpeech,
     'korean_chatbot_data': KoreanChatbotKorpus,
@@ -65,6 +67,7 @@ KORPORA = {
 FETCH = {
     'namuwikitext': fetch_namuwikitext,
     'nsmc': fetch_nsmc,
+    'kcbert': fetch_kcbert,
     'korean_petitions': fetch_korean_petitions,
     'korean_hate_speech': fetch_korean_hate_speech,
     'korean_chatbot_data': fetch_chatbot,
