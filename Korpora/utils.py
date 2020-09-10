@@ -33,7 +33,7 @@ def load_text(path, num_heads=0, num_samples=-1):
     return lines
 
 
-def load_wikitext(path):
+def load_wikitext(path, num_lines=-1):
     """
     Wikitext format
 
@@ -47,8 +47,17 @@ def load_wikitext(path):
         text ...
         text ...
     """
-    with open(path, encoding='utf-8') as f:
-        texts = f.read().split('\n =')
+    if num_lines <= 0:
+        with open(path, encoding='utf-8') as f:
+            texts = f.read().split('\n =')
+    else:
+        lines = []
+        with open(path, encoding='utf-8') as f:
+            for i, line in enumerate(f):
+                if (i >= num_lines):
+                    break
+                lines.append(line)
+        texts = ''.join(lines).split('\n =')
     # fix missing prefix
     texts = [texts[0]] + [f' ={text}' for text in texts[1:]]
     return texts
