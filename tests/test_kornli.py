@@ -1,9 +1,9 @@
-from Korpora import Korpora, KorNLI
+from Korpora import Korpora, KorNLIKorpus
 
 
 def test_usage():
     kornli = Korpora.load('kornli')
-    assert len(kornli.snli_train) == len(KorNLI().snli_train)
+    assert len(kornli.snli_train) == len(KorNLIKorpus().snli_train)
     kornli.snli_train[0]
     assert len(kornli.snli_train) == 550152
     assert len(kornli.xnli_dev) == 2490

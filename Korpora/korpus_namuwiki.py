@@ -3,22 +3,22 @@ from .korpora import Korpus, SentencePairKorpusData
 from .utils import fetch, default_korpora_path, load_wikitext
 
 
-NAMU_WIKI_CORPUS_INFORMATION = [
-        {
-            'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.train.zip',
-            'destination': 'namiwiki/namuwikitext_20200302.train.zip',
-            'method': 'download & unzip'
-        },
-        {
-            'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.test.zip',
-            'destination': 'namiwiki/namuwikitext_20200302.test.zip',
-            'method': 'download & unzip'
-        },
-        {
-            'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.dev.zip',
-            'destination': 'namiwiki/namuwikitext_20200302.dev.zip',
-            'method': 'download & unzip'
-        }
+NAMUWIKI_FETCH_INFORMATION = [
+    {
+        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.train.zip',
+        'destination': 'namiwiki/namuwikitext_20200302.train.zip',
+        'method': 'download & unzip'
+    },
+    {
+        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.test.zip',
+        'destination': 'namiwiki/namuwikitext_20200302.test.zip',
+        'method': 'download & unzip'
+    },
+    {
+        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.dev.zip',
+        'destination': 'namiwiki/namuwikitext_20200302.dev.zip',
+        'method': 'download & unzip'
+    }
 ]
 
 description = """     Author : Hyunjoong Kim lovit@github
@@ -51,7 +51,7 @@ class NamuwikiTextKorpus(Korpus):
             root_dir = default_korpora_path
         fetch_namuwikitext(root_dir, force_download)
 
-        for information in NAMU_WIKI_CORPUS_INFORMATION:
+        for information in NAMUWIKI_FETCH_INFORMATION:
             destination = information['destination']
             local_path = os.path.join(os.path.abspath(root_dir), destination[:-4])
 
@@ -91,7 +91,7 @@ class NamuwikiTextKorpus(Korpus):
 
 
 def fetch_namuwikitext(root_dir, force_download):
-    for information in NAMU_WIKI_CORPUS_INFORMATION:
+    for information in NAMUWIKI_FETCH_INFORMATION:
         url = information['url']
         destination = information['destination']
         local_path = os.path.join(os.path.abspath(root_dir), destination)

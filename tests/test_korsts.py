@@ -1,9 +1,9 @@
-from Korpora import Korpora, KorSTS
+from Korpora import Korpora, KorSTSKorpus
 
 
 def test_usage():
     korsts = Korpora.load('korsts')
-    assert len(korsts.train) == len(KorSTS().train)
+    assert len(korsts.train) == len(KorSTSKorpus().train)
     korsts.train[0]
     korsts.dev[0]
     korsts.test[0]

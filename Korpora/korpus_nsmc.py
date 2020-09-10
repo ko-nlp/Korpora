@@ -5,17 +5,17 @@ from .korpora import Korpus, KorpusData, LabeledSentence
 from .utils import fetch, load_text, default_korpora_path
 
 
-NSMC_CORPUS_INFORMATION = [
-        {
-            'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt',
-            'destination': 'nsmc/ratings_train.txt',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_test.txt',
-            'destination': 'nsmc/ratings_test.txt',
-            'method': 'download'
-        },
+NSMC_FETCH_INFORMATION = [
+    {
+        'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_train.txt',
+        'destination': 'nsmc/ratings_train.txt',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/e9t/nsmc/master/ratings_test.txt',
+        'destination': 'nsmc/ratings_test.txt',
+        'method': 'download'
+    },
 ]
 
 description = """     Author : e9t@github
@@ -49,7 +49,7 @@ class NSMCData(KorpusData):
         return LabeledSentence(self.texts[index], self.labels[index])
 
 
-class NSMC(Korpus):
+class NSMCKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
 
@@ -57,7 +57,7 @@ class NSMC(Korpus):
             root_dir = default_korpora_path
         fetch_nsmc(root_dir, force_download)
 
-        for info in NSMC_CORPUS_INFORMATION:
+        for info in NSMC_FETCH_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             text, labels = self.cleaning(load_text(local_path, num_heads=1))
             if 'train' in info['destination']:
@@ -82,6 +82,6 @@ class NSMC(Korpus):
 
 
 def fetch_nsmc(root_dir, force_download):
-    for info in NSMC_CORPUS_INFORMATION:
+    for info in NSMC_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'nsmc', force_download)

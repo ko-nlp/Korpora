@@ -1,13 +1,13 @@
-from .korpora_kcbert import KcBERT, fetch_kcbert
-from .korpora_korean_petitions import KoreanPetitions, fetch_korean_petitions
-from .korpora_kornli import KorNLI, fetch_kornli
-from .korpora_korsts import KorSTS, fetch_korsts
-from .korpora_namu_wiki import NamuwikiTextKorpus, fetch_namuwikitext
-from .korpora_nsmc import NSMC, fetch_nsmc
-from .korpora_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
-from .korpora_question_pair import QuestionPairKorpus, fetch_questionpair
-from .korpora_nc_ner import NaverChangwonNERKorpus, fetch_nc_ner
-from .korpora_korean_hate_speech import KoreanHateSpeech, fetch_korean_hate_speech
+from .korpus_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
+from .korpus_kcbert import KcBERTKorpus, fetch_kcbert
+from .korpus_korean_hate_speech import KoreanHateSpeechKorpus, fetch_korean_hate_speech
+from .korpus_korean_petitions import KoreanPetitionsKorpus, fetch_korean_petitions
+from .korpus_kornli import KorNLIKorpus, fetch_kornli
+from .korpus_korsts import KorSTSKorpus, fetch_korsts
+from .korpus_namuwiki import NamuwikiTextKorpus, fetch_namuwikitext
+from .korpus_naverchangwon_ner import NaverChangwonNERKorpus, fetch_naverchangwon_ner
+from .korpus_nsmc import NSMCKorpus, fetch_nsmc
+from .korpus_question_pair import QuestionPairKorpus, fetch_questionpair
 from .utils import default_korpora_path
 
 
@@ -28,7 +28,7 @@ class Korpora:
         if root_dir is None:
             root_dir = default_korpora_path
 
-        corpora = [KORPORA[corpus_name](root_dir, force_download) for corpus_name in corpus_names]
+        corpora = [KORPUS[corpus_name](root_dir, force_download) for corpus_name in corpus_names]
         if return_single:
             return corpora[0]
         return corpora
@@ -50,29 +50,46 @@ class Korpora:
             fetch_func = FETCH[name]
             fetch_func(root_dir, force_download)
 
+    @classmethod
+    def corpus_list(cls):
+        return KORPUS_DESCRIPTION
 
-KORPORA = {
-    'namuwikitext': NamuwikiTextKorpus,
-    'nsmc': NSMC,
-    'kcbert': KcBERT,
-    'korean_petitions': KoreanPetitions,
-    'korean_hate_speech': KoreanHateSpeech,
+
+KORPUS = {
+    'kcbert': KcBERTKorpus,
     'korean_chatbot_data': KoreanChatbotKorpus,
-    'kornli': KorNLI,
-    'korsts': KorSTS,
+    'korean_hate_speech': KoreanHateSpeechKorpus,
+    'korean_petitions': KoreanPetitionsKorpus,
+    'kornli': KorNLIKorpus,
+    'korsts': KorSTSKorpus,
+    'namuwikitext': NamuwikiTextKorpus,
     'naver_changwon_ner': NaverChangwonNERKorpus,
+    'nsmc': NSMCKorpus,
     'question_pair': QuestionPairKorpus,
 }
 
+KORPUS_DESCRIPTION = {
+    'kcbert': "beomi@github 님이 만드신 KcBERT 학습데이터",
+    'korean_chatbot_data': "songys@github 님이 만드신 챗봇 문답 데이터",
+    'korean_hate_speech': "{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터",
+    'korean_petitions': "lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터",
+    'kornli': "KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터",
+    'korsts': "KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터",
+    'namuwikitext': "lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터",
+    'naver_changwon_ner': "네이버 + 창원대 NER shared task data",
+    'nsmc': "e9t@github 님이 만드신 Naver sentiment movie corpus v1.0",
+    'question_pair': "songys@github 님이 만드신 질문쌍(Paired Question v.2)",
+}
+
 FETCH = {
-    'namuwikitext': fetch_namuwikitext,
-    'nsmc': fetch_nsmc,
     'kcbert': fetch_kcbert,
-    'korean_petitions': fetch_korean_petitions,
-    'korean_hate_speech': fetch_korean_hate_speech,
     'korean_chatbot_data': fetch_chatbot,
+    'korean_hate_speech': fetch_korean_hate_speech,
+    'korean_petitions': fetch_korean_petitions,
     'kornli': fetch_kornli,
     'korsts': fetch_korsts,
-    'naver_changwon_ner': fetch_nc_ner,
+    'namuwikitext': fetch_namuwikitext,
+    'naver_changwon_ner': fetch_naverchangwon_ner,
+    'nsmc': fetch_nsmc,
     'question_pair': fetch_questionpair,
 }

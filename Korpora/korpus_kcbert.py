@@ -5,7 +5,7 @@ from .korpora import Korpus, KorpusData
 from .utils import fetch, load_text, default_korpora_path
 
 
-KCBERT_CORPUS_INFORMATION = [
+KCBERT_FETCH_INFORMATION = [
     {
         'url': 'https://github.com/Beomi/KcBERT/releases/download/TrainData_v1/kcbert-train.tar.gzaa',
         'destination': 'kcbert/kcbert-train.tar.gzaa',
@@ -23,7 +23,7 @@ KCBERT_CORPUS_INFORMATION = [
     }
 ]
 
-description = """     Author : Beomi@github
+description = """     Author : beomi@github
     Repository : https://github.com/Beomi/KcBERT/
     References :
 
@@ -46,7 +46,7 @@ class KcBERTData(KorpusData):
         super().__init__(description, texts)
 
 
-class KcBERT(Korpus):
+class KcBERTKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
 
@@ -67,7 +67,7 @@ class KcBERT(Korpus):
 
 
 def fetch_kcbert(root_dir, force_download):
-    for info in KCBERT_CORPUS_INFORMATION:
+    for info in KCBERT_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'kcbert', force_download)
 

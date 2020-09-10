@@ -1,18 +1,19 @@
 from .about import __author__   # noqa: F401
 from .about import __version__  # noqa: F401
 
-from .korpora_custom import (
+from .korpus_chatbot_data import KoreanChatbotKorpus
+from .korpus_custom import (
     CustomLabeledSentencePairKorpus,
     CustomLabeledSentenceKorpus,
     CustomSentencePairKorpus
 )
-from .korpora_korean_hate_speech import KoreanHateSpeech
-from .korpora_korean_petitions import KoreanPetitions
-from .korpora_kornli import KorNLI
-from .korpora_korsts import KorSTS
-from .korpora_namu_wiki import NamuwikiTextKorpus
-from .korpora_nsmc import NSMC
-from .korpora_chatbot_data import KoreanChatbotKorpus
-from .korpora_question_pair import QuestionPairKorpus
-from .korpora_nc_ner import NaverChangwonNERKorpus
+from .korpus_kcbert import KcBERTKorpus
+from .korpus_korean_hate_speech import KoreanHateSpeechKorpus
+from .korpus_korean_petitions import KoreanPetitionsKorpus
+from .korpus_kornli import KorNLIKorpus
+from .korpus_korsts import KorSTSKorpus
+from .korpus_namuwiki import NamuwikiTextKorpus
+from .korpus_naverchangwon_ner import NaverChangwonNERKorpus
+from .korpus_nsmc import NSMCKorpus
+from .korpus_question_pair import QuestionPairKorpus
 from .loader import Korpora

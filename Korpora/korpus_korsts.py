@@ -6,22 +6,22 @@ from .korpora import Korpus, LabeledSentencePairKorpusData, LabeledSentencePair
 from .utils import fetch, default_korpora_path, load_text
 
 
-KORSTS_INFORMATION = [
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-train.tsv',
-            'destination': 'korsts/sts-train.tsv',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-dev.tsv',
-            'destination': 'korsts/sts-dev.tsv',
-            'method': 'download'
-        },
-        {
-            'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-test.tsv',
-            'destination': 'korsts/sts-test.tsv',
-            'method': 'download'
-        },
+KORSTS_FETCH_INFORMATION = [
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-train.tsv',
+        'destination': 'korsts/sts-train.tsv',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-dev.tsv',
+        'destination': 'korsts/sts-dev.tsv',
+        'method': 'download'
+    },
+    {
+        'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorSTS/sts-test.tsv',
+        'destination': 'korsts/sts-test.tsv',
+        'method': 'download'
+    },
 ]
 
 description = """     Author : KakaoBrain
@@ -80,7 +80,7 @@ class KorSTSData(LabeledSentencePairKorpusData):
         return self.years
 
 
-class KorSTS(Korpus):
+class KorSTSKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
 
@@ -89,7 +89,7 @@ class KorSTS(Korpus):
 
         fetch_korsts(root_dir, force_download)
 
-        for info in KORSTS_INFORMATION:
+        for info in KORSTS_FETCH_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             returns = self.cleaning(load_text(local_path, num_heads=1))
             texts, pairs, labels, genres, filenames, years = returns
@@ -101,7 +101,7 @@ class KorSTS(Korpus):
             elif 'test' in info['destination']:
                 self.test = data
             else:
-                raise ValueError('Check `KORSTS_INFORMATION`')
+                raise ValueError('Check `KORSTS_FETCH_INFORMATION`')
 
     def cleaning(self, raw_lines: List[str]):
         separated_lines = [line.split('\t') for line in raw_lines]
@@ -131,6 +131,6 @@ class KorSTS(Korpus):
 
 
 def fetch_korsts(root_dir, force_download):
-    for info in KORSTS_INFORMATION:
+    for info in KORSTS_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'korsts', force_download)
