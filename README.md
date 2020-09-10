@@ -31,6 +31,7 @@ pip install Korpora
 |corpus_name|description|link|
 |---|---|---|
 |korean_chatbot_data|챗봇 트레이닝용 문답 페어|https://github.com/songys/Chatbot_data|
+|kcbert|KcBERT 모델 학습용 댓글 데이터|https://github.com/Beomi/KcBERT|
 |korean_hate_speech|한국어 혐오 데이터셋|https://github.com/kocohub/korean-hate-speech|
 |korean_petitions|청와대 국민 청원|https://github.com/lovit/petitions_archive|
 |kornli|Korean NLI|https://github.com/kakaobrain/KorNLUDatasets|
@@ -39,6 +40,27 @@ pip install Korpora
 |naver_changwon_ner|네이버 x 창원대 개체명 인식 데이터셋|https://github.com/naver/nlp-challenge/tree/master/missions/ner|
 |nsmc|NAVER Sentiment Movie Corpus|https://github.com/e9t/nsmc|
 |question_pair|한국어 질문쌍 데이터셋|https://github.com/songys/Question_pair|
+
+- Korpora 패키지가 제공하는 말뭉치 목록을 확인하는 파이썬 예제는 다음과 같습니다.
+
+```python
+from Korpora import Korpora
+
+Korpora.corpus_list()
+```
+
+```
+{'kcbert': 'beomi@github 님이 만드신 KcBERT 학습데이터',
+ 'korean_chatbot_data': 'songys@github 님이 만드신 챗봇 문답 데이터',
+ 'korean_hate_speech': '{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터',
+ 'korean_petitions': 'lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터',
+ 'kornli': 'KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터',
+ 'korsts': 'KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터',
+ 'namuwikitext': 'lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터',
+ 'naver_changwon_ner': '네이버 + 창원대 NER shared task data',
+ 'nsmc': 'e9t@github 님이 만드신 Naver sentiment movie corpus v1.0',
+ 'question_pair': 'songys@github 님이 만드신 질문쌍(Paired Question v.2)'}
+```
 
 - 다운로드 + 파이썬 로드 예제를 참고하려면 [Usage](https://github.com/ko-nlp/Korpora#usage) 항목의 각 데이터 설명을, 다운로드만 받고 싶을 경우에는 아래 예제를 참고하세요.
 ```python
