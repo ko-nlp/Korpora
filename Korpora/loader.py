@@ -1,13 +1,13 @@
-from .korpora_kcbert import KcBERTKorpus, fetch_kcbert
-from .korpora_korean_petitions import KoreanPetitionsKorpus, fetch_korean_petitions
-from .korpora_kornli import KorNLIKorpus, fetch_kornli
-from .korpora_korsts import KorSTSKorpus, fetch_korsts
-from .korpora_namu_wiki import NamuwikiTextKorpus, fetch_namuwikitext
-from .korpora_nsmc import NSMCKorpus, fetch_nsmc
-from .korpora_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
-from .korpora_question_pair import QuestionPairKorpus, fetch_questionpair
-from .korpora_nc_ner import NaverChangwonNERKorpus, fetch_nc_ner
-from .korpora_korean_hate_speech import KoreanHateSpeechKorpus, fetch_korean_hate_speech
+from .korpus_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
+from .korpus_kcbert import KcBERTKorpus, fetch_kcbert
+from .korpus_korean_hate_speech import KoreanHateSpeechKorpus, fetch_korean_hate_speech
+from .korpus_korean_petitions import KoreanPetitionsKorpus, fetch_korean_petitions
+from .korpus_kornli import KorNLIKorpus, fetch_kornli
+from .korpus_korsts import KorSTSKorpus, fetch_korsts
+from .korpus_namuwiki import NamuwikiTextKorpus, fetch_namuwikitext
+from .korpus_naverchangwon_ner import NaverChangwonNERKorpus, fetch_naverchangwon_ner
+from .korpus_nsmc import NSMCKorpus, fetch_nsmc
+from .korpus_question_pair import QuestionPairKorpus, fetch_questionpair
 from .utils import default_korpora_path
 
 
@@ -72,7 +72,7 @@ FETCH = {
     'kornli': fetch_kornli,
     'korsts': fetch_korsts,
     'namuwikitext': fetch_namuwikitext,
-    'naver_changwon_ner': fetch_nc_ner,
+    'naver_changwon_ner': fetch_naverchangwon_ner,
     'nsmc': fetch_nsmc,
     'question_pair': fetch_questionpair,
 }

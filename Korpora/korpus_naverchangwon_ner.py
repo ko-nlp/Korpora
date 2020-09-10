@@ -36,7 +36,7 @@ class NaverChangwonNERKorpus(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
-        fetch_nc_ner(root_dir, force_download)
+        fetch_naverchangwon_ner(root_dir, force_download)
 
         info = NAVER_CHANGWON_NER_FETCH_INFORMATION[0]
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
@@ -71,7 +71,7 @@ class NaverChangwonNERKorpus(Korpus):
         return [item for item in self.train]
 
 
-def fetch_nc_ner(root_dir, force_download):
+def fetch_naverchangwon_ner(root_dir, force_download):
     for info in NAVER_CHANGWON_NER_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'naver_changwon_ner', force_download)
