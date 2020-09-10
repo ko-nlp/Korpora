@@ -150,7 +150,6 @@ chatbot_corpus.train[0]
 ```python
 from Korpora import QuestionPairKorpus
 
-
 question_pair = QuestionPairKorpus() # or
 question_pair = Korpora.load('question_pair')
 
