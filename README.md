@@ -69,6 +69,12 @@ from Korpora import Korpora
 Korpora.fetch(corpus_name, force_download=True)
 ```
 
+- 제공하는 모든 코퍼스를 설치하려면 `corpus_name` 에 'all' 을 입력하세요. 설치된 코퍼스를 재설치 하고 싶은 경우에는 `force_download=True` 를 이용할 수 있습니다.
+```python
+Korpora.fetch('all')
+Korpora.fetch('all', force_download=True)
+```
+
 ## Usage
 
 ### 챗봇 트레이닝용 문답 페어
