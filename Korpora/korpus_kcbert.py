@@ -45,6 +45,9 @@ class KcBERTData(KorpusData):
     def __init__(self, description, texts):
         super().__init__(description, texts)
 
+    def __getitem__(self, index):
+        return self.texts[index]
+
 
 class KcBERTKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
