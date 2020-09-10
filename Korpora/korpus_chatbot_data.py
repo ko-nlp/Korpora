@@ -5,7 +5,7 @@ from .korpora import Korpus, LabeledSentencePairKorpusData
 from .utils import fetch, default_korpora_path
 
 
-KOREAN_CHATBOT_CORPUS_INFORMATION = [
+KOREAN_CHATBOT_FETCH_INFORMATION = [
         {
             'url': 'https://raw.githubusercontent.com/songys/Chatbot_data/master/ChatbotData%20.csv',
             'destination': 'korean_chatbot_data/ChatbotData.csv',
@@ -64,7 +64,7 @@ class KoreanChatbotKorpus(Korpus):
             root_dir = default_korpora_path
         fetch_chatbot(root_dir, force_download)
 
-        local_path = os.path.join(os.path.abspath(root_dir), KOREAN_CHATBOT_CORPUS_INFORMATION[0]['destination'])
+        local_path = os.path.join(os.path.abspath(root_dir), KOREAN_CHATBOT_FETCH_INFORMATION[0]['destination'])
         with open(local_path, 'r', encoding='utf-8') as f:
             questions, answers, labels = self.cleaning(csv.reader(f, delimiter=','))
         self.train = KoreanChatbotData(description, questions, answers, labels)
@@ -87,7 +87,7 @@ class KoreanChatbotKorpus(Korpus):
 
 
 def fetch_chatbot(root_dir, force_download):
-    for information in KOREAN_CHATBOT_CORPUS_INFORMATION:
+    for information in KOREAN_CHATBOT_FETCH_INFORMATION:
         url = information['url']
         destination = information['destination']
         local_path = os.path.join(os.path.abspath(root_dir), destination)

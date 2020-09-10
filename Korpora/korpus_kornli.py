@@ -5,7 +5,7 @@ from .korpora import Korpus, LabeledSentencePairKorpusData
 from .utils import fetch, default_korpora_path, load_text
 
 
-KORNLI_CORPUS_INFORMATION = [
+KORNLI_FETCH_INFORMATION = [
         {
             'url': 'https://raw.githubusercontent.com/kakaobrain/KorNLUDatasets/master/KorNLI/multinli.train.ko.tsv',
             'destination': 'kornli/multinli.train.ko.tsv',
@@ -50,7 +50,7 @@ class KorNLIData(LabeledSentencePairKorpusData):
         super().__init__(description, texts, pairs, labels)
 
 
-class KorNLI(Korpus):
+class KorNLIKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
 
@@ -58,7 +58,7 @@ class KorNLI(Korpus):
             root_dir = default_korpora_path
         fetch_kornli(root_dir, force_download)
 
-        for info in KORNLI_CORPUS_INFORMATION:
+        for info in KORNLI_FETCH_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             data = KorNLIData(
                 self.description,
@@ -101,6 +101,6 @@ class KorNLI(Korpus):
 
 
 def fetch_kornli(root_dir, force_download):
-    for info in KORNLI_CORPUS_INFORMATION:
+    for info in KORNLI_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'kornli', force_download)

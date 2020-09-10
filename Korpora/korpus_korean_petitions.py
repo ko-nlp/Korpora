@@ -7,7 +7,7 @@ from .korpora import Korpus, KorpusData
 from .utils import fetch, default_korpora_path, load_text
 
 
-KOREAN_PETITIONS_CORPUS_INFORMATION = [
+KOREAN_PETITIONS_FETCH_INFORMATION = [
         {
             'url': 'https://raw.githubusercontent.com/lovit/petitions_archive/archive/petitions_2017-08',
             'destination': 'korean_petitions/petitions_2017-08',
@@ -170,7 +170,7 @@ class KoreanPetitionsData(KorpusData):
         )
 
 
-class KoreanPetitions(Korpus):
+class KoreanPetitionsKorpus(Korpus):
     """ Reference: https://github.com/lovit/petitions_archive
 
         Examples in a petition
@@ -194,7 +194,7 @@ class KoreanPetitions(Korpus):
         fetch_korean_petitions(root_dir, force_download)
 
         contents, categories, begins, ends, num_agrees, titles = [], [], [], [], [], []
-        for info in KOREAN_PETITIONS_CORPUS_INFORMATION:
+        for info in KOREAN_PETITIONS_FETCH_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             con, cat, b, e, num, tit = self.cleaning(load_text(local_path))
             categories += cat
@@ -232,6 +232,6 @@ class KoreanPetitions(Korpus):
 
 
 def fetch_korean_petitions(root_dir, force_download):
-    for info in KOREAN_PETITIONS_CORPUS_INFORMATION:
+    for info in KOREAN_PETITIONS_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'korean_petitions', force_download)

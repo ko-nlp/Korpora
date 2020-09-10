@@ -6,7 +6,7 @@ from .korpora import Korpus, KorpusData, SentencePairKorpusData
 from .utils import fetch, default_korpora_path, load_text
 
 
-KOREAN_HATE_SPEECH_CORPUS_INFORMATION = [
+KOREAN_HATE_SPEECH_FETCH_INFORMATION = [
     {
         'url': 'https://raw.githubusercontent.com/kocohub/korean-hate-speech/master/unlabeled/unlabeled_comments_1.txt',
         'destination': 'korean_hate_speech/unlabeled/unlabeled_comments_1.txt',
@@ -145,7 +145,7 @@ class KoreanHateSpeechLabeledData(KorpusData):
         )
 
 
-class KoreanHateSpeech(Korpus):
+class KoreanHateSpeechKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
 
@@ -205,6 +205,6 @@ def load_test(root_dir):
 
 
 def fetch_korean_hate_speech(root_dir, force_download):
-    for info in KOREAN_HATE_SPEECH_CORPUS_INFORMATION:
+    for info in KOREAN_HATE_SPEECH_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'korean hate speech', force_download)

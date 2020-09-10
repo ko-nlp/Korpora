@@ -5,7 +5,7 @@ from .korpora import Korpus, WordTagKorpusData
 from .utils import fetch, default_korpora_path, load_text
 
 
-NAVER_CHANGWON_NER_CORPUS_INFORMATION = [
+NAVER_CHANGWON_NER_FETCH_INFORMATION = [
         {
             'url': 'https://raw.githubusercontent.com/naver/nlp-challenge/master/missions/ner/data/train/train_data',
             'destination': 'naver_changwon_ner/train_data',
@@ -38,7 +38,7 @@ class NaverChangwonNERKorpus(Korpus):
             root_dir = default_korpora_path
         fetch_nc_ner(root_dir, force_download)
 
-        info = NAVER_CHANGWON_NER_CORPUS_INFORMATION[0]
+        info = NAVER_CHANGWON_NER_FETCH_INFORMATION[0]
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         self.train = NaverChangwonNERData(
             self.description,
@@ -72,6 +72,6 @@ class NaverChangwonNERKorpus(Korpus):
 
 
 def fetch_nc_ner(root_dir, force_download):
-    for info in NAVER_CHANGWON_NER_CORPUS_INFORMATION:
+    for info in NAVER_CHANGWON_NER_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'naver_changwon_ner', force_download)

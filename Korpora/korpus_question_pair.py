@@ -5,7 +5,7 @@ from .korpora import Korpus, LabeledSentencePairKorpusData
 from .utils import fetch, default_korpora_path
 
 
-QUESTION_PAIR_CORPUS_INFORMATION = [
+QUESTION_PAIR_FETCH_INFORMATION = [
         {
             'url': 'https://raw.githubusercontent.com/songys/Question_pair/master/kor_pair_train.csv',
             'destination': 'question_pair/kor_pair_train.csv',
@@ -43,7 +43,7 @@ class QuestionPairKorpus(Korpus):
             root_dir = default_korpora_path
         fetch_questionpair(root_dir, force_download)
 
-        for info in QUESTION_PAIR_CORPUS_INFORMATION:
+        for info in QUESTION_PAIR_FETCH_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             is_train = 'train' in info['destination']
             with open(local_path, 'r', encoding='utf-8') as f:
@@ -79,6 +79,6 @@ class QuestionPairKorpus(Korpus):
 
 
 def fetch_questionpair(root_dir, force_download):
-    for info in QUESTION_PAIR_CORPUS_INFORMATION:
+    for info in QUESTION_PAIR_FETCH_INFORMATION:
         local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
         fetch(info['url'], local_path, 'question_pair', force_download)

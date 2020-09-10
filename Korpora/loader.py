@@ -1,13 +1,13 @@
-from .korpora_kcbert import KcBERT, fetch_kcbert
-from .korpora_korean_petitions import KoreanPetitions, fetch_korean_petitions
-from .korpora_kornli import KorNLI, fetch_kornli
-from .korpora_korsts import KorSTS, fetch_korsts
+from .korpora_kcbert import KcBERTKorpus, fetch_kcbert
+from .korpora_korean_petitions import KoreanPetitionsKorpus, fetch_korean_petitions
+from .korpora_kornli import KorNLIKorpus, fetch_kornli
+from .korpora_korsts import KorSTSKorpus, fetch_korsts
 from .korpora_namu_wiki import NamuwikiTextKorpus, fetch_namuwikitext
-from .korpora_nsmc import NSMC, fetch_nsmc
+from .korpora_nsmc import NSMCKorpus, fetch_nsmc
 from .korpora_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
 from .korpora_question_pair import QuestionPairKorpus, fetch_questionpair
 from .korpora_nc_ner import NaverChangwonNERKorpus, fetch_nc_ner
-from .korpora_korean_hate_speech import KoreanHateSpeech, fetch_korean_hate_speech
+from .korpora_korean_hate_speech import KoreanHateSpeechKorpus, fetch_korean_hate_speech
 from .utils import default_korpora_path
 
 
@@ -52,27 +52,27 @@ class Korpora:
 
 
 KORPORA = {
-    'namuwikitext': NamuwikiTextKorpus,
-    'nsmc': NSMC,
-    'kcbert': KcBERT,
-    'korean_petitions': KoreanPetitions,
-    'korean_hate_speech': KoreanHateSpeech,
+    'kcbert': KcBERTKorpus,
     'korean_chatbot_data': KoreanChatbotKorpus,
-    'kornli': KorNLI,
-    'korsts': KorSTS,
+    'korean_hate_speech': KoreanHateSpeechKorpus,
+    'korean_petitions': KoreanPetitionsKorpus,
+    'kornli': KorNLIKorpus,
+    'korsts': KorSTSKorpus,
+    'namuwikitext': NamuwikiTextKorpus,
     'naver_changwon_ner': NaverChangwonNERKorpus,
+    'nsmc': NSMCKorpus,
     'question_pair': QuestionPairKorpus,
 }
 
 FETCH = {
-    'namuwikitext': fetch_namuwikitext,
-    'nsmc': fetch_nsmc,
     'kcbert': fetch_kcbert,
-    'korean_petitions': fetch_korean_petitions,
-    'korean_hate_speech': fetch_korean_hate_speech,
     'korean_chatbot_data': fetch_chatbot,
+    'korean_hate_speech': fetch_korean_hate_speech,
+    'korean_petitions': fetch_korean_petitions,
     'kornli': fetch_kornli,
     'korsts': fetch_korsts,
+    'namuwikitext': fetch_namuwikitext,
     'naver_changwon_ner': fetch_nc_ner,
+    'nsmc': fetch_nsmc,
     'question_pair': fetch_questionpair,
 }
