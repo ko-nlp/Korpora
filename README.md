@@ -79,6 +79,23 @@ chatbot_corpus.train[0].label
 |label|일상다반사 0, 이별(부정) 1, 사랑(긍정) 2|
 
 
+## KcBERT dataset
+- author: beomi@github
+- repository: https://github.com/Beomi/KcBERT
+- size:
+  - train: 86,246,285 examples
+- example
+```python
+from Korpora import Korpora, KcBERTKorpus
+
+kcbert_corpus = KcBERTKorpus() # or
+kcbert_corpus = Korpora.load("kcbert")
+
+kcbert_corpus.train[0]
+# 우리에게 북한은 꼭 없애야 할 적일뿐
+```
+
+
 ### Korean Hate Speech
 - author: inmoonlight@github, warnikchow@github, beomi@github
 - repository: https://github.com/kocohub/korean-hate-speech
