@@ -18,7 +18,7 @@ NSMC_CORPUS_INFORMATION = [
         },
 ]
 
-description = """     Author : KakaoBrain
+description = """     Author : e9t@github
     Repository : https://github.com/e9t/nsmc
     References : www.lucypark.kr/docs/2015-pyconkr/#39
 

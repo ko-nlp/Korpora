@@ -13,7 +13,7 @@ NAVER_CHANGWON_NER_CORPUS_INFORMATION = [
         },
 ]
 
-description = """     Author : 네이버 + 창원대
+description = """    Author : 네이버 + 창원대
     Repository : https://github.com/naver/nlp-challenge/tree/master/missions/ner
     References : http://air.changwon.ac.kr/?page_id=10
 
