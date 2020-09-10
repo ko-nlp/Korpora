@@ -81,6 +81,12 @@ class KorNLI(Korpus):
         texts, pairs, labels = zip(*separated_lines)
         return texts, pairs, labels
 
+    def get_all_texts(self):
+        return (self.multinli_train.get_all_texts() +
+                self.snli_train.get_all_texts() +
+                self.xnli_dev.get_all_texts() +
+                self.xnli_test.get_all_texts())
+
     def get_all_pairs(self):
         return (self.multinli_train.get_all_pairs() +
                 self.snli_train.get_all_pairs() +

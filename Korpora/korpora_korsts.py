@@ -111,6 +111,9 @@ class KorSTS(Korpus):
         genres, filenames, years, _, labels, texts, pairs = zip(*separated_lines)
         return texts, pairs, labels, genres, filenames, years
 
+    def get_all_texts(self):
+        return self.train.get_all_texts() + self.dev.get_all_texts() + self.test.get_all_texts()
+
     def get_all_pairs(self):
         return self.train.get_all_pairs() + self.dev.get_all_pairs() + self.test.get_all_pairs()
 

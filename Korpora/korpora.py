@@ -174,7 +174,11 @@ class Korpus:
         raise NotImplementedError('Implement this function')
 
     def get_all_texts(self):
-        raise NotImplementedError('Implement this function')
+        texts = []
+        for name, var in sorted(self.__dict__.items()):
+            if isinstance(var, KorpusData):
+                texts += var.get_all_texts()
+        return texts
 
     def save(self, root_dir):
         """save prorce` to `sentences`"""
