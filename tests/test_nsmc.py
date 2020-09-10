@@ -1,4 +1,4 @@
-from Korpora import Korpora
+from Korpora import Korpora, NSMCKorpus
 
 
 def test_usage():
@@ -9,6 +9,7 @@ def test_usage():
     assert len(nsmc.test.labels) == 50000
     assert 'Naver sentiment movie corpus v1.0' in nsmc.description
     assert 'CC0 1.0 Universal' in nsmc.license
+    assert len(NSMCKorpus().train) == len(nsmc.train)
     nsmc.train[0]
     for row in nsmc.train:
         continue
