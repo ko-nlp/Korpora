@@ -1,5 +1,12 @@
 # Korpora: Korean Corpora Archives
 
+Korpora 는 다른 분들이 연구 목적으로 공유해주신 말뭉치들을 손쉽게 다운로드, 사용할 수 있는 기능만을 제공합니다.
+
+말뭉치들을 공유해 주신 분들에게 감사드리며, 각 말뭉치 별 설명과 라이센스는 말뭉치 별 클래스에 기술하였습니다.
+말뭉치마다 데이터를 로딩할 때 설명과 라이센스가 화면에 출력됩니다.
+해당 말뭉치에 대해 자세히 알고 싶으신 분은 출력되는 description 을 참고하세요
+해당 말뭉치를 연구/상용의 목적으로 이용하실 때에는 아래의 라이센스를 참고해 주시기 바랍니다.
+
 This package provides easy-download and easy-usage for various Korean corpora
 
 ## Install
