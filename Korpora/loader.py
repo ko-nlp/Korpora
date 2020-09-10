@@ -28,7 +28,7 @@ class Korpora:
         if root_dir is None:
             root_dir = default_korpora_path
 
-        corpora = [KORPORA[corpus_name](root_dir, force_download) for corpus_name in corpus_names]
+        corpora = [KORPUS[corpus_name](root_dir, force_download) for corpus_name in corpus_names]
         if return_single:
             return corpora[0]
         return corpora
@@ -50,8 +50,12 @@ class Korpora:
             fetch_func = FETCH[name]
             fetch_func(root_dir, force_download)
 
+    @classmethod
+    def corpus_list(cls):
+        return KORPUS_DESCRIPTION
 
-KORPORA = {
+
+KORPUS = {
     'kcbert': KcBERTKorpus,
     'korean_chatbot_data': KoreanChatbotKorpus,
     'korean_hate_speech': KoreanHateSpeechKorpus,
@@ -62,6 +66,19 @@ KORPORA = {
     'naver_changwon_ner': NaverChangwonNERKorpus,
     'nsmc': NSMCKorpus,
     'question_pair': QuestionPairKorpus,
+}
+
+KORPUS_DESCRIPTION = {
+    'kcbert': "beomi@github 님이 만드신 KcBERT 학습데이터",
+    'korean_chatbot_data': "songys@github 님이 만드신 챗봇 문답 데이터",
+    'korean_hate_speech': "{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터",
+    'korean_petitions': "lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터",
+    'kornli': "KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터",
+    'korsts': "KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터",
+    'namuwikitext': "lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터",
+    'naver_changwon_ner': "네이버 + 창원대 NER shared task data",
+    'nsmc': "e9t@github 님이 만드신 Naver sentiment movie corpus v1.0",
+    'question_pair': "songys@github 님이 만드신 질문쌍(Paired Question v.2)",
 }
 
 FETCH = {
