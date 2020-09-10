@@ -102,14 +102,8 @@ from Korpora import NamuwikiTextKorpus
 namuwiki = NamuwikiTextKorpus() # or
 namuwiki = Korpora.load('namuwikitext')
 
-namuwiki.dev[0].pair # title
-# = 소말리아(축구선수) =
-
-namuwiki.dev[0].text
-# 상위 항목: 축구 관련 인물, 외국인 선수/역대 프로축구
-# 이름 완데르송 지 파울라 사비누 ( Wanderson de Paula Sabino )
-# 통칭 소말리아
-# ...
+namuwiki.dev[0]
+# SentencePair(text='상위 문서: 아스날 FC\n2009-10 시즌 2011-12 시즌\n2010 -11 시즌...', pair=' = 아스날 FC/2010-11 시즌 =')
 ```
 
 ### Naver sentiment movie corpus v1.0
@@ -177,14 +171,8 @@ from Korpora import NaverChangwonNERKorpus
 ner = NaverChangwonNERKorpus()
 ner = Korpora.load('naver_changwon_ner')
 
-ner.train[0].text
-# '비토리오 양일 만에 영사관 감호 용퇴, 항룡 압력설 의심만 가율 '
-
-ner.train[0].words
-# ['비토리오', '양일', '만에', '영사관', '감호', '용퇴,', '항룡', '압력설', '의심만', '가율']
-
-ner.train[0].tags
-# ['PER_B', 'DAT_B', '-', 'ORG_B', 'CVL_B', '-', '-', '-', '-', '-']
+ner.train[0]
+# WordTag(text='비토리오 양일 만에 영사관 감호 용퇴, 항룡 압력설 의심만 가율 ', words=['비토리오', '양일', '만에', '영사관', '감호', '용퇴,', '항룡', '압력설', '의심만', '가율'], tags=['PER_B', 'DAT_B', '-', 'ORG_B', 'CVL_B', '-', '-', '-', '-', '-'])
 ```
 
 
