@@ -23,7 +23,7 @@ KCBERT_FETCH_INFORMATION = [
     }
 ]
 
-description = """     Author : Beomi@github
+description = """     Author : beomi@github
     Repository : https://github.com/Beomi/KcBERT/
     References :
 
