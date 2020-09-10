@@ -20,11 +20,16 @@ def check_dir(filepath):
         os.makedirs(dirname)
 
 
-def load_text(path, num_heads=0):
+def load_text(path, num_heads=0, num_samples=-1):
+    lines = []
     with open(path, encoding='utf-8') as f:
-        lines = [line.rstrip('\n') for line in f]
-    if num_heads > 0:
-        lines = lines[num_heads:]
+        if num_heads > 0:
+            for _ in range(num_heads):
+                next(f)
+        for i, line in enumerate(f):
+            if (num_samples > 0) and (i >= num_samples):
+                break
+            lines.append(line.rstrip('\n'))
     return lines
 
 
