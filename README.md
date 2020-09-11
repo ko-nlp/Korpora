@@ -135,9 +135,9 @@ kcbert_corpus.train[0]
   - unlabeled: 2,033,893 examples
 - example
 ```python
-from Korpora import Korpora, KoreanHateSpeech
+from Korpora import Korpora, KoreanHateSpeechKorpus
 
-korean_hate_speech = KoreanHateSpeech() # or
+korean_hate_speech = KoreanHateSpeechKorpus() # or
 korean_hate_speech = Korpora.load('korean_hate_speech')
 
 korean_hate_speech.train[0]
@@ -178,9 +178,9 @@ korean_hate_speech.unlabeled[0]
   - train: 433,631 examples
 - example
 ```python
-from Korpora import Korpora, KoreanPetitions
+from Korpora import Korpora, KoreanPetitionsKorpus
 
-petitions = KoreanPetitions()  # or
+petitions = KoreanPetitionsKorpus()  # or
 petitions = Korpora.load('korean_petitions')
 
 petitions.train[0]
@@ -220,9 +220,9 @@ petitions.train[0].title
   - xnli_test: 5,010 examples
 - example
 ```python
-from Korpora import Korpora, KorNLI
+from Korpora import Korpora, KorNLIKorpus
 
-kornli = KorNLI() # or
+kornli = KorNLIKorpus() # or
 kornli = Korpora.load('kornli')
 
 kornli.multinli_train[0]
@@ -260,9 +260,9 @@ kornli.xnli_test[0]
   - test: 1,379 examples
 - example
 ```python
-from Korpora import Korpora, KorSTS
+from Korpora import Korpora, KorSTSKorpus
 
-korsts = KorSTS() # or
+korsts = KorSTSKorpus() # or
 korsts = Korpora.load('korsts')
 korsts.train[0]
 # KorSTSExample(text='비행기가 이륙하고 있다.', pair='비행기가 이륙하고 있다.', label=5.0, genre='main-captions', filename='MSRvid', year='2012test')
@@ -361,9 +361,9 @@ ner.train[0].tags
   - test: 50,000 examples
 - example
 ```python
-from Korpora import Korpora, NSMC
+from Korpora import Korpora, NSMCKorpus
 
-nsmc = NSMC() # or
+nsmc = NSMCKorpus() # or
 nsmc = Korpora.load('nsmc')
 
 nsmc.train[0]
