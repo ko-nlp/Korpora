@@ -415,3 +415,15 @@ question_pair.test[0]
 |text|문장|
 |pair|text와 쌍을 이루는 문장|
 |label|text와 pair가 같은 질문이면 0, 다른 질문이면 1|
+
+
+## Package License
+
+- Korpora 라이센스는 Creative Commons License(CCL) 4.0의 [CC-BY](https://creativecommons.org/licenses/by/4.0)입니다. 이 라이센스는 Korpora 패키지 및 그 부속물에 한정됩니다.
+- 이용자는 다음의 권리를 갖습니다.
+  - 공유 : 복제, 배포, 전시, 공연 및 공중 송신(포맷 변경도 포함) 등을 자유롭게 할 수 있습니다.
+  - 변경 : 리믹스, 변형, 2차적 저작물의 작성이 가능합니다. 영리 목적으로도 이용이 가능합니다.
+- 이용자는 다음의 의무가 있습니다. 아래 의무를 지키는 한 위의 권리가 유효합니다.
+  - 저작자표시 : Korpora를 이용했다는 정보를 표시해야 합니다. 
+  - 추가제한금지 : 이용자는 Korpora를 활용한 저작물에 [CC-BY](https://creativecommons.org/licenses/by/4.0)보다 엄격한 라이센스를 부가할 수 없습니다.
+- **특히 주의할 사항은 Korpora 패키지의 라이센스와 별개로 데이터별로 라이센스가 별도로 적용된다는 사실입니다. 자신이 사용할 데이터의 라이센스가 어떤 내용인지 활용 전에 반드시 확인하세요!**
