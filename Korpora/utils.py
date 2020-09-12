@@ -82,7 +82,10 @@ def _reporthook(t):
 
 
 def web_download(url, local_path, corpus_name='', force_download=False):
-    if (not force_download) and os.path.exists(local_path):
+    site = request.urlopen(url)
+    meta = site.info()
+    remote_size = int(meta['Content-Length'])
+    if (not force_download) and os.path.exists(local_path) and (os.stat(local_path).st_size == remote_size):
         return None
     filename = os.path.basename(local_path)
     with tqdm(unit='B', unit_scale=True, miniters=1, desc=f'[{corpus_name}] download {filename}') as t:
