@@ -47,7 +47,7 @@ class LabeledSentence:
 
 
 class LabeledSentenceKorpusData(KorpusData):
-    pairs: List[str]
+    labels: List[Union[str, int]]
 
     def __init__(self, description, texts, labels):
         if not (len(texts) == len(labels)):
