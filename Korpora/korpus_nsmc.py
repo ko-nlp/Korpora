@@ -1,7 +1,7 @@
 import os
 from typing import List
 
-from .korpora import Korpus, KorpusData, LabeledSentence
+from .korpora import Korpus, LabeledSentenceKorpusData, LabeledSentence
 from .utils import fetch, load_text, default_korpora_path
 
 
@@ -35,18 +35,9 @@ license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
     Details in https://creativecommons.org/publicdomain/zero/1.0/"""
 
 
-class NSMCData(KorpusData):
-    labels: List[str]
-
-    def __init__(self, texts, labels):
-        if len(texts) != len(labels):
-            raise ValueError('`texts` and `labels` must be same length')
-        self.description = f"    Naver sentiment movie corpus v1.0. size of data={len(texts)}"
-        self.texts = texts
-        self.labels = labels
-
-    def __getitem__(self, index):
-        return LabeledSentence(self.texts[index], self.labels[index])
+class NSMCData(LabeledSentenceKorpusData):
+    def __init__(self, description, texts, labels):
+        super().__init__(description, texts, labels)
 
 
 class NSMCKorpus(Korpus):
