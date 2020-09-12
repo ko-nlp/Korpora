@@ -57,10 +57,14 @@ class NamuwikiTextKorpus(Korpus):
 
             if 'train' in destination:
                 response = input(
-                    'NamuwikiText.train text file is large (5.3G).'
-                    'If you want to load text in your memory, please insert `yes`').lower()
+                    'NamuwikiText.train text file is large (5.3G).\n'
+                    'If you want to load text in your memory, please insert `yes`\n'
+                    'If the `INPUT` is integer, it loads only first `INPUT` sentences\n').lower()
                 if (len(response) == 1 and response == 'y') or (response == 'yes'):
                     texts, titles = self.load(local_path)
+                    self.train = NamuwikiTextKorpusData(description, texts, titles)
+                elif response.isdigit():
+                    texts, titles = self.load(local_path, num_lines=int(response))
                     self.train = NamuwikiTextKorpusData(description, texts, titles)
                 else:
                     dirname = os.path.abspath(f'{root_dir}/namiwiki')
@@ -76,14 +80,14 @@ class NamuwikiTextKorpus(Korpus):
             else:
                 raise ValueError(f'Check local files')
 
-    def load(self, path):
+    def load(self, path, num_lines=-1):
         def split_title_text(wikitext):
             lines = wikitext.split('\n')
             title = lines[0]
             text = '\n'.join([line.strip() for line in lines[2:] if line.strip()])
             return title, text
 
-        wikitexts = load_wikitext(path)
+        wikitexts = load_wikitext(path, num_lines)
         wikitexts = [split_title_text(wikitext) for wikitext in wikitexts]
         titles, texts = zip(*wikitexts)
         # swap position
