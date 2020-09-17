@@ -106,11 +106,6 @@ license = """    Creative Commons Attribution-ShareAlike 4.0 International Licen
     Visit here for detail : https://creativecommons.org/licenses/by-sa/4.0/"""
 
 
-class KoreanHateSpeechPairData(SentencePairKorpusData):
-    def __init__(self, description, texts, labels):
-        super().__init__(description, texts, labels)
-
-
 @dataclass
 class KoreanHateSpeechLabeledExample:
     text: str
@@ -126,8 +121,8 @@ class KoreanHateSpeechLabeledData(KorpusData):
     biases: List[str]
     hates: List[str]
 
-    def __init__(self, description, texts, titles, gender_biases, biases, hates):
-        super().__init__(description, texts)
+    def __init__(self, dataname, texts, titles, gender_biases, biases, hates):
+        super().__init__(dataname, texts)
         if not (len(texts) == len(titles) == len(gender_biases) == len(biases) == len(hates)):
             raise ValueError('All five arguments must be same length')
         self.titles = titles
@@ -166,7 +161,7 @@ def load_train(root_dir):
     if len(text_labels) != len(titles):
         raise ValueError(f'Found len(train.texts) != len(train.pairs). Do `fetch(force_download=True)`')
     texts, gender_biases, biases, hates = zip(*[line.split('\t') for line in text_labels])
-    return KoreanHateSpeechLabeledData(description, texts, titles, gender_biases, biases, hates)
+    return KoreanHateSpeechLabeledData('KoreanHateSpeech.train', texts, titles, gender_biases, biases, hates)
 
 
 def load_dev(root_dir):
@@ -176,7 +171,7 @@ def load_dev(root_dir):
     if len(text_labels) != len(titles):
         raise ValueError(f'Found len(dev.texts) != len(dev.pairs). Do `fetch(force_download=True)`')
     texts, gender_biases, biases, hates = zip(*[line.split('\t') for line in text_labels])
-    return KoreanHateSpeechLabeledData(description, texts, titles, gender_biases, biases, hates)
+    return KoreanHateSpeechLabeledData('KoreanHateSpeech.dev', texts, titles, gender_biases, biases, hates)
 
 
 def load_unlabeled(root_dir):
@@ -191,7 +186,7 @@ def load_unlabeled(root_dir):
             raise ValueError(f'Found some errors. not equal num of texts and titles. Do `fetch(force_download=True)`')
         texts += texts_
         titles += titles_
-    return KoreanHateSpeechPairData(description, texts, titles)
+    return SentencePairKorpusData('KoreanHateSpeech.unlabeled', texts, titles)
 
 
 def load_test(root_dir):
@@ -201,7 +196,7 @@ def load_test(root_dir):
     titles = load_text(title_path)
     if len(texts) != len(titles):
         raise ValueError(f'Found some errors. not equal num of texts and titles. Do `fetch(force_download=True)`')
-    return KoreanHateSpeechPairData(description, texts, titles)
+    return SentencePairKorpusData('KoreanHateSpeech.test', texts, titles)
 
 
 def fetch_korean_hate_speech(root_dir, force_download):
