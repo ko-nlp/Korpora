@@ -24,8 +24,8 @@ class KorpusData:
         attributes = ""
         for name, var in self.__dict__.items():
             if name not in {'dataname', 'description', 'self'}:
-                attributes += f'  - {self.dataname}.{name} (list[{var[0].__class__.__name__}]) : size={len(var)}\n'
-        s = f"""{self.dataname}\n{attributes}"""
+                attributes += f'  - {self.dataname}.{name} : list[{var[0].__class__.__name__}]\n'
+        s = f"""{self.dataname}: size={len(self.texts)}\n{attributes}"""
         return s
 
 
