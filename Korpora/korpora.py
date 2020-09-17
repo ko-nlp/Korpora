@@ -24,8 +24,8 @@ class KorpusData:
         attributes = ""
         for name, var in self.__dict__.items():
             if name not in {'dataname', 'description', 'self'}:
-                attributes += f'  {self.dataname}.{name} (list[{var[0].__class__.__name__}]) : size={len(var)}\n'
-        s = f"""{self.dataname}\n{self.description}\n\nAttributes:\n{attributes}\n"""
+                attributes += f'  - {self.dataname}.{name} (list[{var[0].__class__.__name__}]) : size={len(var)}\n'
+        s = f"""{self.dataname}\n{attributes}"""
         return s
 
 
@@ -152,10 +152,10 @@ class Korpus:
 
     def __str__(self):
         classname = self.__class__.__name__
-        s = f"{classname}\n{self.description}\n\nAttributes\n"
+        s = f"{classname}\n{self.description}\n\nAttributes\n----------\n"
         for name, var in self.__dict__.items():
             if name not in {'description', 'license', 'self'}:
-                s += f' {classname}.{name} : size={len(var)}\n'
+                s += f'{str(var)}'
         return s
 
     def cleaning(self, raw_documents: List[str], **kargs):
