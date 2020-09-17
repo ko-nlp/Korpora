@@ -5,7 +5,6 @@ from typing import List, Union
 @dataclass
 class KorpusData:
     dataname: str
-    description: str
     texts: List[str]
 
     def __len__(self):
@@ -39,10 +38,10 @@ class LabeledSentence:
 class LabeledSentenceKorpusData(KorpusData):
     labels: List[Union[str, int]]
 
-    def __init__(self, dataname, description, texts, labels):
+    def __init__(self, dataname, texts, labels):
         if not (len(texts) == len(labels)):
             raise ValueError('All two arguments must be same length')
-        super().__init__(dataname, description, texts)
+        super().__init__(dataname, texts)
         self.labels = labels
 
     def __getitem__(self, index):
@@ -61,10 +60,10 @@ class SentencePair:
 class SentencePairKorpusData(KorpusData):
     pairs: List[str]
 
-    def __init__(self, dataname, description, texts, pairs):
+    def __init__(self, dataname, texts, pairs):
         if not (len(texts) == len(pairs)):
             raise ValueError('All two arguments must be same length')
-        super().__init__(dataname, description, texts)
+        super().__init__(dataname, texts)
         self.pairs = pairs
 
     def __getitem__(self, index):
@@ -85,10 +84,10 @@ class LabeledSentencePairKorpusData(KorpusData):
     pairs: List[str]
     labels: List
 
-    def __init__(self, dataname, description, texts, pairs, labels):
+    def __init__(self, dataname, texts, pairs, labels):
         if not (len(texts) == len(pairs) == len(labels)):
             raise ValueError('All three arguments must be same length')
-        super().__init__(dataname, description, texts)
+        super().__init__(dataname, texts)
         self.pairs = pairs
         self.labels = labels
 
@@ -113,10 +112,10 @@ class WordTagKorpusData(KorpusData):
     words: List[List[str]]
     tags: List[List[str]]
 
-    def __init__(self, dataname, description, texts, words, tags):
+    def __init__(self, dataname, texts, words, tags):
         if not (len(texts) == len(words) == len(tags)):
             raise ValueError('All three arguments must be same length')
-        super().__init__(dataname, description, texts)
+        super().__init__(dataname, texts)
         self.words = words
         self.tags = tags
 
