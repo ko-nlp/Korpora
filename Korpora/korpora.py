@@ -4,7 +4,7 @@ from typing import List, Union
 
 @dataclass
 class KorpusData:
-    dataname: str
+    name: str
     texts: List[str]
 
     def __len__(self):
@@ -22,10 +22,10 @@ class KorpusData:
 
     def __str__(self):
         attributes = ""
-        for name, var in self.__dict__.items():
-            if name not in {'dataname', 'description', 'self'}:
-                attributes += f'  - {self.dataname}.{name} : list[{var[0].__class__.__name__}]\n'
-        s = f"""{self.dataname}: size={len(self.texts)}\n{attributes}"""
+        for var_name, var in self.__dict__.items():
+            if var_name not in {'dataname', 'description', 'self'}:
+                attributes += f'  - {self.name}.{var_name} : list[{var[0].__class__.__name__}]\n'
+        s = f"""{self.name}: size={len(self.texts)}\n{attributes}"""
         return s
 
 
@@ -38,10 +38,10 @@ class LabeledSentence:
 class LabeledSentenceKorpusData(KorpusData):
     labels: List[Union[str, int]]
 
-    def __init__(self, dataname, texts, labels):
+    def __init__(self, name, texts, labels):
         if not (len(texts) == len(labels)):
             raise ValueError('All two arguments must be same length')
-        super().__init__(dataname, texts)
+        super().__init__(name, texts)
         self.labels = labels
 
     def __getitem__(self, index):
@@ -60,10 +60,10 @@ class SentencePair:
 class SentencePairKorpusData(KorpusData):
     pairs: List[str]
 
-    def __init__(self, dataname, texts, pairs):
+    def __init__(self, name, texts, pairs):
         if not (len(texts) == len(pairs)):
             raise ValueError('All two arguments must be same length')
-        super().__init__(dataname, texts)
+        super().__init__(name, texts)
         self.pairs = pairs
 
     def __getitem__(self, index):
@@ -84,10 +84,10 @@ class LabeledSentencePairKorpusData(KorpusData):
     pairs: List[str]
     labels: List
 
-    def __init__(self, dataname, texts, pairs, labels):
+    def __init__(self, name, texts, pairs, labels):
         if not (len(texts) == len(pairs) == len(labels)):
             raise ValueError('All three arguments must be same length')
-        super().__init__(dataname, texts)
+        super().__init__(name, texts)
         self.pairs = pairs
         self.labels = labels
 
@@ -112,10 +112,10 @@ class WordTagKorpusData(KorpusData):
     words: List[List[str]]
     tags: List[List[str]]
 
-    def __init__(self, dataname, texts, words, tags):
+    def __init__(self, name, texts, words, tags):
         if not (len(texts) == len(words) == len(tags)):
             raise ValueError('All three arguments must be same length')
-        super().__init__(dataname, texts)
+        super().__init__(name, texts)
         self.words = words
         self.tags = tags
 
@@ -153,8 +153,8 @@ class Korpus:
     def __str__(self):
         classname = self.__class__.__name__
         s = f"{classname}\n{self.description}\n\nAttributes\n----------\n"
-        for name, var in self.__dict__.items():
-            if name not in {'description', 'license', 'self'}:
+        for var_name, var in self.__dict__.items():
+            if var_name not in {'description', 'license', 'self'}:
                 s += f'{str(var)}'
         return s
 
