@@ -12,5 +12,7 @@ def test_usage():
     assert petitions.train.titles[0] == petitions.train[0].title
     assert '청와대 국민청원' in petitions.description
     assert 'CC0 1.0 Universal' in petitions.license
+    print(f'str(korpus)\n{str(petitions)}')
+    print(f'str(korpus.train)\n{str(petitions.train)}')
     for petition in petitions.train:
         continue

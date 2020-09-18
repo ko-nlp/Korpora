@@ -111,7 +111,7 @@ KOREAN_PETITIONS_FETCH_INFORMATION = [
 ]
 
 
-description = """     Author : Hyunjoong Kim lovit@github
+description = """    Author : Hyunjoong Kim lovit@github
     Repository : https://github.com/lovit/petitions_archive
     References :
 
@@ -142,7 +142,7 @@ class KoreanPetitionsData(KorpusData):
     ends: List[str]
     titles: List[str]
 
-    def __init__(self, description, contents, categories, begins, ends, num_agrees, titles):
+    def __init__(self, dataname, contents, categories, begins, ends, num_agrees, titles):
         if not (len(contents) ==
                 len(categories) ==
                 len(begins) ==
@@ -152,7 +152,7 @@ class KoreanPetitionsData(KorpusData):
                ):
             raise ValueError('All length of input arguments must be same.')
 
-        super().__init__(description=description, texts=contents)
+        super().__init__(dataname, texts=contents)
         self.categories = categories
         self.num_agrees = num_agrees
         self.begins = begins
@@ -204,7 +204,7 @@ class KoreanPetitionsKorpus(Korpus):
             num_agrees += num
             titles += tit
         self.train = KoreanPetitionsData(
-            description, contents, categories,
+            'KoreanPetitions.train', contents, categories,
             begins, ends, num_agrees, titles)
 
     def cleaning(self, raw_lines: List[str]):

@@ -45,11 +45,6 @@ license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
     Details in https://creativecommons.org/licenses/by-sa/4.0/"""
 
 
-class KorNLIData(LabeledSentencePairKorpusData):
-    def __init__(self, description, texts, pairs, labels):
-        super().__init__(description, texts, pairs, labels)
-
-
 class KorNLIKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
@@ -60,18 +55,26 @@ class KorNLIKorpus(Korpus):
 
         for info in KORNLI_FETCH_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-            data = KorNLIData(
-                self.description,
-                *self.cleaning(load_text(local_path, num_heads=1))
-            )
             if 'multinli.train' in info['destination']:
-                self.multinli_train = data
+                self.multinli_train = LabeledSentencePairKorpusData(
+                    'KorNLI.multinli_train',
+                    *self.cleaning(load_text(local_path, num_heads=1))
+                )
             elif 'snli_1.0_train' in info['destination']:
-                self.snli_train = data
+                self.snli_train = LabeledSentencePairKorpusData(
+                    'KorNLI.snli_1.0_train',
+                    *self.cleaning(load_text(local_path, num_heads=1))
+                )
             elif 'xnli.dev' in info['destination']:
-                self.xnli_dev = data
+                self.xnli_dev = LabeledSentencePairKorpusData(
+                    'KorNLI.xnli_dev',
+                    *self.cleaning(load_text(local_path, num_heads=1))
+                )
             else:
-                self.xnli_test = data
+                self.xnli_test = LabeledSentencePairKorpusData(
+                    'KorNLI.xnli_test',
+                    *self.cleaning(load_text(local_path, num_heads=1))
+                )
 
     def cleaning(self, raw_lines: List[str]):
         separated_lines = [line.split('\t') for line in raw_lines]

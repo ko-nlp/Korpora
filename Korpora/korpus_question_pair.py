@@ -18,7 +18,7 @@ QUESTION_PAIR_FETCH_INFORMATION = [
     },
 ]
 
-description = """     Author : songys@github
+description = """    Author : songys@github
     Repository : https://github.com/songys/Question_pair
     References :
 
@@ -28,11 +28,6 @@ description = """     Author : songys@github
 
 license = """    Creative Commons Attribution-ShareAlike license (CC BY-SA 4.0)
     Details in https://creativecommons.org/licenses/by-sa/4.0/"""
-
-
-class QuestionPairData(LabeledSentencePairKorpusData):
-    def __init__(self, description, texts, pairs, labels):
-        super().__init__(description, texts, pairs, labels)
 
 
 class QuestionPairKorpus(Korpus):
@@ -48,7 +43,8 @@ class QuestionPairKorpus(Korpus):
             is_train = 'train' in info['destination']
             with open(local_path, 'r', encoding='utf-8') as f:
                 texts, pairs, labels = self.cleaning(csv.reader(f, delimiter=','), is_train)
-                data = QuestionPairData(self.description, texts, pairs, labels)
+                dataname = 'QuestionPair.train' if is_train else 'QuestionPair.test'
+                data = LabeledSentencePairKorpusData(dataname, texts, pairs, labels)
             if is_train:
                 self.train = data
             else:

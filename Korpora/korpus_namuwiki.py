@@ -21,7 +21,7 @@ NAMUWIKI_FETCH_INFORMATION = [
     }
 ]
 
-description = """     Author : Hyunjoong Kim lovit@github
+description = """    Author : Hyunjoong Kim lovit@github
     Repository : https://github.com/lovit/namuwikitext
     References :
 
@@ -30,17 +30,6 @@ description = """     Author : Hyunjoong Kim lovit@github
 """
 
 license = "    CC BY-NC-SA 2.0 KR which Namuwiki dump dataset is licensed"
-
-
-class NamuwikiTextKorpusData(SentencePairKorpusData):
-    """
-    Args:
-        description (str) : data description
-        texts (list of str) : namuwiki contents including '\n'
-        pairs (list of str) : title
-    """
-    def __init__(self, description, texts, pairs):
-        super().__init__(description, texts, pairs)
 
 
 class NamuwikiTextKorpus(Korpus):
@@ -62,10 +51,10 @@ class NamuwikiTextKorpus(Korpus):
                     'If the `INPUT` is integer, it loads only first `INPUT` sentences\n').lower()
                 if (len(response) == 1 and response == 'y') or (response == 'yes'):
                     texts, titles = self.load(local_path)
-                    self.train = NamuwikiTextKorpusData(description, texts, titles)
+                    self.train = SentencePairKorpusData('NamuwikiText.train', texts, titles)
                 elif response.isdigit():
                     texts, titles = self.load(local_path, num_lines=int(response))
-                    self.train = NamuwikiTextKorpusData(description, texts, titles)
+                    self.train = SentencePairKorpusData('NamuwikiText.train', texts, titles)
                 else:
                     dirname = os.path.abspath(f'{root_dir}/namiwiki')
                     self.train = f'Namuwikitext corpus is downloaded. Open local directory {dirname}'
@@ -74,9 +63,9 @@ class NamuwikiTextKorpus(Korpus):
 
             texts, titles = self.load(local_path)
             if 'dev' in destination:
-                self.dev = NamuwikiTextKorpusData(description, texts, titles)
+                self.dev = SentencePairKorpusData('NamuwikiText.dev', texts, titles)
             elif 'test' in destination:
-                self.test = NamuwikiTextKorpusData(description, texts, titles)
+                self.test = SentencePairKorpusData('NamuwikiText.test', texts, titles)
             else:
                 raise ValueError(f'Check local files')
 

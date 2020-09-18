@@ -23,7 +23,7 @@ KCBERT_FETCH_INFORMATION = [
     }
 ]
 
-description = """     Author : beomi@github
+description = """    Author : beomi@github
     Repository : https://github.com/Beomi/KcBERT/
     References :
 
@@ -41,14 +41,6 @@ description = """     Author : beomi@github
 license = """    MIT License"""
 
 
-class KcBERTData(KorpusData):
-    def __init__(self, description, texts):
-        super().__init__(description, texts)
-
-    def __getitem__(self, index):
-        return self.texts[index]
-
-
 class KcBERTKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
@@ -62,13 +54,13 @@ class KcBERTKorpus(Korpus):
             'If you want to load text in your memory, please insert `yes`\n'
             'If the `INPUT` is integer, it loads only first `INPUT` sentences\n').lower()
         if (len(response) == 1 and response == 'y') or (response == 'yes'):
-            self.train = KcBERTData(
-                description,
+            self.train = KorpusData(
+                'KcBERT.train',
                 load_text(f'{root_dir}/kcbert/20190101_20200611_v2.txt')
             )
         elif response.isdigit():
-            self.train = KcBERTData(
-                description,
+            self.train = KorpusData(
+                'KcBERT.train',
                 load_text(f'{root_dir}/kcbert/20190101_20200611_v2.txt', num_samples=int(response))
             )
         else:
