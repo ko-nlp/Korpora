@@ -6,17 +6,17 @@ from .utils import fetch, default_korpora_path, load_wikitext
 NAMUWIKI_FETCH_INFORMATION = [
     {
         'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.train.zip',
-        'destination': 'namiwiki/namuwikitext_20200302.train.zip',
+        'destination': 'namuwikitext/namuwikitext_20200302.train.zip',
         'method': 'download & unzip'
     },
     {
         'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.test.zip',
-        'destination': 'namiwiki/namuwikitext_20200302.test.zip',
+        'destination': 'namuwikitext/namuwikitext_20200302.test.zip',
         'method': 'download & unzip'
     },
     {
         'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.1/namuwikitext_20200302.v0.1.dev.zip',
-        'destination': 'namiwiki/namuwikitext_20200302.dev.zip',
+        'destination': 'namuwikitext/namuwikitext_20200302.dev.zip',
         'method': 'download & unzip'
     }
 ]
@@ -63,7 +63,7 @@ class NamuwikiTextKorpus(Korpus):
                     texts, titles = self.load(local_path)
                     self.train = NamuwikiTextKorpusData(description, texts, titles)
                 else:
-                    dirname = os.path.abspath(f'{root_dir}/namiwiki')
+                    dirname = os.path.abspath(f'{root_dir}/namuwikitext')
                     self.train = f'Namuwikitext corpus is downloaded. Open local directory {dirname}'
                     print('Continue to load `dev` and `test`')
                 continue
