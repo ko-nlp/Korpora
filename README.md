@@ -309,7 +309,7 @@ kowiki.train[0].text
 kowiki.train[0].pair
 #  = 분류:중화인민공화국의 외교부장 =
 kowiki.dev[0]
-# SentencePair(text='thumb|right|180px|스포이아텔레\n스폴리아텔레(, )는 이탈리아의 ...', pair=' = 스폴리아텔레 =')
+# SentencePair(text='스폴리아텔레(, )는 이탈리아의 후식으로서 ...', pair=' = 스폴리아텔레 =')
 kowiki.test[0]
 # SentencePair(text='기타', pair=' = 분류:러시아의 기타 연주자 =')
 ```
