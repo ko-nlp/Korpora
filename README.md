@@ -292,9 +292,9 @@ korsts.test[0]
 - author: lovit@github
 - repository: https://github.com/lovit/kowikitext
 - size:
-  - train : 26827837 lines (877754 articles, 1.7G)
-  - dev : 130568 lines (4433 articles, 7.7M)
-  - test : 134478 lines (4433 articles, 8.4M)
+  - train : 26794425 lines (877754 articles, 1.7G)
+  - dev : 130419 lines (4433 articles, 7.7M)
+  - test : 134340 lines (4434 articles, 8.4M)
 - example
 ```python
 from Korpora import Korpora, KowikiTextKorpus
