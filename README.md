@@ -36,6 +36,7 @@ pip install Korpora
 |korean_petitions|청와대 국민 청원|https://github.com/lovit/petitions_archive|
 |kornli|Korean NLI|https://github.com/kakaobrain/KorNLUDatasets|
 |korsts|Korean STS|https://github.com/kakaobrain/KorNLUDatasets|
+|kowikitext|한국어 위키피디아 텍스트|https://github.com/lovit/kowikitext|
 |namuwikitext|나무위키 텍스트|https://github.com/lovit/namuwikitext|
 |naver_changwon_ner|네이버 x 창원대 개체명 인식 데이터셋|https://github.com/naver/nlp-challenge/tree/master/missions/ner|
 |nsmc|NAVER Sentiment Movie Corpus|https://github.com/e9t/nsmc|
@@ -56,6 +57,7 @@ Korpora.corpus_list()
  'korean_petitions': 'lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터',
  'kornli': 'KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터',
  'korsts': 'KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터',
+ 'kowikitext': 'lovit@github 님이 만드신 wikitext 형식의 한국어 위키피디아 데이터',
  'namuwikitext': 'lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터',
  'naver_changwon_ner': '네이버 + 창원대 NER shared task data',
  'nsmc': 'e9t@github 님이 만드신 Naver sentiment movie corpus v1.0',
