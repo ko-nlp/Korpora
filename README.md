@@ -288,6 +288,39 @@ korsts.test[0]
 |기타|데이터 관련 추가 정보|
 
 
+### kowikitext
+- author: lovit@github
+- repository: https://github.com/lovit/kowikitext
+- size:
+  - train : 26827837 lines (877754 articles, 1.7G)
+  - dev : 130568 lines (4433 articles, 7.7M)
+  - test : 134478 lines (4433 articles, 8.4M)
+- example
+```python
+from Korpora import Korpora, KowikiTextKorpus
+
+kowiki = KowikiTextKorpus() # or
+kowiki = Korpora.load('kowikitext')
+
+kowiki.train[0]
+# SentencePair(text='외교부장\n외교부장', pair=' = 분류:중화인민공화국의 외교부장 =')
+kowiki.train[0].text
+# '외교부장\n외교부장'
+kowiki.train[0].pair
+#  = 분류:중화인민공화국의 외교부장 =
+kowiki.dev[0]
+# SentencePair(text='thumb|right|180px|스포이아텔레\n스폴리아텔레(, )는 이탈리아의 ...', pair=' = 스폴리아텔레 =')
+kowiki.test[0]
+# SentencePair(text='기타', pair=' = 분류:러시아의 기타 연주자 =')
+```
+- data structure
+
+|속성명|내용|
+|---|---|
+|text|섹션 본문|
+|pair|섹션 타이틀|
+
+
 ### 나무위키텍스트
 - author: lovit@github
 - repository: https://github.com/lovit/namuwikitext
