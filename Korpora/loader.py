@@ -4,6 +4,7 @@ from .korpus_korean_hate_speech import KoreanHateSpeechKorpus, fetch_korean_hate
 from .korpus_korean_petitions import KoreanPetitionsKorpus, fetch_korean_petitions
 from .korpus_kornli import KorNLIKorpus, fetch_kornli
 from .korpus_korsts import KorSTSKorpus, fetch_korsts
+from .korpus_kowiki import KowikiTextKorpus, fetch_kowikitext
 from .korpus_namuwiki import NamuwikiTextKorpus, fetch_namuwikitext
 from .korpus_naverchangwon_ner import NaverChangwonNERKorpus, fetch_naverchangwon_ner
 from .korpus_nsmc import NSMCKorpus, fetch_nsmc
@@ -62,6 +63,7 @@ KORPUS = {
     'korean_petitions': KoreanPetitionsKorpus,
     'kornli': KorNLIKorpus,
     'korsts': KorSTSKorpus,
+    'kowikitext': KowikiTextKorpus,
     'namuwikitext': NamuwikiTextKorpus,
     'naver_changwon_ner': NaverChangwonNERKorpus,
     'nsmc': NSMCKorpus,
@@ -75,6 +77,7 @@ KORPUS_DESCRIPTION = {
     'korean_petitions': "lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터",
     'kornli': "KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터",
     'korsts': "KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터",
+    'kowikitext': "lovit@github 님이 만드신 wikitext 형식의 한국어 위키피디아 데이터",
     'namuwikitext': "lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터",
     'naver_changwon_ner': "네이버 + 창원대 NER shared task data",
     'nsmc': "e9t@github 님이 만드신 Naver sentiment movie corpus v1.0",
@@ -88,6 +91,7 @@ FETCH = {
     'korean_petitions': fetch_korean_petitions,
     'kornli': fetch_kornli,
     'korsts': fetch_korsts,
+    'kowikitext': fetch_kowikitext,
     'namuwikitext': fetch_namuwikitext,
     'naver_changwon_ner': fetch_naverchangwon_ner,
     'nsmc': fetch_nsmc,
