@@ -1,4 +1,9 @@
-from .korpora import Korpus, KorpusData
+import json
+from dataclasses import dataclass
+from glob import glob
+from tqdm import tqdm
+from typing import List
+from Korpora.korpora import Korpus, KorpusData
 
 
 description = """    모두의 말뭉치는 문화체육관광부 산하 국립국어원에서 제공하는 말뭉치로
@@ -27,7 +32,76 @@ license = """    모두의 말뭉치의 모든 저작권은 `문화체육관광�
 class ModuKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
-        fetch_modu()
+
+
+class ModuNewsKorpus(Korpus):
+    def __init__(self, root_dir_or_paths, load_light=True, force_download=False):
+        super().__init__(description, license)
+        if isinstance(root_dir_or_paths, str):
+            paths = sorted(glob(f'{root_dir_or_paths}/N*RW*.json'))
+        else:
+            paths = root_dir_or_paths
+        self.train = ModuNewsData(load_modu_news(paths, load_light))
+
+
+class ModuNewsData(KorpusData):
+    def __init__(self, news):
+        super().__init__('모두의 말뭉치: 뉴스 말뭉치', news)
+        self.news = self.texts
+
+
+@dataclass
+class ModuNews:
+    document_id: str
+    title: str
+    author: str
+    author: str
+    publisher: str
+    date: str
+    topic: str
+    original_topic: str
+    paragraph: List[str]
+
+
+@dataclass
+class ModuNewsLight:
+    document_id: str
+    title: str
+    paragraph: str
+
+
+def document_to_a_news(document):
+    document_id = document['id']
+    meta = document['metadata']
+    title = meta['title']
+    author = meta['author']
+    publisher = meta['publisher']
+    date = meta['date']
+    topic = meta['topic']
+    original_topic = meta['original_topic']
+    paragraph = [p['form'] for p in document['paragraph']]
+    return ModuNews(document_id, title, author, publisher, date, topic, original_topic, paragraph)
+
+
+def document_to_a_news_light(document):
+    document_id = document['id']
+    meta = document['metadata']
+    title = meta['title']
+    paragraph = '\n'.join([p['form'] for p in document['paragraph']])
+    return ModuNewsLight(document_id, title, paragraph)
+
+
+def load_modu_news(paths, load_light):
+    transform = document_to_a_news_light if load_light else document_to_a_news
+    news = []
+    for i_path, path in enumerate(paths):
+        with open(path, encoding='utf-8') as f:
+            data = json.load(f)
+        documents = data['document']
+        desc = f'Transform to ModuNews {i_path}/{len(paths)} files'
+        document_iterator = tqdm(documents, desc=desc, total=len(documents))
+        news += [transform(document) for document in document_iterator]
+    return news
 
 
 def fetch_modu():
