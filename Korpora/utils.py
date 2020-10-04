@@ -34,6 +34,15 @@ def load_text(path, num_heads=0, num_samples=-1):
     return lines
 
 
+def load_parallel_text(source_path, target_path, num_heads=0, num_samples=-1):
+    sources = load_text(source_path, num_heads, num_samples)
+    targets = load_text(target_path, num_heads, num_samples)
+    if len(sources) != len(targets):
+        raise ValueError('Parallel corpus must have same length two files')
+    pairs = [(s, t) for s, t in zip(sources, targets)]
+    return pairs
+
+
 def load_wikitext(path, num_lines=-1):
     """
     Wikitext format
