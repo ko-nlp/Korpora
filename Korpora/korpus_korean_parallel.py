@@ -42,31 +42,21 @@ class KoreanParallelKOENNewsKorpus(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
-        fetch_korean_parallel_koen_news(root_dir, force_download)
 
-        source_base = '{}/korean_parallel/korean-english-park.{}.ko'
-        target_base = '{}/korean_parallel/korean-english-park.{}.en'
-        self.train = SentencePairKorpusData(
-            'koennews.train',
-            *load_parallel_text(
-                source_base.format(root_dir, 'train'),
-                target_base.format(root_dir, 'train')
-            )
-        )
-        self.dev = SentencePairKorpusData(
-            'koennews.dev',
-            *load_parallel_text(
-                source_base.format(root_dir, 'dev'),
-                target_base.format(root_dir, 'dev')
-            )
-        )
-        self.test = SentencePairKorpusData(
-            'koennews.test',
-            *load_parallel_text(
-                source_base.format(root_dir, 'test'),
-                target_base.format(root_dir, 'test')
-            )
-        )
+        train_info, dev_info, test_info = KOREAN_PARALLEL_KOEN_NEWS_FETCH_INFORMATION
+        self.train = self.fetch_and_load('train', root_dir, train_info, force_download)
+        self.dev = self.fetch_and_load('dev', root_dir, dev_info, force_download)
+        self.test = self.fetch_and_load('test', root_dir, test_info, force_download)
+
+    def fetch_and_load(self, mode, root_dir, fetch_info, force_download):
+        dataname = f'koennews.{mode}'
+        source_path = f'{root_dir}/korean_parallel/korean-english-park.{mode}.ko'
+        target_path = f'{root_dir}/korean_parallel/korean-english-park.{mode}.en'
+        if (force_download) or (not os.path.exists(source_path)) or (not os.path.exists(target_path)):
+            local_path = os.path.join(os.path.abspath(root_dir), fetch_info['destination'])
+            fetch(fetch_info['url'], local_path, 'korean_parallel', force_download, fetch_info['method'])
+        sources, targets = load_parallel_text(source_path, target_path)
+        return SentencePairKorpusData(dataname, sources, targets)
 
 
 def fetch_korean_parallel_koen_news(root_dir, force_download):
