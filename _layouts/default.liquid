@@ -1,0 +1,28 @@
+---
+layout: plugins/compress
+---
+
+{%- include reset/defaults.liquid -%}
+
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+    <head>
+        {%- include node/metadata.liquid -%}
+
+        {%- include node/title.liquid -%}
+        {%- include node/links.liquid -%}
+        {%- include node/script.schema.liquid -%}
+
+        {%- include extra/head.html -%}
+    </head>
+    <body class="container">
+        {%- include class/sidebar-wrap.liquid -%}
+        {%- include class/content-wrap.liquid -%}
+        {%- include class/addons-wrap.liquid  -%}
+
+        {%- include node/script.liquid -%}
+        {%- include node/script.extension.liquid -%}
+
+        {%- include extra/footer.html -%}
+    </body>
+</html>

@@ -1,0 +1,29 @@
+{%- comment %} mermaid {% endcomment -%}
+{%- if content contains '<code class="language-mermaid">' -%}
+    {%- if site.mermaid.custom -%}
+        <script src="{{ site.mermaid.custom }}"></script>
+    {%- else -%}
+        <script src="{{ cdn }}/assets/js/mermaid.min.js"></script>
+    {%- endif %}
+    <script>
+        mermaid.initialize({% if site.mermaid.initialize %}{{ site.mermaid.initialize | jsonify }}{% else %}{}{% endif %});
+    </script>
+{%- endif %}
+
+{% comment %} Google Analytics {% endcomment %}
+{%- if site.google.gtag -%}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google.gtag }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "{{ site.google.gtag }}");
+    </script>
+{%- endif -%}
+
+{% comment %} Google AdSense {% endcomment %}
+{%- if site.google.adsense -%}
+    <script data-ad-client="{{ site.google.adsense }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+{%- endif -%}

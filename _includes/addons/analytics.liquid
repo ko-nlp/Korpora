@@ -1,0 +1,11 @@
+<dl>
+    <dt>{{ __.statistics | default: "Statistics" }}</dt>
+    <dd>
+        <a href="https://github.com/rundocs/analytics" rel="noreferrer" target="_blank">
+            {{ __.total_visits | default: "Total visits" }}:
+            <span id="counter">
+                <span class="AnimatedEllipsis"></span>
+            </span>
+        </a>
+    </dd>
+</dl>

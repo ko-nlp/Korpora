@@ -1,0 +1,26 @@
+<div class="addons-wrap d-flex flex-column overflow-y-auto">
+    <div class="status d-flex flex-justify-between p-2">
+        <div class="title p-1">
+            <i class="fa fa-book"></i> {{ site.title }}
+        </div>
+        <div class="branch p-1">
+            <span class="name">
+                {{ docs.source.branch }}
+            </span>
+            <i class="fa fa-caret-down"></i>
+        </div>
+    </div>
+    <div class="addons d-flex flex-column height-full p-2 d-none">
+        {%- assign items = "github, analytics" | split: ", " -%}
+        {% for item in items -%}
+            {% include addons/{{ item }}.liquid %}
+        {% endfor -%}
+        <hr>
+        <div class="generator f6 pb-2">
+            Built with
+            <a href="https://github.com/rundocs/jekyll-rtd-theme" target="_blank" title="{% if site.remote_theme %}remote{% endif %} theme v{{ version }}">jekyll-rtd-theme</a>
+            provided by
+            <a href="https://rundocs.io" target="_blank">RunDocs</a>
+        </div>
+    </div>
+</div>

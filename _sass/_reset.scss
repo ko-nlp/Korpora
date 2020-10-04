@@ -1,0 +1,13 @@
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 "FontAwesome";
+}
+
+.breadcrumb-item {
+  margin: 0;
+
+  &::after {
+    padding-right: 3px;
+    padding-left: 3px;
+  }
+}
