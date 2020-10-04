@@ -28,6 +28,9 @@ class KorpusData:
         s = f"""{self.name}: size={len(self.texts)}\n{attributes}"""
         return s
 
+    def __repr__(self):
+        return self.__str__()
+
 
 @dataclass
 class LabeledSentence:
