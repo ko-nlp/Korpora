@@ -1,6 +1,7 @@
 from .korpus_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
 from .korpus_kcbert import KcBERTKorpus, fetch_kcbert
 from .korpus_korean_hate_speech import KoreanHateSpeechKorpus, fetch_korean_hate_speech
+from .korpus_korean_parallel import KoreanParallelKOENNewsKorpus, fetch_korean_parallel_koen_news
 from .korpus_korean_petitions import KoreanPetitionsKorpus, fetch_korean_petitions
 from .korpus_kornli import KorNLIKorpus, fetch_kornli
 from .korpus_korsts import KorSTSKorpus, fetch_korsts
@@ -59,6 +60,7 @@ KORPUS = {
     'kcbert': KcBERTKorpus,
     'korean_chatbot_data': KoreanChatbotKorpus,
     'korean_hate_speech': KoreanHateSpeechKorpus,
+    'korean_parallel_koen_news': KoreanParallelKOENNewsKorpus,
     'korean_petitions': KoreanPetitionsKorpus,
     'kornli': KorNLIKorpus,
     'korsts': KorSTSKorpus,
@@ -72,6 +74,7 @@ KORPUS_DESCRIPTION = {
     'kcbert': "beomi@github 님이 만드신 KcBERT 학습데이터",
     'korean_chatbot_data': "songys@github 님이 만드신 챗봇 문답 데이터",
     'korean_hate_speech': "{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터",
+    'korean_parallel_koen_news': "jungyeul@github 님이 만드신 병렬 말뭉치",
     'korean_petitions': "lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터",
     'kornli': "KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터",
     'korsts': "KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터",
@@ -85,6 +88,7 @@ FETCH = {
     'kcbert': fetch_kcbert,
     'korean_chatbot_data': fetch_chatbot,
     'korean_hate_speech': fetch_korean_hate_speech,
+    'korean_parallel_koen_news': fetch_korean_parallel_koen_news,
     'korean_petitions': fetch_korean_petitions,
     'kornli': fetch_kornli,
     'korsts': fetch_korsts,
