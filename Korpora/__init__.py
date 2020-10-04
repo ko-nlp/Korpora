@@ -9,6 +9,7 @@ from .korpus_custom import (
 )
 from .korpus_kcbert import KcBERTKorpus
 from .korpus_korean_hate_speech import KoreanHateSpeechKorpus
+from .korpus_korean_parallel import KoreanParallelKOENNewsKorpus
 from .korpus_korean_petitions import KoreanPetitionsKorpus
 from .korpus_kornli import KorNLIKorpus
 from .korpus_korsts import KorSTSKorpus
