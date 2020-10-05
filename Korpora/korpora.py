@@ -157,7 +157,7 @@ class Korpus:
         classname = self.__class__.__name__
         s = f"{classname}\n{self.description}\n\nAttributes\n----------\n"
         for var_name, var in self.__dict__.items():
-            if var_name not in {'description', 'license', 'self'}:
+            if isinstance(var, KorpusData):
                 s += f'{str(var)}'
         return s
 
