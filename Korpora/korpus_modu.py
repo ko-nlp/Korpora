@@ -1,4 +1,5 @@
 import json
+import os
 from dataclasses import dataclass
 from glob import glob
 from tqdm import tqdm
@@ -29,19 +30,20 @@ license = """    모두의 말뭉치의 모든 저작권은 `문화체육관광�
     정확한 라이센스는 확인 중 입니다."""
 
 
-class ModuKorpus(Korpus):
-    def __init__(self, root_dir=None, force_download=False):
-        super().__init__(description, license)
-
-
 class ModuNewsKorpus(Korpus):
     def __init__(self, root_dir_or_paths, load_light=True, force_download=False):
         super().__init__(description, license)
         if isinstance(root_dir_or_paths, str):
-            paths = sorted(glob(f'{root_dir_or_paths}/N*RW*.json'))
+            if os.path.isdir(root_dir_or_paths):
+                paths = sorted(glob(f'{root_dir_or_paths}/N*RW*.json'))
+            else:
+                # wildcard
+                paths = sorted(glob(root_dir_or_paths))
         else:
             paths = root_dir_or_paths
         self.train = ModuNewsData(load_modu_news(paths, load_light))
+        self.row_to_documentid = [news.document_id for news in self.train]
+        self.documentid_to_row = {document_id: idx for idx, document_id in enumerate(self.row_to_documentid)}
 
 
 class ModuNewsData(KorpusData):
