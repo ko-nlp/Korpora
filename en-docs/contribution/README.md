@@ -2,6 +2,6 @@
 sort: 8
 ---
 
-# Contibution
+# Contribution
 
 {% include list.liquid %}
