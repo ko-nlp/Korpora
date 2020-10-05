@@ -1,5 +1,6 @@
 import os
 import requests
+import tarfile
 import zipfile
 from os.path import expanduser
 from tqdm import tqdm
@@ -31,6 +32,14 @@ def load_text(path, num_heads=0, num_samples=-1):
                 break
             lines.append(line.rstrip('\n'))
     return lines
+
+
+def load_parallel_text(source_path, target_path, num_heads=0, num_samples=-1):
+    sources = load_text(source_path, num_heads, num_samples)
+    targets = load_text(target_path, num_heads, num_samples)
+    if len(sources) != len(targets):
+        raise ValueError('Parallel corpus must have same length two files')
+    return sources, targets
 
 
 def load_wikitext(path, num_lines=-1):
@@ -118,6 +127,18 @@ def web_download_unzip(url, zip_path, corpus_name='', force_download=False):
     print(f'unzip {data_path}')
 
 
+def web_download_untar(url, tar_path, corpus_name='', force_download=False):
+    web_download(url, tar_path, corpus_name, force_download)
+    # assume that path/to/abc.tar consists path/to/abc
+    data_path = tar_path[:-4]
+    if (not force_download) and os.path.exists(data_path):
+        return None
+    data_root = os.path.dirname(tar_path)
+    with tarfile.open(tar_path) as tar:
+        tar.extractall(data_root)
+    print(f'decompress {tar_path}')
+
+
 def google_drive_download(file_id, local_path, corpus_name='', force_download=False):
     def get_confirm_token(response):
         for key, value in response.cookies.items():
@@ -177,5 +198,7 @@ def fetch(remote_path, local_path, corpus_name=None, force_download=False, metho
         google_drive_download(remote_path, destination, corpus_name, force_download)
     elif method == "download & unzip":
         web_download_unzip(remote_path, destination, corpus_name, force_download)
+    elif method == "download & untar":
+        web_download_untar(remote_path, destination, corpus_name, force_download)
     else:
         print(f'download method is not valid ({method})')

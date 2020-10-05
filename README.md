@@ -54,6 +54,7 @@ Korpora.corpus_list()
 {'kcbert': 'beomi@github 님이 만드신 KcBERT 학습데이터',
  'korean_chatbot_data': 'songys@github 님이 만드신 챗봇 문답 데이터',
  'korean_hate_speech': '{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터',
+ 'korean_parallel_koen_news': 'jungyeul@github 님이 만드신 병렬 말뭉치',
  'korean_petitions': 'lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터',
  'kornli': 'KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터',
  'korsts': 'KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터',
@@ -450,3 +451,35 @@ question_pair.test[0]
 |text|문장|
 |pair|text와 쌍을 이루는 문장|
 |label|text와 pair가 같은 질문이면 0, 다른 질문이면 1|
+
+### Korean Parallel Corpus
+- author: jungyeul@github
+- repository: https://github.com/jungyeul/korean-parallel-corpora
+- size:
+  - train: 94,123 pairs
+  - dev: 1,000 pairs
+  - test: 2,000 pairs
+- example
+```python
+from Korpora import Korpora, KoreanParallelKOENNewsKorpus
+
+koen_news = KoreanParallelKOENNewsKorpus() # or
+koen_news = Korpora.load('korean_parallel_koen_news')
+
+koen_news.train[0]
+# SentencePair(text='개인용 컴퓨터 사용의 상당 부분은 "이것보다 뛰어날 수 있느냐?"', pair='Much of personal computing is about "can you top this?"')
+koen_news.train[0].text
+# 개인용 컴퓨터 사용의 상당 부분은 "이것보다 뛰어날 수 있느냐?"
+koen_news.train[0].pair
+# Much of personal computing is about "can you top this?"
+koen_news.test[0]
+# SentencePair(text='토론에 참여한 사람들은 법 집행과 국가 ...', pair='Those involved in the discussions do take seriously ...')
+koen_news.dev[0]
+# SentencePair(text='세계 에서 가장 강력한 수퍼컴퓨터를 1년...', pair="After keeping the world's most powerful supercomputer ...")
+```
+- data structure
+
+|속성명|내용|
+|---|---|
+|text|`ko` 문장|
+|pair|`en` 문장|
