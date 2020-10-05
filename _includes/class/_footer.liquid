@@ -23,7 +23,7 @@
 <hr>
 
 <div class="copyright text-center text-gray" role="contentinfo">
-    <i class="fa fa-copyright"></i>
+    © Copyright&nbsp;
     {%- assign created_time = rest_created_at | date: "%Y" -%}
     {%- assign updated_time = rest_updated_at | date: "%Y" -%}
     {%- if created_time == updated_time -%}
@@ -33,9 +33,5 @@
     {%- endif %}
     <a class="text-gray" href="{{ docs.owner_url }}" target="_blank">
         {{ author }}
-    </a>
-    {{ __.revision | default: "Revision" }}
-    <a class="text-gray" href="{{ docs.repository_url }}/commit/{{ docs.build_revision }}" title="{{ docs.build_revision }}" target="_blank">
-        {{ docs.build_revision | slice: 0, 7 }}
     </a>
 </div>
