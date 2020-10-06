@@ -100,7 +100,7 @@ def load_modu_news(paths, load_light):
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
         documents = data['document']
-        desc = f'Transform to ModuNews {i_path}/{len(paths)} files'
+        desc = f'Transform to ModuNews {i_path + 1}/{len(paths)} files'
         document_iterator = tqdm(documents, desc=desc, total=len(documents))
         news += [transform(document) for document in document_iterator]
     return news
