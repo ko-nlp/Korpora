@@ -23,7 +23,7 @@ class KorpusData:
     def __str__(self):
         attributes = ""
         for var_name, var in self.__dict__.items():
-            if var_name not in {'dataname', 'description', 'self'}:
+            if var_name not in {'name', 'description', 'self'}:
                 attributes += f'  - {self.name}.{var_name} : list[{var[0].__class__.__name__}]\n'
         s = f"""{self.name}: size={len(self.texts)}\n{attributes}"""
         return s
