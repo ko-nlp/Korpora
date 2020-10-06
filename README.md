@@ -483,3 +483,32 @@ koen_news.dev[0]
 |---|---|
 |text|`ko` 문장|
 |pair|`en` 문장|
+
+### 모두의 말뭉치: 신문 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- example
+```python
+from Korpora.korpus_modu_news import ModuNewsKorpus
+
+news_paths_or_news_dir = 'path/to/NIKL_NEWSPAPER(v1.0)/NPRW190000001*.json'  # wildcard
+news_paths_or_news_dir = 'path/to/NIKL_NEWSPAPER(v1.0)'
+
+# LOAD ONYL TITLE & PARAGRAPH
+news_corpus = ModuNewsKorpus(news_paths_or_news_dir, load_light=True)
+news_corpus.train[0]
+# ModuNewsLight(document_id='NPRW1900000010.1', title='한국경제 2018년 기사', paragraph='"라니냐로 겨울 가뭄 온다"… ...')
+news_corpus.train[0].document_id
+# 'NPRW1900000010.1'
+
+# LOAD ALL ATTRIBUTES IN CORPUS
+news_corpus = ModuNewsKorpus(news_paths_or_news_dir, load_light=False)
+news_corpus.train[0]
+# ModuNews(document_id='NPRW1900000010.1', title='한국경제 2018년 기사', author='김현석', publisher='한국경제신문사', date='20180101', topic='생활', original_topic='국제', paragraph=['"라니냐로 겨울 가뭄 온다"…', '...'])
+
+# DOCUMENT ID INDEX
+news_corpus.row_to_documentid[:3]
+# ['NPRW1900000010.1', 'NPRW1900000010.2', 'NPRW1900000010.3']
+news_corpus.documentid_to_row['NPRW1900000010.2']
+# 1
+```
