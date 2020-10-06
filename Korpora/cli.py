@@ -2,7 +2,7 @@ import argparse
 import os
 
 from .about import __version__
-from .loader import Korpora, FETCH
+from .loader import Korpora, KORPUS_DESCRIPTION
 
 
 def fetch(args):
@@ -14,10 +14,15 @@ def fetch(args):
     if isinstance(corpus_names, str):
         corpus_names = [corpus_names]
     for name in corpus_names:
-        if name not in FETCH:
+        if name not in KORPUS_DESCRIPTION:
             print(f'Korpora does not provide `{name}` corpus')
             continue
         Korpora.fetch(name, args.root, args.force_download)
+
+
+def listup(args):
+    for name, description in KORPUS_DESCRIPTION.items():
+        print(f'[Corpus] {name} : {description}')
 
 
 def show_arguments(args):
@@ -44,6 +49,9 @@ def main():
     parser_fetch.add_argument('--root', type=str, default=None, help='path/to/Korpora/')
     parser_fetch.add_argument('--force_download', dest='force_download', action='store_true')
     parser_fetch.set_defaults(func=fetch)
+
+    parser_list = subparsers.add_parser('list', help='Tokenize `input` and save the result to `output`')
+    parser_list.set_defaults(func=listup)
 
     # Do task
     args = parser.parse_args()
