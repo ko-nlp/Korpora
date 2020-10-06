@@ -41,22 +41,58 @@ class ModuNewsKorpus(Korpus):
                 paths = sorted(glob(root_dir_or_paths))
         else:
             paths = root_dir_or_paths
-        self.train = ModuNewsData(load_modu_news(paths, load_light))
+        if load_light:
+            self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))
+        else:
+            self.train = ModuNewsData('모두의_뉴스_말뭉치.train', load_modu_news(paths, load_light))
         self.row_to_documentid = [news.document_id for news in self.train]
         self.documentid_to_row = {document_id: idx for idx, document_id in enumerate(self.row_to_documentid)}
 
 
 class ModuNewsData(KorpusData):
-    def __init__(self, news):
-        super().__init__('모두의 말뭉치: 뉴스 말뭉치', news)
-        self.news = self.texts
+    def __init__(self, name, news):
+        super().__init__(name, news)
+        self.document_ids = [doc.document_id for doc in news]
+        self.titles = [doc.title for doc in news]
+        self.authors = [doc.author for doc in news]
+        self.publishers = [doc.publisher for doc in news]
+        self.dates = [doc.date for doc in news]
+        self.topics = [doc.topic for doc in news]
+        self.original_topics = [doc.original_topic for doc in news]
+        self.texts = [doc.paragraph for doc in news]
+
+    def __getitem__(self, index):
+        news = ModuNews(
+            self.document_ids[index],
+            self.titles[index],
+            self.authors[index],
+            self.publishers[index],
+            self.dates[index],
+            self.topics[index],
+            self.original_topics[index],
+            self.texts[index].split('\n'))
+        return news
+
+
+class ModuNewsDataLight(KorpusData):
+    def __init__(self, name, news):
+        super().__init__(name, news)
+        self.texts = [doc.paragraph for doc in news]
+        self.titles = [doc.title for doc in news]
+        self.document_ids = [doc.document_id for doc in news]
+
+    def __getitem__(self, index):
+        news = ModuNewsLight(
+            self.document_ids[index],
+            self.titles[index],
+            self.texts[index])
+        return news
 
 
 @dataclass
 class ModuNews:
     document_id: str
     title: str
-    author: str
     author: str
     publisher: str
     date: str
@@ -81,7 +117,7 @@ def document_to_a_news(document):
     date = meta['date']
     topic = meta['topic']
     original_topic = meta['original_topic']
-    paragraph = [p['form'] for p in document['paragraph']]
+    paragraph = '\n'.join([p['form'] for p in document['paragraph']])
     return ModuNews(document_id, title, author, publisher, date, topic, original_topic, paragraph)
 
 
