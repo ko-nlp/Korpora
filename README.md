@@ -512,3 +512,15 @@ news_corpus.row_to_documentid[:3]
 news_corpus.documentid_to_row['NPRW1900000010.2']
 # 1
 ```
+- data structure
+
+| 속성명 | 내용 |
+| --- | --- |
+| document_id | 뉴스 고유 아이디 |
+| title | metadata 의 title (기사 제목이 아님) |
+| author | 기사 작성자 |
+| publisher | 언론사 |
+| date | 기사 작성 일자 |
+| topic | 통합 분류 ((정치, 경제, 사회, 생활, IT/과학, 연예, 스포츠, 문화, 미용/건강) |
+| original_topic | 신문 매체의 자체 주제 분류 |
+| paragraph | 뉴스 기사 본문 (첫 줄이 기사의 제목으로 추정) |
