@@ -483,3 +483,37 @@ koen_news.dev[0]
 |---|---|
 |text|`ko` 문장|
 |pair|`en` 문장|
+
+
+### 모두의 말뭉치: 메신저 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- example
+```python
+from Korpora.korpus_modu_messenger import ModuMessengerKorpus
+
+paths_or_dir = 'path/to/NIKL_MESSENGER(v1.0)/MDRW190000000*.json'  # wildcard
+paths_or_dir = 'path/to/NIKL_NEWSPAPER(v1.0)/'
+
+corpus = ModuMessengerKorpus(paths_or_dir)
+corpus.train[0]
+# Conversation(id=MDRW1900000002.1, len=70, attributes=(form(str), original_form(str), speaker_id(str), time(str)))
+
+corpus.train[0].form[:4]
+# ('누나 모해??',
+# 'ㅋㅋㅋㅋ 일하고 있지ㅠㅠ',
+# 'ㅋㅋㅋㅋㅋㅋ나돈데 지금 몰래 여행갈곳 찾는중 ㅎ',
+# '오오 어디?')
+
+corpus.train[0].speaker_id[:10]
+# ('1', '2', '1', '2', '1', '1', '2', '1', '1', '2')
+```
+- data structure
+
+| 속성명 | 내용 |
+| --- | --- |
+| document_id | 대화 고유 아이디 |
+| form | 대화 텍스트 |
+| original_form | 대화 원본 텍스트 |
+| speaker_id | 발화자 (숫자가 아님) |
+| time | `yyyymmdd hh:mm` 형식 |
