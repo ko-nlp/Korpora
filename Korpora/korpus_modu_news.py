@@ -144,13 +144,11 @@ def find_corpus_paths(root_dir_or_paths):
 def load_modu_news(paths, load_light):
     transform = document_to_a_news_light if load_light else document_to_a_news
     news = []
-    for i_path, path in enumerate(paths):
+    for i_path, path in enumerate(tqdm(paths, desc='Loading ModuNews', total=len(paths))):
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
         documents = data['document']
-        desc = f'Transform to ModuNews {i_path + 1}/{len(paths)} files'
-        document_iterator = tqdm(documents, desc=desc, total=len(documents))
-        news += [transform(document) for document in document_iterator]
+        news += [transform(document) for document in documents]
     return news
 
 
