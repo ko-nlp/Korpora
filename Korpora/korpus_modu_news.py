@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from dataclasses import dataclass
 from glob import glob
 from tqdm import tqdm
@@ -33,17 +34,7 @@ license = """    모두의 말뭉치의 모든 저작권은 `문화체육관광�
 class ModuNewsKorpus(Korpus):
     def __init__(self, root_dir_or_paths, load_light=True, force_download=False):
         super().__init__(description, license)
-        if isinstance(root_dir_or_paths, str):
-            if os.path.isdir(root_dir_or_paths):
-                paths = sorted(glob(f'{root_dir_or_paths}/N*RW*.json'))
-            else:
-                # wildcard
-                paths = sorted(glob(root_dir_or_paths))
-        else:
-            paths = root_dir_or_paths
-        if not paths:
-            raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
-
+        paths = find_corpus_paths(root_dir_or_paths)
         if load_light:
             self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))
         else:
@@ -130,6 +121,24 @@ def document_to_a_news_light(document):
     title = meta['title']
     paragraph = '\n'.join([p['form'] for p in document['paragraph']])
     return ModuNewsLight(document_id, title, paragraph)
+
+
+def find_corpus_paths(root_dir_or_paths):
+    prefix_pattern = re.compile('N[WLPIZ]RW')
+    def match(path):
+        prefix = path.split(os.path.sep)[-1][:4]
+        return prefix_pattern.match(prefix)
+
+    # directory + wildcard
+    if isinstance(root_dir_or_paths, str):
+        paths = sorted(glob(f'{root_dir_or_paths}/*.json') + glob(root_dir_or_paths))
+    else:
+        paths = root_dir_or_paths
+
+    paths = [path for path in paths if match(path)]
+    if not paths:
+        raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
+    return paths
 
 
 def load_modu_news(paths, load_light):
