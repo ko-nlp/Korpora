@@ -23,10 +23,13 @@ class KorpusData:
     def __str__(self):
         attributes = ""
         for var_name, var in self.__dict__.items():
-            if var_name not in {'dataname', 'description', 'self'}:
+            if var_name not in {'name', 'description', 'self'}:
                 attributes += f'  - {self.name}.{var_name} : list[{var[0].__class__.__name__}]\n'
         s = f"""{self.name}: size={len(self.texts)}\n{attributes}"""
         return s
+
+    def __repr__(self):
+        return self.__str__()
 
 
 @dataclass
@@ -154,7 +157,7 @@ class Korpus:
         classname = self.__class__.__name__
         s = f"{classname}\n{self.description}\n\nAttributes\n----------\n"
         for var_name, var in self.__dict__.items():
-            if var_name not in {'description', 'license', 'self'}:
+            if isinstance(var, KorpusData):
                 s += f'{str(var)}'
         return s
 
