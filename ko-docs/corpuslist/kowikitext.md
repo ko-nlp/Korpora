@@ -91,7 +91,7 @@ SentencePair(text='기타', pair=' = 분류:러시아의 기타 연주자 =')
 ['외교부장\n외교부장', ... ]
 ```
 
-`get_all_pairs`라는 메소드를 실행하면 한국어 위키 텍스의 모든 pair(섹션 타이틀)를 확인할 수 있습니다.
+`get_all_pairs`라는 메소드를 실행하면 한국어 위키 텍스트의 모든 pair(섹션 타이틀)를 확인할 수 있습니다.
 
 ```
 >>> corpus.get_all_pairs()
