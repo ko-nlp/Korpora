@@ -50,6 +50,10 @@ Korpora.fetch("kcbert")
 fetch 함수 실행시 `root_dir=custom_path`라는 인자를 추가하세요.
 ```
 
+```tip
+fetch 함수 실행시 `force_download=True`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도 이를 무시하고 다시 내려 받습니다. 기본값은 `False`입니다.
+```
+
 `Korpora`가 제공하는 모든 말뭉치를 내려받고 싶다면 다음과 같이 실행하세요.
 
 ```python
@@ -57,9 +61,9 @@ from Korpora import Korpora
 Korpora.fetch('all')
 ```
 
-```tip
-fetch 함수 실행시 `force_download=True`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도
-이를 무시하고 다시 내려 받습니다. 기본값은 `False`입니다.
+```warning
+국립국어원에서 제공하는 '모두의 말뭉치'는 라이센스 문제로 `Korpora` 패키지에서는 다운로드 기능을 제공하지 않습니다. 
+해당 말뭉치를 사용하고 싶다면 국립국어원 안내대로 인증 과정을 거쳐 수작업으로 말뭉치를 내려받아야 합니다.
 ```
 
 ### 말뭉치 읽어들이기
@@ -73,7 +77,8 @@ corpus = Korpora.load("kcbert")
 ```
 
 위 코드를 실행하면 `corpus`라는 파이썬 변수에 말뭉치 데이터가 담기게 됩니다.
-해당 데이터는 말뭉치별로 그 내용과 구조가 다릅니다.
+만일 로컬에 데이터가 없다면 다운로드까지 한번에 수행합니다.
+한편 `corpus`는 말뭉치별로 그 내용과 구조가 다릅니다.
 데이터 내용과 구조에 관해서는 이 페이지의 각 말뭉치 설명 란을 참고하세요.
 
 
@@ -98,13 +103,17 @@ korpora fetch --corpus kcbert
 korpora fetch --corpus kcbert korean_chatbot_data
 ```
 
+```tip
+fetch 함수 실행시 `--force_download`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도 이를 무시하고 다시 내려 받습니다.
+```
+
 터미널에서 `Korpora`가 제공하는 모든 말뭉치를 내려받는 예제는 다음과 같습니다.
 
 ```bash
 korpora fetch --corpus all
 ```
 
-```tip
-fetch 함수 실행시 `--force_download`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도
-이를 무시하고 다시 내려 받습니다.
+```warning
+국립국어원에서 제공하는 '모두의 말뭉치'는 라이센스 문제로 `Korpora` 패키지에서는 다운로드 기능을 제공하지 않습니다. 
+해당 말뭉치를 사용하고 싶다면 국립국어원 안내대로 인증 과정을 거쳐 수작업으로 말뭉치를 내려받아야 합니다.
 ```
