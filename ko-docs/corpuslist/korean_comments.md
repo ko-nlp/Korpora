@@ -53,12 +53,20 @@ from Korpora import KcBERTKorpus
 corpus = KcBERTKorpus()
 ```
 
-위 코드 둘 중 하나를 택해 실행하면 `corpus`라는 변수에 다음과 같은 정보가 들어 있음을 확인할 수 있습니다.
+위 코드 둘 중 하나를 택해 실행하면 `corpus`라는 변수에 말뭉치를 로드합니다.
+`train`은 KcBERT 댓글 데이터의 train 데이터로 첫번째 인스턴스는 다음과 같이 확인할 수 있습니다.
 
 ```
 >>> corpus.train[0]
 우리에게 북한은 꼭 없애야 할 적일뿐
 ```
+
+`get_all_texts`라는 메소드를 실행하면 KcBERT 댓글 데이터의 모든 text(질문)를 확인할 수 있습니다.
+
+```
+>>> corpus.get_all_texts()
+```
+
 
 ## 2. 터미널에서 사용하기
 
