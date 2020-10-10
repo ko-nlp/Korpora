@@ -565,7 +565,7 @@ corpus.train[0].speaker_id[:10]
 ```python
 from Korpora.korpus_modu_web import ModuWebKorpus
 
-paths_or_dir = 'path/to//NIKL_WEB(v1.0)/'
+paths_or_dir = 'path/to/NIKL_WEB(v1.0)/'
 paths_or_dir = 'path/to/NIKL_WEB(v1.0)/EBRW1903002753*.json'
 corpus = ModuWebKorpus(paths_or_dir)
 
