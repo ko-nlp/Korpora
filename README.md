@@ -491,18 +491,18 @@ koen_news.dev[0]
 ```python
 from Korpora.korpus_modu_news import ModuNewsKorpus
 
-news_paths_or_news_dir = 'path/to/NIKL_NEWSPAPER(v1.0)/NPRW190000001*.json'  # wildcard
-news_paths_or_news_dir = 'path/to/NIKL_NEWSPAPER(v1.0)'
+paths_or_dir = 'path/to/NIKL_NEWSPAPER(v1.0)/NPRW190000001*.json'  # wildcard
+paths_or_dir = 'path/to/NIKL_NEWSPAPER(v1.0)'
 
 # LOAD ONYL TITLE & PARAGRAPH
-news_corpus = ModuNewsKorpus(news_paths_or_news_dir, load_light=True)
+news_corpus = ModuNewsKorpus(paths_or_dir, load_light=True)
 news_corpus.train[0]
 # ModuNewsLight(document_id='NPRW1900000010.1', title='한국경제 2018년 기사', paragraph='"라니냐로 겨울 가뭄 온다"… ...')
 news_corpus.train[0].document_id
 # 'NPRW1900000010.1'
 
 # LOAD ALL ATTRIBUTES IN CORPUS
-news_corpus = ModuNewsKorpus(news_paths_or_news_dir, load_light=False)
+news_corpus = ModuNewsKorpus(paths_or_dir, load_light=False)
 news_corpus.train[0]
 # ModuNews(document_id='NPRW1900000010.1', title='한국경제 2018년 기사', author='김현석', publisher='한국경제신문사', date='20180101', topic='생활', original_topic='국제', paragraph=['"라니냐로 겨울 가뭄 온다"…', '...'])
 
@@ -529,6 +529,7 @@ news_corpus.documentid_to_row['NPRW1900000010.2']
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
 - example
+  - 메신저 내 하나의 대화 (여러 sections 으로 구성)가 train 의 데이터 입니다.
 ```python
 from Korpora.korpus_modu_messenger import ModuMessengerKorpus
 
@@ -558,6 +559,42 @@ corpus.train[0].speaker_id[:10]
 | speaker_id | 발화자 (숫자가 아님) |
 | time | `yyyymmdd hh:mm` 형식 |
 
+### 모두의 말뭉치: 웹 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- example
+```python
+from Korpora.korpus_modu_web import ModuWebKorpus
+
+paths_or_dir = 'path/to/NIKL_WEB(v1.0)/'
+paths_or_dir = 'path/to/NIKL_WEB(v1.0)/EBRW1903002753*.json'
+corpus = ModuWebKorpus(paths_or_dir)
+
+corpus.train[0]
+# 오메가3와 비타민C, 달맞이꽃종자유 등을 사려고 몇 시간을 검색하며 공부했다. 그 결과 오염되지 않은 ...
+type(corpus.train[0])
+# str
+for doc in corpus.train:
+    type(doc)  # str
+```
+
+### 모두의 말뭉치: 문어 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- example
+  - 구어 말뭉치의 하나의 paragraph 가 train 의 데이터 입니다.
+```python
+from Korpora.korpus_modu_written import ModuWrittenKorpus
+
+paths_or_dir = 'path/to/NIKL_WRITTEN(v1.0)/'
+paths_or_dir = 'path/to/NIKL_WRITTEN(v1.0)/WARW180000000*'
+corpus = ModuWrittenKorpus(paths_or_dir)
+
+print(corpus.train[1])
+# 화자를 처음 만나 이야기를 들으러 왔다고 하자 서슴없이 꺼낸 첫 이야기이다. 화자로서 가장 쉽게 기억해낸 이야기인 셈이다. 설화 앞뒤에 교훈적 해석을 ...
+print(type(corpus.train[0]))
+# str
+```
 
 ### 모두의 말뭉치: 구어 말뭉치 (loader)
 - author: 국립국어원
