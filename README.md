@@ -595,3 +595,21 @@ print(corpus.train[1])
 print(type(corpus.train[0]))
 # str
 ```
+
+### 모두의 말뭉치: 구어 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- example
+  - 구어 말뭉치 내 한 화자의 연속된 말을 하나의 paragraph 로 정리, 이를 train 의 데이터로 로드
+```python
+from Korpora.korpus_modu_spoken import ModuSpokenKorpus
+
+paths_or_dir = 'path/to/NIKL_SPOKEN(v1.0)/'
+paths_or_dir = 'path/to/NIKL_SPOKEN(v1.0)/SARW1800000001*'
+corpus = ModuSpokenKorpus(paths_or_dir)
+
+corpus.train[0]
+# '요즘처럼 추운 날씨에는 따뜻한 라테 한잔 찾는 분들 많으실 텐데요. 라테 위에 그려진 다양한 라테 아트를 구경하는 것도 ...
+type(corpus.train[0])
+# str
+```
