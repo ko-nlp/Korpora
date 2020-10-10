@@ -557,3 +557,22 @@ corpus.train[0].speaker_id[:10]
 | original_form | 대화 원본 텍스트 |
 | speaker_id | 발화자 (숫자가 아님) |
 | time | `yyyymmdd hh:mm` 형식 |
+
+### 모두의 말뭉치: 웹 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- example
+```python
+from Korpora.korpus_modu_web import ModuWebKorpus
+
+paths_or_dir = '/Users/hyunjoongkim/local/modu/National_Institute_Korean_Language/NIKL_WEB(v1.0)/'
+paths_or_dir = '/Users/hyunjoongkim/local/modu/National_Institute_Korean_Language/NIKL_WEB(v1.0)/EBRW1903002753*.json'
+corpus = ModuWebKorpus(paths_or_dir)
+
+corpus.train[0]
+# 오메가3와 비타민C, 달맞이꽃종자유 등을 사려고 몇 시간을 검색하며 공부했다. 그 결과 오염되지 않은 ...
+type(corpus.train[0])
+# str
+for doc in corpus.train:
+    type(doc)  # str
+```
