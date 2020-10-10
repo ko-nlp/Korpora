@@ -493,7 +493,7 @@ koen_news.dev[0]
 from Korpora.korpus_modu_messenger import ModuMessengerKorpus
 
 paths_or_dir = 'path/to/NIKL_MESSENGER(v1.0)/MDRW190000000*.json'  # wildcard
-paths_or_dir = 'path/to/NIKL_NEWSPAPER(v1.0)/'
+paths_or_dir = 'path/to/NIKL_MESSENGER(v1.0)/'
 
 corpus = ModuMessengerKorpus(paths_or_dir)
 corpus.train[0]
