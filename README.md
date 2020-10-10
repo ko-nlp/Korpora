@@ -491,18 +491,18 @@ koen_news.dev[0]
 ```python
 from Korpora.korpus_modu_news import ModuNewsKorpus
 
-news_paths_or_news_dir = 'path/to/NIKL_NEWSPAPER(v1.0)/NPRW190000001*.json'  # wildcard
-news_paths_or_news_dir = 'path/to/NIKL_NEWSPAPER(v1.0)'
+paths_or_dir = 'path/to/NIKL_NEWSPAPER(v1.0)/NPRW190000001*.json'  # wildcard
+paths_or_dir = 'path/to/NIKL_NEWSPAPER(v1.0)'
 
 # LOAD ONYL TITLE & PARAGRAPH
-news_corpus = ModuNewsKorpus(news_paths_or_news_dir, load_light=True)
+news_corpus = ModuNewsKorpus(paths_or_dir, load_light=True)
 news_corpus.train[0]
 # ModuNewsLight(document_id='NPRW1900000010.1', title='한국경제 2018년 기사', paragraph='"라니냐로 겨울 가뭄 온다"… ...')
 news_corpus.train[0].document_id
 # 'NPRW1900000010.1'
 
 # LOAD ALL ATTRIBUTES IN CORPUS
-news_corpus = ModuNewsKorpus(news_paths_or_news_dir, load_light=False)
+news_corpus = ModuNewsKorpus(paths_or_dir, load_light=False)
 news_corpus.train[0]
 # ModuNews(document_id='NPRW1900000010.1', title='한국경제 2018년 기사', author='김현석', publisher='한국경제신문사', date='20180101', topic='생활', original_topic='국제', paragraph=['"라니냐로 겨울 가뭄 온다"…', '...'])
 
@@ -557,3 +557,22 @@ corpus.train[0].speaker_id[:10]
 | original_form | 대화 원본 텍스트 |
 | speaker_id | 발화자 (숫자가 아님) |
 | time | `yyyymmdd hh:mm` 형식 |
+
+### 모두의 말뭉치: 웹 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- example
+```python
+from Korpora.korpus_modu_web import ModuWebKorpus
+
+paths_or_dir = 'path/to/NIKL_WEB(v1.0)/'
+paths_or_dir = 'path/to/NIKL_WEB(v1.0)/EBRW1903002753*.json'
+corpus = ModuWebKorpus(paths_or_dir)
+
+corpus.train[0]
+# 오메가3와 비타민C, 달맞이꽃종자유 등을 사려고 몇 시간을 검색하며 공부했다. 그 결과 오염되지 않은 ...
+type(corpus.train[0])
+# str
+for doc in corpus.train:
+    type(doc)  # str
+```
