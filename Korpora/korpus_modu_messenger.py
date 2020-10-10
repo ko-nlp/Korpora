@@ -35,6 +35,8 @@ class ModuMessengerKorpus(Korpus):
                 paths = sorted(glob(root_dir_or_paths))
         else:
             paths = root_dir_or_paths
+        if not paths:
+            raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
         self.train = KorpusData('모두의_메신저_말뭉치(conversation).train', load_modu_messenger(paths))
 
 
