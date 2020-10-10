@@ -41,6 +41,9 @@ class ModuNewsKorpus(Korpus):
                 paths = sorted(glob(root_dir_or_paths))
         else:
             paths = root_dir_or_paths
+        if not paths:
+            raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
+
         if load_light:
             self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))
         else:
