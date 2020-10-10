@@ -637,7 +637,7 @@ paths_or_dir = 'path/NIKL_NE(v1.0)'
 paths_or_dir = 'path/to/NIKL_NE(v1.0)/NXNE*.json'
 corpus = ModuNEKorpus(paths_or_dir)
 corpus.train[0]
-# NamedEntityExample(attributes=(sentence=[횡설수설/권순활]北 ‘외화벌이’ 뜯어먹기, tags=['AF', 'PS', 'LC'], positions=[(1, 5), (6, 9), (10, 11)])
+# NamedEntityExample(id=NWRW1800000029.315.1.1, sentence=[횡설수설/권순활]北 ‘외화벌이’ 뜯어먹기, tags=['AF', 'PS', 'LC'], positions=[(1, 5), (6, 9), (10, 11)])
 corpus.train[0].sentence
 # '[횡설수설/권순활]北 ‘외화벌이’ 뜯어먹기'
 corpus.train[0].tags
