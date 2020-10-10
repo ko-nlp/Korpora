@@ -529,6 +529,7 @@ news_corpus.documentid_to_row['NPRW1900000010.2']
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
 - example
+  - 메신저 내 하나의 대화 (여러 sections 으로 구성)가 train 의 데이터 입니다.
 ```python
 from Korpora.korpus_modu_messenger import ModuMessengerKorpus
 
