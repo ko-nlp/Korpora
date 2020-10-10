@@ -66,12 +66,12 @@ corpus = NSMCKorpus()
 `train`은 NSMC의 train 데이터로 첫번째 인스턴스는 다음과 같이 확인할 수 있습니다.
 
 ```
-nsmc.train[0]
-# LabeledSentence(text='아 더빙.. 진짜 짜증나네요 목소리', label=0)
-nsmc.train[0].text
-# 아 더빙.. 진짜 짜증나네요 목소리
-nsmc.train[0].label
-# 0
+>>> corpus.train[0]
+LabeledSentence(text='아 더빙.. 진짜 짜증나네요 목소리', label=0)
+>>> corpus.train[0].text
+아 더빙.. 진짜 짜증나네요 목소리
+>>> corpus.train[0].label
+0
 ```
 
 `get_all_texts`라는 메소드를 실행하면 NSMC의 모든 text(영화 리뷰 댓글)를 확인할 수 있습니다.
