@@ -97,14 +97,15 @@ korpora fetch --corpus kcbert
 터미널에서 fetch 함수 실행시 `--root_dir custom_path`라는 인자를 추가하세요.
 ```
 
+```tip
+fetch 함수 실행시 `--force_download`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도 이를 무시하고 다시 내려 받습니다.
+```
+
 터미널에서 KcBERT 학습데이터와 챗봇 문답 데이터 두 개를 동시에 다운로드 받는 예제는 다음과 같습니다.
+이같은 방식으로 3개 이상의 데이터도 동시에 내려받을 수 있습니다.
 
 ```bash
 korpora fetch --corpus kcbert korean_chatbot_data
-```
-
-```tip
-fetch 함수 실행시 `--force_download`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도 이를 무시하고 다시 내려 받습니다.
 ```
 
 터미널에서 `Korpora`가 제공하는 모든 말뭉치를 내려받는 예제는 다음과 같습니다.
