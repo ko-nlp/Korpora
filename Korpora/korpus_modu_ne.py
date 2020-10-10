@@ -78,7 +78,12 @@ class NamedEntityExample:
         return self.__repr__()
 
     def __repr__(self):
-        return f'NamedEntityExample(id={self.sentence_id}, sentence={self.sentence}, tags={self.tags}, positions={self.positions})'
+        return f"""NamedEntityExample(
+    id={self.sentence_id},
+    sentence={self.sentence},
+    tags={self.tags},
+    positions={self.positions}
+)"""
 
 
 def document_to_examples(document):
