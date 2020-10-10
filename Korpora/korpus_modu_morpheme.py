@@ -79,11 +79,14 @@ def document_to_examples(document):
     sentence = document['sentence']
     for example in sentence:
         example_id = example['id']
-        form = example['form']
-        columns = [(m['form'], m['label'], m['word_id']) for m in example['morpheme']]
-        morphemes, tags, eojeol_ids = zip(*columns)
-        eojeol_ids = tuple(idx - 1 for idx in eojeol_ids)
-        examples.append(MorphemesExample(example_id, form, morphemes, tags, eojeol_ids))
+        try:
+            form = example['form']
+            columns = [(m['form'], m['label'], m['word_id']) for m in example['morpheme']]
+            morphemes, tags, eojeol_ids = zip(*columns)
+            eojeol_ids = tuple(idx - 1 for idx in eojeol_ids)
+            examples.append(MorphemesExample(example_id, form, morphemes, tags, eojeol_ids))
+        except:
+            continue
     return examples
 
 
