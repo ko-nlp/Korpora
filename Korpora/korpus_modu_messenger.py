@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from dataclasses import dataclass
 from glob import glob
 from tqdm import tqdm
@@ -27,16 +28,7 @@ license = """    모두의 말뭉치의 모든 저작권은 `문화체육관광�
 class ModuMessengerKorpus(Korpus):
     def __init__(self, root_dir_or_paths, force_download=False):
         super().__init__(description, license)
-        if isinstance(root_dir_or_paths, str):
-            if os.path.isdir(root_dir_or_paths):
-                paths = sorted(glob(f'{root_dir_or_paths}/MDRW*.json') + glob(f'{root_dir_or_paths}/MMRW*.json'))
-            else:
-                # wildcard
-                paths = sorted(glob(root_dir_or_paths))
-        else:
-            paths = root_dir_or_paths
-        if not paths:
-            raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
+        paths = find_corpus_paths(root_dir_or_paths)
         self.train = KorpusData('모두의_메신저_말뭉치(conversation).train', load_modu_messenger(paths))
 
 
@@ -63,9 +55,27 @@ def document_to_utterance(document):
     return Utterance(document_id, form, original_form, speaker_id, time)
 
 
+def find_corpus_paths(root_dir_or_paths):
+    prefix_pattern = re.compile('M[DM]RW')
+    def match(path):
+        prefix = path.split(os.path.sep)[-1][:4]
+        return prefix_pattern.match(prefix)
+
+    # directory + wildcard
+    if isinstance(root_dir_or_paths, str):
+        paths = sorted(glob(f'{root_dir_or_paths}/*.json') + glob(root_dir_or_paths))
+    else:
+        paths = root_dir_or_paths
+
+    paths = [path for path in paths if match(path)]
+    if not paths:
+        raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
+    return paths
+
+
 def load_modu_messenger(paths):
     utterances = []
-    for i_path, path in enumerate(tqdm(paths, desc='Transform to ModuMessenger', total=len(paths))):
+    for i_path, path in enumerate(tqdm(paths, desc='Loading ModuMessenger', total=len(paths))):
         with open(path, encoding='utf-8') as f:
             data = json.load(f)
         documents = data['document']
