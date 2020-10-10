@@ -487,6 +487,8 @@ koen_news.dev[0]
 ### 모두의 말뭉치: 신문 말뭉치 (loader)
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
+- size:
+  - train: about 3,500,000 examples
 - example
 ```python
 from Korpora.korpus_modu_news import ModuNewsKorpus
@@ -528,6 +530,8 @@ news_corpus.documentid_to_row['NPRW1900000010.2']
 ### 모두의 말뭉치: 메신저 말뭉치 (loader)
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
+- size:
+  - train: 4,203 examples (conversations)
 - example
   - 메신저 내 하나의 대화 (여러 sections 으로 구성)가 train 의 데이터 입니다.
 ```python
@@ -562,6 +566,8 @@ corpus.train[0].speaker_id[:10]
 ### 모두의 말뭉치: 웹 말뭉치 (loader)
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
+- size:
+  - train: 2,107,076 examples (paragraph)
 - example
 ```python
 from Korpora.korpus_modu_web import ModuWebKorpus
@@ -581,6 +587,8 @@ for doc in corpus.train:
 ### 모두의 말뭉치: 문어 말뭉치 (loader)
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
+- size:
+  - train: 27,335,034 examples (paragraph)
 - example
   - 구어 말뭉치의 하나의 paragraph 가 train 의 데이터 입니다.
 ```python
@@ -599,6 +607,8 @@ print(type(corpus.train[0]))
 ### 모두의 말뭉치: 구어 말뭉치 (loader)
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
+- size:
+  - train: 27,920 examples (paragraph)
 - example
   - 구어 말뭉치 내 한 화자의 연속된 말을 하나의 paragraph 로 정리, 이를 train 의 데이터로 로드
 ```python
