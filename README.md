@@ -567,8 +567,8 @@ corpus.train[0].speaker_id[:10]
 ```python
 from Korpora.korpus_modu_spoken import ModuSpokenKorpus
 
-paths_or_dir = '/Users/hyunjoongkim/local/modu/National_Institute_Korean_Language/NIKL_SPOKEN(v1.0)/'
-paths_or_dir = '/Users/hyunjoongkim/local/modu/National_Institute_Korean_Language/NIKL_SPOKEN(v1.0)/SARW1800000001*'
+paths_or_dir = 'path/to/NIKL_SPOKEN(v1.0)/'
+paths_or_dir = 'path/to/NIKL_SPOKEN(v1.0)/SARW1800000001*'
 corpus = ModuSpokenKorpus(paths_or_dir)
 
 corpus.train[0]
