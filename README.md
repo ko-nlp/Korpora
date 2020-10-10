@@ -623,3 +623,31 @@ corpus.train[0]
 type(corpus.train[0])
 # str
 ```
+
+### 모두의 말뭉치: 개체명 분석 말뭉치
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- size:
+  - train: 374,044 examples (tagged sentences)
+- example
+```python
+from Korpora.korpus_modu_ne import ModuNEKorpus
+
+paths_or_dir = 'path/NIKL_NE(v1.0)'
+paths_or_dir = 'path/to/NIKL_NE(v1.0)/NXNE*.json'
+corpus = ModuNEKorpus(paths_or_dir)
+corpus.train[0]
+# NamedEntityExample(attributes=(sentence=[횡설수설/권순활]北 ‘외화벌이’ 뜯어먹기, tags=['AF', 'PS', 'LC'], positions=[(1, 5), (6, 9), (10, 11)])
+corpus.train[0].sentence
+# '[횡설수설/권순활]北 ‘외화벌이’ 뜯어먹기'
+corpus.train[0].tags
+# ['AF', 'PS', 'LC']
+corpus.tagmap
+# {'PS': 'PERSON',
+# 'LC': 'LOCATION',
+# 'OG': 'ORGANIZATION',
+# 'AF': 'ARTIFACT',
+# 'DT': 'DATE',
+# 'TI': 'TIME',
+# ...}
+```
