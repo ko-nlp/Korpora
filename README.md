@@ -529,6 +529,7 @@ news_corpus.documentid_to_row['NPRW1900000010.2']
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
 - example
+  - 메신저 내 하나의 대화 (여러 sections 으로 구성)가 train 의 데이터 입니다.
 ```python
 from Korpora.korpus_modu_messenger import ModuMessengerKorpus
 
@@ -575,4 +576,22 @@ type(corpus.train[0])
 # str
 for doc in corpus.train:
     type(doc)  # str
+```
+
+### 모두의 말뭉치: 문어 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- example
+  - 구어 말뭉치의 하나의 paragraph 가 train 의 데이터 입니다.
+```python
+from Korpora.korpus_modu_written import ModuWrittenKorpus
+
+paths_or_dir = 'path/to/NIKL_WRITTEN(v1.0)/'
+paths_or_dir = 'path/to/NIKL_WRITTEN(v1.0)/WARW180000000*'
+corpus = ModuWrittenKorpus(paths_or_dir)
+
+print(corpus.train[1])
+# 화자를 처음 만나 이야기를 들으러 왔다고 하자 서슴없이 꺼낸 첫 이야기이다. 화자로서 가장 쉽게 기억해낸 이야기인 셈이다. 설화 앞뒤에 교훈적 해석을 ...
+print(type(corpus.train[0]))
+# str
 ```
