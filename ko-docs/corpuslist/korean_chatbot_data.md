@@ -62,17 +62,39 @@ from Korpora import KoreanChatbotKorpus
 corpus = KoreanChatbotKorpus()
 ```
 
-위 코드 둘 중 하나를 택해 실행하면 `corpus`라는 변수에 다음과 같은 정보가 들어 있음을 확인할 수 있습니다.
+위 코드 둘 중 하나를 택해 실행하면 `corpus`라는 변수에 말뭉치를 로드합니다.
+`train`은 챗봇 문답 페어의 train 데이터로 첫번째 인스턴스는 다음과 같이 확인할 수 있습니다.
 
 ```
->>> chatbot_corpus.train[0]
+>>> corpus.train[0]
 LabeledSentencePair(text='12시 땡!', pair='하루가 또 가네요.', label=0)
->>> chatbot_corpus.train[0].text
+>>> corpus.train[0].text
 12시 땡!
->>> chatbot_corpus.train[0].pair
+>>> corpus.train[0].pair
 하루가 또 가네요.
->>> chatbot_corpus.train[0].label
+>>> corpus.train[0].label
 0
+```
+
+`get_all_texts`라는 메소드를 실행하면 챗봇 문답 페어의 모든 text(질문)를 확인할 수 있습니다.
+
+```
+>>> corpus.get_all_texts()
+['12시 땡!', '1지망 학교 떨어졌어', ... ]
+```
+
+`get_all_pairs`라는 메소드를 실행하면 챗봇 문답 페어의 모든 pair(답변)를 확인할 수 있습니다.
+
+```
+>>> corpus.get_all_pairs()
+['하루가 또 가네요.', '위로해 드립니다.', ... ]
+```
+
+`get_all_labels`라는 메소드를 실행하면 챗봇 문답 페어의 모든 label(레이블)을 확인할 수 있습니다.
+
+```
+>>> corpus.get_all_labels()
+[0, 0, ... ]
 ```
 
 ## 2. 터미널에서 사용하기
