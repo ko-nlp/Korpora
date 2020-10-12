@@ -44,8 +44,11 @@ def main():
     # create language model train data
     parser_lmdata = subparsers.add_parser('lmdata', help='Create language model train data')
     parser_lmdata.add_argument('--corpus', type=str, required=True, nargs='+', help='corpus names')
+    parser_lmdata.add_argument('--root_dir', type=str, default=None, help='path/to/Korpora')
     parser_lmdata.add_argument('--output_dir', type=str, required=True, help='output file path')
-    parser_lambda.add_argument('--save_each', dest='save_each', action='store_true', help='store each corpus as a file')
+    parser_lmdata.add_argument('--force_download', dest='force_download', action='store_true')
+    parser_lmdata.add_argument('--multilingual', dest='multilingual', action='store_true', help='If True, make include train data foreign language text')
+    parser_lmdata.add_argument('--save_each', dest='save_each', action='store_true', help='store each corpus as a file')
     parser_lmdata.set_defaults(func=create_lmdata)
 
     # Do task
