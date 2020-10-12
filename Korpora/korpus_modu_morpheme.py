@@ -29,7 +29,7 @@ class ModuMorphemeKorpus(Korpus):
     def __init__(self, root_dir_or_paths, force_download=False):
         super().__init__(description, license)
         paths = find_corpus_paths(root_dir_or_paths)
-        self.train = KorpusData('모두의_형태분석_말뭉치.train', load_modu_ne(paths))
+        self.train = KorpusData('모두의_형태분석_말뭉치.train', load_modu_morpheme(paths))
         self.tagmap = {
             'JKS': '주격조사',
             'JKC': '보격조사',
@@ -137,7 +137,7 @@ def document_to_examples(document):
     return examples
 
 
-def load_modu_ne(paths):
+def load_modu_morpheme(paths):
     examples = []
     for path in paths:
         with open(path, encoding='utf-8') as f:
