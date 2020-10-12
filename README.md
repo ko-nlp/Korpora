@@ -656,7 +656,7 @@ corpus.train[0].eojeol_ids
 # (0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2,
 ```
 
-### 모두의 말뭉치: 개체명 분석 말뭉치
+### 모두의 말뭉치: 개체명 분석 말뭉치 (loader)
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
 - size:
