@@ -4,6 +4,7 @@ import os
 from .about import __version__
 from .loader import KORPUS_DESCRIPTION
 from .task_fetch import fetch
+from .task_lmdata import create_lmdata
 
 
 def listup(args):
@@ -31,7 +32,7 @@ def main():
 
     # fetch
     parser_fetch = subparsers.add_parser('fetch', help='Fetch `corpus` to `root`')
-    parser_fetch.add_argument('--corpus', type=str, default='all', nargs='+', help='corpus type')
+    parser_fetch.add_argument('--corpus', type=str, default='all', nargs='+', help='corpus name')
     parser_fetch.add_argument('--root', type=str, default=None, help='path/to/Korpora/')
     parser_fetch.add_argument('--force_download', dest='force_download', action='store_true')
     parser_fetch.set_defaults(func=fetch)
@@ -39,6 +40,13 @@ def main():
     # list
     parser_list = subparsers.add_parser('list', help='Tokenize `input` and save the result to `output`')
     parser_list.set_defaults(func=listup)
+
+    # create language model train data
+    parser_lmdata = subparsers.add_parser('lmdata', help='Create language model train data')
+    parser_lmdata.add_argument('--corpus', type=str, required=True, nargs='+', help='corpus names')
+    parser_lmdata.add_argument('--output_dir', type=str, required=True, help='output file path')
+    parser_lambda.add_argument('--save_each', dest='save_each', action='store_true', help='store each corpus as a file')
+    parser_lmdata.set_defaults(func=create_lmdata)
 
     # Do task
     args = parser.parse_args()
