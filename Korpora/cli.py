@@ -30,12 +30,13 @@ def main():
     subparsers = parser.add_subparsers(help='Korpora')
 
     # fetch
-    parser_fetch = subparsers.add_parser('fetch', help='Tokenize `input` and save the result to `output`')
+    parser_fetch = subparsers.add_parser('fetch', help='Fetch `corpus` to `root`')
     parser_fetch.add_argument('--corpus', type=str, default='all', nargs='+', help='corpus type')
     parser_fetch.add_argument('--root', type=str, default=None, help='path/to/Korpora/')
     parser_fetch.add_argument('--force_download', dest='force_download', action='store_true')
     parser_fetch.set_defaults(func=fetch)
 
+    # list
     parser_list = subparsers.add_parser('list', help='Tokenize `input` and save the result to `output`')
     parser_list.set_defaults(func=listup)
 
