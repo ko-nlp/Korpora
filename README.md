@@ -624,6 +624,38 @@ type(corpus.train[0])
 # str
 ```
 
+### 모두의 말뭉치: 형태 분석 말뭉치 (loader)
+- author: 국립국어원
+- repository: https://corpus.korean.go.kr/
+- size:
+  - train: 371,571 examples (tagged sentences)
+- example
+  - 구어 말뭉치의 형태 분석 결과 중에는 형태소가 존재하지 않은 문장이 있기 때문에 이를 제거하며 데이터를 로드
+```python
+from Korpora.korpus_modu_morpheme import ModuMorphemeKorpus
+
+paths_or_dir = 'path/to/NIKL_MP(v1.0)/'
+paths_or_dir = 'path/to/NIKL_MP(v1.0)/NXMP1902008040.json'
+corpus = ModuMorphemeKorpus(paths_or_dir)
+
+corpus.train[0]
+# Morphemes(
+#     id=NWRW1800000022.417.1.1,
+#     sentence=[제주·서울] "세계환경수도 조성위해 10개년 실천계획 만들겠다" 김태환 지사 밝혀,
+#     tags=('[', '제주', '·', '서울', ']', '"', '세계', '환경', ...),
+#     positions=('SS', 'NNP', 'SP', 'NNP', 'SS', 'SS', 'NNG', '...),
+#     eojeol_id=(0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, ...)
+# )
+corpus.train[0].sentence
+# '[제주·서울] "세계환경수도 조성위해 10개년 실천계획 만들겠다" 김태환 지사 밝혀'
+corpus.train[0].morphemes
+# ('[', '제주', '·', '서울', ']', '"', '세계', '환경', '수도' ...
+corpus.train[0].tags
+# ('SS', 'NNP', 'SP', 'NNP', 'SS', 'SS', 'NNG', ...)
+corpus.train[0].eojeol_ids
+# (0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2,
+```
+
 ### 모두의 말뭉치: 개체명 분석 말뭉치
 - author: 국립국어원
 - repository: https://corpus.korean.go.kr/
