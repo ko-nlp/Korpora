@@ -72,7 +72,7 @@ class ModuMorphemeKorpus(Korpus):
             'VX': '보조용언',
             'VCP': '긍정지정사',
             'VCN': '부정지정사',
-            'MMA': '관형사',
+            'MMA': '성상 관형사',
             'MMD': '지시 관형사',
             'MMN': '수 관형사',
             'MAG': '일반부사',
