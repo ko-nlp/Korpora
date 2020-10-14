@@ -5,8 +5,9 @@ from dataclasses import dataclass
 from glob import glob
 from tqdm import tqdm
 from typing import List
-from Korpora.korpora import Korpus, KorpusData
 
+from .korpora import Korpus, KorpusData
+from .utils import default_korpora_path
 
 description = """    모두의 말뭉치는 문화체육관광부 산하 국립국어원에서 제공하는 말뭉치로
     총 13 개의 말뭉치로 이뤄져 있습니다.
@@ -37,8 +38,10 @@ class ModuKorpus(Korpus):
 
 
 class ModuNewsKorpus(ModuKorpus):
-    def __init__(self, root_dir_or_paths, force_download=False, load_light=True):
+    def __init__(self, root_dir_or_paths=None, force_download=False, load_light=True):
         super().__init__()
+        if root_dir_or_paths is None:
+            root_dir_or_paths = os.path.join(default_korpora_path, 'NIKL_NEWSPAPER')
         paths = find_corpus_paths(root_dir_or_paths)
         if load_light:
             self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))
