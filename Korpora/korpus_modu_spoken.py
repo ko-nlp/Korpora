@@ -5,14 +5,17 @@ from dataclasses import dataclass
 from glob import glob
 from tqdm import tqdm
 from typing import List
-from Korpora.korpora import Korpus, KorpusData
 
-from .korpus_modu_news import description, license, fetch_modu
+from .korpora import KorpusData
+from .korpus_modu_news import ModuKorpus
+from .utils import default_korpora_path
 
 
-class ModuSpokenKorpus(Korpus):
-    def __init__(self, root_dir_or_paths, force_download=False):
-        super().__init__(description, license)
+class ModuSpokenKorpus(ModuKorpus):
+    def __init__(self, root_dir_or_paths=None, force_download=False):
+        super().__init__()
+        if root_dir_or_paths is None:
+            root_dir_or_paths = os.path.join(default_korpora_path, 'NIKL_SPOKEN')
         paths = find_corpus_paths(root_dir_or_paths)
         self.train = KorpusData('모두의_구어_말뭉치.train', load_modu_spoken(paths))
 
@@ -38,10 +41,14 @@ def find_corpus_paths(root_dir_or_paths):
 def load_modu_spoken(paths):
     texts = []
     for i_path, path in enumerate(tqdm(paths, desc='Loading Spoken', total=len(paths))):
-        with open(path, encoding='utf-8') as f:
-            data = json.load(f)
-        documents = data['document']
-        texts += [paragraph for document in documents for paragraph in document_to_texts(document)]
+        try:
+            with open(path, encoding='utf-8') as f:
+                data = json.load(f)
+            documents = data['document']
+            texts += [paragraph for document in documents for paragraph in document_to_texts(document)]
+        except:
+            print(f'Found erorrs in {path} Skip it')
+            continue
     return texts
 
 
