@@ -1,3 +1,4 @@
+import numpy as np
 import os
 from tqdm import tqdm
 
@@ -8,6 +9,15 @@ from .utils import default_korpora_path
 def create_lmdata(args):
     corpus_names = check_corpus(args.corpus)
     os.makedirs(os.path.abspath(args.output_dir), exist_ok=True)
+
+    sampling_ratio = args.sampling_ratio
+    if sampling_ratio is not None:
+        sampling_ratio = float(sampling_ratio)
+        if not (0 < sampling_ratio < 1):
+            raise ValueError('`sampling_ratio` must be None or (0, 1) float')
+    n_first_samples = args.n_first_samples
+    np.random.seed(args.seed)
+    selector = Selector(sampling_ratio, args.min_length, args.max_length)
 
     root_dir = args.root_dir
     if root_dir is None:
@@ -32,13 +42,41 @@ def create_lmdata(args):
         )
         print_status(status)
 
+        n_sampled = 0
         with open(lmdata_path, mode, encoding='utf-8') as f:
             for i_sent, sent in enumerate(sent_iterator):
+                if not selector.use(sent):
+                    continue
                 f.write(f'{sent}\n')
+                n_sampled += 1
+                if (n_first_samples is not None) and (n_first_samples <= n_sampled):
+                    break
+
         status[i_corpus][0] = ' x '
-        status[i_corpus][2] = (i_sent + 1)
+        status[i_corpus][2] = n_sampled
         status[i_corpus][3] = filename
     print_status(status)
+
+
+class Selector:
+    def __init__(self, sampling_ratio, min_length, max_length):
+        if isinstance(min_length, int) and min_length < 0:
+            min_length = None
+        if isinstance(max_length, int) and max_length < 0:
+            max_length = None
+        self.sampling_ratio = sampling_ratio
+        self.min_length = min_length
+        self.max_length = max_length
+
+    def use(self, text):
+        length = len(text)
+        if (self.min_length is not None) and (length < self.min_length):
+            return False
+        if (self.max_length is not None) and (length > self.max_length):
+            return False
+        if self.sampling_ratio is None:
+            return True
+        return np.random.rand() > self.sampling_ratio
 
 
 def check_corpus(corpus_names):
@@ -73,9 +111,7 @@ def print_status(status):
 def iterate_kcbert(root_dir, force_download, multilingual=False):
     Korpora.fetch('kcbert', root_dir, force_download)
     with open(f'{root_dir}/kcbert/20190101_20200611_v2.txt', encoding='utf-8') as f:
-#         for line in f:
-        for i, line in enumerate(f):  # DEVELOP
-            if i >= 1000: break       # DEVELOP
+        for line in f:
             line = line.strip()
             if not line:
                 continue
@@ -142,9 +178,7 @@ def iterate_kowikitext(root_dir, force_download, multilingual=False):
     ]
     for path in paths:
         with open(path, encoding='utf-8') as f:
-#             for line in f:
-            for i, line in enumerate(f):  # DEVELOP
-                if i >= 1000: break       # DEVELOP
+            for line in f:
                 line = line.strip()
                 if not line or (line[0] == '=' and line[-1] == '='):
                     continue
@@ -160,9 +194,7 @@ def iterate_namuwikitext(root_dir, force_download, multilingual=False):
     ]
     for path in paths:
         with open(path, encoding='utf-8') as f:
-#             for line in f:
-            for i, line in enumerate(f):  # DEVELOP
-                if i >= 1000: break       # DEVELOP
+            for line in f:
                 line = line.strip()
                 if not line or (line[0] == '=' and line[-1] == '='):
                     continue
