@@ -162,7 +162,7 @@ def load_modu_news(paths, load_light):
     return news
 
 
-def fetch_modu():
+def fetch_modu(root_dir=None, force_download=False):
     raise NotImplementedError(
         "국립국어원에서 API 기능을 제공해 줄 수 없음을 확인하였습니다."
         "\n이에 따라 모두의 말뭉치는 fetch 기능을 제공하지 않습니다"
