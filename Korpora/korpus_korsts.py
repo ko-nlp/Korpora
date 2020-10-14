@@ -86,7 +86,6 @@ class KorSTSKorpus(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
-
         fetch_korsts(root_dir, force_download)
 
         for info in KORSTS_FETCH_INFORMATION:
