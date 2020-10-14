@@ -5,14 +5,17 @@ from dataclasses import dataclass
 from glob import glob
 from tqdm import tqdm
 from typing import List
-from Korpora.korpora import Korpus, KorpusData
 
-from .korpus_modu_news import description, license, fetch_modu
+from .korpora import KorpusData
+from .korpus_modu_news import ModuKorpus
+from .utils import default_korpora_path
 
 
-class ModuMessengerKorpus(Korpus):
-    def __init__(self, root_dir_or_paths, force_download=False):
-        super().__init__(description, license)
+class ModuMessengerKorpus(ModuKorpus):
+    def __init__(self, root_dir_or_paths=None, force_download=False):
+        super().__init__()
+        if root_dir_or_paths is None:
+            root_dir_or_paths = os.path.join(default_korpora_path, 'NIKL_MESSENGER')
         paths = find_corpus_paths(root_dir_or_paths)
         self.train = KorpusData('모두의_메신저_말뭉치(conversation).train', load_modu_messenger(paths))
 
