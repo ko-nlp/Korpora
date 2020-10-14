@@ -5,14 +5,17 @@ from dataclasses import dataclass
 from glob import glob
 from tqdm import tqdm
 from typing import List
-from Korpora.korpora import Korpus, KorpusData
 
-from .korpus_modu_news import description, license, fetch_modu
+from .korpora import KorpusData
+from .korpus_modu_news import ModuKorpus
+from .utils import default_korpora_path
 
 
-class ModuWrittenKorpus(Korpus):
-    def __init__(self, root_dir_or_paths, force_download=False):
-        super().__init__(description, license)
+class ModuWrittenKorpus(ModuKorpus):
+    def __init__(self, root_dir_or_paths=None, force_download=False):
+        super().__init__()
+        if root_dir_or_paths is None:
+            root_dir_or_paths = os.path.join(default_korpora_path, 'NIKL_WRITTEN')
         paths = find_corpus_paths(root_dir_or_paths)
         self.train = KorpusData('모두의_문어_말뭉치.train', load_modu_written(paths))
 
