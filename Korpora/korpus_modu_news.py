@@ -33,13 +33,15 @@ license = """    모두의 말뭉치의 모든 저작권은 `문화체육관광�
 
 
 class ModuKorpus(Korpus):
-    def __init__(self):
+    def __init__(self, force_download=False):
+        if force_download:
+            fetch_modu()
         super().__init__(description, license)
 
 
 class ModuNewsKorpus(ModuKorpus):
     def __init__(self, root_dir_or_paths=None, force_download=False, load_light=True):
-        super().__init__()
+        super().__init__(force_download)
         if root_dir_or_paths is None:
             root_dir_or_paths = os.path.join(default_korpora_path, 'NIKL_NEWSPAPER')
         paths = find_corpus_paths(root_dir_or_paths)
