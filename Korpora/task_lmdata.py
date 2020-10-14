@@ -76,7 +76,7 @@ class Selector:
             return False
         if self.sampling_ratio is None:
             return True
-        return np.random.rand() > self.sampling_ratio
+        return np.random.rand() < self.sampling_ratio
 
 
 def check_corpus(corpus_names):
