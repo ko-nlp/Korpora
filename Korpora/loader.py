@@ -33,10 +33,6 @@ class Korpora:
         return_single = isinstance(corpus_names, str)
         if return_single:
             corpus_names = [corpus_names]
-
-        if root_dir is None:
-            root_dir = default_korpora_path
-
         corpora = [KORPUS[corpus_name](root_dir, force_download) for corpus_name in corpus_names]
         if return_single:
             return corpora[0]
