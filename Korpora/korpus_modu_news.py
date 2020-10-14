@@ -31,9 +31,14 @@ license = """    모두의 말뭉치의 모든 저작권은 `문화체육관광�
     정확한 라이센스는 확인 중 입니다."""
 
 
-class ModuNewsKorpus(Korpus):
-    def __init__(self, root_dir_or_paths, load_light=True, force_download=False):
+class ModuKorpus(Korpus):
+    def __init__(self):
         super().__init__(description, license)
+
+
+class ModuNewsKorpus(ModuKorpus):
+    def __init__(self, root_dir_or_paths, force_download=False, load_light=True):
+        super().__init__()
         paths = find_corpus_paths(root_dir_or_paths)
         if load_light:
             self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))
