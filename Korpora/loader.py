@@ -20,13 +20,13 @@ from .korpus_namuwiki import NamuwikiTextKorpus, fetch_namuwikitext
 from .korpus_naverchangwon_ner import NaverChangwonNERKorpus, fetch_naverchangwon_ner
 from .korpus_nsmc import NSMCKorpus, fetch_nsmc
 from .korpus_question_pair import QuestionPairKorpus, fetch_questionpair
-from Korpora.korpus_modu_news import ModuNewsKorpus, fetch_modu
-from Korpora.korpus_modu_messenger import ModuMessengerKorpus
-from Korpora.korpus_modu_morpheme import ModuMorphemeKorpus
-from Korpora.korpus_modu_ne import ModuNEKorpus
-from Korpora.korpus_modu_spoken import ModuSpokenKorpus
-from Korpora.korpus_modu_web import ModuWebKorpus
-from Korpora.korpus_modu_written import ModuWrittenKorpus
+from .korpus_modu_news import ModuNewsKorpus, fetch_modu
+from .korpus_modu_messenger import ModuMessengerKorpus
+from .korpus_modu_morpheme import ModuMorphemeKorpus
+from .korpus_modu_ne import ModuNEKorpus
+from .korpus_modu_spoken import ModuSpokenKorpus
+from .korpus_modu_web import ModuWebKorpus
+from .korpus_modu_written import ModuWrittenKorpus
 from .utils import default_korpora_path
 
 
