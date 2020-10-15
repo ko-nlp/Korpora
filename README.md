@@ -748,32 +748,32 @@ from Korpora import Korpora
 custom_root_dir = 'path/to/AIHub_Translation/'
 
 # 병렬 말뭉치 (구어 + 대화 + 뉴스 + 한국문화 + 조례 + 지자체웹사이트)
-Korpora.load('aihub_translation')
+corpus = Korpora.load('aihub_translation')
 corpus = AIHubTranslationKorpus()
 corpus = AIHubTranslationKorpus(custom_root_dir)
 
 # 병렬 말뭉치 (구어)
-Korpora.load('aihub_spoken_translation')
+corpus = Korpora.load('aihub_spoken_translation')
 corpus = AIHubSpokenTranslationKorpus()
 
 # 병렬 말뭉치 (대화)
-Korpora.load('aihub_conversation_translation')
+corpus = Korpora.load('aihub_conversation_translation')
 corpus = AIHubConversationTranslationKorpus()
 
 # 병렬 말뭉치 (뉴스)
-Korpora.load('aihub_news_translation')
+corpus = Korpora.load('aihub_news_translation')
 corpus = AIHubNewsTranslationKorpus()
 
 # 병렬 말뭉치 (한국문화)
-Korpora.load('aihub_korean_culture_translation')
+corpus = Korpora.load('aihub_korean_culture_translation')
 corpus = AIHubKoreanCultureTranslationKorpus()
 
 # 병렬 말뭉치 (조례)
-Korpora.load('aihub_decree_translation')
+corpus = Korpora.load('aihub_decree_translation')
 corpus = AIHubDecreeTranslationKorpus()
 
 # 병렬 말뭉치 (지자체웹사이트)
-Korpora.load('aihub_government_website_translation')
+corpus = Korpora.load('aihub_government_website_translation')
 corpus = AIHubGovernmentWebsiteTranslationKorpus()
 
 corpus.train[0]
