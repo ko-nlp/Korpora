@@ -26,7 +26,7 @@ corpus = Korpora.load("modu_spoken")
 ```
 
 ```warning
-위의 코드는 해당 말뭉치가 `~/Korpora` 아래에 NIKL_SPOKEN이라는 디렉토리(`~/Korpora/NIKL_SPOKEN(v1.0)`)에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
+위의 코드는 해당 말뭉치가 `~/Korpora` 아래에 NIKL_SPOKEN이라는 디렉토리(`~/Korpora/NIKL_SPOKEN`)에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
 만일 루트 다렉토리가 `~/Korpora`와 다를 경우 `load` 함수 호출시 `root_dir=custom_path` 인자를 추가하시기 바랍니다.
 ```
 
