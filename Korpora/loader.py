@@ -10,6 +10,13 @@ from .korpus_namuwiki import NamuwikiTextKorpus, fetch_namuwikitext
 from .korpus_naverchangwon_ner import NaverChangwonNERKorpus, fetch_naverchangwon_ner
 from .korpus_nsmc import NSMCKorpus, fetch_nsmc
 from .korpus_question_pair import QuestionPairKorpus, fetch_questionpair
+from Korpora.korpus_modu_news import ModuNewsKorpus, fetch_modu
+from Korpora.korpus_modu_messenger import ModuMessengerKorpus
+from Korpora.korpus_modu_morpheme import ModuMorphemeKorpus
+from Korpora.korpus_modu_ne import ModuNEKorpus
+from Korpora.korpus_modu_spoken import ModuSpokenKorpus
+from Korpora.korpus_modu_web import ModuWebKorpus
+from Korpora.korpus_modu_written import ModuWrittenKorpus
 from .utils import default_korpora_path
 
 
@@ -26,10 +33,6 @@ class Korpora:
         return_single = isinstance(corpus_names, str)
         if return_single:
             corpus_names = [corpus_names]
-
-        if root_dir is None:
-            root_dir = default_korpora_path
-
         corpora = [KORPUS[corpus_name](root_dir, force_download) for corpus_name in corpus_names]
         if return_single:
             return corpora[0]
@@ -70,6 +73,13 @@ KORPUS = {
     'naver_changwon_ner': NaverChangwonNERKorpus,
     'nsmc': NSMCKorpus,
     'question_pair': QuestionPairKorpus,
+    'modu_news': ModuNewsKorpus,
+    'modu_messenger': ModuMessengerKorpus,
+    'modu_mp': ModuMorphemeKorpus,
+    'modu_ne': ModuNEKorpus,
+    'modu_spoken': ModuSpokenKorpus,
+    'modu_web': ModuWebKorpus,
+    'modu_written': ModuWrittenKorpus,
 }
 
 KORPUS_DESCRIPTION = {
@@ -85,6 +95,13 @@ KORPUS_DESCRIPTION = {
     'naver_changwon_ner': "네이버 + 창원대 NER shared task data",
     'nsmc': "e9t@github 님이 만드신 Naver sentiment movie corpus v1.0",
     'question_pair': "songys@github 님이 만드신 질문쌍(Paired Question v.2)",
+    'modu_news': '국립국어원에서 만든 모두의 말뭉치: 뉴스 말뭉치',
+    'modu_messenger': '국립국어원에서 만든 모두의 말뭉치: 메신저 말뭉치',
+    'modu_mp': '국립국어원에서 만든 모두의 말뭉치: 형태 분석 말뭉치',
+    'modu_ne': '국립국어원에서 만든 모두의 말뭉치: 개체명 분석 말뭉치',
+    'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
+    'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
+    'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
 }
 
 FETCH = {
@@ -100,4 +117,11 @@ FETCH = {
     'naver_changwon_ner': fetch_naverchangwon_ner,
     'nsmc': fetch_nsmc,
     'question_pair': fetch_questionpair,
+    'modu_news': fetch_modu,
+    'modu_messenger': fetch_modu,
+    'modu_mp': fetch_modu,
+    'modu_ne': fetch_modu,
+    'modu_spoken': fetch_modu,
+    'modu_web': fetch_modu,
+    'modu_written': fetch_modu,
 }

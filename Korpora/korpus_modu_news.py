@@ -5,8 +5,9 @@ from dataclasses import dataclass
 from glob import glob
 from tqdm import tqdm
 from typing import List
-from Korpora.korpora import Korpus, KorpusData
 
+from .korpora import Korpus, KorpusData
+from .utils import default_korpora_path
 
 description = """    모두의 말뭉치는 문화체육관광부 산하 국립국어원에서 제공하는 말뭉치로
     총 13 개의 말뭉치로 이뤄져 있습니다.
@@ -31,9 +32,18 @@ license = """    모두의 말뭉치의 모든 저작권은 `문화체육관광�
     정확한 라이센스는 확인 중 입니다."""
 
 
-class ModuNewsKorpus(Korpus):
-    def __init__(self, root_dir_or_paths, load_light=True, force_download=False):
+class ModuKorpus(Korpus):
+    def __init__(self, force_download=False):
+        if force_download:
+            fetch_modu()
         super().__init__(description, license)
+
+
+class ModuNewsKorpus(ModuKorpus):
+    def __init__(self, root_dir_or_paths=None, force_download=False, load_light=True):
+        super().__init__(force_download)
+        if root_dir_or_paths is None:
+            root_dir_or_paths = os.path.join(default_korpora_path, 'NIKL_NEWSPAPER')
         paths = find_corpus_paths(root_dir_or_paths)
         if load_light:
             self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))
@@ -152,7 +162,7 @@ def load_modu_news(paths, load_light):
     return news
 
 
-def fetch_modu():
+def fetch_modu(root_dir=None, force_download=False):
     raise NotImplementedError(
         "국립국어원에서 API 기능을 제공해 줄 수 없음을 확인하였습니다."
         "\n이에 따라 모두의 말뭉치는 fetch 기능을 제공하지 않습니다"
