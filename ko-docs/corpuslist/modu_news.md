@@ -39,7 +39,7 @@ corpus = Korpora.load("modu_news")
 ```
 
 ```warning
-위의 코드는 해당 말뭉치가 루트 디렉토리 하위의 `NIKL_NEWSPAPER(v1.0)`에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다.
+위의 코드는 해당 말뭉치가 루트 디렉토리 하위의 `NIKL_NEWSPAPER`에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다.
 루트 디렉토리의 기본값은 `~/Korpora`입니다. 
 만일 루트 다렉토리를 바꾸고 싶다면 `load` 함수 호출시 `root_dir=custom_path` 인자를 추가하시기 바랍니다.
 ```
@@ -53,8 +53,8 @@ corpus = ModuNewsKorpus()
 ```
 
 ```warning
-위의 코드는 해당 말뭉치가 `~/Korpora/NIKL_NEWSPAPER(v1.0)` 디렉토리에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
-만일 다른 디렉토리에 말뭉치가 존재한다면 `ModuNewsKorpus` 클래스 선언시 `news_paths_or_news_dir=custom_path` 인자를 추가하시기 바랍니다.
+위의 코드는 해당 말뭉치가 `~/Korpora/NIKL_NEWSPAPER` 디렉토리에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
+만일 다른 디렉토리에 말뭉치가 존재한다면 `ModuNewsKorpus` 클래스 선언시 `root_dir_or_paths=custom_path` 인자를 추가하시기 바랍니다.
 ```
 
 ```tip

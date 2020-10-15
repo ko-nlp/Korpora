@@ -32,6 +32,13 @@ Korpora.corpus_list()
    'naver_changwon_ner': '네이버 + 창원대 NER shared task data',
    'nsmc': 'e9t@github 님이 만드신 Naver sentiment movie corpus v1.0',
    'question_pair': 'songys@github 님이 만드신 질문쌍(Paired Question v.2)',
+   'modu_news': '국립국어원에서 만든 모두의 말뭉치: 뉴스 말뭉치',
+   'modu_messenger': '국립국어원에서 만든 모두의 말뭉치: 메신저 말뭉치',
+   'modu_mp': '국립국어원에서 만든 모두의 말뭉치: 형태 분석 말뭉치',
+   'modu_ne': '국립국어원에서 만든 모두의 말뭉치: 개체명 분석 말뭉치',
+   'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
+   'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
+   'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
 }
 ```
 

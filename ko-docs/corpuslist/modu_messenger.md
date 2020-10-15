@@ -36,7 +36,7 @@ corpus = Korpora.load("modu_messenger")
 ```
 
 ```warning
-위의 코드는 해당 말뭉치가 `~/Korpora/NIKL_MESSENGER(v1.0)`에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
+위의 코드는 해당 말뭉치가 `~/Korpora/NIKL_MESSENGER`에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
 루트 디렉토리의 기본값은 `~/Korpora`입니다. 
 만일 루트 다렉토리를 바꾸고 싶다면 `load` 함수 호출시 `root_dir=custom_path` 인자를 추가하시기 바랍니다.
 ```
@@ -50,8 +50,8 @@ corpus = ModuMessengerKorpus()
 ```
 
 ```warning
-위의 코드는 해당 말뭉치가 `~/Korpora/NIKL_MESSENGER(v1.0)` 디렉토리에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
-만일 다른 디렉토리에 말뭉치가 존재한다면 `ModuMessengerKorpus` 클래스 선언시 `news_paths_or_news_dir=custom_path` 인자를 추가하시기 바랍니다.
+위의 코드는 해당 말뭉치가 `~/Korpora/NIKL_MESSENGER` 디렉토리에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
+만일 다른 디렉토리에 말뭉치가 존재한다면 `ModuMessengerKorpus` 클래스 선언시 `root_dir_or_paths=custom_path` 인자를 추가하시기 바랍니다.
 ```
 
 위 코드 둘 중 하나를 택해 실행하면 `corpus`라는 변수에 말뭉치를 로드합니다.

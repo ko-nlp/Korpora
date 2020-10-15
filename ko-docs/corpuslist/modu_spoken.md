@@ -1,5 +1,5 @@
 ---
-sort: 15
+sort: 17
 ---
 
 # 모두의 말뭉치: 구어
@@ -22,11 +22,11 @@ sort: 15
 
 ```python
 from Korpora import Korpora
-corpus = Korpora.load("modu_messenger")
+corpus = Korpora.load("modu_spoken")
 ```
 
 ```warning
-위의 코드는 해당 말뭉치가 `~/Korpora` 아래에 NIKL_MESSENGER(v1.0)라는 디렉토리(`~/Korpora/NIKL_SPOKEN(v1.0)`)에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
+위의 코드는 해당 말뭉치가 `~/Korpora` 아래에 NIKL_SPOKEN이라는 디렉토리(`~/Korpora/NIKL_SPOKEN(v1.0)`)에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
 만일 루트 다렉토리가 `~/Korpora`와 다를 경우 `load` 함수 호출시 `root_dir=custom_path` 인자를 추가하시기 바랍니다.
 ```
 
@@ -39,8 +39,8 @@ corpus = ModuSpokenKorpus()
 ```
 
 ```warning
-위의 코드는 해당 말뭉치가 사용자의 로컬 컴퓨터 루트 하위의 `~/Korpora/NIKL_SPOKEN(v1.0)` 디렉토리에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
-만일 다른 디렉토리에 말뭉치가 존재한다면 `ModuSpokenKorpus` 클래스 선언시 `news_paths_or_news_dir=custom_path` 인자를 추가하시기 바랍니다.
+위의 코드는 해당 말뭉치가 사용자의 로컬 컴퓨터 루트 하위의 `~/Korpora/NIKL_SPOKEN` 디렉토리에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
+만일 다른 디렉토리에 말뭉치가 존재한다면 `ModuSpokenKorpus` 클래스 선언시 `root_dir_or_paths=custom_path` 인자를 추가하시기 바랍니다.
 ```
 
 위 코드 둘 중 하나를 택해 실행하면 `corpus`라는 변수에 말뭉치를 로드합니다.
