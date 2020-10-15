@@ -64,7 +64,7 @@ class AIHubTranslationKorpus(Korpus):
         paths = find_corpus_paths(root_dir_or_paths)
         self.train = SentencePairKorpusData(
             f'{name}.train',
-            *load_aihub_translation(paths)
+            *load_aihub_translation(paths, name)
         )
 
 
@@ -114,9 +114,9 @@ def find_corpus_paths(root_dir_or_paths, suffix='200226.xlsx'):
     return paths
 
 
-def load_aihub_translation(paths):
+def load_aihub_translation(paths, name):
     sources, targets = [], []
-    for i_path, path in enumerate(tqdm(paths, desc='Loading AI Hub translation', total=len(paths))):
+    for i_path, path in enumerate(tqdm(paths, desc=f'Loading {name}', total=len(paths))):
         workbook = xlrd.open_workbook(path)
         sheet = workbook.sheet_by_index(0)
         header = sheet.row(0)
