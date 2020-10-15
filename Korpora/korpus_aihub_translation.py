@@ -59,6 +59,8 @@ class AIHubTranslationKorpus(Korpus):
         super().__init__(description, license)
         if root_dir_or_paths is None:
             root_dir_or_paths = os.path.join(default_korpora_path, 'AIHub_Translation', prefix)
+        elif isinstance(root_dir_or_paths, str) and os.path.isdir(root_dir_or_paths):
+            root_dir_or_paths = os.path.join(root_dir_or_paths, prefix)
         paths = find_corpus_paths(root_dir_or_paths)
         self.train = SentencePairKorpusData(
             f'{name}.train',
