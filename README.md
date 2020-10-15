@@ -78,7 +78,37 @@ Korpora.fetch('all')
 Korpora.fetch('all', force_download=True)
 ```
 
-## Usage
+## Command Line Interface usage
+
+### Create language model train data
+
+```
+korpora lmdata \
+  --corpus all \
+  --output_dir ~/local/train/ \
+  --multilingual \
+  --save_each \
+  --sampling_ratio 0.5 \
+  --n_first_samples 500000 \
+  --min_length 10 \
+  --max_length 50
+```
+
+| Argument | Default | Description |
+| --- | --- | --- |
+| corpus | required | corpus names |
+| root_dir | None | path/to/Korpora |
+| output_dir | required | output file path |
+| sampling_ratio | None | Sampling ratio |
+| n_first_samples | None | Number of first samples |
+| min_length | None | Mininum length of text |
+| max_length | None | Maximum length of text |
+| seed | None | Random seed |
+| force_download | action='store_true' | If True, re-download  |
+| multilingual | action='store_true' | If True, make include train data foreign language text |
+| save_each | action='store_true' | store each corpus as a file |
+
+## Corpus Usage
 
 ### 챗봇 트레이닝용 문답 페어
 - author: songys@github
