@@ -1,6 +1,15 @@
 from .about import __author__   # noqa: F401
 from .about import __version__  # noqa: F401
 
+from .korpus_aihub_translation import (
+    AIHubTranslationKorpus,
+    AIHubSpokenTranslationKorpus,
+    AIHubConversationTranslationKorpus,
+    AIHubNewsTranslationKorpus,
+    AIHubKoreanCultureTranslationKorpus,
+    AIHubDecreeTranslationKorpus,
+    AIHubGovernmentWebsiteTranslationKorpus
+)
 from .korpus_chatbot_data import KoreanChatbotKorpus
 from .korpus_custom import (
     CustomLabeledSentencePairKorpus,
