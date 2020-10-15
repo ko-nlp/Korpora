@@ -28,3 +28,10 @@ from .korpus_naverchangwon_ner import NaverChangwonNERKorpus
 from .korpus_nsmc import NSMCKorpus
 from .korpus_question_pair import QuestionPairKorpus
 from .loader import Korpora
+from .korpus_modu_news import ModuNewsKorpus
+from .korpus_modu_messenger import ModuMessengerKorpus
+from .korpus_modu_morpheme import ModuMorphemeKorpus
+from .korpus_modu_ne import ModuNEKorpus
+from .korpus_modu_spoken import ModuSpokenKorpus
+from .korpus_modu_web import ModuWebKorpus
+from .korpus_modu_written import ModuWrittenKorpus
