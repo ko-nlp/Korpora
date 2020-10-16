@@ -17,6 +17,7 @@ from Korpora.korpus_modu_ne import ModuNEKorpus
 from Korpora.korpus_modu_spoken import ModuSpokenKorpus
 from Korpora.korpus_modu_web import ModuWebKorpus
 from Korpora.korpus_modu_written import ModuWrittenKorpus
+from .korpus_open_substitles import OpenSubstitleKorpus, fetch_open_substitles
 from .utils import default_korpora_path
 
 
@@ -80,6 +81,7 @@ KORPUS = {
     'modu_spoken': ModuSpokenKorpus,
     'modu_web': ModuWebKorpus,
     'modu_written': ModuWrittenKorpus,
+    'open_substitles': OpenSubstitleKorpus,
 }
 
 KORPUS_DESCRIPTION = {
@@ -102,6 +104,7 @@ KORPUS_DESCRIPTION = {
     'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
     'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
     'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
+    'open_substitles': 'Open parallel corpus (OPUS) 에서 제공하는 영화 자막 번역 병렬 말뭉치',
 }
 
 FETCH = {
@@ -124,4 +127,5 @@ FETCH = {
     'modu_spoken': fetch_modu,
     'modu_web': fetch_modu,
     'modu_written': fetch_modu,
+    'open_substitles': fetch_open_substitles,
 }
