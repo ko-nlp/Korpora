@@ -1,7 +1,6 @@
 import os
 import re
 
-
 from .korpora import Korpus, SentencePairKorpusData
 from .utils import fetch, default_korpora_path
 
@@ -16,7 +15,7 @@ OPEN_SUBSTITLES_FETCH_INFORMATION = [
 
 
 description = """    Author : TRAC (https://trac.edgewall.org/)
-    Repository : https://github.com/kakaobrain/KorNLUDatasets
+    Repository : http://opus.nlpl.eu/OpenSubtitles-v2018.php
     References :
         - P. Lison and J. Tiedemann, 2016, OpenSubtitles2016: Extracting Large Parallel Corpora
           from Movie and TV Subtitles. In Proceedings of the 10th International Conference on
