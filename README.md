@@ -507,6 +507,34 @@ koen_news.test[0]
 koen_news.dev[0]
 # SentencePair(text='세계 에서 가장 강력한 수퍼컴퓨터를 1년...', pair="After keeping the world's most powerful supercomputer ...")
 ```
+
+- data structure
+
+|속성명|내용|
+|---|---|
+|text|`ko` 문장|
+|pair|`en` 문장|
+
+### Open Substitles 2018 Parallel Corpus
+- author: TRAC (https://trac.edgewall.org/)
+- repository: http://opus.nlpl.eu/OpenSubtitles-v2018.php
+- size:
+  - train: 1,269,683 pairs
+- example
+```python
+from Korpora import Korpora, OpenSubstitleKorpus
+
+corpus = OpenSubstitleKorpus() # or
+corpus = Korpora.load('open_substitles')
+
+corpus.train[0]
+# SentencePair(text='폭설이 내리고 우박, 진눈깨비가 퍼부어도 눈보라가 ...', pair='Through the snow and sleet and hail, ...')
+corpus.train[0].text
+# '폭설이 내리고 우박, 진눈깨비가 퍼부어도 눈보라가 몰아쳐도 강풍이 불고 비바람이 휘몰아쳐도'
+corpus.train[0].pair
+# 'Through the snow and sleet and hail, through the blizzard, ...'
+```
+
 - data structure
 
 |속성명|내용|
