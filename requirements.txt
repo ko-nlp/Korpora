@@ -2,3 +2,4 @@ dataclasses>=0.6
 numpy>=1.18.0
 tqdm>=4.46.0
 requests>=2.20.0
+xlrd>=1.2.0

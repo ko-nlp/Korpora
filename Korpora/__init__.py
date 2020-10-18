@@ -1,6 +1,15 @@
 from .about import __author__   # noqa: F401
 from .about import __version__  # noqa: F401
 
+from .korpus_aihub_translation import (
+    AIHubTranslationKorpus,
+    AIHubSpokenTranslationKorpus,
+    AIHubConversationTranslationKorpus,
+    AIHubNewsTranslationKorpus,
+    AIHubKoreanCultureTranslationKorpus,
+    AIHubDecreeTranslationKorpus,
+    AIHubGovernmentWebsiteTranslationKorpus
+)
 from .korpus_chatbot_data import KoreanChatbotKorpus
 from .korpus_custom import (
     CustomLabeledSentencePairKorpus,
@@ -20,3 +29,10 @@ from .korpus_nsmc import NSMCKorpus
 from .korpus_question_pair import QuestionPairKorpus
 from .korpus_open_substitles import OpenSubstitleKorpus
 from .loader import Korpora
+from .korpus_modu_news import ModuNewsKorpus
+from .korpus_modu_messenger import ModuMessengerKorpus
+from .korpus_modu_morpheme import ModuMorphemeKorpus
+from .korpus_modu_ne import ModuNEKorpus
+from .korpus_modu_spoken import ModuSpokenKorpus
+from .korpus_modu_web import ModuWebKorpus
+from .korpus_modu_written import ModuWrittenKorpus
