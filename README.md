@@ -21,6 +21,14 @@
 |naver_changwon_ner|네이버 x 창원대 개체명 인식 데이터셋|[https://github.com/naver/nlp-challenge/tree/master/missions/ner](https://github.com/naver/nlp-challenge/tree/master/missions/ner)|
 |nsmc|NAVER Sentiment Movie Corpus|[https://github.com/e9t/nsmc](https://github.com/e9t/nsmc)|
 |question_pair|한국어 질문쌍 데이터셋|[https://github.com/songys/Question_pair](https://github.com/songys/Question_pair)|
+|modu_news|모두의 말뭉치: 신문|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_messenger|모두의 말뭉치: 메신저|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_mp|모두의 말뭉치: 형태 분석|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_ne|모두의 말뭉치: 개체명 분석|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_spoken|모두의 말뭉치: 구어|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_web|모두의 말뭉치: 웹|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_written|모두의 말뭉치: 문어|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|aihub_translation|한국어-영어 번역 말뭉치|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
 
 
 ## License
