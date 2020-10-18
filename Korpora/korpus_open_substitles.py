@@ -59,6 +59,9 @@ class OpenSubstitleKorpus(Korpus):
             targets += targets_
         self.train = SentencePairKorpusData('OpenSubstitle.train', targets, sources)
 
+    def get_all_pairs(self):
+        return self.train.get_all_pairs()
+
 
 def parse_xtm(path):
     pattern = re.compile('<seg>[\S ]+</seg>')
