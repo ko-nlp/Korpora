@@ -1,3 +1,13 @@
+from .korpus_aihub_translation import (
+    AIHubTranslationKorpus,
+    AIHubSpokenTranslationKorpus,
+    AIHubConversationTranslationKorpus,
+    AIHubNewsTranslationKorpus,
+    AIHubKoreanCultureTranslationKorpus,
+    AIHubDecreeTranslationKorpus,
+    AIHubGovernmentWebsiteTranslationKorpus,
+    fetch_aihub
+)
 from .korpus_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
 from .korpus_kcbert import KcBERTKorpus, fetch_kcbert
 from .korpus_korean_hate_speech import KoreanHateSpeechKorpus, fetch_korean_hate_speech
@@ -10,13 +20,13 @@ from .korpus_namuwiki import NamuwikiTextKorpus, fetch_namuwikitext
 from .korpus_naverchangwon_ner import NaverChangwonNERKorpus, fetch_naverchangwon_ner
 from .korpus_nsmc import NSMCKorpus, fetch_nsmc
 from .korpus_question_pair import QuestionPairKorpus, fetch_questionpair
-from Korpora.korpus_modu_news import ModuNewsKorpus, fetch_modu
-from Korpora.korpus_modu_messenger import ModuMessengerKorpus
-from Korpora.korpus_modu_morpheme import ModuMorphemeKorpus
-from Korpora.korpus_modu_ne import ModuNEKorpus
-from Korpora.korpus_modu_spoken import ModuSpokenKorpus
-from Korpora.korpus_modu_web import ModuWebKorpus
-from Korpora.korpus_modu_written import ModuWrittenKorpus
+from .korpus_modu_news import ModuNewsKorpus, fetch_modu
+from .korpus_modu_messenger import ModuMessengerKorpus
+from .korpus_modu_morpheme import ModuMorphemeKorpus
+from .korpus_modu_ne import ModuNEKorpus
+from .korpus_modu_spoken import ModuSpokenKorpus
+from .korpus_modu_web import ModuWebKorpus
+from .korpus_modu_written import ModuWrittenKorpus
 from .utils import default_korpora_path
 
 
@@ -80,6 +90,13 @@ KORPUS = {
     'modu_spoken': ModuSpokenKorpus,
     'modu_web': ModuWebKorpus,
     'modu_written': ModuWrittenKorpus,
+    'aihub_translation': AIHubTranslationKorpus,
+    'aihub_spoken_translation': AIHubSpokenTranslationKorpus,
+    'aihub_conversation_translation': AIHubConversationTranslationKorpus,
+    'aihub_news_translation': AIHubNewsTranslationKorpus,
+    'aihub_korean_culture_translation': AIHubKoreanCultureTranslationKorpus,
+    'aihub_decree_translation': AIHubDecreeTranslationKorpus,
+    'aihub_government_website_translation': AIHubGovernmentWebsiteTranslationKorpus,
 }
 
 KORPUS_DESCRIPTION = {
@@ -102,6 +119,13 @@ KORPUS_DESCRIPTION = {
     'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
     'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
     'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
+    'aihub_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어 + 대화 + 뉴스 + 한국문화 + 조례 + 지자체웹사이트)",
+    'aihub_spoken_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어)",
+    'aihub_conversation_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (대화)",
+    'aihub_news_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (뉴스)",
+    'aihub_korean_culture_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (한국문화)",
+    'aihub_decree_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (조례)",
+    'aihub_government_website_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (지자체웹사이트)",
 }
 
 FETCH = {
@@ -124,4 +148,11 @@ FETCH = {
     'modu_spoken': fetch_modu,
     'modu_web': fetch_modu,
     'modu_written': fetch_modu,
+    'aihub_translation': fetch_aihub,
+    'aihub_spoken_translation': fetch_aihub,
+    'aihub_conversation_translation': fetch_aihub,
+    'aihub_news_translation': fetch_aihub,
+    'aihub_korean_culture_translation': fetch_aihub,
+    'aihub_decree_translation': fetch_aihub,
+    'aihub_government_website_translation': fetch_aihub,
 }

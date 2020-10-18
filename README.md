@@ -718,3 +718,68 @@ corpus.tagmap
 # 'TI': 'TIME',
 # ...}
 ```
+
+### AI Hub 번역 말뭉치 (loader)
+- author: 한국정보화진흥원
+- repository: https://www.aihub.or.kr/
+- size:
+    | 데이터 종류 | 크기 |
+    | --- | --- |
+    | 병렬 말뭉치 (전체).train | 1602418 |
+    | 병렬 말뭉치 (구어).train | 400000 |
+    | 병렬 말뭉치 (대화).train | 100000 |
+    | 병렬 말뭉치 (뉴스).train | 801387 |
+    | 병렬 말뭉치 (한국문화).train | 100646 |
+    | 병렬 말뭉치 (조례).train | 100298 |
+    | 병렬 말뭉치 (지자체웹사이트).train | 100087 |
+- example
+```python
+from Korpora import (
+    AIHubTranslationKorpus,
+    AIHubSpokenTranslationKorpus,
+    AIHubConversationTranslationKorpus,
+    AIHubNewsTranslationKorpus,
+    AIHubKoreanCultureTranslationKorpus,
+    AIHubDecreeTranslationKorpus,
+    AIHubGovernmentWebsiteTranslationKorpus
+)
+from Korpora import Korpora
+
+custom_root_dir = 'path/to/AIHub_Translation/'
+
+# 병렬 말뭉치 (구어 + 대화 + 뉴스 + 한국문화 + 조례 + 지자체웹사이트)
+corpus = Korpora.load('aihub_translation')
+corpus = AIHubTranslationKorpus()
+corpus = AIHubTranslationKorpus(custom_root_dir)
+
+# 병렬 말뭉치 (구어)
+corpus = Korpora.load('aihub_spoken_translation')
+corpus = AIHubSpokenTranslationKorpus()
+
+# 병렬 말뭉치 (대화)
+corpus = Korpora.load('aihub_conversation_translation')
+corpus = AIHubConversationTranslationKorpus()
+
+# 병렬 말뭉치 (뉴스)
+corpus = Korpora.load('aihub_news_translation')
+corpus = AIHubNewsTranslationKorpus()
+
+# 병렬 말뭉치 (한국문화)
+corpus = Korpora.load('aihub_korean_culture_translation')
+corpus = AIHubKoreanCultureTranslationKorpus()
+
+# 병렬 말뭉치 (조례)
+corpus = Korpora.load('aihub_decree_translation')
+corpus = AIHubDecreeTranslationKorpus()
+
+# 병렬 말뭉치 (지자체웹사이트)
+corpus = Korpora.load('aihub_government_website_translation')
+corpus = AIHubGovernmentWebsiteTranslationKorpus()
+
+corpus.train[0]
+# SentencePair(text='"경기도가 말산업 육성을 위해 총예산 245,193천원으로 ...', pair='"The Gyeonggi provincial government announced ...''
+corpus.train[0].text
+# '"경기도가 말산업 육성을 위해 총예산 245,193천원으로 2013년 경기도 용인시 남사면 소재의 축산위생연구소 ...'
+corpus.train[0].pair
+# '"The Gyeonggi provincial government announced that it has established ...'
+```
