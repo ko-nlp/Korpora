@@ -6,6 +6,8 @@ from os.path import expanduser
 from tqdm import tqdm
 from urllib import request
 
+import gzip
+import shutil
 
 default_korpora_path = f'{expanduser("~")}/Korpora/'
 GOOGLE_DRIVE_URL = "https://docs.google.com/uc?export=download"
@@ -139,6 +141,18 @@ def web_download_untar(url, tar_path, corpus_name='', force_download=False):
     print(f'decompress {tar_path}')
 
 
+def web_download_ungzip(url, gzip_path, corpus_name='', force_download=False):
+    web_download(url, gzip_path, corpus_name, force_download)
+    # assume that path/to/abc.gzip consists path/to/abc
+    data_path = gzip_path[:-3]
+    if (not force_download) and os.path.exists(data_path):
+        return None
+    with gzip.open(gzip_path, 'rb') as fi:
+        with open(data_path, 'wb') as fo:
+            shutil.copyfileobj(fi, fo)
+    print(f'decompress {gzip_path}')
+
+
 def google_drive_download(file_id, local_path, corpus_name='', force_download=False):
     def get_confirm_token(response):
         for key, value in response.cookies.items():
@@ -200,5 +214,7 @@ def fetch(remote_path, local_path, corpus_name=None, force_download=False, metho
         web_download_unzip(remote_path, destination, corpus_name, force_download)
     elif method == "download & untar":
         web_download_untar(remote_path, destination, corpus_name, force_download)
+    elif method == "download & ungzip":
+        web_download_ungzip(remote_path, destination, corpus_name, force_download)
     else:
         print(f'download method is not valid ({method})')

@@ -27,6 +27,7 @@ from .korpus_namuwiki import NamuwikiTextKorpus
 from .korpus_naverchangwon_ner import NaverChangwonNERKorpus
 from .korpus_nsmc import NSMCKorpus
 from .korpus_question_pair import QuestionPairKorpus
+from .korpus_open_substitles import OpenSubstitleKorpus
 from .loader import Korpora
 from .korpus_modu_news import ModuNewsKorpus
 from .korpus_modu_messenger import ModuMessengerKorpus

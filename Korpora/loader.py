@@ -20,6 +20,7 @@ from .korpus_namuwiki import NamuwikiTextKorpus, fetch_namuwikitext
 from .korpus_naverchangwon_ner import NaverChangwonNERKorpus, fetch_naverchangwon_ner
 from .korpus_nsmc import NSMCKorpus, fetch_nsmc
 from .korpus_question_pair import QuestionPairKorpus, fetch_questionpair
+from .korpus_open_substitles import OpenSubstitleKorpus, fetch_open_substitles
 from .korpus_modu_news import ModuNewsKorpus, fetch_modu
 from .korpus_modu_messenger import ModuMessengerKorpus
 from .korpus_modu_morpheme import ModuMorphemeKorpus
@@ -90,6 +91,7 @@ KORPUS = {
     'modu_spoken': ModuSpokenKorpus,
     'modu_web': ModuWebKorpus,
     'modu_written': ModuWrittenKorpus,
+    'open_substitles': OpenSubstitleKorpus,
     'aihub_translation': AIHubTranslationKorpus,
     'aihub_spoken_translation': AIHubSpokenTranslationKorpus,
     'aihub_conversation_translation': AIHubConversationTranslationKorpus,
@@ -119,6 +121,7 @@ KORPUS_DESCRIPTION = {
     'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
     'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
     'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
+    'open_substitles': 'Open parallel corpus (OPUS) 에서 제공하는 영화 자막 번역 병렬 말뭉치',
     'aihub_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어 + 대화 + 뉴스 + 한국문화 + 조례 + 지자체웹사이트)",
     'aihub_spoken_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어)",
     'aihub_conversation_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (대화)",
@@ -148,6 +151,7 @@ FETCH = {
     'modu_spoken': fetch_modu,
     'modu_web': fetch_modu,
     'modu_written': fetch_modu,
+    'open_substitles': fetch_open_substitles,
     'aihub_translation': fetch_aihub,
     'aihub_spoken_translation': fetch_aihub,
     'aihub_conversation_translation': fetch_aihub,
