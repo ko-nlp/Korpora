@@ -23,6 +23,7 @@ def show_arguments(args):
 
 def show_version(args):
     print(f'Korpora=={__version__}')
+    print('execute `korpora --help` to see what Korpora provides')
 
 
 def main():
