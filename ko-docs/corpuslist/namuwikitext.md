@@ -10,9 +10,9 @@ sort: 8
 - author: lovit@github
 - repository: [https://github.com/lovit/namuwikitext](https://github.com/lovit/namuwikitext)
 - size:
-  - train: 38,278,040 lines (500,104 docs, 5.3G)
-  - dev: 197,723 lines (2,525 docs, 28M)
-  - test: 193,614 lines (2,525 docs, 29M)
+  - train: 31,235,096 lines (500,104 docs, 4.6G)
+  - dev: 153,605 lines (2,525 docs, 23M)
+  - test: 160,233 lines (2,527 docs, 24M)
 
 데이터 구조는 다음과 같습니다.
 
