@@ -5,17 +5,17 @@ from .utils import fetch, default_korpora_path, load_wikitext
 
 NAMUWIKI_FETCH_INFORMATION = [
     {
-        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.2/namuwikitext_20200302.v0.2.train.zip',
+        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.3/namuwikitext_20200302.train.zip',
         'destination': 'namiwiki/namuwikitext_20200302.train.zip',
         'method': 'download & unzip'
     },
     {
-        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.2/namuwikitext_20200302.v0.2.test.zip',
+        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.3/namuwikitext_20200302.test.zip',
         'destination': 'namiwiki/namuwikitext_20200302.test.zip',
         'method': 'download & unzip'
     },
     {
-        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.2/namuwikitext_20200302.v0.2.dev.zip',
+        'url': 'https://github.com/lovit/namuwikitext/releases/download/v0.3/namuwikitext_20200302.dev.zip',
         'destination': 'namiwiki/namuwikitext_20200302.dev.zip',
         'method': 'download & unzip'
     }
