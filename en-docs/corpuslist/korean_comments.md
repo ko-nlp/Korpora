@@ -10,7 +10,7 @@ The data specification is as follows:
 - author: beomi@github
 - repository: https://github.com/Beomi/KcBERT
 - size:
-- train: 86,246,285 examples
+  - train: 86,246,285 examples
 
 ## 1. In Python
 
