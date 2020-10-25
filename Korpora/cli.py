@@ -22,7 +22,7 @@ def show_arguments(args):
 
 
 def show_version(args):
-    print(f'moducorpus_sanitizer=={__version__}')
+    print(f'Korpora=={__version__}')
 
 
 def main():
