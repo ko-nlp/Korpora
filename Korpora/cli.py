@@ -13,7 +13,7 @@ def listup(args):
 
 
 def show_arguments(args):
-    print('## Arguments of Moducorpus sanitizer ##')
+    print('## Arguments of Korpora CLI ##')
     for name, var in sorted(vars(args).items()):
         if callable(var):
             print(f'  - {name} : {var.__name__}')
