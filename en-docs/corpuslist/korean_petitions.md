@@ -2,34 +2,34 @@
 sort: 4
 ---
 
-# 청와대 국민청원
+# Korean Petitions
 
-청와대 국민청원 데이터는 lovit@github 님이 공개한 청와대 국민청원 데이터(2017.08 ~ 2019.03)입니다.
-데이터 정보는 다음과 같습니다.
+Korean Petitions is the data collected from the Blue House National Petition (2017.08 ~ 2019.03), released by lovit@github.
+Data specification is as follows:
 
 - author: lovit@github
 - repository: https://github.com/lovit/petitions_archive
 - size:
   - train: 433,631 examples
 
-데이터 구조는 다음과 같습니다.
+Data structure is as:
 
-|속성명|내용|
+|Attributes|Property|
 |---|---|
-|text|청원 내용|
-|category|청원 범주|
-|num_agree|청원 동의 수|
-|begin|청원 시작일|
-|end|청원 종료일|
-|title|청원 제목|
+|text|Content of petition|
+|category|Category of petition|
+|num_agree|Number of agreements|
+|begin|Date petition began|
+|end|Date petition ended|
+|title|Title of petition|
 
-## 1. 파이썬에서 사용하기
+## 1. In Python
 
-파이썬 콘솔을 실행한 뒤 말뭉치를 내려받고 읽어들일 수 있습니다.
+Execute Python console, download the corpus, and read it.
 
-### 말뭉치 다운로드
+### Downloading the corpus
 
-청와대 국민청원 데이터를 로컬에 내려 받는 파이썬 예제는 다음과 같습니다.
+You can download the Korean Petitions in the local by the following procedure.
 
 ```python
 from Korpora import Korpora
@@ -37,35 +37,35 @@ Korpora.fetch("korean_petitions")
 ```
 
 ```note
-기본적으로 사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리에 말뭉치를 내려 받습니다(`~/Korpora`). 다른 경로에 말뭉치를 다운로드 받고 싶다면 
-fetch 함수 실행시 `root_dir=custom_path`라는 인자를 추가하세요.
+First, download the corpus to Korpora, a directory under the user's local computer root (`~/Korpora`).
+If you want to download it in other path, please assign `root_dir=custom_path` when you execute fetch function.
 ```
 
 ```tip
-fetch 함수 실행시 `force_download=True`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도 이를 무시하고 다시 내려 받습니다. 기본값은 `False`입니다.
+If you assign `force_download=True` when you execute the fetch function, the corpus is downloaded again regardless of its presence in the local. The default is `False`.
 ```
 
 
-### 말뭉치 읽어들이기
+### Reading the corpus
 
-청와대 국민청원 데이터를 파이썬 콘솔에서 읽어들이는 예제는 다음과 같습니다.
-말뭉치가 로컬에 없다면 다운로드도 함께 수행합니다.
+You can read the Korean Petitions in Python console with the following scheme.
+If the corpus is not in the local, the downloading is accompanied.
 
 ```python
 from Korpora import Korpora
 corpus = Korpora.load("korean_petitions")
 ```
 
-다음과 같이 실행해도 청와대 국민청원 데이터를 읽어들일 수 있습니다.
-수행 결과는 위의 코드와 동일합니다.
+You can read the Korean Petitions as below;
+the result is the same as the above operation.
 
 ```python
 from Korpora import KoreanPetitionsKorpus
 corpus = KoreanPetitionsKorpus()
 ```
 
-위 코드 둘 중 하나를 택해 실행하면 `corpus`라는 변수에 말뭉치를 로드합니다.
-`train`은 청와대 국민청원 데이터의 train 데이터로 첫번째 인스턴스는 다음과 같이 확인할 수 있습니다.
+Execute one of the above, and the copus is assigned to the variable `corpus`.
+`train` denotes the train data of Korean Petitions, and you can check the first instance as:
 
 ```
 >>> corpus.train[0]
@@ -84,26 +84,26 @@ KoreanPetition(text="안녕하세요. 현재 사대, ...", category='육아/교�
 학교는 
 ```
 
-`get_all_texts`라는 메소드를 실행하면 청와대 국민청원 데이터의 모든 text(청원 내용)를 확인할 수 있습니다.
-`get_all_categories` 메소드를 실행하면 청와대 국민청원 데이터의 모든 category(청원 범주)를 확인할 수 있습니다.
-`get_all_num_agrees` 메소드를 실행하면 청와대 국민청원 데이터의 모든 num_agree(청원 동의 수)를 확인할 수 있습니다.
-`get_all_titles` 메소드를 실행하면 청와대 국민청원 데이터의 모든 title(청원 제목)을 확인할 수 있습니다.
+The method `get_all_texts` lets you check all the texts (Content of petition) in Korean Petitions.
+The method `get_all_categories` lets you check all the categories (Category of petition) in Korean Petitions.
+The method `get_all_num_agrees` lets you check all the num_agree (Number of agreements) in Korean Petitions.
+The method `get_all_titles` lets you check all the titles (Title of petition) in Korean Petitions.
 
-## 2. 터미널에서 사용하기
+## 2. In terminal 
 
-파이썬 콘솔 실행 없이 바로 말뭉치를 다운받을 수 있습니다.
-다음과 같이 실행하면 됩니다.
+You can download the corpus without executing Python console.
+The command is as below.
 
 ```bash
 korpora fetch --corpus korean_petitions
 ```
 
 ```note
-기본적으로 사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리에 말뭉치를 내려 받습니다(`~/Korpora`). 다른 경로에 말뭉치를 다운로드 받고 싶다면 
-터미널에서 fetch 함수 실행시 `--root_dir custom_path`라는 인자를 추가하세요.
+First, download the corpus to Korpora, a directory under the user's local computer root (`~/Korpora`).
+If you want to download it in other path, please assign `--root_dir custom_path` when you execute fetch function in the terminal.
 ```
 
 ```tip
-터미널에서 fetch 함수 실행시 `--force_download`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도 이를 무시하고 다시 내려 받습니다.
+If you assign `--force_download` when you execute fetch function in the terminal, the corpus is downloaded again regardless of its presence in the local.
 ```
 
