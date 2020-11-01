@@ -55,13 +55,13 @@ license = """    AI Hub 에서 제공하는 데이터의 소유권 및 전문은
 
 
 class AIHubTranslationKorpus(Korpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False, prefix='', name='AIHub_translation'):
+    def __init__(self, root_dir=None, force_download=False, prefix='', name='AIHub_translation'):
         super().__init__(description, license)
-        if root_dir_or_paths is None:
-            root_dir_or_paths = os.path.join(default_korpora_path, 'AIHub_Translation', prefix)
-        elif isinstance(root_dir_or_paths, str) and os.path.isdir(root_dir_or_paths):
-            root_dir_or_paths = os.path.join(root_dir_or_paths, prefix)
-        paths = find_corpus_paths(root_dir_or_paths)
+        if root_dir is None:
+            root_dir = os.path.join(default_korpora_path, 'AIHub_Translation', prefix)
+        elif isinstance(root_dir, str) and os.path.isdir(root_dir):
+            root_dir = os.path.join(root_dir, prefix)
+        paths = find_corpus_paths(root_dir)
         self.train = SentencePairKorpusData(
             f'{name}.train',
             *load_aihub_translation(paths, name)
@@ -69,48 +69,48 @@ class AIHubTranslationKorpus(Korpus):
 
 
 class AIHubSpokenTranslationKorpus(AIHubTranslationKorpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False):
-        super().__init__(root_dir_or_paths, force_download, '1_spoken*', 'AIHub_spoken_translation')
+    def __init__(self, root_dir=None, force_download=False):
+        super().__init__(root_dir, force_download, '1_spoken*', 'AIHub_spoken_translation')
 
 
 class AIHubConversationTranslationKorpus(AIHubTranslationKorpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False):
-        super().__init__(root_dir_or_paths, force_download, '2_conversation*', 'AIHub_conversation_translation')
+    def __init__(self, root_dir=None, force_download=False):
+        super().__init__(root_dir, force_download, '2_conversation*', 'AIHub_conversation_translation')
 
 
 class AIHubNewsTranslationKorpus(AIHubTranslationKorpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False):
-        super().__init__(root_dir_or_paths, force_download, '3_news*', 'AIHub_news_translation')
+    def __init__(self, root_dir=None, force_download=False):
+        super().__init__(root_dir, force_download, '3_news*', 'AIHub_news_translation')
 
 
 class AIHubKoreanCultureTranslationKorpus(AIHubTranslationKorpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False):
-        super().__init__(root_dir_or_paths, force_download, '4_korean_culture*', 'AIHub_korean_culture_translation')
+    def __init__(self, root_dir=None, force_download=False):
+        super().__init__(root_dir, force_download, '4_korean_culture*', 'AIHub_korean_culture_translation')
 
 
 class AIHubDecreeTranslationKorpus(AIHubTranslationKorpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False):
-        super().__init__(root_dir_or_paths, force_download, '5_decree*', 'AIHub_decree_translation')
+    def __init__(self, root_dir=None, force_download=False):
+        super().__init__(root_dir, force_download, '5_decree*', 'AIHub_decree_translation')
 
 
 class AIHubGovernmentWebsiteTranslationKorpus(AIHubTranslationKorpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False):
-        super().__init__(root_dir_or_paths, force_download, '6_government_website*', 'AIHub_government_website_translation')
+    def __init__(self, root_dir=None, force_download=False):
+        super().__init__(root_dir, force_download, '6_government_website*', 'AIHub_government_website_translation')
 
 
-def find_corpus_paths(root_dir_or_paths, suffix='200226.xlsx'):
+def find_corpus_paths(root_dir, suffix='200226.xlsx'):
     def match(path):
         return path[-11:] == suffix
 
     # directory + wildcard
-    if isinstance(root_dir_or_paths, str):
-        paths = sorted(glob(f'{root_dir_or_paths}/*{suffix}') + glob(root_dir_or_paths))
+    if isinstance(root_dir, str):
+        paths = sorted(glob(f'{root_dir}/*{suffix}') + glob(root_dir))
     else:
-        paths = root_dir_or_paths
+        paths = root_dir
 
     paths = [path for path in paths if match(path)]
     if not paths:
-        raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
+        raise ValueError('Not found corpus files. Check `root_dir`')
     return paths
 
 
