@@ -4,6 +4,7 @@
 하지만 데이터가 곳곳에 산재해 있다보니 품질 좋은 말뭉치임에도 그 존재조차 잘 알려지지 않은 경우가 많습니다. 
 파일 포맷과 저장 형식 등이 각기 달라 사용이 쉽지 않습니다. 
 개별 사용자들은 다운로드나 전처리 코드를 그때그때 개발해서 써야 하는 수고로움이 있습니다.
+
 `Korpora`는 이 같은 불편함을 조금이나마 덜어드리기 위해 개발한 오픈소스 파이썬 패키지입니다. 
 `Korpora`는 말뭉치라는 뜻의 영어 단어 *corpus*의 복수형인 *corpora*에서 착안해 이름 지었습니다. 
 `Korpora`는 *Korean Corpora*의 준말입니다. 
@@ -115,7 +116,7 @@ Korpora.fetch("kcbert")
 ```
 
 `Korpora`가 제공하는 모든 말뭉치를 내려받고 싶다면 다음과 같이 실행하세요.
-사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리(`~/Korpora`)에 말뭉치를 내려 받습니다.
+`~/Korpora`에 말뭉치를 내려 받습니다.
 
 ```python
 from Korpora import Korpora
@@ -123,7 +124,7 @@ Korpora.fetch('all')
 ```
 
 KcBERT 학습데이터를 파이썬 콘솔에서 읽어들이는 예제는 다음과 같습니다.
-데이터가 로컬에 없다면 사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리(`~/Korpora`)에 말뭉치를 내려 받습니다.
+데이터가 로컬에 없다면 `~/Korpora`에 말뭉치를 내려 받습니다.
 이후 `corpus`라는 파이썬 변수에 말뭉치 데이터가 담기게 됩니다.
 다른 데이터를 읽고 싶다면 위에서 확인한 말뭉치 이름을 인자로 주면 됩니다.
 
@@ -137,7 +138,7 @@ corpus = Korpora.load("kcbert")
 `Korpora`는 터미널에서도 동작합니다(Command Line Interface, CLI).
 파이썬 콘솔 실행 없이 `Korpora`를 사용할 수 있습니다. 
 터미널에서 KcBERT 학습데이터 하나를 다운받는 예제는 다음과 같습니다.
-사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리(`~/Korpora`)에 말뭉치를 내려 받습니다.
+`~/Korpora`에 말뭉치를 내려 받습니다.
 
 ```bash
 korpora fetch --corpus kcbert
@@ -145,14 +146,14 @@ korpora fetch --corpus kcbert
 
 터미널에서 KcBERT 학습데이터와 챗봇 문답 데이터 두 개를 동시에 다운로드 받는 예제는 다음과 같습니다.
 이같은 방식으로 3개 이상의 데이터도 동시에 내려받을 수 있습니다.
-사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리(`~/Korpora`)에 말뭉치를 내려 받습니다.
+`~/Korpora`에 말뭉치를 내려 받습니다.
 
 ```bash
 korpora fetch --corpus kcbert korean_chatbot_data
 ```
 
 터미널에서 `Korpora`가 제공하는 모든 말뭉치를 내려받는 예제는 다음과 같습니다.
-사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리(`~/Korpora`)에 말뭉치를 내려 받습니다.
+`~/Korpora`에 말뭉치를 내려 받습니다.
 
 ```bash
 korpora fetch --corpus all
@@ -163,7 +164,7 @@ korpora fetch --corpus all
 기본 예제 코드는 다음과 같습니다. 
 다음 코드는 `Korpora`가 제공하는 모든 코퍼스(`all`)를 언어모델 학습용 말뭉치로 일괄 처리하는 역할을 합니다.
 다운로드와 전처리를 동시에 수행합니다.
-로컬에 데이터가 없다면 사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리(`~/Korpora`)에 말뭉치를 내려 받습니다.
+로컬에 데이터가 없다면 `~/Korpora`에 말뭉치를 내려 받습니다.
 결과물은 `all.train`이라는 파일 하나입니다. 
 `output_dir`에 생성됩니다.
 
