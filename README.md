@@ -16,25 +16,25 @@
 
 |corpus_name|description|link|
 |---|---|---|
-|korean_chatbot_data|챗봇 트레이닝용 문답 페어|[https://github.com/songys/Chatbot_data](https://github.com/songys/Chatbot_data)|
-|kcbert|KcBERT 모델 학습용 댓글 데이터|[https://github.com/Beomi/KcBERT](https://github.com/Beomi/KcBERT)|
-|korean_hate_speech|한국어 혐오 데이터셋|[https://github.com/kocohub/korean-hate-speech](https://github.com/kocohub/korean-hate-speech)|
-|korean_petitions|청와대 국민 청원|[https://github.com/lovit/petitions_archive](https://github.com/lovit/petitions_archive)|
-|kornli|Korean NLI|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
-|korsts|Korean STS|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
-|namuwikitext|나무위키 텍스트|[https://github.com/lovit/namuwikitext](https://github.com/lovit/namuwikitext)|
-|naver_changwon_ner|네이버 x 창원대 개체명 인식 데이터셋|[https://github.com/naver/nlp-challenge/tree/master/missions/ner](https://github.com/naver/nlp-challenge/tree/master/missions/ner)|
-|nsmc|NAVER Sentiment Movie Corpus|[https://github.com/e9t/nsmc](https://github.com/e9t/nsmc)|
-|question_pair|한국어 질문쌍 데이터셋|[https://github.com/songys/Question_pair](https://github.com/songys/Question_pair)|
-|modu_news|모두의 말뭉치: 신문|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_messenger|모두의 말뭉치: 메신저|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_mp|모두의 말뭉치: 형태 분석|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_ne|모두의 말뭉치: 개체명 분석|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_spoken|모두의 말뭉치: 구어|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_web|모두의 말뭉치: 웹|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_written|모두의 말뭉치: 문어|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|aihub_translation|한국어-영어 번역 말뭉치|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
-|open_substitles|영화 자막 한영 병렬 말뭉치|[http://opus.nlpl.eu/OpenSubtitles-v2018.php](http://opus.nlpl.eu/OpenSubtitles-v2018.php)|
+|korean_chatbot_data|[챗봇 트레이닝용 문답 페어](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_chatbot_data.html)|[https://github.com/songys/Chatbot_data](https://github.com/songys/Chatbot_data)|
+|kcbert|[KcBERT 모델 학습용 댓글 데이터](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_comments.html)|[https://github.com/Beomi/KcBERT](https://github.com/Beomi/KcBERT)|
+|korean_hate_speech|[한국어 혐오 데이터셋](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_hate_speech.html)|[https://github.com/kocohub/korean-hate-speech](https://github.com/kocohub/korean-hate-speech)|
+|korean_petitions|[청와대 국민 청원](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_petitions.html)|[https://github.com/lovit/petitions_archive](https://github.com/lovit/petitions_archive)|
+|kornli|[Korean NLI](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/kornli.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
+|korsts|[Korean STS](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korsts.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
+|namuwikitext|[나무위키 텍스트](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/namuwikitext.html)|[https://github.com/lovit/namuwikitext](https://github.com/lovit/namuwikitext)|
+|naver_changwon_ner|[네이버 x 창원대 개체명 인식 데이터셋](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/naver_changwon_ner.html)|[https://github.com/naver/nlp-challenge/tree/master/missions/ner](https://github.com/naver/nlp-challenge/tree/master/missions/ner)|
+|nsmc|[NAVER Sentiment Movie Corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/nsmc.html)|[https://github.com/e9t/nsmc](https://github.com/e9t/nsmc)|
+|question_pair|[한국어 질문쌍 데이터셋](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/question_pair.html)|[https://github.com/songys/Question_pair](https://github.com/songys/Question_pair)|
+|modu_news|[모두의 말뭉치: 신문](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_news.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_messenger|[모두의 말뭉치: 메신저](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_messenger.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_mp|[모두의 말뭉치: 형태 분석](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_mp.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_ne|[모두의 말뭉치: 개체명 분석](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_ne.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_spoken|[모두의 말뭉치: 구어](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_spoken.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_web|[모두의 말뭉치: 웹](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_web.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_written|[모두의 말뭉치: 문어](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_written.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|aihub_translation|[한국어-영어 번역 말뭉치](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
+|open_substitles|[영화 자막 한영 병렬 말뭉치](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/open_substitles.html)|[http://opus.nlpl.eu/OpenSubtitles-v2018.php](http://opus.nlpl.eu/OpenSubtitles-v2018.php)|
 
 
 ## 안내 페이지
