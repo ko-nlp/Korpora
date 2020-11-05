@@ -120,5 +120,5 @@ add `--root_dir custom_path` argument to the fetch command.
 ```
 
 ```tip
-If you add `--force_download` argument while executing the fetch command in the terminal, it ignores the existing corpus in the local directory and re-downloads the corpus.
+If you add `--force_download` argument when executing the fetch command in the terminal, it ignores the existing corpus in the local directory and re-downloads the corpus.
 ```
