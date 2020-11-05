@@ -48,7 +48,7 @@ If you assign `force_download=True` when you execute the fetch function, the cor
 ```
 
 
-### 말뭉치 읽어들이기
+### Reading the corpus
 
 You can read KorNLI in Python console with the following scheme.
 If the corpus is not in the local, the downloading is accompanied.
