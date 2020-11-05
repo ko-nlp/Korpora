@@ -92,18 +92,18 @@ By executing the `get_all_labels` method, you can access all labels (either posi
 
 ## 2. Using in a terminal
 
-파이썬 콘솔 실행 없이 바로 말뭉치를 다운받을 수 있습니다.
-다음과 같이 실행하면 됩니다.
+You can directly download the corpus without executing Python console.
+To do so, use the following command.
 
 ```bash
 korpora fetch --corpus nsmc
 ```
 
 ```note
-기본적으로 사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리에 말뭉치를 내려 받습니다(`~/Korpora`). 다른 경로에 말뭉치를 다운로드 받고 싶다면 
-터미널에서 fetch 함수 실행시 `--root_dir custom_path`라는 인자를 추가하세요.
+By default, the corpus is downloaded to a Korpora directory within the user's root directory (`~/Korpora`). If you wish to download the corpus to another directory,
+add `--root_dir custom_path` argument to the fetch command.
 ```
 
 ```tip
-터미널에서 fetch 함수 실행시 `--force_download`라는 인자를 줄 경우 해당 말뭉치가 이미 로컬에 있더라도 이를 무시하고 다시 내려 받습니다.
+If you add `--force_download` argument when executing the fetch command in the terminal, it ignores the existing corpus in the local directory and re-downloads the corpus.
 ```
