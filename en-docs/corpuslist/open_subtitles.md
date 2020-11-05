@@ -92,7 +92,7 @@ By executing the `get_all_pairs` method, you can access all pairs (English sente
 
 ## 2. Using in a terminal
 
-You can directly download the corpus wWithout executing Python console.
+You can directly download the corpus without executing Python console.
 To do so, use the following command.
 
 ```bash
