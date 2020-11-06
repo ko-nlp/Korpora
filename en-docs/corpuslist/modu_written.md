@@ -4,7 +4,7 @@ sort: 19
 
 # Modu: Written
 
-NamuWikiText is a dataset released by National Institute of Korean Language.
+Modu: Written is a dataset released by National Institute of Korean Language.
 Data specification is as follows.
 
 - author: National Institute of Korean Language
