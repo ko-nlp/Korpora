@@ -43,7 +43,7 @@ The codes assumes that the corpus has already been unzipped into `~/Korpora/NIKL
 If the corpus exists in another directory, add `root_dir_or_paths=custom_path` argument in `ModuSpokenKorpus` class declaration.
 ```
 
-f you use either one of these previous examples, you can load the corpus into the variable `corpus`.
+If you use either one of these previous examples, you can load the corpus into the variable `corpus`.
 `train` refers to the training dataset of the corpus, and you can check its first training instance as follows.
 
 ```
