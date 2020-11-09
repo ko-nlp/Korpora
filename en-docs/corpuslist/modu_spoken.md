@@ -26,7 +26,7 @@ corpus = Korpora.load("modu_spoken")
 ```
 
 ```warning
-The code assumes that the corpus has already been unzipped into NIKL_WRITTEN directory within `~/Korpora` (`~/Korpora/NIKL_WRITTEN`).
+The code assumes that the corpus has already been unzipped into NIKL_SPOKEN directory within `~/Korpora` (`~/Korpora/NIKL_SPOKEN`).
 If the root directory is not `~/Korpora`, add `root_dir=custom_path` argument to the `load` method.
 ```
 
@@ -39,7 +39,7 @@ corpus = ModuSpokenKorpus()
 ```
 
 ```warning
-The codes assumes that the corpus has already been unzipped into `~/Korpora/NIKL_WRITTEN` within the current user's local root. 
+The codes assumes that the corpus has already been unzipped into `~/Korpora/NIKL_SPOKEN` within the current user's local root. 
 If the corpus exists in another directory, add `root_dir_or_paths=custom_path` argument in `ModuSpokenKorpus` class declaration.
 ```
 
