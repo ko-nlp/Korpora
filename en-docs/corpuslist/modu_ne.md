@@ -27,7 +27,7 @@ corpus = Korpora.load("modu_ne")
 ```
 
 ```warning
-The code assumes that the corpus has already been unzipped into NIKL_WRITTEN directory within `~/Korpora` (`~/Korpora/NIKL_WRITTEN`).
+The code assumes that the corpus has already been unzipped into NIKL_NE directory within `~/Korpora` (`~/Korpora/NIKL_NE`).
 If the root directory is not `~/Korpora`, add `root_dir=custom_path` argument to the `load` method.
 ```
 
