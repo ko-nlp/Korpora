@@ -2,7 +2,7 @@
 sort: 11
 ---
 
-# Korean Paired Question
+# Korean Question Pair
 
 Korean Paired Question v.2 is a dataset released by songys@github.
 Data specification is as follows.
