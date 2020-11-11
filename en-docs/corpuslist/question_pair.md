@@ -2,7 +2,7 @@
 sort: 11
 ---
 
-# Korean Paired Question
+# Korean Question Pair
 
 Korean Paired Question v.2 is a dataset released by songys@github.
 Data specification is as follows.
@@ -107,7 +107,7 @@ By executing the `get_all_labels` method, you can check all labels (if a text an
 
 ## 2. Using in a terminal
 
-You can directly download the corpus wWithout executing Python console.
+You can directly download the corpus without executing Python console.
 To do so, use the following command.
 
 ```bash
