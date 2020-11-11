@@ -107,7 +107,7 @@ By executing the `get_all_labels` method, you can check all labels (if a text an
 
 ## 2. Using in a terminal
 
-You can directly download the corpus wWithout executing Python console.
+You can directly download the corpus without executing Python console.
 To do so, use the following command.
 
 ```bash
