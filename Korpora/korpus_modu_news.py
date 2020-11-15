@@ -50,11 +50,11 @@ class ModuKorpus(Korpus):
 
 
 class ModuNewsKorpus(ModuKorpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False, load_light=True):
+    def __init__(self, root_dir=None, force_download=False, load_light=True):
         super().__init__(force_download)
-        if root_dir_or_paths is None:
-            root_dir_or_paths = os.path.join(default_korpora_path, 'NIKL_NEWSPAPER')
-        paths = find_corpus_paths(root_dir_or_paths)
+        if root_dir is None:
+            root_dir = os.path.join(default_korpora_path, 'NIKL_NEWSPAPER')
+        paths = find_corpus_paths(root_dir)
         if load_light:
             self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))
         else:
