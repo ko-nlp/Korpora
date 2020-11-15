@@ -12,11 +12,11 @@ from .utils import default_korpora_path
 
 
 class ModuMessengerKorpus(ModuKorpus):
-    def __init__(self, root_dir_or_paths=None, force_download=False):
+    def __init__(self, root_dir=None, force_download=False):
         super().__init__()
-        if root_dir_or_paths is None:
-            root_dir_or_paths = os.path.join(default_korpora_path, 'NIKL_MESSENGER')
-        paths = find_corpus_paths(root_dir_or_paths)
+        if root_dir is None:
+            root_dir = os.path.join(default_korpora_path, 'NIKL_MESSENGER')
+        paths = find_corpus_paths(root_dir)
         self.train = KorpusData('모두의_메신저_말뭉치(conversation).train', load_modu_messenger(paths))
 
 
