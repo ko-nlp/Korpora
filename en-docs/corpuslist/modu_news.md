@@ -53,7 +53,7 @@ corpus = ModuNewsKorpus()
 
 ```warning
 The codes assumes that the corpus has already been unzipped into `~/Korpora/NIKL_NEWSPAPER` within the current user's local root. 
-If the corpus exists in another directory, add `root_dir_or_paths=custom_path` argument in `ModuNewsKorpus` class declaration.
+If the corpus exists in another directory, add `root_dir=custom_path` argument in `ModuNewsKorpus` class declaration.
 ```
 
 ```tip

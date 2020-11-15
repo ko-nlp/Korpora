@@ -41,7 +41,7 @@ corpus = ModuNEKorpus()
 
 ```warning
 The codes assumes that the corpus has already been unzipped into `~/Korpora/NIKL_NE` within the current user's local root. 
-If the corpus exists in another directory, add `root_dir_or_paths=custom_path` argument in `ModuNEKorpus` class declaration.
+If the corpus exists in another directory, add `root_dir=custom_path` argument in `ModuNEKorpus` class declaration.
 ```
 
 If you use either one of these previous examples, you can load the corpus into the variable `corpus`.
