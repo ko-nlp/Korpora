@@ -54,7 +54,7 @@ corpus = ModuNewsKorpus()
 
 ```warning
 위의 코드는 해당 말뭉치가 `~/Korpora/NIKL_NEWSPAPER` 디렉토리에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
-만일 다른 디렉토리에 말뭉치가 존재한다면 `ModuNewsKorpus` 클래스 선언시 `root_dir_or_paths=custom_path` 인자를 추가하시기 바랍니다.
+만일 다른 디렉토리에 말뭉치가 존재한다면 `ModuNewsKorpus` 클래스 선언시 `root_dir=custom_path` 인자를 추가하시기 바랍니다.
 ```
 
 ```tip
