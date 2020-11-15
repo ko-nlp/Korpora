@@ -37,6 +37,7 @@
 |modu_written|[모두의 말뭉치: 문어](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_written.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
 |aihub_translation|[한국어-영어 번역 말뭉치](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
 |open_substitles|[영화 자막 한영 병렬 말뭉치](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/open_substitles.html)|[http://opus.nlpl.eu/OpenSubtitles-v2018.php](http://opus.nlpl.eu/OpenSubtitles-v2018.php)|
+|korean_parallel_koen_news|[한국어-영어 병렬 말뭉치](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://github.com/jungyeul/korean-parallel-corpora](https://github.com/jungyeul/korean-parallel-corpora)|
 
 
 ## 안내 페이지
