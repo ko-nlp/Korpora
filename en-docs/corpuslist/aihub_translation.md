@@ -23,7 +23,7 @@ Data specification is as follows:
 | TOTAL | train | 1,602,418 |
 
 ```warning
-Due to the license issue, in `Korpora' package, only the loading is provided for AI Hub Ko-En Parallel Corpus, not the downloading.
+Due to the license issue, in `Korpora` package, only the loading is provided for AI Hub Ko-En Parallel Corpus, not the downloading.
 If you want to use the corpus, it should be downloaded manually from [AI Hub](https://www.aihub.or.kr), guided by the verification process.
 Also, the translation data from AI Hub is in the file format of compressed or excel (.xlsx).
 If the files are unzipped, the names are in Hangul, the letter for the Korean language.
