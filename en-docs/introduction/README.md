@@ -4,7 +4,7 @@ sort: 5
 
 # What is Korpora
 
-`Korpora`는 오픈소스 말뭉치들의 다운로드와 전처리 기능을 제공하는 파이썬 라이브러리입니다.
-복잡한 설명을 피하고 싶으신 분들은 '설치 방법'과 '빠른 사용법'만 읽으셔도 간편하게 사용할 수 있습니다.
+`Korpora` is a Python library that helps downloading and pre-processing of the open-source Korean corpora.
+If you want to avoid complex explanation, you can only read `installation` and `quicktour` for a simple usage.
 
 {% include list.liquid %}
