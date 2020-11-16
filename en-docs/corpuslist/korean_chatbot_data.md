@@ -25,7 +25,7 @@ Data structure is as follows:
 
 Execute Python console, download the corpus, and read it.
 
-### 말뭉치 다운로드
+### Downloading the corpus
 
 You can download Korean Chatbot Data in the local by the following procedure.
 
