@@ -68,7 +68,7 @@ corpus = AIHubTranslationKorpus()
 
 ```warning
 The code above operates given the corpus is present unzipped in the directory `~/Korpora/AIHub_translation` which is under the user's local computer root.
-If the corpus exists in other directory, please add `root_dir_or_paths=custom_path` as you declare the class `AIHubTranslationKorpus`.
+If the corpus exists in other directory, please add `root_dir=custom_path` as you declare the class `AIHubTranslationKorpus`.
 ```
 
 Select and execute one between the above two codes, and the copus is assigned to the variable `corpus`.
@@ -107,7 +107,7 @@ corpus = AIHubSpokenTranslationKorpus()
 
 ```warning
 The code above operates given the corpus is present unzipped in the directory `~/Korpora/AIHub_translation` which is under the user's local computer root.
-If the corpus exists in other directory, please add `root_dir_or_paths=custom_path` as you declare the class `AIHubSpokenTranslationKorpus`.
+If the corpus exists in other directory, please add `root_dir=custom_path` as you declare the class `AIHubSpokenTranslationKorpus`.
 ```
 
 Select and execute one between the above two codes, and the copus is assigned to the variable `corpus`.
@@ -146,7 +146,7 @@ corpus = AIHubConversationTranslationKorpus()
 
 ```warning
 The code above operates given the corpus is present unzipped in the directory `~/Korpora/AIHub_translation` which is under the user's local computer root.
-If the corpus exists in other directory, please add `root_dir_or_paths=custom_path` as you declare the class `AIHubConversationTranslationKorpus`.
+If the corpus exists in other directory, please add `root_dir=custom_path` as you declare the class `AIHubConversationTranslationKorpus`.
 ```
 
 Select and execute one between the above two codes, and the copus is assigned to the variable `corpus`.
@@ -186,7 +186,7 @@ corpus = AIHubNewsTranslationKorpus()
 
 ```warning
 The code above operates given the corpus is present unzipped in the directory `~/Korpora/AIHub_translation` which is under the user's local computer root.
-If the corpus exists in other directory, please add `root_dir_or_paths=custom_path` as you declare the class `AIHubNewsTranslationKorpus`.
+If the corpus exists in other directory, please add `root_dir=custom_path` as you declare the class `AIHubNewsTranslationKorpus`.
 ```
 
 Select and execute one between the above two codes, and the copus is assigned to the variable `corpus`.
@@ -226,7 +226,7 @@ corpus = AIHubKoreanCultureTranslationKorpus()
 
 ```warning
 The code above operates given the corpus is present unzipped in the directory `~/Korpora/AIHub_translation` which is under the user's local computer root.
-If the corpus exists in other directory, please add `root_dir_or_paths=custom_path` as you declare the class `AIHubKoreanCultureTranslationKorpus`.
+If the corpus exists in other directory, please add `root_dir=custom_path` as you declare the class `AIHubKoreanCultureTranslationKorpus`.
 ```
 
 Select and execute one between the above two codes, and the copus is assigned to the variable `corpus`.
@@ -266,7 +266,7 @@ corpus = AIHubDecreeTranslationKorpus()
 
 ```warning
 The code above operates given the corpus is present unzipped in the directory `~/Korpora/AIHub_translation` which is under the user's local computer root.
-If the corpus exists in other directory, please add `root_dir_or_paths=custom_path` as you declare the class `AIHubDecreeTranslationKorpus`.
+If the corpus exists in other directory, please add `root_dir=custom_path` as you declare the class `AIHubDecreeTranslationKorpus`.
 ```
 
 Select and execute one between the above two codes, and the copus is assigned to the variable `corpus`.
@@ -306,7 +306,7 @@ corpus = AIHubGovernmentWebsiteTranslationKorpus()
 
 ```warning
 The code above operates given the corpus is present unzipped in the directory `~/Korpora/AIHub_translation` which is under the user's local computer root.
-If the corpus exists in other directory, please add `root_dir_or_paths=custom_path` as you declare the class `AIHubGovernmentWebsiteTranslationKorpus`.
+If the corpus exists in other directory, please add `root_dir=custom_path` as you declare the class `AIHubGovernmentWebsiteTranslationKorpus`.
 ```
 
 Select and execute one between the above two codes, and the copus is assigned to the variable `corpus`.
