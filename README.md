@@ -44,7 +44,7 @@
 
 `Korpora` 사용법을 자세히 안내하는 페이지는 다음과 같습니다.
 아래의 페이지는 한글과 영어로 기술되어 있습니다.
-영어 번역에 힘써주신 ((name)) (Alphabet order) 님에게 감사드립니다.
+영어 번역에 힘써주신 Won Ik Cho ([@warnikchow](https://github.com/warnikchow/) (Alphabet order) 님에게 감사드립니다.
 
 - [https://ko-nlp.github.io/Korpora](https://ko-nlp.github.io/Korpora)
 
