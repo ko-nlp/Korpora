@@ -4,7 +4,8 @@ sort: 7
 
 # Korean WikiText
 
-Korean WikiText is the Korean Wikipedia data, refined to text format and released by lovit@github.
+"Korean WikiText" is a wikitext format dataset which consists of only the headers and texts of wikipedia.
+The dataset is refined and released by lovit@github.
 Data specification is as follows:
 
 - author: lovit@github
@@ -14,7 +15,7 @@ Data specification is as follows:
   - dev : 130419 lines (4433 articles, 7.7M)
   - test : 134340 lines (4434 articles, 8.4M)
 
-Data structure is as:
+Data structure is as follows:
 
 |Attributes|Property|
 |---|---|
@@ -37,7 +38,7 @@ Korpora.fetch("kowikitext")
 
 ```note
 First, download the corpus to Korpora, a directory under the user's local computer root (`~/Korpora`).
-If you want to download it in other path, please assign `root_dir=custom_path` when you execute fetch function.
+If you want to download it in another path, please assign `root_dir=custom_path` when you execute fetch function.
 ```
 
 ```tip
