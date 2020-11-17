@@ -53,11 +53,14 @@ class Korpora:
     def fetch(cls, corpus_name, root_dir=None, force_download=False):
         if corpus_name.lower() == 'all':
             corpus_name = sorted(FETCH.keys())
-        elif corpus_name not in FETCH:
-            raise ValueError(f'Support only f{sorted(FETCH.keys())}')
 
         if isinstance(corpus_name, str):
             corpus_name = [corpus_name]
+
+        corpus_name = [name for name in corpus_name if (name[:5] != 'modu_' and name[:6] != 'aihub_')]
+        for name in corpus_name:
+            if name not in FETCH:
+                raise ValueError(f'Support only f{sorted(FETCH.keys())}')
 
         if root_dir is None:
             root_dir = default_korpora_path
