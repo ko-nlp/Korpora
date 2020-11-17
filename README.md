@@ -232,3 +232,102 @@ We hope that `Korpora` will serve as a starting point that encourages more Korea
 |aihub_translation|[Korean-English translation corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
 |open_substitles|[Korean-English parallel corpus from movie subtitles](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/open_substitles.html)|[http://opus.nlpl.eu/OpenSubtitles-v2018.php](http://opus.nlpl.eu/OpenSubtitles-v2018.php)|
 |korean_parallel_koen_news|[Korean-English parallel corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://github.com/jungyeul/korean-parallel-corpora](https://github.com/jungyeul/korean-parallel-corpora)|
+
+
+## Information page
+
+Detailed information on `Korpora` is available from the link below.
+The information page is written in both Korean and English.
+We like to thank Han Kyul Kim ([@hank110](https://github.com/hank110/)) and Won Ik Cho ([@warnikchow](https://github.com/warnikchow/)) (Alphabet order) for the English translation.
+
+- [https://ko-nlp.github.io/Korpora](https://ko-nlp.github.io/Korpora)
+
+For those who would like to quickly go through the core functions, please refer to the `Quick overview` part below.
+For more information about notes on execution or option modifications, please refer to the information page linked above.
+
+
+## Quick overview
+
+### Installation
+
+From source
+
+```bash
+git clone https://github.com/ko-nlp/Korpora
+python setup.py install
+```
+
+Using pip
+
+```bash
+pip install Korpora
+```
+
+### Using in Python
+
+`Korpora` is an open-source Python package.
+By default, it can be executed in a Python console.
+You can check the list of the available corpus with the following Python codes.
+
+```python
+from Korpora import Korpora
+Korpora.corpus_list()
+```
+
+```python
+{
+   'kcbert': 'beomi@github 님이 만드신 KcBERT 학습데이터',
+   'korean_chatbot_data': 'songys@github 님이 만드신 챗봇 문답 데이터',
+   'korean_hate_speech': '{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터',
+   'korean_petitions': 'lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터',
+   'kornli': 'KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터',
+   'korsts': 'KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터',
+   'kowikitext': "lovit@github 님이 만드신 wikitext 형식의 한국어 위키피디아 데이터",
+   'namuwikitext': 'lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터',
+   'naver_changwon_ner': '네이버 + 창원대 NER shared task data',
+   'nsmc': 'e9t@github 님이 만드신 Naver sentiment movie corpus v1.0',
+   'question_pair': 'songys@github 님이 만드신 질문쌍(Paired Question v.2)',
+   'modu_news': '국립국어원에서 만든 모두의 말뭉치: 뉴스 말뭉치',
+   'modu_messenger': '국립국어원에서 만든 모두의 말뭉치: 메신저 말뭉치',
+   'modu_mp': '국립국어원에서 만든 모두의 말뭉치: 형태 분석 말뭉치',
+   'modu_ne': '국립국어원에서 만든 모두의 말뭉치: 개체명 분석 말뭉치',
+   'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
+   'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
+   'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
+   'aihub_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어 + 대화 + 뉴스 + 한국문화 + 조례 + 지자체웹사이트)",
+   'aihub_spoken_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어)",
+   'aihub_conversation_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (대화)",
+   'aihub_news_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (뉴스)",
+   'aihub_korean_culture_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (한국문화)",
+   'aihub_decree_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (조례)",
+   'aihub_government_website_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (지자체웹사이트)",
+   'open_substitles': 'Open parallel corpus (OPUS) 에서 제공하는 영화 자막 번역 병렬 말뭉치',
+}
+```
+
+From the Python console, you can download KcBERT training data with the following Python codes.
+The corpus is downloaded to the Korpora directory within the user's root directory (`~/Korpora`).
+If you want to download a different dataset, please change the name of the corpus in the argument by the name of the dataset as expressed in the list above.
+
+```python
+from Korpora import Korpora
+Korpora.fetch("kcbert")
+```
+
+If you want to download all corpora provided by `Korpora`, use the following Python codes.
+All datasets are downloaded to `~/Korpora`.
+
+```python
+from Korpora import Korpora
+Korpora.fetch('all')
+```
+
+Using the following codes, you can load the KcBERT training dataset from your Python console.
+If the corpus does not exist in the local directory, it is downloaded to `~/Korpora` as well.
+Then, the corpus data is stored in a Python variable `corpus`  
+To load a different dataset, please change the name of the corpus in the argument by the name of the dataset as expressed in the list above.
+
+```python
+from Korpora import Korpora
+corpus = Korpora.load("kcbert")
+```
