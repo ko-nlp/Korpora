@@ -374,3 +374,13 @@ korpora lmdata \
 ```
 
 ## License
+
+- Korpora is licensed under the Creative Commons License(CCL) 4.0 [CC-BY](https://creativecommons.org/licenses/by/4.0). This license covers the Korpora package and all of its components.
+- Its users have the following rights.
+  - Share : They are free to reproduce, distribute, exhibit, perform and transmit via air (including changes in the format).
+  - Adapt : They can remix, transform, and build upon the material for any purpose, even commercially.
+- Its users have the following obligations. As long as these obligations are fulfilled, the user rights listed above are valid.
+  - Attribution : They must indicate that they have used Korpora. 
+  - No additional restrictions : For all derivative works of Korpora, they cannot impose stricter license than [CC-BY](https://creativecommons.org/licenses/by/4.0) permits.
+  - For example, if you have downloaded and used Korpora, you need to fulfill only the 'attribution' obligation. However, if you are creating and distributing models, documents or any other derivative works of Korpora, you must fulfill both the 'attribution' and 'no additional restrictions' obligations.
+- Each corpus adheres to its own license policy. Please check the license of the corpus before using it!
