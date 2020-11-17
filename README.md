@@ -196,16 +196,16 @@ korpora lmdata \
 
 Due to the growing interest in natural language processing, governments, businesses, and individuals are disclosing their data for free.
 However, even for a high-quality corpus, its existence is often unknown as datasets are scattered in different locations.
-Furthermore, each of their file or saved format is often different, making it even more difficult to use them.  
+Furthermore, each of their file or saved format is often different, making it even more difficult to use them.
 Therefore, individuals need to painstakingly create download or preprocessing codes for every instance.
 
-`Korpora` is an open-source Python package that aims to minimize such inconvenience. 
+`Korpora` is an open-source Python package that aims to minimize such inconvenience.
 The name `Korpora` comes from the word *corpora*, a plural form of the word *corpus*.
-`Korpora` is an acronym that stands for *Korean Corpora*. 
-We hope that `Korpora` will serve as a starting point that encourages more Korean datasets to be released and improve the state of Korean natural language processing to the next level.   
+`Korpora` is an acronym that stands for *Korean Corpora*.
+We hope that `Korpora` will serve as a starting point that encourages more Korean datasets to be released and improve the state of Korean natural language processing to the next level.
 
 
-## List of corpus
+## List of corpora
 
 `Korpora` provides following corpora.
 
