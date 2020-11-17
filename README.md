@@ -324,10 +324,53 @@ Korpora.fetch('all')
 
 Using the following codes, you can load the KcBERT training dataset from your Python console.
 If the corpus does not exist in the local directory, it is downloaded to `~/Korpora` as well.
-Then, the corpus data is stored in a Python variable `corpus`  
+Then, the corpus data is stored in a Python variable `corpus`.
 To load a different dataset, please change the name of the corpus in the argument by the name of the dataset as expressed in the list above.
 
 ```python
 from Korpora import Korpora
 corpus = Korpora.load("kcbert")
 ```
+
+### Using in a terminal
+
+You can execute `Korpora` through your terminal as well (Command Line Interface, CLI).
+`Korpora` can be used without executing your Python console.
+You can download the KcBERT training dataset from your terminal with the following command.
+The dataset is downloaded to `~/Korpora`.
+
+```bash
+korpora fetch --corpus kcbert
+```
+
+With the following command, you can simultaneously download the KcBERT training dataset and the chatbot Q&A pair dataset.
+With this command, you can also simultaneously download three or more datasets.
+Datasets are downloaded to `~/Korpora`.
+
+```bash
+korpora fetch --corpus kcbert korean_chatbot_data
+```
+
+You can download all corpora provided by `Korpora` from your terminal with the following command.
+Datasets are downloaded to `~/Korpora`.
+
+```bash
+korpora fetch --corpus all
+```
+
+From your terminal, you can also create a dataset for training a language model. 
+Creating this training dataset for a language model refers to a process of extracting only the sentences from all corpora provided by `Korpora` and saving them in a text file.
+A sample command is as follows.
+It simultaneously processes all corpora provided by `Korpora` and creates a single training dataset for a language model.
+Downloading the corpus and preprocessing its text occur simultaneously as well.
+If the corpus does not exist in the local directory, it is downloaded to `~/Korpora`. 
+A single output file named `all.train` will be created. 
+It is created within `output_dir`.
+
+```bash
+korpora lmdata \
+  --corpus all \
+  --output_dir ~/works/lmdata
+```
+
+## License
