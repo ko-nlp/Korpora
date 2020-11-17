@@ -6,10 +6,10 @@ from .korpora import Korpus, SentencePairKorpusData
 from .utils import fetch, default_korpora_path
 
 
-OPEN_SUBSTITLES_FETCH_INFORMATION = [
+OPEN_SUBTITLES_FETCH_INFORMATION = [
     {
         'url': 'http://opus.nlpl.eu/download.php?f=OpenSubtitles/v2018/tmx/en-ko.tmx.gz',
-        'destination': 'open_substitles/en-ko.tmx.gz',
+        'destination': 'open_subtitles/en-ko.tmx.gz',
         'method': 'download & ungzip'
     }
 ]
@@ -44,21 +44,21 @@ description = """    Author : TRAC (https://trac.edgewall.org/)
 license = """    Open Data. Details in https://opendefinition.org/od/2.1/en/"""
 
 
-class OpenSubstitleKorpus(Korpus):
+class OpenSubtitleKorpus(Korpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__(description, license)
 
         if root_dir is None:
             root_dir = default_korpora_path
-        fetch_open_substitles(root_dir, force_download)
+        fetch_open_subtitles(root_dir, force_download)
 
         sources, targets = [], []
-        for info in OPEN_SUBSTITLES_FETCH_INFORMATION:
+        for info in OPEN_SUBTITLES_FETCH_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])[:-3]
             sources_, targets_ = parse_xtm(local_path)
             sources += sources_
             targets += targets_
-        self.train = SentencePairKorpusData('OpenSubstitle.train', targets, sources)
+        self.train = SentencePairKorpusData('OpenSubtitle.train', targets, sources)
 
     def get_all_pairs(self):
         return self.train.get_all_pairs()
@@ -100,11 +100,11 @@ def parse_xtm(path):
     return sources, targets
 
 
-def fetch_open_substitles(root_dir, force_download):
-    for info in OPEN_SUBSTITLES_FETCH_INFORMATION:
+def fetch_open_subtitles(root_dir, force_download):
+    for info in OPEN_SUBTITLES_FETCH_INFORMATION:
         try:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-            fetch(info['url'], local_path, 'open_substitles', force_download, info['method'])
+            fetch(info['url'], local_path, 'open_subtitles', force_download, info['method'])
         except urllib.error.HTTPError as exception:
             print('[Korpora] [open_subtitles] Failed to download. Re-try again')
             print(f'[Korpora] [open_subtitles] error messgae: {str(exception)}')
