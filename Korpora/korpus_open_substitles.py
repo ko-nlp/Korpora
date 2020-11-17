@@ -1,5 +1,6 @@
 import os
 import re
+import urllib
 
 from .korpora import Korpus, SentencePairKorpusData
 from .utils import fetch, default_korpora_path
@@ -101,5 +102,10 @@ def parse_xtm(path):
 
 def fetch_open_substitles(root_dir, force_download):
     for info in OPEN_SUBSTITLES_FETCH_INFORMATION:
-        local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
-        fetch(info['url'], local_path, 'open_substitles', force_download, info['method'])
+        try:
+            local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
+            fetch(info['url'], local_path, 'open_substitles', force_download, info['method'])
+        except urllib.error.HTTPError as exception:
+            print('[Korpora] [open_subtitles] Failed to download. Re-try again')
+            print(f'[Korpora] [open_subtitles] error messgae: {str(exception)}')
+            continue
