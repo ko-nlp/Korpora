@@ -111,6 +111,7 @@ def web_download(url, local_path, corpus_name='', force_download=False):
     meta = site.info()
     remote_size = int(meta['Content-Length'])
     if (not force_download) and os.path.exists(local_path) and (os.stat(local_path).st_size == remote_size):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {local_path}')
         return None
     filename = os.path.basename(local_path)
     with tqdm(unit='B', unit_scale=True, miniters=1, desc=f'[{corpus_name}] download {filename}') as t:
@@ -122,6 +123,7 @@ def web_download_unzip(url, zip_path, corpus_name='', force_download=False):
     # assume that path/to/abc.zip consists path/to/abc
     data_path = zip_path[:-4]
     if (not force_download) and os.path.exists(data_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {local_path}')
         return None
     data_root = os.path.dirname(zip_path)
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
@@ -134,6 +136,7 @@ def web_download_untar(url, tar_path, corpus_name='', force_download=False):
     # assume that path/to/abc.tar consists path/to/abc
     data_path = tar_path[:-4]
     if (not force_download) and os.path.exists(data_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {local_path}')
         return None
     data_root = os.path.dirname(tar_path)
     with tarfile.open(tar_path) as tar:
@@ -146,6 +149,7 @@ def web_download_ungzip(url, gzip_path, corpus_name='', force_download=False):
     # assume that path/to/abc.gzip consists path/to/abc
     data_path = gzip_path[:-3]
     if (not force_download) and os.path.exists(data_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {local_path}')
         return None
     with gzip.open(gzip_path, 'rb') as fi:
         with open(data_path, 'wb') as fo:
@@ -161,6 +165,7 @@ def google_drive_download(file_id, local_path, corpus_name='', force_download=Fa
         return None
 
     if (not force_download) and os.path.exists(local_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {local_path}')
         return None
 
     # init a HTTP session
