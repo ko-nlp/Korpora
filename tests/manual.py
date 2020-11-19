@@ -36,10 +36,7 @@ def fetch_test(args):
     for corpus_name in corpus_list:
         if corpus_name in exclusive_fetch_test:
             continue
-        with suppress_stdout():
-            corpus = Korpora.fetch(corpus_name, root_dir=args.root_dir)
-        bar = '=' * 80
-        print(corpus, end=f'\n\n{bar}\n\n', flush=True)
+        Korpora.fetch(corpus_name, root_dir=args.root_dir)
         time.sleep(0.5)
 
 
