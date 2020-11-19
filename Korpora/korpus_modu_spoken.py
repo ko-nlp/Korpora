@@ -16,6 +16,9 @@ class ModuSpokenKorpus(ModuKorpus):
         super().__init__()
         if root_dir is None:
             root_dir = os.path.join(default_korpora_path, 'NIKL_SPOKEN')
+        alternative_root_dir = os.path.join(root_dir, 'NIKL_SPOKEN')
+        if os.path.exists(alternative_root_dir):
+            root_dir = alternative_root_dir
         paths = find_corpus_paths(root_dir)
         self.train = KorpusData('모두의_구어_말뭉치.train', load_modu_spoken(paths))
 

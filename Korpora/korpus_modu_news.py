@@ -54,6 +54,9 @@ class ModuNewsKorpus(ModuKorpus):
         super().__init__(force_download)
         if root_dir is None:
             root_dir = os.path.join(default_korpora_path, 'NIKL_NEWSPAPER')
+        alternative_root_dir = os.path.join(root_dir, 'NIKL_NEWSPAPER')
+        if os.path.exists(alternative_root_dir):
+            root_dir = alternative_root_dir
         paths = find_corpus_paths(root_dir)
         if load_light:
             self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))

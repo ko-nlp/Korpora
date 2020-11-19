@@ -16,6 +16,9 @@ class ModuMorphemeKorpus(ModuKorpus):
         super().__init__()
         if root_dir is None:
             root_dir = os.path.join(default_korpora_path, 'NIKL_MP')
+        alternative_root_dir = os.path.join(root_dir, 'NIKL_MP')
+        if os.path.exists(alternative_root_dir):
+            root_dir = alternative_root_dir
         paths = find_corpus_paths(root_dir)
         self.train = KorpusData('모두의_형태분석_말뭉치.train', load_modu_morpheme(paths))
         self.tagmap = {
