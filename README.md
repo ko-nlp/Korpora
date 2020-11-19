@@ -51,10 +51,4 @@
 
 다음은 이 프로젝트에 기여한 분들입니다. 진심으로 감사드립니다. 여러분의 참여를 기다립니다.
 
-<ul class="list-style-none">
-{% for contributor in site.github.contributors %}
-  <li class="d-inline-block mr-1">
-     <a href="{{ contributor.html_url }}"><img src="{{ contributor.avatar_url }}" width="32" height="32" alt="{{ contributor.login }}"/></a>
-  </li>
-{% endfor %}
-</ul>
+<ul class="list-style-none"> <li class="d-inline-block mr-1"> <a href="https://github.com/lovit"><img src="https://avatars1.githubusercontent.com/u/3401574?v=4" width="32" height="32" alt="lovit"></a> </li> <li class="d-inline-block mr-1"> <a href="https://github.com/ratsgo"><img src="https://avatars1.githubusercontent.com/u/26211652?v=4" width="32" height="32" alt="ratsgo"></a> </li> <li class="d-inline-block mr-1"> <a href="https://github.com/hank110"><img src="https://avatars0.githubusercontent.com/u/9034249?v=4" width="32" height="32" alt="hungry-wook"></a> </li> <li class="d-inline-block mr-1"> <a href="https://github.com/warnikchow"><img src="https://avatars0.githubusercontent.com/u/31306002?v=4" width="32" height="32" alt="hungry-wook"></a> </li> <li class="d-inline-block mr-1"> <a href="https://github.com/hungry-wook"><img src="https://avatars0.githubusercontent.com/u/43909236?v=4" width="32" height="32" alt="hungry-wook"></a> </li> </ul>
