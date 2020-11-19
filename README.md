@@ -66,7 +66,7 @@ python setup.py install
 Using pip
 
 ```bash
-pip install Korpora
+pip install Korpora==0.2.0rc1
 ```
 
 ### 파이썬에서 사용하기
@@ -260,7 +260,7 @@ python setup.py install
 Using pip
 
 ```bash
-pip install Korpora
+pip install Korpora==0.2.0rc1
 ```
 
 ### Using in Python
