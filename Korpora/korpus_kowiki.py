@@ -6,17 +6,17 @@ from .utils import fetch, default_korpora_path, load_wikitext
 KOWIKI_FETCH_INFORMATION = [
     {
         'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.train.zip',
-        'destination': 'kowiki/kowikitext_20200920.train.zip',
+        'destination': 'kowikitext/kowikitext_20200920.train.zip',
         'method': 'download & unzip'
     },
     {
         'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.test.zip',
-        'destination': 'kowiki/kowikitext_20200920.test.zip',
+        'destination': 'kowikitext/kowikitext_20200920.test.zip',
         'method': 'download & unzip'
     },
     {
         'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.dev.zip',
-        'destination': 'kowiki/kowikitext_20200920.dev.zip',
+        'destination': 'kowikitext/kowikitext_20200920.dev.zip',
         'method': 'download & unzip'
     }
 ]
@@ -51,21 +51,21 @@ class KowikiTextKorpus(Korpus):
                     'If the `INPUT` is integer, it loads only first `INPUT` sentences\n').lower()
                 if (len(response) == 1 and response == 'y') or (response == 'yes'):
                     texts, titles = self.load(local_path)
-                    self.train = SentencePairKorpusData('kowikiText.train', texts, titles)
+                    self.train = SentencePairKorpusData('KowikiText.train', texts, titles)
                 elif response.isdigit():
                     texts, titles = self.load(local_path, num_lines=int(response))
-                    self.train = SentencePairKorpusData('kowikiText.train', texts, titles)
+                    self.train = SentencePairKorpusData('KowikiText.train', texts, titles)
                 else:
-                    dirname = os.path.abspath(f'{root_dir}/kowiki')
+                    dirname = os.path.abspath(f'{root_dir}/kowikitext')
                     self.train = f'kowikitext corpus is downloaded. Open local directory {dirname}'
                     print('Continue to load `dev` and `test`')
                 continue
 
             texts, titles = self.load(local_path)
             if 'dev' in destination:
-                self.dev = SentencePairKorpusData('kowikiText.dev', texts, titles)
+                self.dev = SentencePairKorpusData('KowikiText.dev', texts, titles)
             elif 'test' in destination:
-                self.test = SentencePairKorpusData('kowikiText.test', texts, titles)
+                self.test = SentencePairKorpusData('KowikiText.test', texts, titles)
             else:
                 raise ValueError(f'Check local files')
 
