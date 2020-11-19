@@ -60,8 +60,7 @@ def load_small_test(args):
 
 def load_large_test(args):
     for corpus_name in ['kcbert', 'kowikitext', 'namuwikitext']:
-        with suppress_stdout():
-            corpus = Korpora.load(corpus_name)
+        corpus = Korpora.load(corpus_name)
         bar = '=' * 80
         print(corpus, end=f'\n\n{bar}\n\n', flush=True)
         time.sleep(0.5)
