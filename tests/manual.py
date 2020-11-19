@@ -52,7 +52,7 @@ def load_small_test(args):
         if corpus_name in exclusive_load_test:
             continue
         with suppress_stdout():
-            corpus = Korpora.load(corpus_name)
+            corpus = Korpora.load(corpus_name, root_dir=args.root_dir)
         bar = '=' * 80
         print(corpus, end=f'\n\n{bar}\n\n', flush=True)
         time.sleep(0.5)
@@ -60,7 +60,7 @@ def load_small_test(args):
 
 def load_large_test(args):
     for corpus_name in ['kcbert', 'kowikitext', 'namuwikitext']:
-        corpus = Korpora.load(corpus_name)
+        corpus = Korpora.load(corpus_name, root_dir=args.root_dir)
         bar = '=' * 80
         print(corpus, end=f'\n\n{bar}\n\n', flush=True)
         time.sleep(0.5)
@@ -69,7 +69,7 @@ def load_large_test(args):
 def load_modu_test(args):
     for corpus_name in ['modu_messenger', 'modu_mp', 'modu_ne', 'modu_news', 'modu_spoken', 'modu_web', 'modu_written']:
         with suppress_stdout():
-            corpus = Korpora.load(corpus_name)
+            corpus = Korpora.load(corpus_name, root_dir=args.root_dir)
         bar = '=' * 80
         print(corpus, end=f'\n\n{bar}\n\n', flush=True)
         time.sleep(0.5)
