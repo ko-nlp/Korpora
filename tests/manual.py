@@ -68,7 +68,8 @@ def load_large_test(args):
 
 def load_modu_test(args):
     for corpus_name in ['modu_messenger', 'modu_mp', 'modu_ne', 'modu_news', 'modu_spoken', 'modu_web', 'modu_written']:
-        corpus = Korpora.load(corpus_name, root_dir=args.root_dir)
+        with suppress_stdout():
+            corpus = Korpora.load(corpus_name, root_dir=args.root_dir)
         bar = '=' * 80
         print(corpus, end=f'\n\n{bar}\n\n', flush=True)
         time.sleep(0.5)
