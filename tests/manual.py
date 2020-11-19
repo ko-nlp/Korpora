@@ -68,8 +68,7 @@ def load_large_test(args):
 
 def load_modu_test(args):
     for corpus_name in ['modu_messenger', 'modu_mp', 'modu_ne', 'modu_news', 'modu_spoken', 'modu_web', 'modu_written']:
-        with suppress_stdout():
-            corpus = Korpora.load(corpus_name, root_dir=args.root_dir)
+        corpus = Korpora.load(corpus_name, root_dir=args.root_dir)
         bar = '=' * 80
         print(corpus, end=f'\n\n{bar}\n\n', flush=True)
         time.sleep(0.5)
@@ -81,22 +80,22 @@ def main():
 
     # fetch
     parser_fetch = subparsers.add_parser('fetch', help='Fetch `corpus` to `root`')
-    parser_fetch.add_argument('--root_dir', type=str, default=None, nargs='+', help='default is `~/Korpora/`')
+    parser_fetch.add_argument('--root_dir', type=str, default=None, help='default is `~/Korpora/`')
     parser_fetch.set_defaults(func=fetch_test)
 
     # load small corpus
     parser_load_small = subparsers.add_parser('load_small', help='Fetch `corpus` to `root`')
-    parser_load_small.add_argument('--root_dir', type=str, default=None, nargs='+', help='default is `~/Korpora/`')
+    parser_load_small.add_argument('--root_dir', type=str, default=None, help='default is `~/Korpora/`')
     parser_load_small.set_defaults(func=load_small_test)
 
     # load large corpus
     parser_load_large = subparsers.add_parser('load_large', help='Fetch `corpus` to `root`')
-    parser_load_large.add_argument('--root_dir', type=str, default=None, nargs='+', help='default is `~/Korpora/`')
+    parser_load_large.add_argument('--root_dir', type=str, default=None, help='default is `~/Korpora/`')
     parser_load_large.set_defaults(func=load_large_test)
 
     # load modu corpus
     parser_load_modu = subparsers.add_parser('load_modu', help='Fetch `corpus` to `root`')
-    parser_load_modu.add_argument('--root_dir', type=str, default=None, nargs='+', help='default is `~/Korpora/`')
+    parser_load_modu.add_argument('--root_dir', type=str, default=None, help='default is `~/Korpora/`')
     parser_load_modu.set_defaults(func=load_modu_test)
 
     # Do task
