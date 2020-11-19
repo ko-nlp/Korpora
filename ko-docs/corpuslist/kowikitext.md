@@ -10,9 +10,9 @@ sort: 7
 - author: lovit@github
 - repository: [https://github.com/lovit/kowikitext](https://github.com/lovit/kowikitext)
 - size:
-  - train : 26794425 lines (877754 articles, 1.7G)
-  - dev : 130419 lines (4433 articles, 7.7M)
-  - test : 134340 lines (4434 articles, 8.4M)
+  - train : 26,794,425 lines (877,754 articles, 1.7G)
+  - dev : 130,419 lines (4,433 articles, 7.7M)
+  - test : 134,340 lines (4,434 articles, 8.4M)
 
 데이터 구조는 다음과 같습니다.
 

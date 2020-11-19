@@ -146,7 +146,7 @@ corpus = AIHubConversationTranslationKorpus()
 
 ```warning
 위의 코드는 해당 말뭉치가 사용자의 로컬 컴퓨터 루트 하위의 `~/Korpora/AIHub_translation` 디렉토리에 압축이 해제된 상태로 존재하는 걸 전제로 작동합니다. 
-만일 다른 디렉토리에 말뭉치가 존재한다면 `AIHubSpokenTranslationKorpus` 클래스 선언시 `root_dir=custom_path` 인자를 추가하시기 바랍니다.
+만일 다른 디렉토리에 말뭉치가 존재한다면 `AIHubConversationTranslationKorpus` 클래스 선언시 `root_dir=custom_path` 인자를 추가하시기 바랍니다.
 ```
 
 위 코드 둘 중 하나를 택해 실행하면 `corpus`라는 변수에 말뭉치를 로드합니다.
