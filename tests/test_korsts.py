@@ -16,6 +16,8 @@ def test_usage():
     assert len(korsts.test) == len(korsts.test.get_all_pairs()) == \
            len(korsts.test.get_all_labels()) == len(korsts.test.get_all_genres()) == \
            len(korsts.test.get_all_filenames()) == len(korsts.test.get_all_years()) == 1379
+    print(f'str(korpus)\n{str(korsts)}')
+    print(f'str(korpus.train)\n{str(korsts.train)}')
     for example in korsts.train:
         continue
     for example in korsts.dev:

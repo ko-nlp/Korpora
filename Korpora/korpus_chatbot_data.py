@@ -26,27 +26,6 @@ license = """    CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
     Details in https://creativecommons.org/publicdomain/zero/1.0/"""
 
 
-class KoreanChatbotData(LabeledSentencePairKorpusData):
-    """
-    Attributes:
-        texts (list of str) : questions
-        pairs (list of str) : answers
-        labels (list of int) : categories
-
-    See description for detail
-
-        >>> print(str(kor_chat_data))  # or
-        >>> print(kor_chat_data.description)
-    """
-    def __init__(self, description, texts, pairs, labels):
-        super().__init__(
-            description=description,
-            texts=texts,
-            pairs=pairs,
-            labels=labels
-        )
-
-
 class KoreanChatbotKorpus(Korpus):
     """ Reference: https://github.com/songys/Chatbot_data
 
@@ -67,7 +46,7 @@ class KoreanChatbotKorpus(Korpus):
         local_path = os.path.join(os.path.abspath(root_dir), KOREAN_CHATBOT_FETCH_INFORMATION[0]['destination'])
         with open(local_path, 'r', encoding='utf-8') as f:
             questions, answers, labels = self.cleaning(csv.reader(f, delimiter=','))
-        self.train = KoreanChatbotData(description, questions, answers, labels)
+        self.train = LabeledSentencePairKorpusData('KoreanChatbot.train', questions, answers, labels)
 
     def cleaning(self, examples):
         next(examples) # skip head

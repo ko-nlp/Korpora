@@ -8,6 +8,8 @@ def test_usage():
     assert len(korean_hate_speech.test) == 974
     assert len(korean_hate_speech.dev) == 471
     assert len(korean_hate_speech.train) == 7896
+    print(f'str(korpus)\n{str(korean_hate_speech)}')
+    print(f'str(korpus.train)\n{str(korean_hate_speech.train)}')
     for data in [korean_hate_speech.train, korean_hate_speech.dev, korean_hate_speech.test, korean_hate_speech.unlabeled]:
         for _ in data:
             continue

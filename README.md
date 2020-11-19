@@ -1,417 +1,386 @@
 # Korpora: Korean Corpora Archives
 
-Korpora 는 다른 분들이 연구 목적으로 공유해주신 말뭉치들을 손쉽게 다운로드, 사용할 수 있는 기능만을 제공합니다.
+최근 자연어 처리에 관심이 높아지면서 정부와 기업은 물론 뜻있는 개인에 이르기까지 데이터를 무료로 공개하는 추세입니다. 
+하지만 데이터가 곳곳에 산재해 있다보니 품질 좋은 말뭉치임에도 그 존재조차 잘 알려지지 않은 경우가 많습니다. 
+파일 포맷과 저장 형식 등이 각기 달라 사용이 쉽지 않습니다. 
+개별 사용자들은 다운로드나 전처리 코드를 그때그때 개발해서 써야 하는 수고로움이 있습니다.
 
-말뭉치들을 공유해 주신 분들에게 감사드리며, 각 말뭉치 별 설명과 라이센스는 말뭉치 별 클래스에 기술하였습니다.
-말뭉치마다 데이터를 로딩할 때 설명과 라이센스가 화면에 출력됩니다.
-해당 말뭉치에 대해 자세히 알고 싶으신 분은 출력되는 description 을 참고하세요.
-해당 말뭉치를 연구/상용의 목적으로 이용하실 때에는 아래의 라이센스를 참고해 주시기 바랍니다.
+`Korpora`는 이 같은 불편함을 조금이나마 덜어드리기 위해 개발한 오픈소스 파이썬 패키지입니다. 
+`Korpora`는 말뭉치라는 뜻의 영어 단어 *corpus*의 복수형인 *corpora*에서 착안해 이름 지었습니다. 
+`Korpora`는 *Korean Corpora*의 준말입니다. 
+`Korpora`가 마중물이 되어 한국어 데이터셋이 더 많이 공개되고 이를 통해 한국어 자연어 처리 수준이 한 단계 업그레이드되기를 희망합니다.
 
-This package provides easy-download and easy-usage for various Korean corpora.
 
-## Install
+## 말뭉치 목록
+
+`Korpora`가 제공하는 말뭉치 목록은 다음과 같습니다.
+
+|corpus_name|description|link|
+|---|---|---|
+|korean_chatbot_data|[챗봇 트레이닝용 문답 페어](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_chatbot_data.html)|[https://github.com/songys/Chatbot_data](https://github.com/songys/Chatbot_data)|
+|kcbert|[KcBERT 모델 학습용 댓글 데이터](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_comments.html)|[https://github.com/Beomi/KcBERT](https://github.com/Beomi/KcBERT)|
+|korean_hate_speech|[한국어 혐오 데이터셋](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_hate_speech.html)|[https://github.com/kocohub/korean-hate-speech](https://github.com/kocohub/korean-hate-speech)|
+|korean_petitions|[청와대 국민 청원](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_petitions.html)|[https://github.com/lovit/petitions_archive](https://github.com/lovit/petitions_archive)|
+|kornli|[Korean NLI](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/kornli.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
+|korsts|[Korean STS](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korsts.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
+|kowikitext|[한국어 위키 텍스트](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/kowikitext.html)|[https://github.com/lovit/kowikitext/](https://github.com/lovit/kowikitext/)|
+|namuwikitext|[나무위키 텍스트](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/namuwikitext.html)|[https://github.com/lovit/namuwikitext](https://github.com/lovit/namuwikitext)|
+|naver_changwon_ner|[네이버 x 창원대 개체명 인식 데이터셋](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/naver_changwon_ner.html)|[https://github.com/naver/nlp-challenge/tree/master/missions/ner](https://github.com/naver/nlp-challenge/tree/master/missions/ner)|
+|nsmc|[NAVER Sentiment Movie Corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/nsmc.html)|[https://github.com/e9t/nsmc](https://github.com/e9t/nsmc)|
+|question_pair|[한국어 질문쌍 데이터셋](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/question_pair.html)|[https://github.com/songys/Question_pair](https://github.com/songys/Question_pair)|
+|modu_news|[모두의 말뭉치: 신문](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_news.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_messenger|[모두의 말뭉치: 메신저](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_messenger.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_mp|[모두의 말뭉치: 형태 분석](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_mp.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_ne|[모두의 말뭉치: 개체명 분석](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_ne.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_spoken|[모두의 말뭉치: 구어](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_spoken.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_web|[모두의 말뭉치: 웹](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_web.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_written|[모두의 말뭉치: 문어](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_written.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|aihub_translation|[한국어-영어 번역 말뭉치](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
+|open_subtitles|[영화 자막 한영 병렬 말뭉치](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/open_subtitles.html)|[http://opus.nlpl.eu/OpenSubtitles-v2018.php](http://opus.nlpl.eu/OpenSubtitles-v2018.php)|
+|korean_parallel_koen_news|[한국어-영어 병렬 말뭉치](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://github.com/jungyeul/korean-parallel-corpora](https://github.com/jungyeul/korean-parallel-corpora)|
+
+
+## 안내 페이지
+
+`Korpora` 사용법을 자세히 안내하는 페이지는 다음과 같습니다.
+아래의 페이지는 한글과 영어로 기술되어 있습니다.
+영어 번역에 힘써주신 Han Kyul Kim ([@hank110](https://github.com/hank110/)) Won Ik Cho ([@warnikchow](https://github.com/warnikchow/)) (Alphabet order) 님에게 감사드립니다.
+
+- [https://ko-nlp.github.io/Korpora](https://ko-nlp.github.io/Korpora)
+
+핵심 기능 위주로 빠르게 살펴보고 싶은 분들은 아래 `빠른 사용법` 파트를 참고하세요.
+실행시 주의점, 옵션 추가 및 변경 등은 위 페이지를 보시면 됩니다.
+
+
+## 빠른 사용법
+
+### 설치
 
 From source
 
-```
+```bash
 git clone https://github.com/ko-nlp/Korpora
 python setup.py install
 ```
 
 Using pip
 
-```
+```bash
 pip install Korpora
 ```
 
-## Corpus List
+### 파이썬에서 사용하기
 
-- Korpora 패키지가 제공하는 말뭉치 목록은 다음과 같습니다.
-
-|corpus_name|description|link|
-|---|---|---|
-|korean_chatbot_data|챗봇 트레이닝용 문답 페어|https://github.com/songys/Chatbot_data|
-|kcbert|KcBERT 모델 학습용 댓글 데이터|https://github.com/Beomi/KcBERT|
-|korean_hate_speech|한국어 혐오 데이터셋|https://github.com/kocohub/korean-hate-speech|
-|korean_petitions|청와대 국민 청원|https://github.com/lovit/petitions_archive|
-|kornli|Korean NLI|https://github.com/kakaobrain/KorNLUDatasets|
-|korsts|Korean STS|https://github.com/kakaobrain/KorNLUDatasets|
-|namuwikitext|나무위키 텍스트|https://github.com/lovit/namuwikitext|
-|naver_changwon_ner|네이버 x 창원대 개체명 인식 데이터셋|https://github.com/naver/nlp-challenge/tree/master/missions/ner|
-|nsmc|NAVER Sentiment Movie Corpus|https://github.com/e9t/nsmc|
-|question_pair|한국어 질문쌍 데이터셋|https://github.com/songys/Question_pair|
-
-- Korpora 패키지가 제공하는 말뭉치 목록을 확인하는 파이썬 예제는 다음과 같습니다.
+`Korpora`는 오픈소스 파이썬 패키지입니다.
+기본적으로 파이썬 콘솔(console)에서 동작합니다. 
+말뭉치 목록을 확인하는 파이썬 예제는 다음과 같습니다.
 
 ```python
 from Korpora import Korpora
-
 Korpora.corpus_list()
 ```
 
-```
-{'kcbert': 'beomi@github 님이 만드신 KcBERT 학습데이터',
- 'korean_chatbot_data': 'songys@github 님이 만드신 챗봇 문답 데이터',
- 'korean_hate_speech': '{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터',
- 'korean_petitions': 'lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터',
- 'kornli': 'KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터',
- 'korsts': 'KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터',
- 'namuwikitext': 'lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터',
- 'naver_changwon_ner': '네이버 + 창원대 NER shared task data',
- 'nsmc': 'e9t@github 님이 만드신 Naver sentiment movie corpus v1.0',
- 'question_pair': 'songys@github 님이 만드신 질문쌍(Paired Question v.2)'}
+```python
+{
+   'kcbert': 'beomi@github 님이 만드신 KcBERT 학습데이터',
+   'korean_chatbot_data': 'songys@github 님이 만드신 챗봇 문답 데이터',
+   'korean_hate_speech': '{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터',
+   'korean_petitions': 'lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터',
+   'kornli': 'KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터',
+   'korsts': 'KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터',
+   'kowikitext': "lovit@github 님이 만드신 wikitext 형식의 한국어 위키피디아 데이터",
+   'namuwikitext': 'lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터',
+   'naver_changwon_ner': '네이버 + 창원대 NER shared task data',
+   'nsmc': 'e9t@github 님이 만드신 Naver sentiment movie corpus v1.0',
+   'question_pair': 'songys@github 님이 만드신 질문쌍(Paired Question v.2)',
+   'modu_news': '국립국어원에서 만든 모두의 말뭉치: 뉴스 말뭉치',
+   'modu_messenger': '국립국어원에서 만든 모두의 말뭉치: 메신저 말뭉치',
+   'modu_mp': '국립국어원에서 만든 모두의 말뭉치: 형태 분석 말뭉치',
+   'modu_ne': '국립국어원에서 만든 모두의 말뭉치: 개체명 분석 말뭉치',
+   'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
+   'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
+   'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
+   'aihub_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어 + 대화 + 뉴스 + 한국문화 + 조례 + 지자체웹사이트)",
+   'aihub_spoken_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어)",
+   'aihub_conversation_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (대화)",
+   'aihub_news_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (뉴스)",
+   'aihub_korean_culture_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (한국문화)",
+   'aihub_decree_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (조례)",
+   'aihub_government_website_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (지자체웹사이트)",
+   'open_subtitles': 'Open parallel corpus (OPUS) 에서 제공하는 영화 자막 번역 병렬 말뭉치',
+}
 ```
 
-- 다운로드 + 파이썬 로드 예제를 참고하려면 [Usage](https://github.com/ko-nlp/Korpora#usage) 항목의 각 데이터 설명을, 다운로드만 받고 싶을 경우에는 아래 예제를 참고하세요.
+파이썬 콘솔에서 KcBERT 학습데이터를 내려 받는 파이썬 예제는 다음과 같습니다.
+사용자의 로컬 컴퓨터 루트 하위의 Korpora라는 디렉토리(`~/Korpora`)에 말뭉치를 내려 받습니다.
+다른 데이터를 받고 싶다면 위에서 확인한 말뭉치 이름을 인자로 주면 됩니다.
+
 ```python
 from Korpora import Korpora
-
-Korpora.fetch(corpus_name, force_download=True)
+Korpora.fetch("kcbert")
 ```
 
-- 제공하는 모든 코퍼스를 설치하려면 `corpus_name` 에 'all' 을 입력하세요. 설치된 코퍼스를 재설치 하고 싶은 경우에는 `force_download=True` 를 이용할 수 있습니다.
+`Korpora`가 제공하는 모든 말뭉치를 내려받고 싶다면 다음과 같이 실행하세요.
+`~/Korpora`에 말뭉치를 내려 받습니다.
+
 ```python
+from Korpora import Korpora
 Korpora.fetch('all')
-Korpora.fetch('all', force_download=True)
 ```
 
-## Usage
+KcBERT 학습데이터를 파이썬 콘솔에서 읽어들이는 예제는 다음과 같습니다.
+데이터가 로컬에 없다면 `~/Korpora`에 말뭉치를 내려 받습니다.
+이후 `corpus`라는 파이썬 변수에 말뭉치 데이터가 담기게 됩니다.
+다른 데이터를 읽고 싶다면 위에서 확인한 말뭉치 이름을 인자로 주면 됩니다.
 
-### 챗봇 트레이닝용 문답 페어
-- author: songys@github
-- repository: https://github.com/songys/Chatbot_data
-- size:
-  - train: 11,876 examples
-- example
 ```python
-from Korpora import Korpora, KoreanChatbotKorpus
-
-chatbot_corpus = KoreanChatbotKorpus() # or
-chatbot_corpus = Korpora.load('korean_chatbot_data')
-
-chatbot_corpus.train[0]
-# LabeledSentencePair(text='12시 땡!', pair='하루가 또 가네요.', label=0)
-chatbot_corpus.train[0].text
-# 12시 땡!
-chatbot_corpus.train[0].pair
-# 하루가 또 가네요.
-chatbot_corpus.train[0].label
-# 0
+from Korpora import Korpora
+corpus = Korpora.load("kcbert")
 ```
 
-- data structure
+### 터미널에서 사용하기
 
-|속성명|내용|
-|---|---|
-|text|질문|
-|pair|답변|
-|label|일상다반사 0, 이별(부정) 1, 사랑(긍정) 2|
+`Korpora`는 터미널에서도 동작합니다(Command Line Interface, CLI).
+파이썬 콘솔 실행 없이 `Korpora`를 사용할 수 있습니다. 
+터미널에서 KcBERT 학습데이터 하나를 다운받는 예제는 다음과 같습니다.
+`~/Korpora`에 말뭉치를 내려 받습니다.
+
+```bash
+korpora fetch --corpus kcbert
+```
+
+터미널에서 KcBERT 학습데이터와 챗봇 문답 데이터 두 개를 동시에 다운로드 받는 예제는 다음과 같습니다.
+이같은 방식으로 3개 이상의 데이터도 동시에 내려받을 수 있습니다.
+`~/Korpora`에 말뭉치를 내려 받습니다.
+
+```bash
+korpora fetch --corpus kcbert korean_chatbot_data
+```
+
+터미널에서 `Korpora`가 제공하는 모든 말뭉치를 내려받는 예제는 다음과 같습니다.
+`~/Korpora`에 말뭉치를 내려 받습니다.
+
+```bash
+korpora fetch --corpus all
+```
+
+터미널에서 언어모델(Language Model) 학습용 데이터를 만들 수 있습니다. 
+언어모델 학습용 데이터 구축이라고 함은, `Korpora`가 제공하는 코퍼스에서 문장만을 떼어서 텍스트 파일로 덤프하는 걸 가리킵니다. 
+기본 예제 코드는 다음과 같습니다. 
+다음 코드는 `Korpora`가 제공하는 모든 코퍼스(`all`)를 언어모델 학습용 말뭉치로 일괄 처리하는 역할을 합니다.
+다운로드와 전처리를 동시에 수행합니다.
+로컬에 데이터가 없다면 `~/Korpora`에 말뭉치를 내려 받습니다.
+결과물은 `all.train`이라는 파일 하나입니다. 
+`output_dir`에 생성됩니다.
+
+```bash
+korpora lmdata \
+  --corpus all \
+  --output_dir ~/works/lmdata
+```
+
+## License
+
+- Korpora 라이센스는 Creative Commons License(CCL) 4.0의 [CC-BY](https://creativecommons.org/licenses/by/4.0)입니다. 이 라이센스는 Korpora 패키지 및 그 부속물에 한정됩니다.
+- 이용자는 다음의 권리를 갖습니다.
+  - 공유 : 복제, 배포, 전시, 공연 및 공중 송신(포맷 변경도 포함) 등을 자유롭게 할 수 있습니다.
+  - 변경 : 리믹스, 변형, 2차적 저작물의 작성이 가능합니다. 영리 목적으로도 이용이 가능합니다.
+- 이용자는 다음의 의무가 있습니다. 아래 의무를 지키는 한 위의 권리가 유효합니다.
+  - 저작자표시 : Korpora를 이용했다는 정보를 표시해야 합니다. 
+  - 추가제한금지 : 이용자는 Korpora를 활용한 2차적 저작물에 [CC-BY](https://creativecommons.org/licenses/by/4.0)보다 엄격한 라이센스를 부가할 수 없습니다.
+  - 예컨대 Korpora를 내려 받아 단순히 사용하기만 했다면 '저작자표시'만 지키면 됩니다. Korpora를 활용해 모델이나 문서 등 2차 저작물을 만들고 이를 배포할 경우 '저작자표시'뿐 아니라 '추가제한금지' 의무도 지켜야 합니다.
+- 한편 말뭉치의 라이센스는 말뭉치별로 별도 적용됩니다. 자신이 사용할 말뭉치의 라이센스가 어떤 내용인지 활용 전에 반드시 확인하세요!
 
 
-### KcBERT dataset
-- author: beomi@github
-- repository: https://github.com/Beomi/KcBERT
-- size:
-  - train: 86,246,285 examples
-- example
+# Korpora: Korean Corpora Archives
+
+Due to the growing interest in natural language processing, governments, businesses, and individuals are disclosing their data for free.
+However, even for a high-quality corpus, its existence is often unknown as datasets are scattered in different locations.
+Furthermore, each of their file or saved format is often different, making it even more difficult to use them.
+Therefore, individuals need to painstakingly create download or preprocessing codes for every instance.
+
+`Korpora` is an open-source Python package that aims to minimize such inconvenience.
+The name `Korpora` comes from the word *corpora*, a plural form of the word *corpus*.
+`Korpora` is an acronym that stands for *Korean Corpora*.
+We hope that `Korpora` will serve as a starting point that encourages more Korean datasets to be released and improve the state of Korean natural language processing to the next level.
+
+
+## List of corpora
+
+`Korpora` provides following corpora.
+
+|corpus_name|description|link|
+|---|---|---|
+|korean_chatbot_data|[Question and answer pairs for training a chatbot](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_chatbot_data.html)|[https://github.com/songys/Chatbot_data](https://github.com/songys/Chatbot_data)|
+|kcbert|[Comment data used for training KcBERT model](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_comments.html)|[https://github.com/Beomi/KcBERT](https://github.com/Beomi/KcBERT)|
+|korean_hate_speech|[Korean hate speech dataset](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_hate_speech.html)|[https://github.com/kocohub/korean-hate-speech](https://github.com/kocohub/korean-hate-speech)|
+|korean_petitions|[Petitions to Blue House](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_petitions.html)|[https://github.com/lovit/petitions_archive](https://github.com/lovit/petitions_archive)|
+|kornli|[Korean NLI](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/kornli.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
+|korsts|[Korean STS](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korsts.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
+|kowikitext|[Korean Wikipedia text](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/kowikitext.html)|[https://github.com/lovit/kowikitext/](https://github.com/lovit/kowikitext/)|
+|namuwikitext|[Namuwiki text](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/namuwikitext.html)|[https://github.com/lovit/namuwikitext](https://github.com/lovit/namuwikitext)|
+|naver_changwon_ner|[NAVER x Changwon National University NER dataset](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/naver_changwon_ner.html)|[https://github.com/naver/nlp-challenge/tree/master/missions/ner](https://github.com/naver/nlp-challenge/tree/master/missions/ner)|
+|nsmc|[NAVER Sentiment Movie Corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/nsmc.html)|[https://github.com/e9t/nsmc](https://github.com/e9t/nsmc)|
+|question_pair|[Korean question and answer pair dataset](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/question_pair.html)|[https://github.com/songys/Question_pair](https://github.com/songys/Question_pair)|
+|modu_news|[Modu Corpus: Newspaper](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_news.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_messenger|[Modu Corpus: Messenger](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_messenger.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_mp|[Modu Corpus: Morphemes](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_mp.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_ne|[Modu Corpus: Named Entity](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_ne.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_spoken|[Modu Corpus: Spoken](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_spoken.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_web|[Modu Corpus: Web](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_web.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_written|[Modu Corpus: Written](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_written.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|aihub_translation|[Korean-English translation corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
+|open_subtitles|[Korean-English parallel corpus from movie subtitles](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/open_subtitles.html)|[http://opus.nlpl.eu/OpenSubtitles-v2018.php](http://opus.nlpl.eu/OpenSubtitles-v2018.php)|
+|korean_parallel_koen_news|[Korean-English parallel corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://github.com/jungyeul/korean-parallel-corpora](https://github.com/jungyeul/korean-parallel-corpora)|
+
+
+## Information page
+
+Detailed information on `Korpora` is available from the link below.
+The information page is written in both Korean and English.
+We like to thank Han Kyul Kim ([@hank110](https://github.com/hank110/)) and Won Ik Cho ([@warnikchow](https://github.com/warnikchow/)) (Alphabet order) for the English translation.
+
+- [https://ko-nlp.github.io/Korpora](https://ko-nlp.github.io/Korpora)
+
+For those who would like to quickly go through the core functions, please refer to the `Quick overview` part below.
+For more information about notes on execution or option modifications, please refer to the information page linked above.
+
+
+## Quick overview
+
+### Installation
+
+From source
+
+```bash
+git clone https://github.com/ko-nlp/Korpora
+python setup.py install
+```
+
+Using pip
+
+```bash
+pip install Korpora
+```
+
+### Using in Python
+
+`Korpora` is an open-source Python package.
+By default, it can be executed in a Python console.
+You can check the list of the available corpus with the following Python codes.
+
 ```python
-from Korpora import Korpora, KcBERTKorpus
-
-kcbert_corpus = KcBERTKorpus() # or
-kcbert_corpus = Korpora.load("kcbert")
-
-kcbert_corpus.train[0]
-# 우리에게 북한은 꼭 없애야 할 적일뿐
+from Korpora import Korpora
+Korpora.corpus_list()
 ```
 
-
-### Korean Hate Speech
-- author: inmoonlight@github, warnikchow@github, beomi@github
-- repository: https://github.com/kocohub/korean-hate-speech
-- size:
-  - train: 7,896 examples
-  - dev: 471 examples
-  - test: 974 examples
-  - unlabeled: 2,033,893 examples
-- example
 ```python
-from Korpora import Korpora, KoreanHateSpeech
-
-korean_hate_speech = KoreanHateSpeech() # or
-korean_hate_speech = Korpora.load('korean_hate_speech')
-
-korean_hate_speech.train[0]
-# KoreanHateSpeechLabeledExample(text='(현재 호텔주인 심정) 아18...', title='"밤새 조문 행렬...', gender_bias='False', bias='others', hate='hate')
-korean_hate_speech.train[0].text
-# (현재 호텔주인 심정) 아18...(현재 호텔주인 심정) 아18...
-korean_hate_speech.train[0].title
-# "밤새 조문 행렬...
-korean_hate_speech.train[0].gender_bias
-# False
-korean_hate_speech.train[0].bias
-# others
-korean_hate_speech.train[0].hate
-# hate
-korean_hate_speech.dev[0]
-# KoreanHateSpeechLabeledExample(text='송중기 시대극은 믿고본다...', title='"\'아스달 연대기\'...', gender_bias='False', bias='none', hate='none')
-korean_hate_speech.test[0]
-# SentencePair(text='ㅋㅋㅋㅋ 그래도 조아해주는 팬들 많아서 좋겠다 ㅠㅠ 니들은 온유가 안만져줌 ㅠㅠ', pair='"샤이니 온유, 클럽 강제추행 \'무혐의\' 처분 받았다"')
-korean_hate_speech.unlabeled[0]
-# SentencePair(text='"[단독] 지드래곤♥이주연, 제주도 데이트...', pair='"[단독] 지드래곤♥이주연, 제주도 데이트...')
+{
+   'kcbert': 'beomi@github 님이 만드신 KcBERT 학습데이터',
+   'korean_chatbot_data': 'songys@github 님이 만드신 챗봇 문답 데이터',
+   'korean_hate_speech': '{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터',
+   'korean_petitions': 'lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터',
+   'kornli': 'KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터',
+   'korsts': 'KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터',
+   'kowikitext': "lovit@github 님이 만드신 wikitext 형식의 한국어 위키피디아 데이터",
+   'namuwikitext': 'lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터',
+   'naver_changwon_ner': '네이버 + 창원대 NER shared task data',
+   'nsmc': 'e9t@github 님이 만드신 Naver sentiment movie corpus v1.0',
+   'question_pair': 'songys@github 님이 만드신 질문쌍(Paired Question v.2)',
+   'modu_news': '국립국어원에서 만든 모두의 말뭉치: 뉴스 말뭉치',
+   'modu_messenger': '국립국어원에서 만든 모두의 말뭉치: 메신저 말뭉치',
+   'modu_mp': '국립국어원에서 만든 모두의 말뭉치: 형태 분석 말뭉치',
+   'modu_ne': '국립국어원에서 만든 모두의 말뭉치: 개체명 분석 말뭉치',
+   'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
+   'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
+   'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
+   'aihub_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어 + 대화 + 뉴스 + 한국문화 + 조례 + 지자체웹사이트)",
+   'aihub_spoken_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어)",
+   'aihub_conversation_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (대화)",
+   'aihub_news_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (뉴스)",
+   'aihub_korean_culture_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (한국문화)",
+   'aihub_decree_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (조례)",
+   'aihub_government_website_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (지자체웹사이트)",
+   'open_subtitles': 'Open parallel corpus (OPUS) 에서 제공하는 영화 자막 번역 병렬 말뭉치',
+}
 ```
 
-- data structure
+From the Python console, you can download KcBERT training data with the following Python codes.
+The corpus is downloaded to the Korpora directory within the user's root directory (`~/Korpora`).
+If you want to download a different dataset, please change the name of the corpus in the argument by the name of the dataset as expressed in the list above.
 
-|속성명|내용|
-|---|---|
-|text|뉴스 댓글|
-|title/pair|뉴스 제목|
-|gender_bias|성적 차별 여부(True/False)|
-|bias|차별 종류(종교 인종 나이 외모 등)|
-|hate|특정 계층 혐오 여부(hate/none)|
-
-
-### 청와대 국민청원 (2017.08 ~ 2019.03)
-- author: lovit@github
-- repository: https://github.com/lovit/petitions_archive
-- size:
-  - train: 433,631 examples
-- example
 ```python
-from Korpora import Korpora, KoreanPetitions
-
-petitions = KoreanPetitions()  # or
-petitions = Korpora.load('korean_petitions')
-
-petitions.train[0]
-# KoreanPetition(text="안녕하세요. 현재 사대, ...", category='육아/교육', num_agree=88, begin='2017-08-25', end='2017-09-24', title='학교는 ...')
-petitions.train[0].text
-# 안녕하세요. 현재 사대, ...
-petitions.train[0].category
-# 육아/교육
-petitions.train[0].num_agree
-# 88
-petitions.train[0].begin
-# 2017-08-25
-petitions.train[0].end
-# 2017-09-24
-petitions.train[0].title
-# 학교는 ...
+from Korpora import Korpora
+Korpora.fetch("kcbert")
 ```
-- data structure
 
-|속성명|내용|
-|---|---|
-|text|청원 내용|
-|category|청원 범주|
-|num_agree|청원 동의 수|
-|begin|청원 시작일|
-|end|청원 종료일|
-|title|청원 제목|
+If you want to download all corpora provided by `Korpora`, use the following Python codes.
+All datasets are downloaded to `~/Korpora`.
 
-### KorNLI
-- author: KakaoBrain
-- repository: https://github.com/kakaobrain/KorNLUDatasets
-- references: Ham, J., Choe, Y. J., Park, K., Choi, I., & Soh, H. (2020). [KorNLI and KorSTS: New Benchmark Datasets for Korean Natural Language Understanding.](https://arxiv.org/abs/2004.03289) arXiv preprint arXiv:2004.03289.
-- size:
-  - multinli_train: 392,702 examples
-  - snli_train: 550,152 examples
-  - xnli_dev: 2,490 examples
-  - xnli_test: 5,010 examples
-- example
 ```python
-from Korpora import Korpora, KorNLI
-
-kornli = KorNLI() # or
-kornli = Korpora.load('kornli')
-
-kornli.multinli_train[0]
-# LabeledSentencePair(text='개념적으로 크림 스키밍은 제품과 지리라는 두 가지 기본 차원을 가지고 있다.', pair='제품과 지리학은 크림 스키밍을 작동시키는 것이다.', label='neutral')
-kornli.multinli_train[0].text
-# 개념적으로 크림 스키밍은 제품과 지리라는 두 가지 기본 차원을 가지고 있다.
-kornli.multinli_train[0].pair
-# 제품과 지리학은 크림 스키밍을 작동시키는 것이다.
-kornli.multinli_train[0].label
-# neutral
-kornli.snli_train[0]
-# LabeledSentencePair(text='말을 탄 사람이 고장난 비행기 위로 뛰어오른다.', pair='한 사람이 경쟁을 위해 말을 훈련시키고 있다.', label='neutral')
-kornli.xnli_dev[0]
-# LabeledSentencePair(text='그리고 그가 말했다, "엄마, 저 왔어요."', pair='그는 학교 버스가 그를 내려주자마자 엄마에게 전화를 걸었다.', label='neutral')
-kornli.xnli_test[0]
-# LabeledSentencePair(text='글쎄, 나는 그것에 관해 생각조차 하지 않았지만...', pair='나는 그와 다시 이야기하지 않았다.', label='contradiction')
+from Korpora import Korpora
+Korpora.fetch('all')
 ```
 
-- data structure
+Using the following codes, you can load the KcBERT training dataset from your Python console.
+If the corpus does not exist in the local directory, it is downloaded to `~/Korpora` as well.
+Then, the corpus data is stored in a Python variable `corpus`.
+To load a different dataset, please change the name of the corpus in the argument by the name of the dataset as expressed in the list above.
 
-|속성명|내용|
-|---|---|
-|text|문장|
-|pair|text와 쌍이 되는 문장|
-|label|text, pair 사이의 관계|
-
-
-### KorSTS
-- author: KakaoBrain
-- repository: https://github.com/kakaobrain/KorNLUDatasets
-- references: Ham, J., Choe, Y. J., Park, K., Choi, I., & Soh, H. (2020). [KorNLI and KorSTS: New Benchmark Datasets for Korean Natural Language Understanding.](https://arxiv.org/abs/2004.03289) arXiv preprint arXiv:2004.03289.
-- size:
-  - train: 5,749 examples
-  - dev: 1,500 examples
-  - test: 1,379 examples
-- example
 ```python
-from Korpora import Korpora, KorSTS
-
-korsts = KorSTS() # or
-korsts = Korpora.load('korsts')
-korsts.train[0]
-# KorSTSExample(text='비행기가 이륙하고 있다.', pair='비행기가 이륙하고 있다.', label=5.0, genre='main-captions', filename='MSRvid', year='2012test')
-korsts.train[0].text
-# 비행기가 이륙하고 있다.
-korsts.train[0].pair
-# 비행기가 이륙하고 있다.
-korsts.train[0].label
-# 5.0
-korsts.dev[0]
-# KorSTSExample(text='안전모를 가진 한 남자가 춤을 추고 있다.', pair='안전모를 쓴 한 남자가 춤을 추고 있다.', label=5.0, genre='main-captions', filename='MSRvid', year='2012test')
-korsts.test[0]
-# KorSTSExample(text='한 소녀가 머리를 스타일링하고 있다.', pair='한 소녀가 머리를 빗고 있다.', label=2.5, genre='main-captions', filename='MSRvid', year='2012test')
+from Korpora import Korpora
+corpus = Korpora.load("kcbert")
 ```
 
-- data structure
+### Using in a terminal
 
-|속성명|내용|
-|---|---|
-|text|문장|
-|pair|text와 쌍이 되는 문장|
-|label|text, pair 사이의 관계|
-|기타|데이터 관련 추가 정보|
+You can execute `Korpora` through your terminal as well (Command Line Interface, CLI).
+`Korpora` can be used without executing your Python console.
+You can download the KcBERT training dataset from your terminal with the following command.
+The dataset is downloaded to `~/Korpora`.
 
-
-### 나무위키텍스트
-- author: lovit@github
-- repository: https://github.com/lovit/namuwikitext
-- size:
-  - train: 38,278,040 lines (500,104 docs, 5.3G)
-  - dev: 197,723 lines (2,525 docs, 28M)
-  - test: 193,614 lines (2,525 docs, 29M)
-- example
-```python
-from Korpora import Korpora, NamuwikiTextKorpus
-
-namuwiki = NamuwikiTextKorpus() # or
-namuwiki = Korpora.load('namuwikitext')
-
-namuwiki.train[0]
-# SentencePair(text='상위 문서: 아스날 FC\n2009-10 시즌 2011-12 시즌\n2010 -11 시즌...', pair=' = 아스날 FC/2010-11 시즌 =')
-namuwiki.train[0].text
-# 상위 문서: 아스날 FC\n2009-10 시즌 2011-12 시즌\n2010 -11 시즌...
-namuwiki.train[0].pair
-# = 아스날 FC/2010-11 시즌 =
-namuwiki.dev[0]
-# SentencePair(text='상위 항목: 축구 관련 인물, 외국인 선수/역대 프로축구\n...', pair=' = 소말리아(축구선수) =')
-namuwiki.test[0]
-# SentencePair(text='', pair=' = 덴덴타운 =')
-```
-- data structure
-
-|속성명|내용|
-|---|---|
-|text|섹션 본문|
-|pair|섹션 타이틀|
-
-
-### 네이버, 창원대가 함께하는 NLP Challenge (NER)
-- author: 네이버 + 창원대
-- repository: https://github.com/naver/nlp-challenge/tree/master/missions/ner
-- reference: http://air.changwon.ac.kr/?page_id=10
-- size:
-  - train: 90,000 examples
-- example
-```python
-from Korpora import Korpora, NaverChangwonNERKorpus
-
-ner = NaverChangwonNERKorpus() # or
-ner = Korpora.load('naver_changwon_ner')
-
-ner.train[0]
-# WordTag(text='비토리오 양일 만에 영사관 감호 용퇴, 항룡 압력설 의심만 가율 ', words=['비토리오', '양일', '만에', '영사관', '감호', '용퇴,', '항룡', '압력설', '의심만', '가율'], tags=['PER_B', 'DAT_B', '-', 'ORG_B', 'CVL_B', '-', '-', '-', '-', '-'])
-ner.train[0].text
-# 비토리오 양일 만에 영사관 감호 용퇴, 항룡 압력설 의심만 가율 
-ner.train[0].words
-# ['비토리오', '양일', '만에', '영사관', '감호', '용퇴,', '항룡', '압력설', '의심만', '가율']
-ner.train[0].tags
-# ['PER_B', 'DAT_B', '-', 'ORG_B', 'CVL_B', '-', '-', '-', '-', '-']
-```
-- data structure
-
-|속성명|내용|
-|---|---|
-|text|words를 공백으로 이어 붙인 string|
-|words|단어 시퀀스|
-|tags|words에 대응하는 개체명 태그 시퀀스|
-
-
-### Naver sentiment movie corpus v1.0
-- author: e9t@github
-- repository: https://github.com/e9t/nsmc
-- references: www.lucypark.kr/docs/2015-pyconkr/#39
-- size:
-  - train: 150,000 examples
-  - test: 50,000 examples
-- example
-```python
-from Korpora import Korpora, NSMC
-
-nsmc = NSMC() # or
-nsmc = Korpora.load('nsmc')
-
-nsmc.train[0]
-# LabeledSentence(text='아 더빙.. 진짜 짜증나네요 목소리', label=0)
-nsmc.train[0].text
-# 아 더빙.. 진짜 짜증나네요 목소리
-nsmc.train[0].label
-# 0
-nsmc.test[0]
-# LabeledSentence(text='굳 ㅋ', label=1)
+```bash
+korpora fetch --corpus kcbert
 ```
 
-- data structure
+With the following command, you can simultaneously download the KcBERT training dataset and the chatbot Q&A pair dataset.
+With this command, you can also simultaneously download three or more datasets.
+Datasets are downloaded to `~/Korpora`.
 
-|속성명|내용|
-|---|---|
-|text|영화 리뷰 댓글|
-|label|영화에 대한 평가 (긍정 1, 부정 0)|
-
-
-### 한국어 질문쌍 (Paired Question v.2)
-- author: songys@github
-- repository: https://github.com/songys/Question_pair
-- size:
-  - train: 6,888 examples
-  - test: 688 examples
-- example
-```python
-from Korpora import Korpora, QuestionPairKorpus
-
-question_pair = QuestionPairKorpus() # or
-question_pair = Korpora.load('question_pair')
-
-question_pair.train[0]
-# LabeledSentencePair(text='1000일 만난 여자친구와 이별', pair='10년 연예의끝', label='1')
-question_pair.train[0].text
-# 1000일 만난 여자친구와 이별
-question_pair.train[0].pair
-# 10년 연예의끝
-question_pair.train[0].label
-# 1
-question_pair.test[0]
-# LabeledSentencePair(text='21살의 사랑에 대해', pair='사랑을 노력한다는게 말이 되나요?', label='1')
+```bash
+korpora fetch --corpus kcbert korean_chatbot_data
 ```
-- data structure
 
-|속성명|내용|
-|---|---|
-|text|문장|
-|pair|text와 쌍을 이루는 문장|
-|label|text와 pair가 같은 질문이면 0, 다른 질문이면 1|
+You can download all corpora provided by `Korpora` from your terminal with the following command.
+Datasets are downloaded to `~/Korpora`.
+
+```bash
+korpora fetch --corpus all
+```
+
+From your terminal, you can also create a dataset for training a language model. 
+Creating this training dataset for a language model refers to a process of extracting only the sentences from all corpora provided by `Korpora` and saving them in a text file.
+A sample command is as follows.
+It simultaneously processes all corpora provided by `Korpora` and creates a single training dataset for a language model.
+Downloading the corpus and preprocessing its text occur simultaneously as well.
+If the corpus does not exist in the local directory, it is downloaded to `~/Korpora`. 
+A single output file named `all.train` will be created. 
+It is created within `output_dir`.
+
+```bash
+korpora lmdata \
+  --corpus all \
+  --output_dir ~/works/lmdata
+```
+
+## License
+
+- Korpora is licensed under the Creative Commons License(CCL) 4.0 [CC-BY](https://creativecommons.org/licenses/by/4.0). This license covers the Korpora package and all of its components.
+- Its users have the following rights.
+  - Share : They are free to reproduce, distribute, exhibit, perform and transmit via air (including changes in the format).
+  - Adapt : They can remix, transform, and build upon the material for any purpose, even commercially.
+- Its users have the following obligations. As long as these obligations are fulfilled, the user rights listed above are valid.
+  - Attribution : They must indicate that they have used Korpora. 
+  - No additional restrictions : For all derivative works of Korpora, they cannot impose stricter license than [CC-BY](https://creativecommons.org/licenses/by/4.0) permits.
+  - For example, if you have downloaded and used Korpora, you need to fulfill only the 'attribution' obligation. However, if you are creating and distributing models, documents or any other derivative works of Korpora, you must fulfill both the 'attribution' and 'no additional restrictions' obligations.
+- Each corpus adheres to its own license policy. Please check the license of the corpus before using it!

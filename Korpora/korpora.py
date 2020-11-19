@@ -4,40 +4,32 @@ from typing import List, Union
 
 @dataclass
 class KorpusData:
-    description: str
+    name: str
     texts: List[str]
 
     def __len__(self):
         return len(self.texts)
 
-    def __getitem__(self):
-        raise NotImplementedError('Implement __getitem__')
-
     def __iter__(self):
         for i in range(len(self)):
             yield self[i]
 
+    def __getitem__(self, index):
+        return self.texts[index]
+
     def get_all_texts(self):
-        """
-        If Some KorpusDataClass has two or more text attributes, modify this function.
-
-            class SentencePairData(KorpusData):
-                pairs: List[str]
-
-                def get_all_texts(self):
-                    return self.texts + self.pairs
-
-        """
         return self.texts
 
     def __str__(self):
-        classname = self.__class__.__name__
-        spec = ""
-        for name, var in self.__dict__.items():
-            if name not in {'description', 'self'}:
-                spec += f'  {classname}.{name} (list[{var[0].__class__.__name__}]) : size={len(var)}\n'
-        s = f"""{classname}\n{self.description}\n\nAttributes:\n{spec}\n"""
+        attributes = ""
+        for var_name, var in self.__dict__.items():
+            if var_name not in {'name', 'description', 'self'}:
+                attributes += f'  - {self.name}.{var_name} : list[{var[0].__class__.__name__}]\n'
+        s = f"""{self.name}: size={len(self.texts)}\n{attributes}"""
         return s
+
+    def __repr__(self):
+        return self.__str__()
 
 
 @dataclass
@@ -47,19 +39,19 @@ class LabeledSentence:
 
 
 class LabeledSentenceKorpusData(KorpusData):
-    pairs: List[str]
+    labels: List[Union[str, int]]
 
-    def __init__(self, description, texts, labels):
+    def __init__(self, name, texts, labels):
         if not (len(texts) == len(labels)):
             raise ValueError('All two arguments must be same length')
-        super().__init__(description, texts)
+        super().__init__(name, texts)
         self.labels = labels
 
     def __getitem__(self, index):
-        return SentencePair(self.texts[index], self.labels[index])
+        return LabeledSentence(self.texts[index], self.labels[index])
 
-    def get_all_labeled_sentences(self):
-        return [LabeledSentence(s, l) for s, l in zip(self.texts, self.labels)]
+    def get_all_labels(self):
+        return self.labels
 
 
 @dataclass
@@ -71,17 +63,17 @@ class SentencePair:
 class SentencePairKorpusData(KorpusData):
     pairs: List[str]
 
-    def __init__(self, description, texts, pairs):
+    def __init__(self, name, texts, pairs):
         if not (len(texts) == len(pairs)):
             raise ValueError('All two arguments must be same length')
-        super().__init__(description, texts)
+        super().__init__(name, texts)
         self.pairs = pairs
 
     def __getitem__(self, index):
         return SentencePair(self.texts[index], self.pairs[index])
 
     def get_all_pairs(self):
-        return [SentencePair(s, p) for s, p in zip(self.texts, self.pairs)]
+        return self.pairs
 
 
 @dataclass
@@ -95,10 +87,10 @@ class LabeledSentencePairKorpusData(KorpusData):
     pairs: List[str]
     labels: List
 
-    def __init__(self, description, texts, pairs, labels):
+    def __init__(self, name, texts, pairs, labels):
         if not (len(texts) == len(pairs) == len(labels)):
             raise ValueError('All three arguments must be same length')
-        super().__init__(description, texts)
+        super().__init__(name, texts)
         self.pairs = pairs
         self.labels = labels
 
@@ -106,7 +98,7 @@ class LabeledSentencePairKorpusData(KorpusData):
         return LabeledSentencePair(self.texts[index], self.pairs[index], self.labels[index])
 
     def get_all_pairs(self):
-        return [SentencePair(s, p) for s, p in zip(self.texts, self.pairs)]
+        return self.pairs
 
     def get_all_labels(self):
         return self.labels
@@ -123,10 +115,10 @@ class WordTagKorpusData(KorpusData):
     words: List[List[str]]
     tags: List[List[str]]
 
-    def __init__(self, description, texts, words, tags):
+    def __init__(self, name, texts, words, tags):
         if not (len(texts) == len(words) == len(tags)):
             raise ValueError('All three arguments must be same length')
-        super().__init__(description, texts)
+        super().__init__(name, texts)
         self.words = words
         self.tags = tags
 
@@ -163,10 +155,10 @@ class Korpus:
 
     def __str__(self):
         classname = self.__class__.__name__
-        s = f"{classname}\n{self.description}\n\nAttributes\n"
-        for name, var in self.__dict__.items():
-            if name not in {'description', 'license', 'self'}:
-                s += f' {classname}.{name} : size={len(var)}\n'
+        s = f"{classname}\n{self.description}\n\nAttributes\n----------\n"
+        for var_name, var in self.__dict__.items():
+            if isinstance(var, KorpusData):
+                s += f'{str(var)}'
         return s
 
     def cleaning(self, raw_documents: List[str], **kargs):

@@ -11,5 +11,7 @@ def test_usage():
     assert 'CC0 1.0 Universal' in nsmc.license
     assert len(NSMCKorpus().train) == len(nsmc.train)
     nsmc.train[0]
+    print(f'str(nsmc)\n{str(nsmc)}\n')
+    print(f'str(nsmc.train)\n{nsmc.train}')
     for row in nsmc.train:
         continue

@@ -9,5 +9,7 @@ def test_usage():
     assert len(kornli.xnli_dev) == 2490
     assert len(kornli.xnli_test) == 5010
     assert len(kornli.multinli_train) == 392702
+    print(f'str(korpus)\n{str(kornli)}')
+    print(f'str(korpus.multinli_train)\n{str(kornli.multinli_train)}')
     for example in kornli.snli_train:
         continue

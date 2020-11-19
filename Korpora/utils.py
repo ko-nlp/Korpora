@@ -1,10 +1,13 @@
 import os
 import requests
+import tarfile
 import zipfile
 from os.path import expanduser
 from tqdm import tqdm
 from urllib import request
 
+import gzip
+import shutil
 
 default_korpora_path = f'{expanduser("~")}/Korpora/'
 GOOGLE_DRIVE_URL = "https://docs.google.com/uc?export=download"
@@ -20,15 +23,28 @@ def check_dir(filepath):
         os.makedirs(dirname)
 
 
-def load_text(path, num_heads=0):
+def load_text(path, num_heads=0, num_samples=-1):
+    lines = []
     with open(path, encoding='utf-8') as f:
-        lines = [line.rstrip('\n') for line in f]
-    if num_heads > 0:
-        lines = lines[num_heads:]
+        if num_heads > 0:
+            for _ in range(num_heads):
+                next(f)
+        for i, line in enumerate(f):
+            if (num_samples > 0) and (i >= num_samples):
+                break
+            lines.append(line.rstrip('\n'))
     return lines
 
 
-def load_wikitext(path):
+def load_parallel_text(source_path, target_path, num_heads=0, num_samples=-1):
+    sources = load_text(source_path, num_heads, num_samples)
+    targets = load_text(target_path, num_heads, num_samples)
+    if len(sources) != len(targets):
+        raise ValueError('Parallel corpus must have same length two files')
+    return sources, targets
+
+
+def load_wikitext(path, num_lines=-1):
     """
     Wikitext format
 
@@ -42,8 +58,17 @@ def load_wikitext(path):
         text ...
         text ...
     """
-    with open(path, encoding='utf-8') as f:
-        texts = f.read().split('\n =')
+    if num_lines <= 0:
+        with open(path, encoding='utf-8') as f:
+            texts = f.read().split('\n =')
+    else:
+        lines = []
+        with open(path, encoding='utf-8') as f:
+            for i, line in enumerate(f):
+                if (i >= num_lines):
+                    break
+                lines.append(line)
+        texts = ''.join(lines).split('\n =')
     # fix missing prefix
     texts = [texts[0]] + [f' ={text}' for text in texts[1:]]
     return texts
@@ -82,7 +107,11 @@ def _reporthook(t):
 
 
 def web_download(url, local_path, corpus_name='', force_download=False):
-    if (not force_download) and os.path.exists(local_path):
+    site = request.urlopen(url)
+    meta = site.info()
+    remote_size = int(meta['Content-Length'])
+    if (not force_download) and os.path.exists(local_path) and (os.stat(local_path).st_size == remote_size):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {local_path}')
         return None
     filename = os.path.basename(local_path)
     with tqdm(unit='B', unit_scale=True, miniters=1, desc=f'[{corpus_name}] download {filename}') as t:
@@ -94,11 +123,38 @@ def web_download_unzip(url, zip_path, corpus_name='', force_download=False):
     # assume that path/to/abc.zip consists path/to/abc
     data_path = zip_path[:-4]
     if (not force_download) and os.path.exists(data_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {data_path}')
         return None
     data_root = os.path.dirname(zip_path)
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(data_root)
     print(f'unzip {data_path}')
+
+
+def web_download_untar(url, tar_path, corpus_name='', force_download=False):
+    web_download(url, tar_path, corpus_name, force_download)
+    # assume that path/to/abc.tar consists path/to/abc
+    data_path = tar_path[:-4]
+    if (not force_download) and os.path.exists(data_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {data_path}')
+        return None
+    data_root = os.path.dirname(tar_path)
+    with tarfile.open(tar_path) as tar:
+        tar.extractall(data_root)
+    print(f'decompress {tar_path}')
+
+
+def web_download_ungzip(url, gzip_path, corpus_name='', force_download=False):
+    web_download(url, gzip_path, corpus_name, force_download)
+    # assume that path/to/abc.gzip consists path/to/abc
+    data_path = gzip_path[:-3]
+    if (not force_download) and os.path.exists(data_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {data_path}')
+        return None
+    with gzip.open(gzip_path, 'rb') as fi:
+        with open(data_path, 'wb') as fo:
+            shutil.copyfileobj(fi, fo)
+    print(f'decompress {gzip_path}')
 
 
 def google_drive_download(file_id, local_path, corpus_name='', force_download=False):
@@ -109,6 +165,7 @@ def google_drive_download(file_id, local_path, corpus_name='', force_download=Fa
         return None
 
     if (not force_download) and os.path.exists(local_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {local_path}')
         return None
 
     # init a HTTP session
@@ -160,5 +217,9 @@ def fetch(remote_path, local_path, corpus_name=None, force_download=False, metho
         google_drive_download(remote_path, destination, corpus_name, force_download)
     elif method == "download & unzip":
         web_download_unzip(remote_path, destination, corpus_name, force_download)
+    elif method == "download & untar":
+        web_download_untar(remote_path, destination, corpus_name, force_download)
+    elif method == "download & ungzip":
+        web_download_ungzip(remote_path, destination, corpus_name, force_download)
     else:
         print(f'download method is not valid ({method})')

@@ -24,7 +24,7 @@ KORSTS_FETCH_INFORMATION = [
     },
 ]
 
-description = """     Author : KakaoBrain
+description = """    Author : KakaoBrain
     Repository : https://github.com/kakaobrain/KorNLUDatasets
     References :
         - Ham, J., Choe, Y. J., Park, K., Choi, I., & Soh, H. (2020). KorNLI and KorSTS: New Benchmark
@@ -52,8 +52,8 @@ class KorSTSData(LabeledSentencePairKorpusData):
     filenames: List[str]
     years: List[str]
 
-    def __init__(self, description, texts, pairs, labels, genres, filenames, years):
-        super().__init__(description, texts, pairs, labels)
+    def __init__(self, dataname, texts, pairs, labels, genres, filenames, years):
+        super().__init__(dataname, texts, pairs, labels)
         if not (len(labels) == len(genres) == len(filenames) == len(years)):
             raise ValueError('All length of `texts`, `pairs`, `labels`, `genres`, `filenames`, `years` should be same')
         self.genres = genres
@@ -86,20 +86,21 @@ class KorSTSKorpus(Korpus):
 
         if root_dir is None:
             root_dir = default_korpora_path
-
         fetch_korsts(root_dir, force_download)
 
         for info in KORSTS_FETCH_INFORMATION:
             local_path = os.path.join(os.path.abspath(root_dir), info['destination'])
             returns = self.cleaning(load_text(local_path, num_heads=1))
             texts, pairs, labels, genres, filenames, years = returns
-            data = KorSTSData(self.description, texts, pairs, labels, genres, filenames, years)
             if 'train' in info['destination']:
-                self.train = data
+                self.train = KorSTSData(
+                    'KorSTS.train', texts, pairs, labels, genres, filenames, years)
             elif 'dev' in info['destination']:
-                self.dev = data
+                self.dev = KorSTSData(
+                    'KorSTS.dev', texts, pairs, labels, genres, filenames, years)
             elif 'test' in info['destination']:
-                self.test = data
+                self.test = KorSTSData(
+                    'KorSTS.test', texts, pairs, labels, genres, filenames, years)
             else:
                 raise ValueError('Check `KORSTS_FETCH_INFORMATION`')
 
