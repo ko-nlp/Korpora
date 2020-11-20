@@ -66,27 +66,27 @@ We hope that `Korpora` will serve as a starting point that encourages more Korea
 
 |corpus_name|description|link|
 |---|---|---|
-|korean_chatbot_data|[Question and answer pairs for training a chatbot](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_chatbot_data.html)|[https://github.com/songys/Chatbot_data](https://github.com/songys/Chatbot_data)|
-|kcbert|[Comment data used for training KcBERT model](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_comments.html)|[https://github.com/Beomi/KcBERT](https://github.com/Beomi/KcBERT)|
-|korean_hate_speech|[Korean hate speech dataset](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_hate_speech.html)|[https://github.com/kocohub/korean-hate-speech](https://github.com/kocohub/korean-hate-speech)|
-|korean_petitions|[Petitions to Blue House](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_petitions.html)|[https://github.com/lovit/petitions_archive](https://github.com/lovit/petitions_archive)|
-|kornli|[Korean NLI](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/kornli.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
-|korsts|[Korean STS](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korsts.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
-|kowikitext|[Korean Wikipedia text](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/kowikitext.html)|[https://github.com/lovit/kowikitext/](https://github.com/lovit/kowikitext/)|
-|namuwikitext|[Namuwiki text](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/namuwikitext.html)|[https://github.com/lovit/namuwikitext](https://github.com/lovit/namuwikitext)|
-|naver_changwon_ner|[NAVER x Changwon National University NER dataset](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/naver_changwon_ner.html)|[https://github.com/naver/nlp-challenge/tree/master/missions/ner](https://github.com/naver/nlp-challenge/tree/master/missions/ner)|
-|nsmc|[NAVER Sentiment Movie Corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/nsmc.html)|[https://github.com/e9t/nsmc](https://github.com/e9t/nsmc)|
-|question_pair|[Korean question and answer pair dataset](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/question_pair.html)|[https://github.com/songys/Question_pair](https://github.com/songys/Question_pair)|
-|modu_news|[Modu Corpus: Newspaper](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_news.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_messenger|[Modu Corpus: Messenger](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_messenger.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_mp|[Modu Corpus: Morphemes](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_mp.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_ne|[Modu Corpus: Named Entity](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_ne.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_spoken|[Modu Corpus: Spoken](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_spoken.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_web|[Modu Corpus: Web](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_web.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|modu_written|[Modu Corpus: Written](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/modu_written.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
-|aihub_translation|[Korean-English translation corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
-|open_subtitles|[Korean-English parallel corpus from movie subtitles](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/open_subtitles.html)|[http://opus.nlpl.eu/OpenSubtitles-v2018.php](http://opus.nlpl.eu/OpenSubtitles-v2018.php)|
-|korean_parallel_koen_news|[Korean-English parallel corpus](https://ko-nlp.github.io/Korpora/ko-docs/corpuslist/korean_parallel_koen_news.html)|[https://github.com/jungyeul/korean-parallel-corpora](https://github.com/jungyeul/korean-parallel-corpora)|
+|korean_chatbot_data|[Question and answer pairs for training a chatbot](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/korean_chatbot_data.html)|[https://github.com/songys/Chatbot_data](https://github.com/songys/Chatbot_data)|
+|kcbert|[Comment data used for training KcBERT model](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/korean_comments.html)|[https://github.com/Beomi/KcBERT](https://github.com/Beomi/KcBERT)|
+|korean_hate_speech|[Korean hate speech dataset](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/korean_hate_speech.html)|[https://github.com/kocohub/korean-hate-speech](https://github.com/kocohub/korean-hate-speech)|
+|korean_petitions|[Petitions to Blue House](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/korean_petitions.html)|[https://github.com/lovit/petitions_archive](https://github.com/lovit/petitions_archive)|
+|kornli|[Korean NLI](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/kornli.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
+|korsts|[Korean STS](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/korsts.html)|[https://github.com/kakaobrain/KorNLUDatasets](https://github.com/kakaobrain/KorNLUDatasets)|
+|kowikitext|[Korean Wikipedia text](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/kowikitext.html)|[https://github.com/lovit/kowikitext/](https://github.com/lovit/kowikitext/)|
+|namuwikitext|[Namuwiki text](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/namuwikitext.html)|[https://github.com/lovit/namuwikitext](https://github.com/lovit/namuwikitext)|
+|naver_changwon_ner|[NAVER x Changwon National University NER dataset](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/naver_changwon_ner.html)|[https://github.com/naver/nlp-challenge/tree/master/missions/ner](https://github.com/naver/nlp-challenge/tree/master/missions/ner)|
+|nsmc|[NAVER Sentiment Movie Corpus](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/nsmc.html)|[https://github.com/e9t/nsmc](https://github.com/e9t/nsmc)|
+|question_pair|[Korean question and answer pair dataset](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/question_pair.html)|[https://github.com/songys/Question_pair](https://github.com/songys/Question_pair)|
+|modu_news|[Modu Corpus: Newspaper](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/modu_news.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_messenger|[Modu Corpus: Messenger](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/modu_messenger.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_mp|[Modu Corpus: Morphemes](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/modu_mp.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_ne|[Modu Corpus: Named Entity](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/modu_ne.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_spoken|[Modu Corpus: Spoken](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/modu_spoken.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_web|[Modu Corpus: Web](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/modu_web.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|modu_written|[Modu Corpus: Written](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/modu_written.html)|[https://corpus.korean.go.kr](https://corpus.korean.go.kr)|
+|aihub_translation|[Korean-English translation corpus](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/aihub_translation.html)|[https://aihub.or.kr/aidata/87](https://aihub.or.kr/aidata/87)|
+|open_subtitles|[Korean-English parallel corpus from movie subtitles](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/open_subtitles.html)|[http://opus.nlpl.eu/OpenSubtitles-v2018.php](http://opus.nlpl.eu/OpenSubtitles-v2018.php)|
+|korean_parallel_koen_news|[Korean-English parallel corpus](https://ko-nlp.github.io/Korpora/en-docs/corpuslist/korean_parallel_koen_news.html)|[https://github.com/jungyeul/korean-parallel-corpora](https://github.com/jungyeul/korean-parallel-corpora)|
 
 
 ## License
