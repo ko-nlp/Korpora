@@ -3,7 +3,7 @@ from .korpora import Korpus, SentencePairKorpusData
 from .utils import fetch, default_korpora_path, load_wikitext, check_exists
 
 
-KOWIKI_FETCH_INFORMATION = [
+KOWIKITEXT_FETCH_INFORMATION = [
     {
         'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.train.zip',
         'destination': 'kowikitext/kowikitext_20200920.train.zip',
@@ -40,7 +40,7 @@ class KowikiTextKorpus(Korpus):
             root_dir = default_korpora_path
         fetch_kowikitext(root_dir, force_download)
 
-        for information in KOWIKI_FETCH_INFORMATION:
+        for information in KOWIKITEXT_FETCH_INFORMATION:
             destination = information['destination']
             local_path = os.path.join(os.path.abspath(root_dir), destination[:-4])
 
@@ -88,7 +88,7 @@ class KowikiTextKorpus(Korpus):
 
 
 def fetch_kowikitext(root_dir, force_download):
-    for information in KOWIKI_FETCH_INFORMATION:
+    for information in KOWIKITEXT_FETCH_INFORMATION:
         url = information['url']
         destination = information['destination']
         local_path = os.path.join(os.path.abspath(root_dir), destination)
