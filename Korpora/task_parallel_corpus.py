@@ -89,7 +89,7 @@ def check_corpus(corpus_names):
     available = []
     for name in corpus_names:
         if name not in ITERATE_TEXTS:
-            print(f'Not provide {name} corpus. Check the `corpus` argument')
+            print(f'{name} corpus not provided. Check the `corpus` argument')
             continue
         available.append(name)
     if 'aihub_translation' in available:
