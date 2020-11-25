@@ -34,9 +34,9 @@ def main():
 
     # fetch
     parser_fetch = subparsers.add_parser('fetch', help='Fetch `corpus` to `root`')
-    parser_fetch.add_argument('--corpus', type=str, default='all', nargs='+', help='corpus name')
-    parser_fetch.add_argument('--root', type=str, default=None, help='path/to/Korpora/')
-    parser_fetch.add_argument('--force_download', dest='force_download', action='store_true')
+    parser_fetch.add_argument('--corpus', '-c', type=str, default='all', nargs='+', help='corpus name')
+    parser_fetch.add_argument('--root', '-r', type=str, default=None, help='path/to/Korpora/')
+    parser_fetch.add_argument('--force_download', '-f', dest='force_download', action='store_true')
     parser_fetch.set_defaults(func=fetch)
 
     # list
@@ -45,30 +45,30 @@ def main():
 
     # create language model train data
     parser_lmdata = subparsers.add_parser('lmdata', help='Create language model train data')
-    parser_lmdata.add_argument('--corpus', type=str, required=True, nargs='+', help='corpus names')
-    parser_lmdata.add_argument('--root_dir', type=str, default=None, help='path/to/Korpora')
-    parser_lmdata.add_argument('--output_dir', type=str, required=True, help='output file path')
+    parser_lmdata.add_argument('--corpus', '-c', type=str, required=True, nargs='+', help='corpus names')
+    parser_lmdata.add_argument('--root_dir', '-r', type=str, default=None, help='path/to/Korpora')
+    parser_lmdata.add_argument('--output_dir', '-o', type=str, required=True, help='output file path')
     parser_lmdata.add_argument('--sampling_ratio', type=float, default=None, help='Sampling ratio')
     parser_lmdata.add_argument('--n_first_samples', type=int, default=None, help='Number of first samples')
     parser_lmdata.add_argument('--min_length', type=int, default=None, help='Mininum length of text')
     parser_lmdata.add_argument('--max_length', type=int, default=None, help='Maximum length of text')
     parser_lmdata.add_argument('--seed', type=int, default=None, help='Random seed')
-    parser_lmdata.add_argument('--force_download', dest='force_download', action='store_true')
+    parser_lmdata.add_argument('--force_download', '-f', dest='force_download', action='store_true')
     parser_lmdata.add_argument('--multilingual', dest='multilingual', action='store_true', help='If True, make include train data foreign language text')
     parser_lmdata.add_argument('--save_each', dest='save_each', action='store_true', help='store each corpus as a file')
     parser_lmdata.set_defaults(func=create_lmdata)
 
     # create parallel corpus data
     parser_parallel = subparsers.add_parser('parallel', help='Create parallel corpus data')
-    parser_parallel.add_argument('--corpus', type=str, required=True, nargs='+', help='corpus names')
-    parser_parallel.add_argument('--root_dir', type=str, default=None, help='path/to/Korpora')
-    parser_parallel.add_argument('--output_dir', type=str, required=True, help='output file path')
+    parser_parallel.add_argument('--corpus', '-c', type=str, required=True, nargs='+', help='corpus names')
+    parser_parallel.add_argument('--root_dir', '-r', type=str, default=None, help='path/to/Korpora')
+    parser_parallel.add_argument('--output_dir', '-o', type=str, required=True, help='output file path')
     parser_parallel.add_argument('--sampling_ratio', type=float, default=None, help='Sampling ratio')
     parser_parallel.add_argument('--n_first_samples', type=int, default=None, help='Number of first samples')
     parser_parallel.add_argument('--min_length', type=int, default=None, help='Mininum length of text')
     parser_parallel.add_argument('--max_length', type=int, default=None, help='Maximum length of text')
     parser_parallel.add_argument('--seed', type=int, default=None, help='Random seed')
-    parser_parallel.add_argument('--force_download', dest='force_download', action='store_true')
+    parser_parallel.add_argument('--force_download', '-f', dest='force_download', action='store_true')
     parser_parallel.add_argument('--save_each', dest='save_each', action='store_true', help='store each corpus as a file')
     parser_parallel.set_defaults(func=create_parallel_corpus)
 
