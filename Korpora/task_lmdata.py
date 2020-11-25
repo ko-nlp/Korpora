@@ -15,7 +15,7 @@ def create_lmdata(args):
         sampling_ratio = float(sampling_ratio)
         if not (0 < sampling_ratio < 1):
             raise ValueError('`sampling_ratio` must be None or (0, 1) float')
-    n_first_samples = args.n_first_samples
+    n_first_samples = args.head
     np.random.seed(args.seed)
     selector = Selector(sampling_ratio, args.min_length, args.max_length)
 
