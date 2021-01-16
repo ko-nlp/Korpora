@@ -172,9 +172,9 @@ def iterate_korsts(root_dir, force_download, multilingual=False):
 def iterate_kowikitext(root_dir, force_download, multilingual=False):
     Korpora.fetch('kowikitext', root_dir, force_download)
     paths = [
-        f'{root_dir}/kowiki/kowikitext_20200920.train',
-        f'{root_dir}/kowiki/kowikitext_20200920.dev',
-        f'{root_dir}/kowiki/kowikitext_20200920.test'
+        f'{root_dir}/kowikitext/kowikitext_20200920.train',
+        f'{root_dir}/kowikitext/kowikitext_20200920.dev',
+        f'{root_dir}/kowikitext/kowikitext_20200920.test'
     ]
     for path in paths:
         with open(path, encoding='utf-8') as f:
@@ -188,9 +188,9 @@ def iterate_kowikitext(root_dir, force_download, multilingual=False):
 def iterate_namuwikitext(root_dir, force_download, multilingual=False):
     Korpora.fetch('namuwikitext', root_dir, force_download)
     paths = [
-        f'{root_dir}/namiwiki/namuwikitext_20200302.train',
-        f'{root_dir}/namiwiki/namuwikitext_20200302.dev',
-        f'{root_dir}/namiwiki/namuwikitext_20200302.test'
+        f'{root_dir}/namuwikitext/namuwikitext_20200302.train',
+        f'{root_dir}/namuwikitext/namuwikitext_20200302.dev',
+        f'{root_dir}/namuwikitext/namuwikitext_20200302.test'
     ]
     for path in paths:
         with open(path, encoding='utf-8') as f:
