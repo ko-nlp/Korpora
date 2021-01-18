@@ -220,6 +220,10 @@ def iterate_question_pair(root_dir, force_download, multilingual=False):
         for sent in sents:
             yield sent
 
+def iterate_open_subtitles(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('open_subtitles', root_dir, force_download)
+    for sent in corpus.train.texts:
+        yield sent
 
 ITERATE_TEXTS = {
     'kcbert': iterate_kcbert,
@@ -233,5 +237,6 @@ ITERATE_TEXTS = {
     'namuwikitext': iterate_namuwikitext,
     'naver_changwon_ner': iterate_naver_changwon_ner,
     'nsmc': iterate_nsmc,
-    'question_pair': iterate_question_pair
+    'question_pair': iterate_question_pair,
+    'open_subtitles': iterate_open_subtitles,
 }
