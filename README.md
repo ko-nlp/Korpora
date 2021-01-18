@@ -179,6 +179,18 @@ korpora lmdata \
   --output_dir ~/works/lmdata
 ```
 
+터미널에서 번역 모델 학습용 데이터를 만들 수 있습니다.
+파일은 `xx.source`, `xx.target` 이름으로 저장됩니다.
+결과물은 `output_dir` 에 저장됩니다.
+
+```bash
+korpora parallel \
+  --corpus aihub_translation open_subtitles \
+  --output_dir ~/parallel \
+  --min_length 5 \
+  --max_length 500
+```
+
 ## License
 
 - Korpora 라이센스는 Creative Commons License(CCL) 4.0의 [CC-BY](https://creativecommons.org/licenses/by/4.0)입니다. 이 라이센스는 Korpora 패키지 및 그 부속물에 한정됩니다.
@@ -364,6 +376,7 @@ A sample command is as follows.
 It simultaneously processes all corpora provided by `Korpora` and creates a single training dataset for a language model.
 Downloading the corpus and preprocessing its text occur simultaneously as well.
 If the corpus does not exist in the local directory, it is downloaded to `~/Korpora`. 
+It also provides simple length-filtering functions (`min_length`, `max_length`).
 A single output file named `all.train` will be created. 
 It is created within `output_dir`.
 
@@ -371,6 +384,19 @@ It is created within `output_dir`.
 korpora lmdata \
   --corpus all \
   --output_dir ~/works/lmdata
+```
+
+From your terminal, you can also create a dataset for training translation model.
+A sample command for creating this parallel corpus is as follows.
+It also provides simple length-filtering functions (`min_length`, `max_length`).
+Two output files named `xx.source` and `xx.target` are created within `output_dir`.
+
+```bash
+korpora parallel \
+  --corpus aihub_translation open_subtitles \
+  --output_dir ~/parallel \
+  --min_length 5 \
+  --max_length 500
 ```
 
 ## License
