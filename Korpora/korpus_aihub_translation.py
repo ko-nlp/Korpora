@@ -1,5 +1,5 @@
 import os
-import xlrd
+import openpyxl
 from glob import glob
 from tqdm import tqdm
 
@@ -60,7 +60,7 @@ class AIHubTranslationKorpus(Korpus):
         if root_dir is None:
             root_dir = os.path.join(default_korpora_path, 'AIHub_Translation', prefix)
         elif isinstance(root_dir, str) and os.path.isdir(root_dir):
-            root_dir = os.path.join(root_dir, prefix)
+            root_dir = os.path.join(root_dir, 'AIHub_Translation', prefix)
         paths = find_corpus_paths(root_dir)
         self.train = SentencePairKorpusData(
             f'{name}.train',
@@ -117,13 +117,12 @@ def find_corpus_paths(root_dir, suffix='200226.xlsx'):
 def load_aihub_translation(paths, name):
     sources, targets = [], []
     for i_path, path in enumerate(tqdm(paths, desc=f'Loading {name}', total=len(paths))):
-        workbook = xlrd.open_workbook(path)
-        sheet = workbook.sheet_by_index(0)
-        header = sheet.row(0)
+        workbook = openpyxl.load_workbook(path)
+        sheet = workbook[workbook.sheetnames[0]]
+        header = sheet[1]
         if not (header[-2].value.strip() == '원문' and header[-1].value.strip() == '번역문'):
             raise ValueError(f'The second last column and last column in header must be ("원문", "번역문")')
-        for i_row in range(1, sheet.nrows):
-            row = sheet.row(i_row)
+        for row in sheet.iter_rows(min_row=2):
             sources.append(row[-2].value.strip())
             targets.append(row[-1].value.strip())
     return sources, targets
