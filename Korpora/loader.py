@@ -73,6 +73,10 @@ class Korpora:
     def corpus_list(cls):
         return KORPUS_DESCRIPTION
 
+    @classmethod
+    def corpus_list_en(cls):
+        return KORPUS_DESCRIPTION_EN
+
 
 KORPUS = {
     'kcbert': KcBERTKorpus,
@@ -132,6 +136,36 @@ KORPUS_DESCRIPTION = {
     'aihub_korean_culture_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (한국문화)",
     'aihub_decree_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (조례)",
     'aihub_government_website_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (지자체웹사이트)",
+}
+
+KORPUS_DESCRIPTION_EN = {
+    'kcbert': "KcBERT Pre-Training Corpus is a data for KcBERT, Korean comments BERT, released by beomi@github.",
+    'korean_chatbot_data': "Korean Chatbot Data is the QA-style chatting data created by songys@github.",
+    'korean_hate_speech': "Korean Hate Speech Dataset is created by inmoonlight@github, warnikchow@github, and beomi@github.",
+    'korean_parallel_koen_news': "Ko-En Parallel Corpus is the data released by jungyeul@github.",
+    'korean_petitions': "Korean Petitions, collected from the Blue House National Petition (2017.08 ~ 2019.03), released by lovit@github.",
+    'kornli': "Korean Natual Language Inference (NLI) dataset released by KakaoBrain.",
+    'korsts': "Korean Semantic Textual Similarity (STS) dataset released by KakaoBrain.",
+    'kowikitext': "Wikitext format of Korean wikipedia released by lovit@github.",
+    'namuwikitext': "Wikitext format of Korean namuwiki released by lovit@github.",
+    'naver_changwon_ner': "Named entity tagged corpus released by NAVER x Changwon Univ.",
+    'nsmc': "NAVER Sentiment Movie Corpus(NSMC), a Korean movie review dataset released by e9t@github.",
+    'question_pair': "Question and answer corpus released by songys@github.",
+    'modu_news': 'Newspaper released by the National Institute of Korean Language',
+    'modu_messenger': 'Conversation in messengers released by the National Institute of Korean Language',
+    'modu_mp': 'Morphological analysis corpus released by the National Institute of Korean Language',
+    'modu_ne': 'Named Entity tagging corpus released by the National Institute of Korean Language',
+    'modu_spoken': 'Spoken text released by the National Institute of Korean Language',
+    'modu_web': 'Website text released by the National Institute of Korean Language',
+    'modu_written': 'News, novel, and other written texts released by the National Institute of Korean Language',
+    'open_subtitles': 'Parallel corpus of movie subtitles released by TRAC',
+    'aihub_translation': "AI Hub Ko-En Parallel Corpus is the data released by AI Hub. `AIHub spoken` + `AIHub conversation` + `AIHub news` + `AIHub korean culture` + `AIHub decree` + `AIHub government website`)",
+    'aihub_spoken_translation': "Paralell corpus consisting spoken texts released by AI Hub",
+    'aihub_conversation_translation': "Parallel corpus consisting conversation released by AI Hub",
+    'aihub_news_translation': "Parallel corpus of Korean news released by AI Hub",
+    'aihub_korean_culture_translation': "Parallel corpus about Korean culture released by AI Hub",
+    'aihub_decree_translation': "Parallel corpus about Korean decree released by AI Hub",
+    'aihub_government_website_translation': "Parallel corpus consisting government website released by AI Hub",
 }
 
 FETCH = {
