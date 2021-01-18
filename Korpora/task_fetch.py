@@ -3,7 +3,8 @@ from .loader import Korpora, KORPUS_DESCRIPTION
 
 def fetch(args):
     corpus_names = args.corpus
-    if corpus_names == 'all':
+    if (corpus_names == 'all') or (corpus_names[0] == 'all'):
+        corpus_names = 'all'
         Korpora.fetch(corpus_names, args.root, args.force_download)
         return
 
