@@ -2,7 +2,7 @@ import os
 from typing import List
 
 from .korpora import Korpus, LabeledSentencePairKorpusData
-from .utils import fetch, default_korpora_path, load_text
+from .utils import fetch, default_korpora_path, load_text, check_exists
 
 
 KORNLI_FETCH_INFORMATION = [
@@ -101,6 +101,10 @@ class KorNLIKorpus(Korpus):
                 self.snli_train.get_all_labels() +
                 self.xnli_dev.get_all_labels() +
                 self.xnli_test.get_all_labels())
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('kornli', KORNLI_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_kornli(root_dir, force_download):

@@ -2,7 +2,7 @@ import os
 import platform
 
 from .korpora import Korpus, KorpusData
-from .utils import fetch, load_text, default_korpora_path
+from .utils import fetch, load_text, default_korpora_path, check_exists
 
 
 KCBERT_FETCH_INFORMATION = [
@@ -66,6 +66,10 @@ class KcBERTKorpus(Korpus):
         else:
             dirname = os.path.abspath(f'{root_dir}/kcbert')
             self.train = f'KcBERT corpus is downloaded. Open local directory {dirname}'
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('korean_kcbert', KCBERT_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_kcbert(root_dir, force_download):

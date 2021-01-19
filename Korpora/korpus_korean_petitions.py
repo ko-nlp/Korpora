@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from typing import List
 
 from .korpora import Korpus, KorpusData
-from .utils import fetch, default_korpora_path, load_text
+from .utils import fetch, default_korpora_path, load_text, check_exists
 
 
 KOREAN_PETITIONS_FETCH_INFORMATION = [
@@ -229,6 +229,10 @@ class KoreanPetitionsKorpus(Korpus):
 
     def get_all_titles(self):
         return self.train.titles
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('korean_petitions', KOREAN_PETITIONS_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_korean_petitions(root_dir, force_download):

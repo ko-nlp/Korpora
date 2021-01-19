@@ -23,6 +23,23 @@ def check_dir(filepath):
         os.makedirs(dirname)
 
 
+def check_exists(corpus_name, informations, root_dir=None):
+    if root_dir is None:
+        root_dir = default_korpora_path
+
+    all_is_ok = True
+    for information in informations:
+        local_installed_path = os.path.join(root_dir, information['destination'])
+        if not os.path.exists(local_installed_path):
+            print(f'Not found {local_installed_path}')
+            all_is_ok = False
+
+    if not all_is_ok:
+        print(f'Install corpus using `Korpora.fetch("{corpus_name}")`')
+        
+    return all_is_ok
+
+
 def load_text(path, num_heads=0, num_samples=-1):
     lines = []
     with open(path, encoding='utf-8') as f:

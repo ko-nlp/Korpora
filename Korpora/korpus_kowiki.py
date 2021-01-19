@@ -1,6 +1,6 @@
 import os
 from .korpora import Korpus, SentencePairKorpusData
-from .utils import fetch, default_korpora_path, load_wikitext
+from .utils import fetch, default_korpora_path, load_wikitext, check_exists
 
 
 KOWIKI_FETCH_INFORMATION = [
@@ -81,6 +81,10 @@ class KowikiTextKorpus(Korpus):
         titles, texts = zip(*wikitexts)
         # swap position
         return texts, titles
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('kowiki', KOWIKI_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_kowikitext(root_dir, force_download):

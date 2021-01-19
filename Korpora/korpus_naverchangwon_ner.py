@@ -2,7 +2,7 @@ import os
 from typing import List
 
 from .korpora import Korpus, WordTagKorpusData
-from .utils import fetch, default_korpora_path, load_text
+from .utils import fetch, default_korpora_path, load_text, check_exists
 
 
 NAVER_CHANGWON_NER_FETCH_INFORMATION = [
@@ -64,6 +64,10 @@ class NaverChangwonNERKorpus(Korpus):
 
     def get_all_words_and_tags(self):
         return [item for item in self.train]
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('naver_changwon_ner', NAVER_CHANGWON_NER_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_naverchangwon_ner(root_dir, force_download):

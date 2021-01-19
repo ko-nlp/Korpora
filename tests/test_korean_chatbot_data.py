@@ -4,6 +4,7 @@ from Korpora import KoreanChatbotKorpus
 
 def test_usage():
     chatbot_data = Korpora.load('korean_chatbot_data')
+    assert chatbot_data.exists()
     assert len(chatbot_data.train) == len(KoreanChatbotKorpus().train)
     assert len(chatbot_data.train.texts) == 11823
     assert len(chatbot_data.train.pairs) == 11823

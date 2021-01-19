@@ -10,17 +10,27 @@ from .korpora import KorpusData
 from .korpus_modu_news import ModuKorpus
 from .utils import default_korpora_path
 
+MODU_MESSENGER_INFORMATION = [
+    {
+        'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.train.zip',
+        'destination': 'kowikitext/kowikitext_20200920.train.zip',
+        'method': None,
+    }
+]
 
 class ModuMessengerKorpus(ModuKorpus):
     def __init__(self, root_dir=None, force_download=False):
         super().__init__()
-        if root_dir is None:
-            root_dir = os.path.join(default_korpora_path, 'NIKL_MESSENGER')
-        alternative_root_dir = os.path.join(root_dir, 'NIKL_MESSENGER')
-        if os.path.exists(alternative_root_dir):
-            root_dir = alternative_root_dir
-        paths = find_corpus_paths(root_dir)
+        paths = ModuKorpus.get_corpus_path(root_dir, 'NIKL_MESSENGER', find_corpus_paths)
+        if not paths:
+            raise ValueError('Not found corpus files. Check `root_dir`')
+
         self.train = KorpusData('모두의_메신저_말뭉치(conversation).train', load_modu_messenger(paths))
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        paths = ModuKorpus.get_corpus_path(root_dir, 'NIKL_MESSENGER', find_corpus_paths)
+        return len(paths) > 0
 
 
 @dataclass
@@ -59,8 +69,6 @@ def find_corpus_paths(root_dir_or_paths):
         paths = root_dir_or_paths
 
     paths = [path for path in paths if match(path)]
-    if not paths:
-        raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
     return paths
 
 

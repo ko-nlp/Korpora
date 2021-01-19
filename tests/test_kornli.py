@@ -3,6 +3,7 @@ from Korpora import Korpora, KorNLIKorpus
 
 def test_usage():
     kornli = Korpora.load('kornli')
+    assert kornli.exists()
     assert len(kornli.snli_train) == len(KorNLIKorpus().snli_train)
     kornli.snli_train[0]
     assert len(kornli.snli_train) == 550152

@@ -4,6 +4,8 @@ from Korpora import Korpora, KoreanParallelKOENNewsKorpus
 def test_usage():
     koen_news = Korpora.load('korean_parallel_koen_news')
     koen_news_ = KoreanParallelKOENNewsKorpus()
+    assert koen_news.exists()
+    assert koen_news_.exists()
     assert len(koen_news.train) == len(koen_news_.train) == 94123
     assert len(koen_news.dev) == 1000
     assert len(koen_news.test) == 2000

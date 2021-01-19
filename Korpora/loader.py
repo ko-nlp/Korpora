@@ -73,6 +73,21 @@ class Korpora:
     def corpus_list(cls):
         return KORPUS_DESCRIPTION
 
+    @classmethod
+    def exists(cls, corpus_name, root_dir=None, return_all=False):
+        if (corpus_name == 'all') or (corpus_name[0] == 'all'):
+            corpus_name = sorted(KORPUS.keys())
+        elif isinstance(corpus_name, str):
+            corpus_name = [corpus_name]
+
+        if root_dir is None:
+            root_dir = default_korpora_path
+
+        corpora = [KORPUS[name].exists(root_dir=root_dir) for name in corpus_name]
+        if return_all:
+            return corpora
+        return all(corpora)
+
 
 KORPUS = {
     'kcbert': KcBERTKorpus,
