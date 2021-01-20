@@ -225,6 +225,11 @@ def iterate_open_subtitles(root_dir, force_download, multilingual=False):
     for sent in corpus.train.texts:
         yield sent
 
+def iterate_aihub_kspon_speech_scripts(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('aihub_kspon_speech_scripts', root_dir, force_download)
+    for sent in corpus.train.texts:
+        yield sent.sentence
+
 ITERATE_TEXTS = {
     'kcbert': iterate_kcbert,
     'korean_chatbot_data': iterate_korean_chatbot_data,
@@ -239,4 +244,5 @@ ITERATE_TEXTS = {
     'nsmc': iterate_nsmc,
     'question_pair': iterate_question_pair,
     'open_subtitles': iterate_open_subtitles,
+    'aihub_kspon_speech_scripts': iterate_aihub_kspon_speech_scripts,
 }

@@ -8,6 +8,7 @@ from .korpus_aihub_translation import (
     AIHubGovernmentWebsiteTranslationKorpus,
     fetch_aihub
 )
+from .korpus_aihub_kspon_speech import AIHubKsponSpeechKorpus
 from .korpus_chatbot_data import KoreanChatbotKorpus, fetch_chatbot
 from .korpus_kcbert import KcBERTKorpus, fetch_kcbert
 from .korpus_korean_hate_speech import KoreanHateSpeechKorpus, fetch_korean_hate_speech
@@ -102,6 +103,7 @@ KORPUS = {
     'aihub_korean_culture_translation': AIHubKoreanCultureTranslationKorpus,
     'aihub_decree_translation': AIHubDecreeTranslationKorpus,
     'aihub_government_website_translation': AIHubGovernmentWebsiteTranslationKorpus,
+    'aihub_kspon_speech_scripts': AIHubKsponSpeechKorpus,
 }
 
 KORPUS_DESCRIPTION = {
@@ -132,6 +134,8 @@ KORPUS_DESCRIPTION = {
     'aihub_korean_culture_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (한국문화)",
     'aihub_decree_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (조례)",
     'aihub_government_website_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (지자체웹사이트)",
+    'aihub_kspon_speech_scripts': "AI Hub 에서 제공하는 한국어 음성 오디오 말뭉치 (전사)",
+
 }
 
 FETCH = {
@@ -162,4 +166,5 @@ FETCH = {
     'aihub_korean_culture_translation': fetch_aihub,
     'aihub_decree_translation': fetch_aihub,
     'aihub_government_website_translation': fetch_aihub,
+    'aihub_kspon_speech_scripts': fetch_aihub,
 }
