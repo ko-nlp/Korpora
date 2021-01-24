@@ -283,37 +283,38 @@ You can check the list of the available corpus with the following Python codes.
 
 ```python
 from Korpora import Korpora
-Korpora.corpus_list()
+Korpora.corpus_list_en()
 ```
 
 ```python
 {
-   'kcbert': 'beomi@github 님이 만드신 KcBERT 학습데이터',
-   'korean_chatbot_data': 'songys@github 님이 만드신 챗봇 문답 데이터',
-   'korean_hate_speech': '{inmoonlight,warnikchow,beomi}@github 님이 만드신 혐오댓글데이터',
-   'korean_petitions': 'lovit@github 님이 만드신 2017.08 ~ 2019.03 청와대 청원데이터',
-   'kornli': 'KakaoBrain 에서 제공하는 Natural Language Inference (NLI) 데이터',
-   'korsts': 'KakaoBrain 에서 제공하는 Semantic Textual Similarity (STS) 데이터',
-   'kowikitext': "lovit@github 님이 만드신 wikitext 형식의 한국어 위키피디아 데이터",
-   'namuwikitext': 'lovit@github 님이 만드신 wikitext 형식의 나무위키 데이터',
-   'naver_changwon_ner': '네이버 + 창원대 NER shared task data',
-   'nsmc': 'e9t@github 님이 만드신 Naver sentiment movie corpus v1.0',
-   'question_pair': 'songys@github 님이 만드신 질문쌍(Paired Question v.2)',
-   'modu_news': '국립국어원에서 만든 모두의 말뭉치: 뉴스 말뭉치',
-   'modu_messenger': '국립국어원에서 만든 모두의 말뭉치: 메신저 말뭉치',
-   'modu_mp': '국립국어원에서 만든 모두의 말뭉치: 형태 분석 말뭉치',
-   'modu_ne': '국립국어원에서 만든 모두의 말뭉치: 개체명 분석 말뭉치',
-   'modu_spoken': '국립국어원에서 만든 모두의 말뭉치: 구어 말뭉치',
-   'modu_web': '국립국어원에서 만든 모두의 말뭉치: 웹 말뭉치',
-   'modu_written': '국립국어원에서 만든 모두의 말뭉치: 문어 말뭉치',
-   'aihub_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어 + 대화 + 뉴스 + 한국문화 + 조례 + 지자체웹사이트)",
-   'aihub_spoken_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (구어)",
-   'aihub_conversation_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (대화)",
-   'aihub_news_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (뉴스)",
-   'aihub_korean_culture_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (한국문화)",
-   'aihub_decree_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (조례)",
-   'aihub_government_website_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (지자체웹사이트)",
-   'open_subtitles': 'Open parallel corpus (OPUS) 에서 제공하는 영화 자막 번역 병렬 말뭉치',
+    'kcbert': "KcBERT Pre-Training Corpus is a data for KcBERT, Korean comments BERT, released by beomi@github.",
+    'korean_chatbot_data': "Korean Chatbot Data is the QA-style chatting data created by songys@github.",
+    'korean_hate_speech': "Korean Hate Speech Dataset is created by inmoonlight@github, warnikchow@github, and beomi@github.",
+    'korean_parallel_koen_news': "Ko-En Parallel Corpus is the data released by jungyeul@github.",
+    'korean_petitions': "Korean Petitions, collected from the Blue House National Petition (2017.08 ~ 2019.03), released by lovit@github.",
+    'kornli': "Korean Natual Language Inference (NLI) dataset released by KakaoBrain.",
+    'korsts': "Korean Semantic Textual Similarity (STS) dataset released by KakaoBrain.",
+    'kowikitext': "Wikitext format of Korean wikipedia released by lovit@github.",
+    'namuwikitext': "Wikitext format of Korean namuwiki released by lovit@github.",
+    'naver_changwon_ner': "Named entity tagged corpus released by NAVER x Changwon Univ.",
+    'nsmc': "NAVER Sentiment Movie Corpus(NSMC), a Korean movie review dataset released by e9t@github.",
+    'question_pair': "Question and answer corpus released by songys@github.",
+    'modu_news': 'Newspaper released by the National Institute of Korean Language',
+    'modu_messenger': 'Conversation in messengers released by the National Institute of Korean Language',
+    'modu_mp': 'Morphological analysis corpus released by the National Institute of Korean Language',
+    'modu_ne': 'Named Entity tagging corpus released by the National Institute of Korean Language',
+    'modu_spoken': 'Spoken text released by the National Institute of Korean Language',
+    'modu_web': 'Website text released by the National Institute of Korean Language',
+    'modu_written': 'News, novel, and other written texts released by the National Institute of Korean Language',
+    'open_subtitles': 'Parallel corpus of movie subtitles released by TRAC',
+    'aihub_translation': "AI Hub Ko-En Parallel Corpus is the data released by AI Hub. `AIHub spoken` + `AIHub conversation` + `AIHub news` + `AIHub korean culture` + `AIHub decree` + `AIHub government website`)",
+    'aihub_spoken_translation': "Paralell corpus consisting spoken texts released by AI Hub",
+    'aihub_conversation_translation': "Parallel corpus consisting conversation released by AI Hub",
+    'aihub_news_translation': "Parallel corpus of Korean news released by AI Hub",
+    'aihub_korean_culture_translation': "Parallel corpus about Korean culture released by AI Hub",
+    'aihub_decree_translation': "Parallel corpus about Korean decree released by AI Hub",
+    'aihub_government_website_translation': "Parallel corpus consisting government website released by AI Hub",
 }
 ```
 
