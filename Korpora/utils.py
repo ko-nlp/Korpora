@@ -77,17 +77,18 @@ def load_wikitext(path, num_lines=-1):
     """
     if num_lines <= 0:
         with open(path, encoding='utf-8') as f:
-            texts = f.read().split('\n =')
+            # noise robust
+            texts = f.read().replace('\n =', '\n=').split('\n=')
     else:
         lines = []
         with open(path, encoding='utf-8') as f:
             for i, line in enumerate(f):
                 if (i >= num_lines):
                     break
-                lines.append(line)
-        texts = ''.join(lines).split('\n =')
+                lines.append(line.strip() + "\n")
+        texts = ''.join(lines).split('\n=')
     # fix missing prefix
-    texts = [texts[0]] + [f' ={text}' for text in texts[1:]]
+    texts = [texts[0]] + [f'={text}' for text in texts[1:]]
     return texts
 
 
