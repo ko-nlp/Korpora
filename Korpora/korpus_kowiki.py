@@ -72,7 +72,7 @@ class KowikiTextKorpus(Korpus):
     def load(self, path, num_lines=-1):
         def split_title_text(wikitext):
             lines = wikitext.split('\n')
-            title = lines[0]
+            title = lines[0].strip()
             text = '\n'.join([line.strip() for line in lines[2:] if line.strip()])
             return title, text
 
