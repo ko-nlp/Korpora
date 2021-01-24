@@ -5,17 +5,17 @@ from .utils import fetch, default_korpora_path, load_wikitext
 
 KOWIKITEXT_FETCH_INFORMATION = [
     {
-        'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.train.zip',
+        'url': 'https://github.com/lovit/kowikitext/releases/download/20200920.v3/kowikitext_20200920.train.zip',
         'destination': 'kowikitext/kowikitext_20200920.train.zip',
         'method': 'download & unzip'
     },
     {
-        'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.test.zip',
+        'url': 'https://github.com/lovit/kowikitext/releases/download/20200920.v3/kowikitext_20200920.test.zip',
         'destination': 'kowikitext/kowikitext_20200920.test.zip',
         'method': 'download & unzip'
     },
     {
-        'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.dev.zip',
+        'url': 'https://github.com/lovit/kowikitext/releases/download/20200920.v3/kowikitext_20200920.dev.zip',
         'destination': 'kowikitext/kowikitext_20200920.dev.zip',
         'method': 'download & unzip'
     }
