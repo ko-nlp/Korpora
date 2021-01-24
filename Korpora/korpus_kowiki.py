@@ -5,17 +5,17 @@ from .utils import fetch, default_korpora_path, load_wikitext
 
 KOWIKITEXT_FETCH_INFORMATION = [
     {
-        'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.train.zip',
+        'url': 'https://github.com/lovit/kowikitext/releases/download/20200920.v3/kowikitext_20200920.train.zip',
         'destination': 'kowikitext/kowikitext_20200920.train.zip',
         'method': 'download & unzip'
     },
     {
-        'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.test.zip',
+        'url': 'https://github.com/lovit/kowikitext/releases/download/20200920.v3/kowikitext_20200920.test.zip',
         'destination': 'kowikitext/kowikitext_20200920.test.zip',
         'method': 'download & unzip'
     },
     {
-        'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.dev.zip',
+        'url': 'https://github.com/lovit/kowikitext/releases/download/20200920.v3/kowikitext_20200920.dev.zip',
         'destination': 'kowikitext/kowikitext_20200920.dev.zip',
         'method': 'download & unzip'
     }
@@ -72,7 +72,7 @@ class KowikiTextKorpus(Korpus):
     def load(self, path, num_lines=-1):
         def split_title_text(wikitext):
             lines = wikitext.split('\n')
-            title = lines[0]
+            title = lines[0].strip()
             text = '\n'.join([line.strip() for line in lines[2:] if line.strip()])
             return title, text
 
