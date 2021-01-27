@@ -74,6 +74,10 @@ class Korpora:
         return KORPUS_DESCRIPTION
 
     @classmethod
+    def corpus_list_en(cls):
+        return KORPUS_DESCRIPTION_EN
+
+    @classmethod
     def exists(cls, corpus_name, root_dir=None, return_by_each_corpus=False):
         if (corpus_name == 'all') or (corpus_name[0] == 'all'):
             corpus_name = sorted(KORPUS.keys())
@@ -88,9 +92,6 @@ class Korpora:
             return corpora
 
         return all(corpora)
-
-    def corpus_list_en(cls):
-        return KORPUS_DESCRIPTION_EN
 
 
 KORPUS = {
