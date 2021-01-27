@@ -48,22 +48,38 @@ class ModuKorpus(Korpus):
             fetch_modu()
         super().__init__(description, license)
 
+    @classmethod
+    def get_corpus_path(cls, root_dir=None, prefix='', finder=None):
+        if root_dir is None:
+            root_dir = os.path.join(default_korpora_path, prefix)
+        alternative_root_dir = os.path.join(root_dir, prefix)
+        if os.path.exists(alternative_root_dir):
+            root_dir = alternative_root_dir
+        paths = []
+        if callable(finder):
+            paths = finder(root_dir)
+
+        return paths
+    
 
 class ModuNewsKorpus(ModuKorpus):
     def __init__(self, root_dir=None, force_download=False, load_light=True):
         super().__init__(force_download)
-        if root_dir is None:
-            root_dir = os.path.join(default_korpora_path, 'NIKL_NEWSPAPER')
-        alternative_root_dir = os.path.join(root_dir, 'NIKL_NEWSPAPER')
-        if os.path.exists(alternative_root_dir):
-            root_dir = alternative_root_dir
-        paths = find_corpus_paths(root_dir)
+        paths = ModuKorpus.get_corpus_path(root_dir, 'NIKL_NEWSPAPER', find_corpus_paths)
+        if not paths:
+            raise ValueError('Not found corpus files. Check `root_dir`')
+
         if load_light:
             self.train = ModuNewsDataLight('모두의_뉴스_말뭉치(light).train', load_modu_news(paths, load_light))
         else:
             self.train = ModuNewsData('모두의_뉴스_말뭉치.train', load_modu_news(paths, load_light))
         self.row_to_documentid = [news.document_id for news in self.train]
         self.documentid_to_row = {document_id: idx for idx, document_id in enumerate(self.row_to_documentid)}
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        paths = ModuKorpus.get_corpus_path(root_dir, 'NIKL_NEWSPAPER', find_corpus_paths)
+        return len(paths) > 0
 
 
 class ModuNewsData(KorpusData):
@@ -159,8 +175,6 @@ def find_corpus_paths(root_dir_or_paths):
         paths = root_dir_or_paths
 
     paths = [path for path in paths if match(path)]
-    if not paths:
-        raise ValueError('Not found corpus files. Check `root_dir_or_paths`')
     return paths
 
 

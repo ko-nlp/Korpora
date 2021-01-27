@@ -2,7 +2,7 @@ import os
 import csv
 
 from .korpora import Korpus, LabeledSentencePairKorpusData
-from .utils import fetch, default_korpora_path
+from .utils import fetch, default_korpora_path, check_exists
 
 
 QUESTION_PAIR_FETCH_INFORMATION = [
@@ -72,6 +72,10 @@ class QuestionPairKorpus(Korpus):
 
     def get_all_labels(self):
         return self.train.get_all_labels() + self.test.get_all_labels()
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('question_pair', QUESTION_PAIR_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_questionpair(root_dir, force_download):

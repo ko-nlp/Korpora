@@ -40,6 +40,13 @@ def fetch_test(args):
         time.sleep(0.5)
 
 
+def exists_test(args):
+    for corpus_name in corpus_list:
+        result = Korpora.exists(corpus_name, root_dir=args.root_dir)
+        print(corpus_name, result)
+        time.sleep(0.1)
+
+
 def load_small_test(args):
     exclusive_load_test = {
         'kcbert', 'kowikitext', 'namuwikitext',
@@ -80,6 +87,11 @@ def main():
     parser_fetch = subparsers.add_parser('fetch', help='Fetch `corpus` to `root`')
     parser_fetch.add_argument('--root_dir', type=str, default=None, help='default is `~/Korpora/`')
     parser_fetch.set_defaults(func=fetch_test)
+
+    # exists
+    parser_fetch = subparsers.add_parser('exists', help='Check if a `corpus` exists')
+    parser_fetch.add_argument('--root_dir', type=str, default=None, help='default is `~/Korpora/`')
+    parser_fetch.set_defaults(func=exists_test)
 
     # load small corpus
     parser_load_small = subparsers.add_parser('load_small', help='Fetch `corpus` to `root`')

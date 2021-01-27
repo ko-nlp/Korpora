@@ -3,6 +3,7 @@ from Korpora import Korpora, KorSTSKorpus
 
 def test_usage():
     korsts = Korpora.load('korsts')
+    assert korsts.exists()
     assert len(korsts.train) == len(KorSTSKorpus().train)
     korsts.train[0]
     korsts.dev[0]

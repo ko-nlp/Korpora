@@ -2,7 +2,7 @@ import os
 import csv
 
 from .korpora import Korpus, LabeledSentencePairKorpusData
-from .utils import fetch, default_korpora_path
+from .utils import fetch, default_korpora_path, check_exists
 
 
 KOREAN_CHATBOT_FETCH_INFORMATION = [
@@ -63,6 +63,10 @@ class KoreanChatbotKorpus(Korpus):
 
     def get_all_labels(self):
         return self.train.get_all_labels()
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('korean_chatbot_data', KOREAN_CHATBOT_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_chatbot(root_dir, force_download):

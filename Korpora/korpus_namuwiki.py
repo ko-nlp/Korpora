@@ -1,6 +1,6 @@
 import os
 from .korpora import Korpus, SentencePairKorpusData
-from .utils import fetch, default_korpora_path, load_wikitext
+from .utils import fetch, default_korpora_path, load_wikitext, check_exists
 
 
 NAMUWIKI_FETCH_INFORMATION = [
@@ -81,6 +81,10 @@ class NamuwikiTextKorpus(Korpus):
         titles, texts = zip(*wikitexts)
         # swap position
         return texts, titles
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('namuwikitext', NAMUWIKI_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_namuwikitext(root_dir, force_download):

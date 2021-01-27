@@ -3,7 +3,7 @@ import re
 import urllib
 
 from .korpora import Korpus, SentencePairKorpusData
-from .utils import fetch, default_korpora_path
+from .utils import fetch, default_korpora_path, check_exists
 
 
 OPEN_SUBTITLES_FETCH_INFORMATION = [
@@ -62,6 +62,10 @@ class OpenSubtitleKorpus(Korpus):
 
     def get_all_pairs(self):
         return self.train.get_all_pairs()
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('open_subtitles', OPEN_SUBTITLES_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def parse_xtm(path):

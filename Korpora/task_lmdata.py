@@ -7,7 +7,6 @@ from .utils import default_korpora_path
 
 
 def create_lmdata(args):
-    corpus_names = check_corpus(args.corpus)
     os.makedirs(os.path.abspath(args.output_dir), exist_ok=True)
 
     sampling_ratio = args.sampling_ratio
@@ -25,6 +24,7 @@ def create_lmdata(args):
     force_download = args.force_download
     multilingual = args.multilingual
 
+    corpus_names = check_corpus(root_dir, args.corpus)
     status = [['', name, ' - ', ''] for name in corpus_names]
 
     for i_corpus, name in enumerate(corpus_names):
@@ -79,7 +79,7 @@ class Selector:
         return np.random.rand() < self.sampling_ratio
 
 
-def check_corpus(corpus_names):
+def check_corpus(root_dir, corpus_names):
     if (corpus_names == 'all') or (corpus_names[0] == 'all'):
         corpus_names = list(ITERATE_TEXTS)
     if isinstance(corpus_names, str):
@@ -89,22 +89,25 @@ def check_corpus(corpus_names):
         if name not in ITERATE_TEXTS:
             print(f'Not provide {name} corpus. Check the `corpus` argument')
             continue
-        available.append(name)
+        if Korpora.exists(name, root_dir=root_dir):
+            available.append(name)
     if not available:
-        raise ValueError('Not found any proper corpus name. Check the `corpus` argument')
+        raise ValueError(
+            'Not found any proper corpus name. Check the `corpus` argument')
     return available
 
 
 def print_status(status):
     max_len = max(max(len(row[3]) for row in status), 9)
     form = '| {:4} | {:25} | {:10} | {} |'
-    print('\n\n' + form.format('Done', 'Corpus name', 'Num sents', 'File name' + ' ' * (max_len - 9)))
+    print('\n\n' + form.format('Done', 'Corpus name',
+                               'Num sents', 'File name' + ' ' * (max_len - 9)))
     print(form.format('-' * 4, '-' * 25, '-' * 10, '-' * max_len))
     for finish, name, num_sent, filename in status:
         if not filename:
             filename = ' ' * max_len
         else:
-            filename += ' ' * (max_len -len(filename))
+            filename += ' ' * (max_len - len(filename))
         print(form.format(finish, name, num_sent, filename))
 
 
@@ -135,7 +138,8 @@ def iterate_korean_hate_speech(root_dir, force_download, multilingual=False):
 
 
 def iterate_korean_parallel_koen_news(root_dir, force_download, multilingual):
-    corpus = Korpora.load('korean_parallel_koen_news', root_dir, force_download)
+    corpus = Korpora.load('korean_parallel_koen_news',
+                          root_dir, force_download)
     data = [corpus.train.texts, corpus.dev.texts, corpus.test.texts]
     if multilingual:
         data += [corpus.train.pairs, corpus.dev.pairs, corpus.test.pairs]
@@ -220,10 +224,63 @@ def iterate_question_pair(root_dir, force_download, multilingual=False):
         for sent in sents:
             yield sent
 
+
 def iterate_open_subtitles(root_dir, force_download, multilingual=False):
     corpus = Korpora.load('open_subtitles', root_dir, force_download)
     for sent in corpus.train.texts:
         yield sent
+
+
+def iterate_modu_news(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('modu_news', root_dir, force_download)
+    for sent in corpus.train.texts:
+        yield sent
+
+
+def iterate_modu_messenger(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('modu_messenger', root_dir, force_download)
+    for utt in corpus.train.texts:
+        for sent in utt.form:
+            yield sent
+
+
+def iterate_modu_mp(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('modu_mp', root_dir, force_download)
+    for mp in corpus.train.texts:
+        yield mp.sentence
+
+
+def iterate_modu_ne(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('modu_ne', root_dir, force_download)
+    for sent in corpus.train.texts:
+        yield sent.sentence
+
+
+def iterate_modu_spoken(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('modu_spoken', root_dir, force_download)
+    for sent in corpus.train.texts:
+        yield sent
+
+
+def iterate_modu_web(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('modu_web', root_dir, force_download)
+    for sent in corpus.train.texts:
+        yield sent
+
+
+def iterate_modu_written(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('modu_written', root_dir, force_download)
+    for sent in corpus.train.texts:
+        yield sent
+
+
+def iterate_aihub_translation(corpus_name=''):
+    def fn_iterate_aihub_translation(root_dir, force_download, multilingual=False):
+        corpus = Korpora.load(corpus_name, root_dir, force_download)
+        for sent in corpus.train.texts:
+            yield sent
+    return fn_iterate_aihub_translation
+
 
 ITERATE_TEXTS = {
     'kcbert': iterate_kcbert,
@@ -239,4 +296,17 @@ ITERATE_TEXTS = {
     'nsmc': iterate_nsmc,
     'question_pair': iterate_question_pair,
     'open_subtitles': iterate_open_subtitles,
+    'modu_news': iterate_modu_news,
+    'modu_messenger': iterate_modu_messenger,
+    'modu_mp': iterate_modu_mp,
+    'modu_ne': iterate_modu_ne,
+    'modu_spoken': iterate_modu_spoken,
+    'modu_web': iterate_modu_web,
+    'modu_written': iterate_modu_written,
+    'aihub_spoken_translation': iterate_aihub_translation('aihub_spoken_translation'),
+    'aihub_conversation_translation':  iterate_aihub_translation('aihub_conversation_translation'),
+    'aihub_news_translation':  iterate_aihub_translation('aihub_news_translation'),
+    'aihub_korean_culture_translation':  iterate_aihub_translation('aihub_korean_culture_translation'),
+    'aihub_decree_translation':  iterate_aihub_translation('aihub_decree_translation'),
+    'aihub_government_website_translation':  iterate_aihub_translation('aihub_government_website_translation'),
 }

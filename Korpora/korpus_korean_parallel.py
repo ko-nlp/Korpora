@@ -2,7 +2,7 @@ import os
 from typing import List
 
 from .korpora import Korpus, SentencePairKorpusData
-from .utils import fetch, default_korpora_path, load_parallel_text
+from .utils import fetch, default_korpora_path, load_parallel_text, check_exists
 
 
 KOREAN_PARALLEL_KOEN_NEWS_FETCH_INFORMATION = [
@@ -57,6 +57,10 @@ class KoreanParallelKOENNewsKorpus(Korpus):
             fetch(fetch_info['url'], local_path, 'korean_parallel', force_download, fetch_info['method'])
         sources, targets = load_parallel_text(source_path, target_path)
         return SentencePairKorpusData(dataname, sources, targets)
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('korean_parallel_koen_news', KOREAN_PARALLEL_KOEN_NEWS_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_korean_parallel_koen_news(root_dir, force_download):

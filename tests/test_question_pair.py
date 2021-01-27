@@ -3,6 +3,7 @@ from Korpora import Korpora, QuestionPairKorpus
 
 def test_usage():
     pair = Korpora.load('question_pair')
+    assert pair.exists()
     assert len(pair.train) == len(QuestionPairKorpus().train)
     pair.train[0]
     pair.test[0]

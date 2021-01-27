@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import List
 
 from .korpora import Korpus, KorpusData, SentencePairKorpusData
-from .utils import fetch, default_korpora_path, load_text
+from .utils import fetch, default_korpora_path, load_text, check_exists
 
 
 KOREAN_HATE_SPEECH_FETCH_INFORMATION = [
@@ -152,6 +152,10 @@ class KoreanHateSpeechKorpus(Korpus):
         self.dev = load_dev(root_dir)
         self.unlabeled = load_unlabeled(root_dir)
         self.test = load_test(root_dir)
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('korean_hate_speech', KOREAN_HATE_SPEECH_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def load_train(root_dir):

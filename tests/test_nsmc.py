@@ -3,6 +3,7 @@ from Korpora import Korpora, NSMCKorpus
 
 def test_usage():
     nsmc = Korpora.load('nsmc')
+    assert nsmc.exists()
     assert len(nsmc.train.texts) == 150000
     assert len(nsmc.train.labels) == 150000
     assert len(nsmc.test.texts) == 50000
