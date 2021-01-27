@@ -10,13 +10,6 @@ from .korpora import KorpusData
 from .korpus_modu_news import ModuKorpus
 from .utils import default_korpora_path
 
-MODU_MESSENGER_INFORMATION = [
-    {
-        'url': 'https://github.com/lovit/kowikitext/releases/download/kowikitext.20200920.v2/kowikitext_20200920.train.zip',
-        'destination': 'kowikitext/kowikitext_20200920.train.zip',
-        'method': None,
-    }
-]
 
 class ModuMessengerKorpus(ModuKorpus):
     def __init__(self, root_dir=None, force_download=False):

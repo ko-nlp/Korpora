@@ -69,7 +69,7 @@ class KcBERTKorpus(Korpus):
 
     @classmethod
     def exists(cls, root_dir=None):
-        return check_exists('korean_kcbert', KCBERT_FETCH_INFORMATION, root_dir=root_dir)
+        return check_exists('kcbert', KCBERT_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_kcbert(root_dir, force_download):

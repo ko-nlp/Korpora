@@ -56,7 +56,7 @@ class ModuKorpus(Korpus):
         if os.path.exists(alternative_root_dir):
             root_dir = alternative_root_dir
         paths = []
-        if finder:
+        if callable(finder):
             paths = finder(root_dir)
 
         return paths

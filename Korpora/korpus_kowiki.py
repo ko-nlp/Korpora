@@ -84,7 +84,7 @@ class KowikiTextKorpus(Korpus):
 
     @classmethod
     def exists(cls, root_dir=None):
-        return check_exists('kowiki', KOWIKI_FETCH_INFORMATION, root_dir=root_dir)
+        return check_exists('kowikitext', KOWIKI_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_kowikitext(root_dir, force_download):

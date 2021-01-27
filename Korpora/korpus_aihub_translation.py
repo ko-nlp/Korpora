@@ -73,7 +73,7 @@ class AIHubTranslationKorpus(Korpus):
         elif isinstance(root_dir, str) and os.path.isdir(root_dir):
             root_dir = os.path.join(root_dir, 'AIHub_Translation', prefix)
         paths = []
-        if finder:
+        if callable(finder):
             paths = finder(root_dir)
 
         return paths

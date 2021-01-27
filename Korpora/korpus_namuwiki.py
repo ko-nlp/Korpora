@@ -87,7 +87,6 @@ class NamuwikiTextKorpus(Korpus):
         return check_exists('namuwikitext', NAMUWIKI_FETCH_INFORMATION, root_dir=root_dir)
 
 
-
 def fetch_namuwikitext(root_dir, force_download):
     for information in NAMUWIKI_FETCH_INFORMATION:
         url = information['url']
