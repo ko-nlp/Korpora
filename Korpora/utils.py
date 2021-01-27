@@ -1,3 +1,4 @@
+import lzma
 import os
 import requests
 import tarfile
@@ -146,7 +147,7 @@ def web_download_unzip(url, zip_path, corpus_name='', force_download=False):
     data_root = os.path.dirname(zip_path)
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(data_root)
-    print(f'unzip {data_path}')
+    print(f'unpacked {data_path}')
 
 
 def web_download_untar(url, tar_path, corpus_name='', force_download=False):
@@ -159,7 +160,7 @@ def web_download_untar(url, tar_path, corpus_name='', force_download=False):
     data_root = os.path.dirname(tar_path)
     with tarfile.open(tar_path) as tar:
         tar.extractall(data_root)
-    print(f'decompress {tar_path}')
+    print(f'unpacked {tar_path}')
 
 
 def web_download_ungzip(url, gzip_path, corpus_name='', force_download=False):
@@ -172,7 +173,23 @@ def web_download_ungzip(url, gzip_path, corpus_name='', force_download=False):
     with gzip.open(gzip_path, 'rb') as fi:
         with open(data_path, 'wb') as fo:
             shutil.copyfileobj(fi, fo)
-    print(f'decompress {gzip_path}')
+    print(f'unpacked {gzip_path}')
+
+
+def web_download_unxz(url, xz_path, corpus_name='', force_download=False):
+    web_download(url, xz_path, corpus_name, force_download)
+    # assume that path/to/abc.xz consists path/to/abc
+    xz_path = os.path.abspath(xz_path)
+    data_path = xz_path[:-3]
+    _, parent, filename = data_path.rsplit(os.path.sep, 2)
+    if (not force_download) and os.path.exists(data_path):
+        print(f'[Korpora] Corpus `{corpus_name}` is already installed at {data_path}')
+        return None
+    with lzma.open(xz_path, mode='rt') as fi:
+        with open(data_path, 'w', encoding='utf-8') as fo:
+            for line in tqdm(fi, desc=f'Unpacking {parent}/{filename}'):
+                fo.write(line)
+    print(f'unpacked {xz_path}')
 
 
 def google_drive_download(file_id, local_path, corpus_name='', force_download=False):
