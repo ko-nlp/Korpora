@@ -282,6 +282,12 @@ def iterate_aihub_translation(corpus_name=''):
     return fn_iterate_aihub_translation
 
 
+def iterate_aihub_kspon_speech_scripts(root_dir, force_download, multilingual=False):
+    corpus = Korpora.load('aihub_kspon_speech_scripts', root_dir, force_download)
+    for sent in corpus.train.texts:
+        yield sent.sentence
+
+
 ITERATE_TEXTS = {
     'kcbert': iterate_kcbert,
     'korean_chatbot_data': iterate_korean_chatbot_data,
@@ -309,4 +315,5 @@ ITERATE_TEXTS = {
     'aihub_korean_culture_translation':  iterate_aihub_translation('aihub_korean_culture_translation'),
     'aihub_decree_translation':  iterate_aihub_translation('aihub_decree_translation'),
     'aihub_government_website_translation':  iterate_aihub_translation('aihub_government_website_translation'),
+    'aihub_kspon_speech_scripts': iterate_aihub_kspon_speech_scripts,
 }
