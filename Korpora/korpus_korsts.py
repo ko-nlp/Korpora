@@ -3,7 +3,7 @@ from typing import List
 from dataclasses import dataclass
 
 from .korpora import Korpus, LabeledSentencePairKorpusData, LabeledSentencePair
-from .utils import fetch, default_korpora_path, load_text
+from .utils import fetch, default_korpora_path, load_text, check_exists
 
 
 KORSTS_FETCH_INFORMATION = [
@@ -129,6 +129,10 @@ class KorSTSKorpus(Korpus):
 
     def get_all_years(self):
         return self.train.get_all_years() + self.dev.get_all_years() + self.test.get_all_years()
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('korsts', KORSTS_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_korsts(root_dir, force_download):

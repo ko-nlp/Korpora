@@ -4,6 +4,7 @@ from Korpora import KoreanPetitionsKorpus
 
 def test_usage():
     petitions = Korpora.load('korean_petitions')
+    assert petitions.exists()
     assert len(petitions.train) == len(KoreanPetitionsKorpus().train)
     assert len(petitions.train) == 433631
     assert len(petitions.train[0].text) == 1491

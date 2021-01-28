@@ -2,7 +2,7 @@ import os
 from typing import List
 
 from .korpora import Korpus, LabeledSentenceKorpusData
-from .utils import fetch, load_text, default_korpora_path
+from .utils import fetch, load_text, default_korpora_path, check_exists
 
 
 NSMC_FETCH_INFORMATION = [
@@ -65,6 +65,10 @@ class NSMCKorpus(Korpus):
 
     def get_all_labels(self):
         return self.train.labels + self.test.labels
+
+    @classmethod
+    def exists(cls, root_dir=None):
+        return check_exists('nsmc', NSMC_FETCH_INFORMATION, root_dir=root_dir)
 
 
 def fetch_nsmc(root_dir, force_download):

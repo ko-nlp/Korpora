@@ -4,6 +4,8 @@ from Korpora import Korpora, KoreanHateSpeechKorpus
 def test_usage():
     korean_hate_speech = Korpora.load('korean_hate_speech')
     korean_hate_speech_ = KoreanHateSpeechKorpus()
+    assert korean_hate_speech.exists()
+    assert korean_hate_speech_.exists()
     assert len(korean_hate_speech.unlabeled) == len(korean_hate_speech_.unlabeled) == 2033893
     assert len(korean_hate_speech.test) == 974
     assert len(korean_hate_speech.dev) == 471
