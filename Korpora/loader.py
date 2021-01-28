@@ -155,7 +155,6 @@ KORPUS_DESCRIPTION = {
     'aihub_decree_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (조례)",
     'aihub_government_website_translation': "AI Hub 에서 제공하는 번역용 병렬 말뭉치 (지자체웹사이트)",
     'aihub_kspon_speech_scripts': "AI Hub 에서 제공하는 한국어 음성 오디오 말뭉치 (전사)",
-
 }
 
 KORPUS_DESCRIPTION_EN = {
@@ -186,6 +185,7 @@ KORPUS_DESCRIPTION_EN = {
     'aihub_korean_culture_translation': "Parallel corpus about Korean culture released by AI Hub",
     'aihub_decree_translation': "Parallel corpus about Korean decree released by AI Hub",
     'aihub_government_website_translation': "Parallel corpus consisting government website released by AI Hub",
+    'aihub_kspon_speech_scripts': "Transcript of Korean spoken dataset released by AI Hub",
 }
 
 FETCH = {
