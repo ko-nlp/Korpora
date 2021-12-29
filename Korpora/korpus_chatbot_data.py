@@ -7,7 +7,7 @@ from .utils import fetch, default_korpora_path, check_exists
 
 KOREAN_CHATBOT_FETCH_INFORMATION = [
     {
-        'url': 'https://raw.githubusercontent.com/songys/Chatbot_data/master/ChatbotData%20.csv',
+        'url': 'https://raw.githubusercontent.com/songys/Chatbot_data/master/ChatbotData.csv',
         'destination': 'korean_chatbot_data/ChatbotData.csv',
         'method': 'download'
     }
